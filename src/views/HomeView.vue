@@ -2,7 +2,7 @@
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import SearchPart from '@/components/SearchPart.vue'
 import MapPart from '@/components/MapPart.vue'
-import MapCart from '@/components/MapCart.vue'
+import MapCart from '@/components/LayerCart.vue'
 import { ref } from 'vue'
 
 const showWelcomeOverlay = ref(true)

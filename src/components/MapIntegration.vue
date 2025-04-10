@@ -1,9 +1,23 @@
-<script setup></script>
+<script setup>
+import { computed } from 'vue'
+import { useMainStore } from '@/store/main'
+
+const mainStore = useMainStore()
+
+const urlString = computed(() => {
+  const baseUrl = 'https://map.geo.admin.ch/#embed'
+  const searchParams = new URLSearchParams()
+
+  searchParams.append('lang', 'de')
+  searchParams.append('z', 1)
+  searchParams.append('center', '2660000,1190000')
+  searchParams.append('layers', mainStore.layersOnMap.join(';'))
+  searchParams.append('bgLayer', 'ch.swisstopo.pixelkarte-farbe')
+
+  return `${baseUrl}/?${searchParams.toString()}`
+})
+</script>
 
 <template>
-  <iframe
-    src="https://map.geo.admin.ch/#/embed?lang=de&center=2660000,1190000&z=1&topic=ech&layers=ch.swisstopo.zeitreihen@year=1864,f;ch.bfs.gebaeude_wohnungs_register,f;ch.bav.haltestellen-oev,f;ch.swisstopo.swisstlm3d-wanderwege,f;ch.vbs.schiessanzeigen,f;ch.astra.wanderland-sperrungen_umleitungen,f&bgLayer=ch.swisstopo.pixelkarte-farbe"
-    class="w-full h-fit"
-    allow="geolocation"
-  ></iframe>
+  <iframe :src="urlString" class="w-full h-fit" allow="geolocation"></iframe>
 </template>

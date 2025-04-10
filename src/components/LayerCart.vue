@@ -5,10 +5,10 @@ const mainstore = useMainStore()
 </script>
 
 <template>
-  <div class="bg-white py-4 px-8 text-xl layer-cart">
+  <div class="px-8 py-4 text-xl bg-white layer-cart">
     My Maps
-    <div class="bg-red-400 text-white text-center inline-block rounded-full w-6">
-      {{ mainstore.layersOnMap }}
+    <div class="inline-block w-6 text-center text-white bg-red-400 rounded-full">
+      {{ mainstore.layersOnMapCount }}
     </div>
   </div>
 </template>

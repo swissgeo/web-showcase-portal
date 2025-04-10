@@ -1,9 +1,18 @@
 <script setup>
 import { useSearchStore } from '@/store/search'
+import { useMainStore } from '@/store/main'
 import AddToMapIcon from '@/assets/icons/alternate-sign-out.svg?use'
 import InfoIcon from '@/assets/icons/info.svg?use'
+import { storeToRefs } from 'pinia'
 
 const searchStore = useSearchStore()
+const mainStore = useMainStore()
+
+const { isLayerOnMap } = storeToRefs(mainStore)
+
+const addToMap = (layerId) => {
+  mainStore.addLayerToMap(layerId)
+}
 </script>
 
 <template>
@@ -13,6 +22,7 @@ const searchStore = useSearchStore()
         v-for="result in searchStore.searchResults"
         :key="result.id"
         class="flex justify-between gap-4"
+        :class="{ 'text-gray-400': isLayerOnMap(result.id) }"
       >
         <div class="flex flex-col">
           <div class="text-2xl">
@@ -21,10 +31,19 @@ const searchStore = useSearchStore()
           <div>Lorem ipsum dolor sit mappus geoadminus et geocatus</div>
         </div>
         <div class="flex gap-2">
-          <button title="Show info" class="cursor-pointer">
-            <InfoIcon class="w-[32px] h-[32px] fill-current stroke-current" />
+          <button title="Show info" class="cursor-pointer hover:text-gray-400">
+            <InfoIcon class="w-[32px] h-[32px]" />
           </button>
-          <button title="Add to map" class="cursor-pointer">
+          <button
+            title="Add to map"
+            class="hover:text-gray-400"
+            @click="addToMap(result.id)"
+            :disabled="isLayerOnMap(result.id)"
+            :class="{
+              'cursor-default': isLayerOnMap(result.id),
+              'cursor-pointer': !isLayerOnMap(result.id),
+            }"
+          >
             <AddToMapIcon class="w-[32px] h-[32px] rotate-90 md:rotate-none" />
           </button>
         </div>

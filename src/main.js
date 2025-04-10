@@ -6,6 +6,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+import '@fontsource/noto-sans'
 
 import deLocale from './locales/de.json'
 

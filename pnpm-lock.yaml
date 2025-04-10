@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/noto-sans':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@tailwindcss/vite':
         specifier: ^4.1.3
         version: 4.1.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2))
@@ -454,6 +457,9 @@ packages:
   '@eslint/plugin-kit@0.2.8':
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@fontsource/noto-sans@5.2.6':
+    resolution: {integrity: sha512-46D39T1/QJ16LSbCTaNjjrGS6Y69FMLS9FeHKsrXSQg15Z2MFqmlnNMpURx2l6Sr3x9t9EVdr3CAkHnZyvea+w==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -3086,6 +3092,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.13.0
       levn: 0.4.1
+
+  '@fontsource/noto-sans@5.2.6': {}
 
   '@hapi/hoek@9.3.0': {}
 

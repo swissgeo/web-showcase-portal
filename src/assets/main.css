@@ -1,9 +1,8 @@
 @import 'tailwindcss';
 
-button {
-  @apply bg-gray-200;
-  @apply p-2;
-  @apply cursor-pointer;
+@theme {
+  --font-sans: Noto Sans, sans-serif;
+}
 }
 
 input {

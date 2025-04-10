@@ -1,1 +1,17 @@
 @import 'tailwindcss';
+
+button {
+  @apply bg-gray-200;
+  @apply p-2;
+  @apply cursor-pointer;
+}
+
+input {
+  @apply border-black border-solid border-1;
+  @apply w-full;
+  @apply px-4 py-2;
+}
+
+h1 {
+  @apply text-5xl;
+}

@@ -6,6 +6,6 @@ import DesktopTitle from '@/components/DesktopTitle.vue'
 <template>
   <div class="flex flex-col h-screen">
     <DesktopTitle class="hidden md:block"></DesktopTitle>
-    <MapIntegration class="h-fit grow"></MapIntegration>
+    <MapIntegration class="h-fit grow md:mt-16 mt-24"></MapIntegration>
   </div>
 </template>

@@ -7,18 +7,21 @@ const emits = defineEmits(['close'])
 </script>
 
 <template>
-  <div class="fixed flex items-center justify-center w-full h-full inset-px">
+  <div class="fixed w-full h-full inset-px opacity-50 bg-gray-200"></div>
+  <div class="fixed w-full h-full inset-px flex items-center justify-center z-3">
     <div
-      class="h-[90%] w-[90%] md:w-[66%] border border-solid border-black md:h-[66%] flex flex-col items-center bg-white"
+      class="h-[90%] w-[90%] md:w-[66%] border border-solid border-black md:h-[66%] flex flex-col items-center bg-white justify-center gap-8 shadow-lg"
     >
-      <div>
-        {{ t('welcome') }}
+      <div class="text-5xl">
+        {{ t('welcomeOverlay.title') }}
       </div>
       <div>
-        {{ t('intro') }}
+        {{ t('welcomeOverlay.intro') }}
       </div>
       <div>
-        <button @click="emits('close')">Close me</button>
+        <button class="btn btn-primary text-2xl" @click="emits('close')">
+          {{ t('welcomeOverlay.confirm') }}
+        </button>
       </div>
     </div>
   </div>

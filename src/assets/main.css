@@ -25,3 +25,7 @@ input {
 h1 {
   @apply text-5xl;
 }
+
+svg {
+  @apply fill-neutral-500 stroke-neutral-500;
+}

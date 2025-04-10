@@ -13,6 +13,10 @@ const { isLayerOnMap } = storeToRefs(mainStore)
 const addToMap = (layerId) => {
   mainStore.addLayerToMap(layerId)
 }
+
+const showLayerInfo = (layerId) => {
+  mainStore.setInfoLayerId(layerId)
+}
 </script>
 
 <template>
@@ -31,7 +35,11 @@ const addToMap = (layerId) => {
           <div>Lorem ipsum dolor sit mappus geoadminus et geocatus</div>
         </div>
         <div class="flex gap-2">
-          <button title="Show info" class="cursor-pointer hover:text-gray-400">
+          <button
+            title="Show info"
+            class="cursor-pointer hover:text-gray-400"
+            @click="showLayerInfo(result.id)"
+          >
             <InfoIcon class="w-[32px] h-[32px]" />
           </button>
           <button

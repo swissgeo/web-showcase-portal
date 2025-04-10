@@ -4,6 +4,7 @@ export const useMainStore = defineStore('main', {
   state: () => {
     return {
       layersOnMap: [],
+      infoLayerId: null,
     }
   },
   getters: {
@@ -13,10 +14,19 @@ export const useMainStore = defineStore('main', {
     isLayerOnMap(state) {
       return (layerId) => state.layersOnMap.find((layer) => layer === layerId)
     },
+    showLayerInfo(state) {
+      return state.infoLayerId !== null
+    },
   },
   actions: {
     addLayerToMap(layerId) {
       this.layersOnMap.push(layerId)
+    },
+    setInfoLayerId(layerId) {
+      this.infoLayerId = layerId
+    },
+    resetInfoLayerId() {
+      this.infoLayerId = null
     },
   },
 })

@@ -11,7 +11,7 @@ const urlString = computed(() => {
   searchParams.append('lang', 'de')
   searchParams.append('z', '1')
   searchParams.append('center', '2660000,1190000')
-  searchParams.append('layers', mainStore.layersOnMap.join(';'))
+  searchParams.append('layers', mainStore.layersOnMap.map((layer) => layer.id).join(';'))
   searchParams.append('bgLayer', 'ch.swisstopo.pixelkarte-farbe')
 
   return `${baseUrl}/?${searchParams.toString()}`

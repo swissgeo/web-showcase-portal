@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSearchStore } from '@/store/search'
+import { useSearchStore, type Layer } from '@/store/search'
 import { useMainStore } from '@/store/main'
 // @ts-expect-error This import isn't recognized by TS
 import AddToMapIcon from '@/assets/icons/alternate-sign-out.svg?use'
@@ -12,8 +12,8 @@ const mainStore = useMainStore()
 
 const { isLayerOnMap } = storeToRefs(mainStore)
 
-const addToMap = (layerId: string) => {
-  mainStore.addLayerToMap(layerId)
+const addToMap = (layer: Layer) => {
+  mainStore.addLayerToMap(layer)
 }
 
 const showLayerInfo = (layerId: string) => {
@@ -47,7 +47,7 @@ const showLayerInfo = (layerId: string) => {
           <button
             title="Add to map"
             class="hover:text-gray-400"
-            @click="addToMap(result.id)"
+            @click="addToMap(result)"
             :disabled="isLayerOnMap(result.id)"
             :class="{
               'cursor-default': isLayerOnMap(result.id),

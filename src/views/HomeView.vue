@@ -18,7 +18,7 @@ const closeOverlay = () => {
       <SearchPart class="md:w-2/5"></SearchPart>
       <MapPart class="md:w-3/5"></MapPart>
     </div>
-    <MapCart class="fixed right-0 bottom-0"></MapCart>
+    <MapCart></MapCart>
     <WelcomeOverlay class="z-100" v-if="showWelcomeOverlay" @close="closeOverlay"></WelcomeOverlay>
   </main>
 </template>

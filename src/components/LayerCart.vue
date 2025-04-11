@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useMainStore } from '@/store/main'
 
 const mainstore = useMainStore()

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { useMainStore } from '@/store/main'
 
@@ -9,7 +9,7 @@ const urlString = computed(() => {
   const searchParams = new URLSearchParams()
 
   searchParams.append('lang', 'de')
-  searchParams.append('z', 1)
+  searchParams.append('z', '1')
   searchParams.append('center', '2660000,1190000')
   searchParams.append('layers', mainStore.layersOnMap.join(';'))
   searchParams.append('bgLayer', 'ch.swisstopo.pixelkarte-farbe')

@@ -1,5 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { watch, onMounted, ref } from 'vue'
+// @ts-expect-error This import isn't recognized by TS
 import TimesIcon from '@/assets/icons/times.svg?use'
 import { useMainStore } from '@/store/main'
 import { storeToRefs } from 'pinia'

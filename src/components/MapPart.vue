@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import MapIntegration from '@/components/MapIntegration.vue'
 import DesktopTitle from '@/components/DesktopTitle.vue'
 import DatasetInfo from '@/components/DatasetInfo.vue'

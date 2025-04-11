@@ -1,17 +1,22 @@
 import { defineStore } from 'pinia'
 
+export type Layer = {
+  id: string
+  name: string
+}
+
 export const useSearchStore = defineStore('search', {
   state: () => {
     return {
-      searchTerm: null,
-      searchResults: [],
+      searchTerm: null as string | null,
+      searchResults: [] as Layer[],
     }
   },
   actions: {
-    setSearchResults(results) {
+    setSearchResults(results: Layer[]) {
       this.searchResults = results
     },
-    setSearchTerm(term) {
+    setSearchTerm(term: string) {
       this.searchTerm = term
     },
     clear() {

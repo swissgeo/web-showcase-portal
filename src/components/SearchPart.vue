@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import SearchInput from '@/components/SearchInput.vue'
 import SearchResults from '@/components/SearchResults.vue'
 </script>

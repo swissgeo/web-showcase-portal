@@ -1,10 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { debounce } from '@/utils/debounce'
 import { useI18n } from 'vue-i18n'
-import { useSearchStore } from '@/store/search'
+import { useSearchStore, type Layer } from '@/store/search'
 
+// @ts-expect-error This import isn't recognized by TS
 import SearchIcon from '@/assets/icons/search.svg?use'
+// @ts-expect-error This import isn't recognized by TS
 import TimesIcon from '@/assets/icons/times.svg?use'
 
 // mock search results
@@ -37,7 +39,7 @@ const RESULTS = [
     id: 'ch.bfs.erreichbarkeit-apotheken',
     name: 'Erreichbarkeit Apotheken',
   },
-]
+] as Layer[]
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
@@ -46,13 +48,14 @@ const searchTerm = computed({
   get() {
     return searchStore.searchTerm
   },
-  set(value) {
+  set(value: string) {
     searchStore.setSearchTerm(value)
     doSearch(value)
   },
 })
 
-const doSearch = debounce(() => {
+const doSearch = debounce((value: string) => {
+  console.log('would search', value)
   searchStore.setSearchResults(RESULTS)
 }, 200)
 

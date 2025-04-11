@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import SearchPart from '@/components/SearchPart.vue'
 import MapPart from '@/components/MapPart.vue'

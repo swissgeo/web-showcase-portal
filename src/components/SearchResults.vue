@@ -1,7 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { useSearchStore } from '@/store/search'
 import { useMainStore } from '@/store/main'
+// @ts-expect-error This import isn't recognized by TS
 import AddToMapIcon from '@/assets/icons/alternate-sign-out.svg?use'
+// @ts-expect-error This import isn't recognized by TS
 import InfoIcon from '@/assets/icons/info.svg?use'
 import { storeToRefs } from 'pinia'
 
@@ -10,11 +12,11 @@ const mainStore = useMainStore()
 
 const { isLayerOnMap } = storeToRefs(mainStore)
 
-const addToMap = (layerId) => {
+const addToMap = (layerId: string) => {
   mainStore.addLayerToMap(layerId)
 }
 
-const showLayerInfo = (layerId) => {
+const showLayerInfo = (layerId: string) => {
   mainStore.setInfoLayerId(layerId)
 }
 </script>

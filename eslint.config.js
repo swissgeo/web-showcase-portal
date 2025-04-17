@@ -2,6 +2,8 @@ import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 import pluginVitest from '@vitest/eslint-plugin'
+import mocha from 'eslint-plugin-mocha'
+import perfectionist from 'eslint-plugin-perfectionist'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import pluginCypress from 'eslint-plugin-cypress/flat'
@@ -13,24 +15,51 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
-  {
-    name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
-  },
+    {
+        name: 'app/files-to-lint',
+        files: ['**/*.{ts,mts,tsx,vue}'],
+    },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+    globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
-  pluginVue.configs['flat/essential'],
-  vueTsConfigs.recommended,
+    pluginVue.configs['flat/recommended'],
+    vueTsConfigs.recommended,
 
-  {
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
-  },
+    {
+        plugins: {
+            mocha,
+            perfectionist,
+        },
 
-  {
-    ...pluginCypress.configs.recommended,
-    files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}'],
-  },
-  skipFormatting,
+        eqeqeq: ['error', 'always'],
+        'no-console': 'error',
+        'no-unused-vars': [
+            'error',
+            {
+                argsIgnorePattern: '^_',
+                caughtErrorsIgnorePattern: '^_',
+                destructuredArrayIgnorePattern: '^_',
+            },
+        ],
+        'no-var': 'error',
+        'perfectionist/sort-imports': [
+            'error',
+            { type: 'alphabetical', internalPattern: ['^@/.*'] },
+        ],
+        'vue/html-indent': ['error', 4],
+    },
+
+    {
+        ...pluginVitest.configs.recommended,
+        files: ['src/**/__tests__/*'],
+    },
+
+    {
+        ...pluginCypress.configs.recommended,
+        files: [
+            'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
+            'cypress/support/**/*.{js,ts,jsx,tsx}',
+        ],
+    },
+    skipFormatting
 )

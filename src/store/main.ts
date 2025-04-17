@@ -1,5 +1,6 @@
-import type { Layer } from '@/store/search'
 import { defineStore } from 'pinia'
+
+import type { Layer } from '@/store/search'
 
 export interface MainStoreState {
     layersOnMap: Layer[]

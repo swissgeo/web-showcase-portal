@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
-import SearchPart from '@/components/SearchPart.vue'
-import MapPart from '@/components/MapPart.vue'
-import MapCart from '@/components/LayerCart.vue'
 import { ref } from 'vue'
+
+import MapCart from '@/components/LayerCart.vue'
+import MapPart from '@/components/MapPart.vue'
+import SearchPart from '@/components/SearchPart.vue'
+import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 
 const showWelcomeOverlay = ref(true)
 
@@ -20,8 +21,8 @@ const closeOverlay = () => {
         </div>
         <MapCart></MapCart>
         <WelcomeOverlay
-            class="z-100"
             v-if="showWelcomeOverlay"
+            class="z-100"
             @close="closeOverlay"
         ></WelcomeOverlay>
     </main>

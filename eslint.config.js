@@ -66,6 +66,15 @@ export default defineConfigWithVueTs(
         ],
     },
     {
+        files: ['**/*.ts', '**/*.tsx'],
+        // switching to TypeScript unused var rule (instead of JS rule), so that no error is raised
+        // on unused param from abstract function arguments
+        rules: {
+            'no-unused-vars': 'off',
+            '@typescript-eslint/no-unused-vars': 'error',
+        },
+    },
+    {
         files: ['**/*.md'],
         ignores: ['!**/*.md', '**/LICENSE.md'],
         plugins: {

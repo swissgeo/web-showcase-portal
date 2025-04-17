@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useMainStore } from '@/store/main'
 import { computed, ref } from 'vue'
+
 import ActiveLayerList from '@/components/ActiveLayerList.vue'
+import { useMainStore } from '@/store/main'
 
 const mainstore = useMainStore()
 

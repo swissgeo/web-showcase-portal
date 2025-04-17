@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useSearchStore, type Layer } from '@/store/search'
-import { useMainStore } from '@/store/main'
+import { storeToRefs } from 'pinia'
+
 // @ts-expect-error This import isn't recognized by TS
 import AddToMapIcon from '@/assets/icons/alternate-sign-out.svg?use'
 // @ts-expect-error This import isn't recognized by TS
 import InfoIcon from '@/assets/icons/info.svg?use'
-import { storeToRefs } from 'pinia'
+import { useMainStore } from '@/store/main'
+import { useSearchStore, type Layer } from '@/store/search'
 
 const searchStore = useSearchStore()
 const mainStore = useMainStore()
@@ -47,12 +48,12 @@ const showLayerInfo = (layerId: string) => {
                     <button
                         title="Add to map"
                         class="hover:text-gray-400"
-                        @click="addToMap(result)"
                         :disabled="isLayerOnMap(result.id)"
                         :class="{
                             'cursor-default': isLayerOnMap(result.id),
                             'cursor-pointer': !isLayerOnMap(result.id),
                         }"
+                        @click="addToMap(result)"
                     >
                         <AddToMapIcon class="w-[32px] h-[32px] rotate-90 md:rotate-none" />
                     </button>

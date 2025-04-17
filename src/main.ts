@@ -1,14 +1,14 @@
-import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 
 import App from './App.vue'
-import router from './router'
-
+import deLocale from './locales/de.json'
 import './assets/main.css'
+
 import '@fontsource/noto-sans'
 
-import deLocale from './locales/de.json'
+import router from './router'
 
 const messages = {
     de: deLocale,

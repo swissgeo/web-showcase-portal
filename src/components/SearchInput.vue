@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { debounce } from '@/utils/debounce'
 import { useI18n } from 'vue-i18n'
-import { useSearchStore, type Layer } from '@/store/search'
 
 // @ts-expect-error This import isn't recognized by TS
 import SearchIcon from '@/assets/icons/search.svg?use'
 // @ts-expect-error This import isn't recognized by TS
 import TimesIcon from '@/assets/icons/times.svg?use'
+import { useSearchStore, type Layer } from '@/store/search'
+import { debounce } from '@/utils/debounce'
 
 // mock search results
 const RESULTS = [
@@ -54,8 +54,8 @@ const searchTerm = computed({
     },
 })
 
-const doSearch = debounce((value: string) => {
-    console.log('would search', value)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const doSearch = debounce((_: string) => {
     searchStore.setSearchResults(RESULTS)
 }, 200)
 
@@ -78,8 +78,8 @@ const clearSearch = () => {
             />
             <button
                 v-else
-                @click="clearSearch"
                 class="cursor-pointer h-[32px] w-[32px]"
+                @click="clearSearch"
             >
                 <TimesIcon class="h-[32px] w-[32px]" />
             </button>

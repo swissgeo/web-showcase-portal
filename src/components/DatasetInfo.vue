@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { watch, onMounted, ref } from 'vue'
+
 // @ts-expect-error This import isn't recognized by TS
 import TimesIcon from '@/assets/icons/times.svg?use'
 import { useMainStore } from '@/store/main'
-import { storeToRefs } from 'pinia'
 
 const mainStore = useMainStore()
 const { infoLayerId } = storeToRefs(mainStore)
@@ -39,13 +40,15 @@ watch(infoLayerId, fetchInfo)
         >
             <div class="self-end">
                 <button
-                    @click="close"
                     class="cursor-pointer"
+                    @click="close"
                 >
                     <TimesIcon class="w-[32px] h-[32px]" />
                 </button>
             </div>
 
+            <!-- this will go away, it's only for POC -->
+            <!-- eslint-disable-next-line vue/no-v-html -->
             <div v-html="layerInfo"></div>
         </div>
     </div>

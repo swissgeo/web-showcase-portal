@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import MapIntegration from '@/components/MapIntegration.vue'
-import DesktopTitle from '@/components/DesktopTitle.vue'
-import DatasetInfo from '@/components/DatasetInfo.vue'
-import { useMainStore } from '@/store/main'
 import { storeToRefs } from 'pinia'
+
+import DatasetInfo from '@/components/DatasetInfo.vue'
+import DesktopTitle from '@/components/DesktopTitle.vue'
+import MapIntegration from '@/components/MapIntegration.vue'
+import { useMainStore } from '@/store/main'
 
 const mainStore = useMainStore()
 

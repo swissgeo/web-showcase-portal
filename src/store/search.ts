@@ -5,8 +5,13 @@ export type Layer = {
     name: string
 }
 
+export interface SearchStoreState {
+    searchTerm: string | null
+    searchResults: Layer[]
+}
+
 export const useSearchStore = defineStore('search', {
-    state: () => {
+    state: (): SearchStoreState => {
         return {
             searchTerm: null as string | null,
             searchResults: [] as Layer[],

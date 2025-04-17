@@ -1,11 +1,16 @@
 import type { Layer } from '@/store/search'
 import { defineStore } from 'pinia'
 
+export interface MainStoreState {
+    layersOnMap: Layer[]
+    infoLayerId: string | null
+}
+
 export const useMainStore = defineStore('main', {
-    state: () => {
+    state: (): MainStoreState => {
         return {
-            layersOnMap: [] as Layer[],
-            infoLayerId: null as string | null,
+            layersOnMap: [],
+            infoLayerId: null,
         }
     },
     getters: {

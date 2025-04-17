@@ -11,12 +11,12 @@ const { showLayerInfo } = storeToRefs(mainStore)
 </script>
 
 <template>
-  <div class="flex flex-col h-screen">
-    <DesktopTitle class="hidden md:block"></DesktopTitle>
-    <MapIntegration
-      class="mt-24 h-fit grow md:mt-16"
-      :class="{ 'md:hidden': showLayerInfo }"
-    ></MapIntegration>
-    <DatasetInfo v-if="showLayerInfo" />
-  </div>
+    <div class="flex flex-col h-screen">
+        <DesktopTitle class="hidden md:block"></DesktopTitle>
+        <MapIntegration
+            class="mt-24 h-fit grow md:mt-16"
+            :class="{ 'md:hidden': showLayerInfo }"
+        ></MapIntegration>
+        <DatasetInfo v-if="showLayerInfo" />
+    </div>
 </template>

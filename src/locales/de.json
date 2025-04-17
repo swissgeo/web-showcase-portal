@@ -1,9 +1,9 @@
 {
-  "welcome": "Willkommen",
-  "searchPlaceholder": "Hier suchen...",
-  "welcomeOverlay": {
-    "title": "Willkommen auf...",
-    "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
-    "confirm": "Ich möchte es anschauen!"
-  }
+    "welcome": "Willkommen",
+    "searchPlaceholder": "Hier suchen...",
+    "welcomeOverlay": {
+        "title": "Willkommen auf...",
+        "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
+        "confirm": "Ich möchte es anschauen!"
+    }
 }

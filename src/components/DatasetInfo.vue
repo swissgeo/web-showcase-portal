@@ -11,39 +11,42 @@ const { infoLayerId } = storeToRefs(mainStore)
 const layerInfo = ref('')
 
 const fetchInfo = async () => {
-  const url = `https://api3.geo.admin.ch/rest/services/all/MapServer/${infoLayerId.value}/legend?lang=de`
+    const url = `https://api3.geo.admin.ch/rest/services/all/MapServer/${infoLayerId.value}/legend?lang=de`
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json, text/plain, */*',
-    },
-  })
-  layerInfo.value = await response.text()
+    const response = await fetch(url, {
+        headers: {
+            'Content-Type': 'application/json, text/plain, */*',
+        },
+    })
+    layerInfo.value = await response.text()
 }
 
 onMounted(async () => {
-  fetchInfo()
+    fetchInfo()
 })
 
 const close = () => {
-  mainStore.resetInfoLayerId()
+    mainStore.resetInfoLayerId()
 }
 
 watch(infoLayerId, fetchInfo)
 </script>
 
 <template>
-  <div class="fixed md:static top-8 md:top-0">
-    <div
-      class="flex flex-col p-8 bg-white border shadow-lg border-neutral-500 md:border-neutral-200 md:shadow-none"
-    >
-      <div class="self-end">
-        <button @click="close" class="cursor-pointer">
-          <TimesIcon class="w-[32px] h-[32px]" />
-        </button>
-      </div>
+    <div class="fixed md:static top-8 md:top-0">
+        <div
+            class="flex flex-col p-8 bg-white border shadow-lg border-neutral-500 md:border-neutral-200 md:shadow-none"
+        >
+            <div class="self-end">
+                <button
+                    @click="close"
+                    class="cursor-pointer"
+                >
+                    <TimesIcon class="w-[32px] h-[32px]" />
+                </button>
+            </div>
 
-      <div v-html="layerInfo"></div>
+            <div v-html="layerInfo"></div>
+        </div>
     </div>
-  </div>
 </template>

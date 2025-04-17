@@ -11,13 +11,13 @@ import '@fontsource/noto-sans'
 import deLocale from './locales/de.json'
 
 const messages = {
-  de: deLocale,
+    de: deLocale,
 }
 
 const i18n = createI18n({
-  locale: 'de',
-  fallbackLocale: 'de',
-  messages,
+    locale: 'de',
+    fallbackLocale: 'de',
+    messages,
 })
 
 const app = createApp(App)

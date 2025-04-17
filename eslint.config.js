@@ -1,13 +1,14 @@
-import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
+import markdown from '@eslint/markdown'
 import pluginVitest from '@vitest/eslint-plugin'
-import mocha from 'eslint-plugin-mocha'
-import perfectionist from 'eslint-plugin-perfectionist'
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import pluginCypress from 'eslint-plugin-cypress/flat'
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import mocha from 'eslint-plugin-mocha'
+import perfectionist from 'eslint-plugin-perfectionist'
+import pluginVue from 'eslint-plugin-vue'
+import { globalIgnores } from 'eslint/config'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -31,22 +32,25 @@ export default defineConfigWithVueTs(
             perfectionist,
         },
 
-        eqeqeq: ['error', 'always'],
-        'no-console': 'error',
-        'no-unused-vars': [
-            'error',
-            {
-                argsIgnorePattern: '^_',
-                caughtErrorsIgnorePattern: '^_',
-                destructuredArrayIgnorePattern: '^_',
-            },
-        ],
-        'no-var': 'error',
-        'perfectionist/sort-imports': [
-            'error',
-            { type: 'alphabetical', internalPattern: ['^@/.*'] },
-        ],
-        'vue/html-indent': ['error', 4],
+        rules: {
+            eqeqeq: ['error', 'always'],
+
+            'no-console': 'error',
+            'no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                    destructuredArrayIgnorePattern: '^_',
+                },
+            ],
+            'no-var': 'error',
+            'perfectionist/sort-imports': [
+                'error',
+                { type: 'alphabetical', internalPattern: ['^@/.*'] },
+            ],
+            'vue/html-indent': ['error', 4],
+        },
     },
 
     {
@@ -60,6 +64,17 @@ export default defineConfigWithVueTs(
             'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
             'cypress/support/**/*.{js,ts,jsx,tsx}',
         ],
+    },
+    {
+        files: ['**/*.md'],
+        ignores: ['!**/*.md', '**/LICENSE.md'],
+        plugins: {
+            markdown: markdown,
+        },
+        processor: 'markdown/markdown',
+        rules: {
+            'no-irregular-whitespace': 'off',
+        },
     },
     skipFormatting
 )

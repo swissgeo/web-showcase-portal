@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
-// @ts-expect-error This import isn't recognized by TS
 import AddToMapIcon from '@/assets/icons/alternate-sign-out.svg?use'
-// @ts-expect-error This import isn't recognized by TS
 import InfoIcon from '@/assets/icons/info.svg?use'
 import { useMainStore } from '@/store/main'
 import { useSearchStore, type Layer } from '@/store/search'

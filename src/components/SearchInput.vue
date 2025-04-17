@@ -2,9 +2,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-// @ts-expect-error This import isn't recognized by TS
 import SearchIcon from '@/assets/icons/search.svg?use'
-// @ts-expect-error This import isn't recognized by TS
 import TimesIcon from '@/assets/icons/times.svg?use'
 import { useSearchStore, type Layer } from '@/store/search'
 import { debounce } from '@/utils/debounce'

@@ -23,7 +23,7 @@ export type GeonetworkRecord = {
         name?: string
         description?: string
         type: 'link' | 'service' | 'download'
-        url: string
+        url: URL
         accessServiceProtocol?: 'wms' | 'wmts' | 'wfs' | string
         accessRestricted?: boolean
     }[]

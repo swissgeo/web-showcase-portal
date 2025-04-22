@@ -1,42 +1,21 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
-import type { GeonetworkRecord } from '@/types/gnRecord'
 import type { Layer } from '@/types/Layer'
 
 import { useMainStore } from '@/store/main'
+import { getWMSResourceData } from '@/utils/layerUtils'
 
 const mainStore = useMainStore()
 
-const getServiceOnlineResource = (record: GeonetworkRecord) => {
-    const onlineresources = record.onlineResources
-    for (const res of onlineresources) {
-        if (
-            res.type === 'service' &&
-            res.accessServiceProtocol &&
-            ['wms', 'wmts'].includes(res.accessServiceProtocol)
-        ) {
-            return res
-        }
-    }
-    return null
-}
-
 const convertToMapParameter = (layer: Layer) => {
-    const record = layer.geonetworkRecord
-    if (!record) {
-        throw new Error("Can't add this to the map")
-    }
-    const resource = getServiceOnlineResource(record)
-    if (!resource) {
-        throw new Error("Can't add this to the map")
+    if (!layer.geonetworkRecord) {
+        return
     }
 
-    if (resource.accessServiceProtocol === 'wms') {
-        // TODO this name is somewhere!
-        return `WMS|${resource.description}|${layer.title}`
-    }
-    return ''
+    const { url, name } = getWMSResourceData(layer.geonetworkRecord)
+
+    return `WMS|${url}|${name}`
 }
 
 const urlString = computed(() => {
@@ -54,6 +33,11 @@ const urlString = computed(() => {
     )
 
     return `${baseUrl}/?${searchParams.toString()}`
+})
+
+watch(urlString, (value) => {
+    // eslint-disable-next-line no-console
+    console.debug(value)
 })
 </script>
 

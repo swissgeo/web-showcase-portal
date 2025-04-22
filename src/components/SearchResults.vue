@@ -6,6 +6,7 @@ import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
+import { isAddableToMap } from '@/utils/layerUtils'
 
 const searchStore = useSearchStore()
 const mainStore = useMainStore()
@@ -23,20 +24,6 @@ const addToMap = (record: GeonetworkRecord) => {
 const showLayerInfo = (layerId: string) => {
     mainStore.setInfoLayerId(layerId)
 }
-
-const isAddableToMap = (record: GeonetworkRecord) => {
-    const onlineResources = record.onlineResources
-    for (const res of onlineResources) {
-        if (
-            res.type === 'service' &&
-            res.accessServiceProtocol &&
-            ['wms', 'wmts'].includes(res.accessServiceProtocol)
-        ) {
-            return true
-        }
-    }
-    return false
-}
 </script>
 
 <template>
@@ -49,7 +36,7 @@ const isAddableToMap = (record: GeonetworkRecord) => {
                 :class="{ 'text-gray-400': isLayerOnMap(result.uniqueIdentifier) }"
             >
                 <div class="flex flex-col">
-                    <div class="text-2xl">
+                    <div class="text-lg font-bold">
                         {{ result.title }}
                     </div>
                     <div>Lorem ipsum dolor sit mappus geoadminus et geocatus</div>
@@ -60,14 +47,15 @@ const isAddableToMap = (record: GeonetworkRecord) => {
                             class="cursor-pointer hover:text-gray-400"
                             icon="pi pi-info-circle"
                             title="Show info"
-                            @click="showLayerInfo(result.id)"
+                            @click="showLayerInfo(result.uniqueIdentifier)"
                         >
                         </Button>
                         <Button
+                            v-if="isAddableToMap(result)"
                             title="Add to map"
                             class="hover:text-gray-400"
                             icon="pi pi-plus"
-                            :disabled="isLayerOnMap(result.id)"
+                            :disabled="isLayerOnMap(result.uniqueIdentifier)"
                             :class="{
                                 'cursor-default': isLayerOnMap(result.uniqueIdentifier),
                                 'cursor-pointer': !isLayerOnMap(result.uniqueIdentifier),
@@ -75,6 +63,12 @@ const isAddableToMap = (record: GeonetworkRecord) => {
                             @click="addToMap(result)"
                         >
                         </Button>
+                        <div
+                            v-else
+                            class="w-[40px]"
+                        >
+                            &nbsp;
+                        </div>
                     </div>
                 </div>
             </li>

@@ -3,43 +3,16 @@ import IconField from 'primevue/iconfield'
 import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useSearchStore, type Layer } from '@/store/search'
+import { useSearchStore } from '@/store/search'
+import { type GeonetworkRecord } from '@/types/gnRecord.d'
 import { debounce } from '@/utils/debounce'
 
-// mock search results
-const RESULTS = [
-    {
-        id: 'ch.astra.wanderland-sperrungen_umleitungen',
-        name: 'Wanderwege',
-    },
-    {
-        id: 'ch.bafu.neophyten-haargurke',
-        name: 'Haargurke',
-    },
-    {
-        id: 'ch.bav.haltestellen-oev',
-        name: 'Haltestellen',
-    },
-    {
-        id: 'ch.bafu.nabelstationen',
-        name: 'Nabelstationen',
-    },
-    {
-        id: 'ch.bafu.neophyten-bastardindigo',
-        name: 'Bastarddingo',
-    },
-    {
-        id: 'ch.vbs.schiessanzeigen',
-        name: 'Schiessanzeigen',
-    },
-    {
-        id: 'ch.bfs.erreichbarkeit-apotheken',
-        name: 'Erreichbarkeit Apotheken',
-    },
-] as Layer[]
+// @ts-expect-error The property exists on the window
+// TODO find a better way via types to handle this
+const GNUI = window.GNUI
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
@@ -56,9 +29,26 @@ const searchTerm = computed({
     },
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const doSearch = debounce((_: string) => {
-    searchStore.setSearchResults(RESULTS)
+onMounted(() => {
+    GNUI.init('https://www.geocat.ch/geonetwork/srv/api')
+})
+
+const doSearch = debounce((value: string) => {
+    GNUI.recordsRepository
+        .search({
+            filters: {
+                any: value,
+                linkProtocol: '/OGC:WMT?S.*/',
+            },
+            offset: 0,
+            limit: 10,
+            sort: ['desc', '_score'],
+            fields: ['resourceTitleObject', 'link', 'uuid', 'organization', ''],
+        })
+        .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
+            console.log(records)
+            searchStore.setSearchResults(records)
+        })
 }, 200)
 
 const clearSearch = () => {

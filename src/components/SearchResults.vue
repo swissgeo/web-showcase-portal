@@ -2,20 +2,40 @@
 import { storeToRefs } from 'pinia'
 import Button from 'primevue/button'
 
+import type { GeonetworkRecord } from '@/types/gnRecord'
+
 import { useMainStore } from '@/store/main'
-import { useSearchStore, type Layer } from '@/store/search'
+import { useSearchStore } from '@/store/search'
 
 const searchStore = useSearchStore()
 const mainStore = useMainStore()
 
 const { isLayerOnMap } = storeToRefs(mainStore)
 
-const addToMap = (layer: Layer) => {
-    mainStore.addLayerToMap(layer)
+const addToMap = (record: GeonetworkRecord) => {
+    mainStore.addLayerToMap({
+        id: record.uniqueIdentifier,
+        name: record.title,
+        geonetworkRecord: record,
+    })
 }
 
 const showLayerInfo = (layerId: string) => {
     mainStore.setInfoLayerId(layerId)
+}
+
+const isAddableToMap = (record: GeonetworkRecord) => {
+    const onlineResources = record.onlineResources
+    for (const res of onlineResources) {
+        if (
+            res.type === 'service' &&
+            res.accessServiceProtocol &&
+            ['wms', 'wmts'].includes(res.accessServiceProtocol)
+        ) {
+            return true
+        }
+    }
+    return false
 }
 </script>
 
@@ -24,13 +44,13 @@ const showLayerInfo = (layerId: string) => {
         <ul class="mt-8 overflow-y-auto search-height-constrained md:max-h-auto">
             <li
                 v-for="result in searchStore.searchResults"
-                :key="result.id"
+                :key="result.uniqueIdentifier"
                 class="flex justify-between gap-4"
-                :class="{ 'text-gray-400': isLayerOnMap(result.id) }"
+                :class="{ 'text-gray-400': isLayerOnMap(result.uniqueIdentifier) }"
             >
                 <div class="flex flex-col">
                     <div class="text-2xl">
-                        {{ result.name }}
+                        {{ result.title }}
                     </div>
                     <div>Lorem ipsum dolor sit mappus geoadminus et geocatus</div>
                 </div>
@@ -48,8 +68,8 @@ const showLayerInfo = (layerId: string) => {
                         icon="pi pi-arrow-circle-right"
                         :disabled="isLayerOnMap(result.id)"
                         :class="{
-                            'cursor-default': isLayerOnMap(result.id),
-                            'cursor-pointer': !isLayerOnMap(result.id),
+                            'cursor-default': isLayerOnMap(result.uniqueIdentifier),
+                            'cursor-pointer': !isLayerOnMap(result.uniqueIdentifier),
                         }"
                         @click="addToMap(result)"
                     >

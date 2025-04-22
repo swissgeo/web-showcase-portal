@@ -1,24 +1,21 @@
 import { defineStore } from 'pinia'
 
-export type Layer = {
-    id: string
-    name: string
-}
+import type { GeonetworkRecord } from '@/types/gnRecord'
 
 export interface SearchStoreState {
     searchTerm: string | null
-    searchResults: Layer[]
+    searchResults: GeonetworkRecord[]
 }
 
 export const useSearchStore = defineStore('search', {
     state: (): SearchStoreState => {
         return {
             searchTerm: null as string | null,
-            searchResults: [] as Layer[],
+            searchResults: [] as GeonetworkRecord[],
         }
     },
     actions: {
-        setSearchResults(results: Layer[]) {
+        setSearchResults(results: GeonetworkRecord[]) {
             this.searchResults = results
         },
         setSearchTerm(term: string) {

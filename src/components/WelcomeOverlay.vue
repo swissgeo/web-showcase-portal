@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from 'primevue/button'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -19,12 +20,11 @@ const emits = defineEmits(['close'])
                 {{ t('welcomeOverlay.intro') }}
             </div>
             <div>
-                <button
-                    class="btn btn-primary text-2xl"
+                <Button
+                    :label="t('welcomeOverlay.confirm')"
                     @click="emits('close')"
                 >
-                    {{ t('welcomeOverlay.confirm') }}
-                </button>
+                </Button>
             </div>
         </div>
     </div>

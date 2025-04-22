@@ -1,6 +1,9 @@
 import { createPinia } from 'pinia'
+import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
+
+import { SwissGeo } from '@/stylePreset'
 
 import App from './App.vue'
 import deLocale from './locales/de.json'
@@ -24,6 +27,12 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+
+app.use(PrimeVue, {
+    theme: {
+        preset: SwissGeo,
+    },
+})
 
 app.use(i18n)
 app.mount('#app')

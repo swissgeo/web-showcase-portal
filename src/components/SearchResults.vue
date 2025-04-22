@@ -40,8 +40,8 @@ const isAddableToMap = (record: GeonetworkRecord) => {
 </script>
 
 <template>
-    <div class="overflow-hidden">
-        <ul class="mt-8 overflow-y-auto search-height-constrained md:max-h-auto">
+    <div class="overflow-hidden bg-white">
+        <ul class="overflow-y-auto search-height-constrained md:max-h-auto">
             <li
                 v-for="result in searchStore.searchResults"
                 :key="result.uniqueIdentifier"
@@ -54,26 +54,28 @@ const isAddableToMap = (record: GeonetworkRecord) => {
                     </div>
                     <div>Lorem ipsum dolor sit mappus geoadminus et geocatus</div>
                 </div>
-                <div class="flex gap-2">
-                    <Button
-                        class="cursor-pointer hover:text-gray-400"
-                        icon="pi pi-info-circle"
-                        title="Show info"
-                        @click="showLayerInfo(result.id)"
-                    >
-                    </Button>
-                    <Button
-                        title="Add to map"
-                        class="hover:text-gray-400"
-                        icon="pi pi-arrow-circle-right"
-                        :disabled="isLayerOnMap(result.id)"
-                        :class="{
-                            'cursor-default': isLayerOnMap(result.uniqueIdentifier),
-                            'cursor-pointer': !isLayerOnMap(result.uniqueIdentifier),
-                        }"
-                        @click="addToMap(result)"
-                    >
-                    </Button>
+                <div>
+                    <div class="flex gap-2">
+                        <Button
+                            class="cursor-pointer hover:text-gray-400"
+                            icon="pi pi-info-circle"
+                            title="Show info"
+                            @click="showLayerInfo(result.id)"
+                        >
+                        </Button>
+                        <Button
+                            title="Add to map"
+                            class="hover:text-gray-400"
+                            icon="pi pi-plus"
+                            :disabled="isLayerOnMap(result.id)"
+                            :class="{
+                                'cursor-default': isLayerOnMap(result.uniqueIdentifier),
+                                'cursor-pointer': !isLayerOnMap(result.uniqueIdentifier),
+                            }"
+                            @click="addToMap(result)"
+                        >
+                        </Button>
+                    </div>
                 </div>
             </li>
         </ul>

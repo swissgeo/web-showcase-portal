@@ -23,7 +23,7 @@ const onClick = () => {
 
 <template>
     <div
-        class="px-8 py-4 text-xl bg-white layer-cart fixed right-0 bottom-0"
+        class="px-8 py-4 text-xl bg-white layer-cart fixed right-0 top-0"
         :class="cartClasses"
     >
         <div v-if="!isOpen">

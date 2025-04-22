@@ -15,7 +15,7 @@ const { showLayerInfo } = storeToRefs(mainStore)
     <div class="flex flex-col h-screen">
         <DesktopTitle class="hidden md:block"></DesktopTitle>
         <MapIntegration
-            class="mt-24 h-fit grow md:mt-16"
+            class="h-fit grow md:mt-16"
             :class="{ 'md:hidden': showLayerInfo }"
         ></MapIntegration>
         <DatasetInfo v-if="showLayerInfo" />

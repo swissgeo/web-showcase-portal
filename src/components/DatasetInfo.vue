@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import Button from 'primevue/button'
 import { watch, onMounted, ref } from 'vue'
 
-import TimesIcon from '@/assets/icons/times.svg?use'
 import { useMainStore } from '@/store/main'
 
 const mainStore = useMainStore()
@@ -38,12 +38,12 @@ watch(infoLayerId, fetchInfo)
             class="flex flex-col p-8 bg-white border shadow-lg border-neutral-500 md:border-neutral-200 md:shadow-none"
         >
             <div class="self-end">
-                <button
+                <Button
+                    icon="pi pi-times"
                     class="cursor-pointer"
                     @click="close"
                 >
-                    <TimesIcon class="w-[32px] h-[32px]" />
-                </button>
+                </Button>
             </div>
 
             <!-- this will go away, it's only for POC -->

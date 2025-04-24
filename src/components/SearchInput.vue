@@ -14,6 +14,8 @@ import { debounce } from '@/utils/debounce'
 // TODO find a better way via types to handle this
 const GNUI = window.GNUI
 
+const emits = defineEmits(['focus', 'blur'])
+
 const { t } = useI18n()
 const searchStore = useSearchStore()
 
@@ -28,6 +30,14 @@ const searchTerm = computed({
         doSearch(value)
     },
 })
+
+const onFocus = () => {
+    emits('focus')
+}
+
+const onBlur = () => {
+    emits('blur')
+}
 
 onMounted(() => {
     GNUI.init('https://www.geocat.ch/geonetwork/srv/api')
@@ -57,18 +67,26 @@ const clearSearch = () => {
 </script>
 
 <template>
-    <IconField>
-        <IftaLabel>
-            <InputIcon
-                class="pi"
-                :class="{ 'pi-search': !isSearching, 'pi-times cursor-pointer': isSearching }"
-                @click="clearSearch"
-            ></InputIcon>
-            <InputText
-                id="search"
-                v-model="searchTerm"
-            ></InputText>
-            <label for="search">{{ t('searchPlaceholder') }}</label>
-        </IftaLabel>
-    </IconField>
+    <div class="p-4 rounded-t-lg">
+        <IconField>
+            <IftaLabel>
+                <InputIcon
+                    class="pi"
+                    :class="{ 'pi-search': !isSearching, 'pi-times cursor-pointer': isSearching }"
+                    @click="clearSearch"
+                ></InputIcon>
+                <InputText
+                    id="search"
+                    v-model="searchTerm"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                ></InputText>
+                <label for="search">{{ t('searchPlaceholder') }}</label>
+            </IftaLabel>
+        </IconField>
+        <!-- on desktop, we need the search results positioned here as a child
+         of the input, hence the slot
+         -->
+        <slot></slot>
+    </div>
 </template>

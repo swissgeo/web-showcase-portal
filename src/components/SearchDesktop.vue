@@ -21,8 +21,8 @@ const openSearch = () => {
 
 <template>
     <div class="">
-            <LogoPic class="ml-8 mt-6"></LogoPic>
         <div class="flex flex-row justify-between w-full items-center px-6">
+            <LogoPic></LogoPic>
             <SearchInput
                 class="w-1/2 relative"
                 @focus="openSearch"

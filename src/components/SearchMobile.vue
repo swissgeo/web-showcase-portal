@@ -35,7 +35,7 @@ const clearSearch = () => {
         <!-- in desktop mode, we take it in the header -->
         <LogoPic
             v-if="!isSearching"
-            class="fixed top-4 left-4 bg-white"
+            class="fixed top-4 left-4 bg-white rounded-2xl"
         ></LogoPic>
         <div
             class="flex flex-row justify-between py-4 px-2 border-b border-solid border-neutral-200"

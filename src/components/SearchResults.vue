@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import Button from 'primevue/button'
 
-import AddToMapIcon from '@/assets/icons/alternate-sign-out.svg?use'
-import InfoIcon from '@/assets/icons/info.svg?use'
 import { useMainStore } from '@/store/main'
 import { useSearchStore, type Layer } from '@/store/search'
 
@@ -36,16 +35,17 @@ const showLayerInfo = (layerId: string) => {
                     <div>Lorem ipsum dolor sit mappus geoadminus et geocatus</div>
                 </div>
                 <div class="flex gap-2">
-                    <button
-                        title="Show info"
+                    <Button
                         class="cursor-pointer hover:text-gray-400"
+                        icon="pi pi-info-circle"
+                        title="Show info"
                         @click="showLayerInfo(result.id)"
                     >
-                        <InfoIcon class="w-[32px] h-[32px]" />
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         title="Add to map"
                         class="hover:text-gray-400"
+                        icon="pi pi-arrow-circle-right"
                         :disabled="isLayerOnMap(result.id)"
                         :class="{
                             'cursor-default': isLayerOnMap(result.id),
@@ -53,8 +53,7 @@ const showLayerInfo = (layerId: string) => {
                         }"
                         @click="addToMap(result)"
                     >
-                        <AddToMapIcon class="w-[32px] h-[32px] rotate-90 md:rotate-none" />
-                    </button>
+                    </Button>
                 </div>
             </li>
         </ul>

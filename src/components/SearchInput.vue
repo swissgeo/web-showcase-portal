@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import IconField from 'primevue/iconfield'
+import IftaLabel from 'primevue/iftalabel'
+import InputIcon from 'primevue/inputicon'
+import InputText from 'primevue/inputtext'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import SearchIcon from '@/assets/icons/search.svg?use'
-import TimesIcon from '@/assets/icons/times.svg?use'
 import { useSearchStore, type Layer } from '@/store/search'
 import { debounce } from '@/utils/debounce'
 
@@ -42,6 +44,8 @@ const RESULTS = [
 const { t } = useI18n()
 const searchStore = useSearchStore()
 
+const isSearching = computed(() => !!searchStore.searchTerm)
+
 const searchTerm = computed({
     get() {
         return searchStore.searchTerm
@@ -63,24 +67,18 @@ const clearSearch = () => {
 </script>
 
 <template>
-    <div class="relative">
-        <input
-            v-model="searchTerm"
-            :placeholder="t('searchPlaceholder')"
-            class="text-2xl"
-        />
-        <div class="absolute right-0 top-0 py-2 pr-2 h-[32px]">
-            <SearchIcon
-                v-if="!searchStore.searchTerm"
-                class="h-[32px] w-[32px]"
-            />
-            <button
-                v-else
-                class="cursor-pointer h-[32px] w-[32px]"
+    <IconField>
+        <IftaLabel>
+            <InputIcon
+                class="pi"
+                :class="{ 'pi-search': !isSearching, 'pi-times cursor-pointer': isSearching }"
                 @click="clearSearch"
-            >
-                <TimesIcon class="h-[32px] w-[32px]" />
-            </button>
-        </div>
-    </div>
+            ></InputIcon>
+            <InputText
+                id="search"
+                v-model="searchTerm"
+            ></InputText>
+            <label for="search">{{ t('searchPlaceholder') }}</label>
+        </IftaLabel>
+    </IconField>
 </template>

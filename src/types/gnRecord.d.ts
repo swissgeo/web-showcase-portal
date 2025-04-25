@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type GeonetworkRecord = {
     kind: 'dataset'
     status: string | null

@@ -56,6 +56,7 @@ const doSearch = debounce((value: string) => {
             fields: ['resourceTitleObject', 'link', 'uuid', 'organization', ''],
         })
         .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
+            // eslint-disable-next-line no-console
             console.log(records)
             searchStore.setSearchResults(records)
         })

@@ -79,6 +79,7 @@ const clearSearch = () => {
                 <InputText
                     id="search"
                     v-model="searchTerm"
+                    data-cy="input-search"
                     class="w-full"
                     @focus="onFocus"
                     @blur="onBlur"

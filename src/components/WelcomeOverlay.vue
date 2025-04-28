@@ -21,6 +21,7 @@ const emits = defineEmits(['close'])
             </div>
             <div>
                 <Button
+                    data-cy="button-overlay-confirm"
                     :label="t('welcomeOverlay.confirm')"
                     @click="emits('close')"
                 >

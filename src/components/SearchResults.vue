@@ -10,6 +10,7 @@ const searchStore = useSearchStore()
         <ul
             v-if="searchStore.searchResults.length"
             class="overflow-y-auto"
+            data-cy="ul-search-results"
         >
             <SearchResultEntry
                 v-for="result in searchStore.searchResults"

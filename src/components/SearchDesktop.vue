@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-import LayerCart from '@/components/LayerCart.vue'
-import LogoPic from '@/components/LogoPic.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import SearchResults from '@/components/SearchResults.vue'
 import { useSearchStore } from '@/store/search'
@@ -20,9 +18,8 @@ const openSearch = () => {
 </script>
 
 <template>
-    <div class="">
-        <div class="flex w-full flex-row items-center justify-between px-6">
-            <LogoPic></LogoPic>
+    <div class="fixed top-0 left-0 right-0">
+        <div class="flex flex-row items-center justify-center w-full px-6">
             <SearchInput
                 class="relative w-1/2"
                 @focus="openSearch"
@@ -30,10 +27,10 @@ const openSearch = () => {
             >
                 <SearchResults
                     v-if="isSearching"
-                    class="absolute top-18 right-0 left-0 min-h-1/3"
+                    class="absolute left-0 right-0 top-18 min-h-1/3"
                 ></SearchResults>
             </SearchInput>
-            <LayerCart></LayerCart>
+            <!-- maybe here will be the legend icon-->
         </div>
     </div>
 </template>

@@ -6,15 +6,16 @@ import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-    tailwindcss(),
-    VitePluginSvgSpritemap('./src/assets/icons/*.svg'),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    plugins: [
+        vue(),
+        vueDevTools(),
+        tailwindcss(),
+        VitePluginSvgSpritemap('./src/assets/icons/*.svg'),
+    ],
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            '@geonetwork-ui': fileURLToPath(new URL('./geonetwork-ui', import.meta.url)),
+        },
     },
-  },
 })

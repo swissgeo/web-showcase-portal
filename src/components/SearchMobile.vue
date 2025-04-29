@@ -2,7 +2,8 @@
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 
-import LayerCart from '@/components/LayerCart.vue'
+import LayerCartButton from '@/components/LayerCartButton.vue'
+import LegendButton from '@/components/LegendButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import SearchResults from '@/components/SearchResults.vue'
@@ -28,17 +29,19 @@ const clearSearch = () => {
 
 <template>
     <div
-        class="fixed right-0 bottom-0 left-0 flex flex-col md:static md:p-8"
+        class="fixed bottom-0 left-0 right-0 flex flex-col md:static md:p-8"
         :class="{ 'top-0 justify-stretch': isSearching, 'justify-end': !isSearching }"
     >
-        <!-- in mobile mode, we fixate it to the top-->
-        <!-- in desktop mode, we take it in the header -->
         <LogoPic
             v-if="!isSearching"
-            class="fixed top-4 left-4 rounded-2xl bg-white"
+            class="fixed bg-white rounded top-4 left-4"
         ></LogoPic>
+        <div class="fixed top-4 right-4">
+            <LegendButton></LegendButton>
+        </div>
+
         <div
-            class="flex flex-row justify-between border-b border-solid border-neutral-200 px-2 py-4"
+            class="flex flex-row justify-between px-2 py-4 border-b border-solid border-neutral-200"
             :class="{ 'bg-white': isSearching }"
         >
             <Button
@@ -50,11 +53,11 @@ const clearSearch = () => {
             ></Button>
             <div v-else></div>
             <div v-if="isSearching">Search</div>
-            <LayerCart class=""></LayerCart>
+            <LayerCartButton></LayerCartButton>
         </div>
         <SearchResults
             v-if="isSearching"
-            class="max-h-full grow-1 px-2 pt-4"
+            class="max-h-full px-2 pt-4 grow-1"
         ></SearchResults>
         <SearchInput
             class="bg-white"

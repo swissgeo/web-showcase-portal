@@ -32,6 +32,11 @@ app.use(router)
 app.use(PrimeVue, {
     theme: {
         preset: SwissGeo,
+        options: {
+            // explicitly setting the dark mode toggle class
+            // so that the browser preference isn't taken into account
+            darkModeSelector: '.dark-mode',
+        },
     },
 })
 

@@ -1,7 +1,7 @@
 describe('Test the search on desktop', () => {
     beforeEach(() => {
+        cy.viewport('macbook-15')
         cy.visit('/')
-        cy.viewport('iphone-se2')
         cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('Search yields a result', () => {
@@ -20,8 +20,8 @@ describe('Test the search on desktop', () => {
 
 describe('Test the search on mobile', () => {
     beforeEach(() => {
+        cy.viewport('iphone-se2')
         cy.visit('/')
-        cy.viewport('macbook-15')
         cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('Search yields a result', () => {

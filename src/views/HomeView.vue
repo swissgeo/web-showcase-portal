@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import MapCart from '@/components/LayerCart.vue'
 import MapPart from '@/components/MapPart.vue'
-import SearchPart from '@/components/SearchPart.vue'
+import SearchDesktop from '@/components/SearchDesktop.vue'
+import SearchMobile from '@/components/SearchMobile.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 
 const showWelcomeOverlay = ref(true)
@@ -15,11 +15,11 @@ const closeOverlay = () => {
 
 <template>
     <main>
-        <div class="md:flex md:gap-4">
-            <SearchPart class="md:w-2/5"></SearchPart>
-            <MapPart class="md:w-3/5"></MapPart>
+        <div class="md:flex md:flex-col md:justify-stretch h-screen">
+            <SearchMobile class="md:hidden"></SearchMobile>
+            <SearchDesktop class="hidden md:flex"></SearchDesktop>
+            <MapPart class="grow-1"></MapPart>
         </div>
-        <MapCart></MapCart>
         <WelcomeOverlay
             v-if="showWelcomeOverlay"
             class="z-100"

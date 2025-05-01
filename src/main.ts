@@ -10,6 +10,7 @@ import deLocale from './locales/de.json'
 import './assets/main.css'
 
 import '@fontsource/noto-sans'
+import '@geonetwork-ui/gn-standalone-search.js'
 
 import router from './router'
 

@@ -21,16 +21,16 @@ const openSearch = () => {
 
 <template>
     <div class="">
-        <div class="flex flex-row justify-between w-full items-center px-6">
+        <div class="flex w-full flex-row items-center justify-between px-6">
             <LogoPic></LogoPic>
             <SearchInput
-                class="w-1/2 relative"
+                class="relative w-1/2"
                 @focus="openSearch"
                 @blur="isInputFocused = false"
             >
                 <SearchResults
                     v-if="isSearching"
-                    class="absolute top-18 left-0 right-0 min-h-1/3"
+                    class="absolute top-18 right-0 left-0 min-h-1/3"
                 ></SearchResults>
             </SearchInput>
             <LayerCart></LayerCart>

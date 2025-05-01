@@ -8,10 +8,10 @@ const emits = defineEmits(['close'])
 </script>
 
 <template>
-    <div class="fixed w-full h-full inset-px opacity-50 bg-gray-200"></div>
-    <div class="fixed w-full h-full inset-px flex items-center justify-center z-3">
+    <div class="fixed inset-px h-full w-full bg-gray-200 opacity-50"></div>
+    <div class="fixed inset-px z-3 flex h-full w-full items-center justify-center">
         <div
-            class="h-[90%] w-[90%] md:w-[66%] border border-solid border-black md:h-[66%] flex flex-col items-center bg-white justify-center gap-8 shadow-lg"
+            class="flex h-[90%] w-[90%] flex-col items-center justify-center gap-8 border border-solid border-black bg-white shadow-lg md:h-[66%] md:w-[66%]"
         >
             <div class="text-5xl">
                 {{ t('welcomeOverlay.title') }}

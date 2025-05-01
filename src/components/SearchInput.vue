@@ -68,7 +68,7 @@ const clearSearch = () => {
 </script>
 
 <template>
-    <div class="p-4 rounded-t-lg">
+    <div class="rounded-t-lg p-4">
         <IconField>
             <IftaLabel>
                 <InputIcon

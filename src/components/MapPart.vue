@@ -12,7 +12,7 @@ const { showLayerInfo } = storeToRefs(mainStore)
 
 <template>
     <MapIntegration
-        class="h-screen md:h-auto grow"
+        class="h-screen grow md:h-auto"
         :class="{ 'md:hidden': showLayerInfo }"
     ></MapIntegration>
     <DatasetInfo v-if="showLayerInfo" />

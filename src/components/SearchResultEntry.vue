@@ -29,7 +29,7 @@ const showLayerInfo = (layerId: string) => {
 
 <template>
     <li
-        class="flex justify-between gap-4 py-1 mt-2 px-2 border border-gray-200 border-solid text-sm items-center"
+        class="mt-2 flex items-center justify-between gap-4 border border-solid border-gray-200 px-2 py-1 text-sm"
         :class="{ 'text-gray-400': isLayerOnMap(result.uniqueIdentifier) }"
     >
         <div class="flex flex-col">
@@ -41,7 +41,7 @@ const showLayerInfo = (layerId: string) => {
             <div class="flex gap-2">
                 <Button
                     severity="secondary"
-                    class="cursor-pointer hover:text-gray-400 mr-auto"
+                    class="mr-auto cursor-pointer hover:text-gray-400"
                     size="small"
                     icon="pi pi-info-circle"
                     title="Show info"

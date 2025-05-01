@@ -9,6 +9,6 @@ import LayerIcon from '@/assets/icons/layers.svg?use'
         severity="secondary"
         size="small"
         class="h-10"
-        ><LayerIcon class="w-6 h-6 stroke-current"></LayerIcon
+        ><LayerIcon class="h-6 w-6 stroke-current"></LayerIcon
     ></Button>
 </template>

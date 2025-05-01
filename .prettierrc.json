@@ -6,7 +6,10 @@
     "trailingComma": "es5",
     "tabWidth": 4,
     "singleAttributePerLine": true,
-    "plugins": ["prettier-plugin-packagejson"],
+    "plugins": [
+        "prettier-plugin-packagejson",
+        "prettier-plugin-tailwindcss"
+    ],
     "overrides": [
         {
             "files": "*.md",

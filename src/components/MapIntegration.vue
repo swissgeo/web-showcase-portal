@@ -45,7 +45,7 @@ watch(urlString, (value) => {
     <iframe
         data-cy="iframe-mapviewer"
         :src="urlString"
-        class="w-full h-fit"
+        class="h-fit w-full"
         allow="geolocation"
     ></iframe>
 </template>

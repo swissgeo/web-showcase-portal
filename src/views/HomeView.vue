@@ -1,23 +1,77 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, useTemplateRef, type Ref } from 'vue'
 
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/SearchDesktop.vue'
 import SearchMobile from '@/components/SearchMobile.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
+import useBreakpoints from '@/utils/breakpoints'
 
+const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const showWelcomeOverlay = ref(true)
+const mainElem = useTemplateRef('main')
+const windowWidth = ref(0)
 
-const closeOverlay = () => {
+const { breakpoints } = useBreakpoints()
+
+const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
+
+function closeOverlay() {
     showWelcomeOverlay.value = false
 }
+
+// provide a way to programmatically enable/disable the mobile and desktop
+// versions of the search. Of course we could probably just have one component
+// and do it all with CSS, but I'm sure this'll make things much more complicated
+// just hiding/showing the components doesn't work either, as like this we'd have
+// everything twice in the DOM. Makes e2e testing quite hard
+function onResize(entries: ResizeObserverEntry[]) {
+    if (entries && entries.length) {
+        const entry = entries[0]
+        windowWidth.value = entry.contentRect.width
+    }
+}
+
+function addResizeListener() {
+    resizeObserver.value = new ResizeObserver(onResize)
+    if (mainElem.value) {
+        resizeObserver.value.observe(mainElem.value)
+    }
+}
+
+function removeResizeListener() {
+    if (resizeObserver.value && mainElem.value) {
+        resizeObserver.value.unobserve(mainElem.value)
+    }
+}
+
+function initializeWindowWidth() {
+    if (mainElem.value) {
+        windowWidth.value = mainElem.value.scrollWidth
+    }
+}
+
+onMounted(() => {
+    addResizeListener()
+    initializeWindowWidth()
+})
+onUnmounted(() => {
+    removeResizeListener()
+})
 </script>
 
 <template>
-    <main>
+    <main ref="main">
         <div class="md:flex md:flex-col md:justify-stretch h-screen">
-            <SearchMobile class="md:hidden"></SearchMobile>
-            <SearchDesktop class="hidden md:flex"></SearchDesktop>
+            <SearchMobile
+                v-if="!isDesktop"
+                data-cy="comp-search-mobile"
+            ></SearchMobile>
+            <SearchDesktop
+                v-if="isDesktop"
+                data-cy="comp-search-desktop"
+                class="flex"
+            ></SearchDesktop>
             <MapPart class="grow-1"></MapPart>
         </div>
         <WelcomeOverlay

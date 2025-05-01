@@ -9,3 +9,16 @@
 svg {
     @apply fill-current stroke-current;
 }
+
+body {
+    /* We have to reset these variables here again. I don't quite know why
+    but it seems that tailwind removes them if they're not referenced anywhere.
+    They're probably only used to create the variants, then dropped.
+    But for our in-JS desktop/mobile switch we need access to those, hence
+    the explicit resetting here */
+    --breakpoint-sm: var(--breakpoint-sm);
+    --breakpoint-md: var(--breakpoint-md);
+    --breakpoint-lg: var(--breakpoint-lg);
+    --breakpoint-xl: var(--breakpoint-xl);
+    --breakpoint-2xl: var(--breakpoint-2xl);
+}

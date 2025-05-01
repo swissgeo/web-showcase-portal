@@ -1,0 +1,1298 @@
+{
+    "took": 11,
+    "timed_out": false,
+    "_shards": { "total": 1, "successful": 1, "skipped": 0, "failed": 0 },
+    "hits": {
+        "total": { "value": 401, "relation": "eq" },
+        "max_score": 36.794445,
+        "hits": [
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "6a876979-67e1-4cca-80d2-73ad37a527f0",
+                "_score": 36.794445,
+                "_source": {
+                    "owner": "25179804",
+                    "groupOwner": "24",
+                    "resourceTitleObject": {
+                        "default": "Rechtlicher Wald",
+                        "langger": "Rechtlicher Wald"
+                    },
+                    "link": [
+                        {
+                            "protocol": "CHTOPO:specialised-geoportal",
+                            "descriptionObject": {
+                                "default": "Öffentliches Auskunftssystem des Kantons Basel-Stadt",
+                                "langger": "Öffentliches Auskunftssystem des Kantons Basel-Stadt"
+                            },
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "http://map.geo.bs.ch/",
+                                "langger": "http://map.geo.bs.ch/"
+                            },
+                            "nameObject": { "default": "MapBS", "langger": "MapBS" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:DOWNLOAD-APP",
+                            "descriptionObject": {
+                                "default": "Öffentlich zugänglicher Geodaten-Downloaddienst des Kantons Basel-Stadt",
+                                "langger": "Öffentlich zugänglicher Geodaten-Downloaddienst des Kantons Basel-Stadt"
+                            },
+                            "function": "download",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "http://shop.geo.bs.ch/",
+                                "langger": "http://shop.geo.bs.ch/"
+                            },
+                            "nameObject": {
+                                "default": "Geodaten-Shop",
+                                "langger": "Geodaten-Shop",
+                                "langeng": "Geodaten-Shop"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {
+                                "default": "Die derzeit im WMS BS verfügbaren Datenebenen entsprechen, bis auf wenige Ausnahmen, den Geodaten, welche auch in MapBS dargestellt sind. Der WMS BS ist kostenlos nutzbar und bietet Zugriff auf öffentliche sowie beschränkt öffentliche Geodaten, wobei gegebenenfalls Benutzername und Passwort benötigt werden (Zugangsdaten von MapBS).",
+                                "langger": "Die derzeit im WMS BS verfügbaren Datenebenen entsprechen, bis auf wenige Ausnahmen, den Geodaten, welche auch in MapBS dargestellt sind. Der WMS BS ist kostenlos nutzbar und bietet Zugriff auf öffentliche sowie beschränkt öffentliche Geodaten, wobei gegebenenfalls Benutzername und Passwort benötigt werden (Zugangsdaten von MapBS)."
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.geo.bs.ch/?SERVICE=wms&REQUEST=GetCapabilities",
+                                "langger": "https://wms.geo.bs.ch/?SERVICE=wms&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": { "default": "WMS BS", "langger": "WMS BS" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {
+                                "default": "Die derzeit im WFS BS verfügbaren Datenebenen entsprechen, bis auf wenige Ausnahmen, den Geodaten, welche auch in MapBS dargestellt sind. Der WFS BS ist kostenlos nutzbar und bietet Zugriff auf öffentliche sowie beschränkt öffentliche Geodaten, wobei gegebenenfalls Benutzername und Passwort benötigt werden (Zugangsdaten von MapBS).",
+                                "langger": "Die derzeit im WFS BS verfügbaren Datenebenen entsprechen, bis auf wenige Ausnahmen, den Geodaten, welche auch in MapBS dargestellt sind. Der WFS BS ist kostenlos nutzbar und bietet Zugriff auf öffentliche sowie beschränkt öffentliche Geodaten, wobei gegebenenfalls Benutzername und Passwort benötigt werden (Zugangsdaten von MapBS)."
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wfs.geo.bs.ch/?SERVICE=wfs&REQUEST=GetCapabilities",
+                                "langger": "https://wfs.geo.bs.ch/?SERVICE=wfs&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": { "default": "WFS BS", "langger": "WFS BS" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OPENDATA:SWISS",
+                            "descriptionObject": {
+                                "default": "Permalink opendata.swiss",
+                                "langger": "Permalink opendata.swiss",
+                                "langeng": "Permalink opendata.swiss",
+                                "langita": "Permalink opendata.swiss",
+                                "langfre": "Permalink opendata.swiss"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://opendata.swiss/de/perma/6a876979-67e1-4cca-80d2-73ad37a527f0@kanton-basel-stadt",
+                                "langger": "https://opendata.swiss/de/perma/6a876979-67e1-4cca-80d2-73ad37a527f0@kanton-basel-stadt",
+                                "langeng": "https://opendata.swiss/en/perma/6a876979-67e1-4cca-80d2-73ad37a527f0@kanton-basel-stadt",
+                                "langita": "https://opendata.swiss/it/perma/6a876979-67e1-4cca-80d2-73ad37a527f0@kanton-basel-stadt",
+                                "langfre": "https://opendata.swiss/fr/perma/6a876979-67e1-4cca-80d2-73ad37a527f0@kanton-basel-stadt"
+                            },
+                            "nameObject": {
+                                "default": "Permalink opendata.swiss",
+                                "langger": "Permalink opendata.swiss",
+                                "langeng": "Permalink opendata.swiss",
+                                "langita": "Permalink opendata.swiss",
+                                "langfre": "Permalink opendata.swiss"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK",
+                            "descriptionObject": {
+                                "default": "Modellrepository",
+                                "langger": "Modellrepository"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://models.geo.bs.ch/Modellbeschreibungen/",
+                                "langger": "https://models.geo.bs.ch/Modellbeschreibungen/",
+                                "langeng": "https://models.geo.bs.ch/Modellbeschreibungen/",
+                                "langita": "https://models.geo.bs.ch/Modellbeschreibungen/",
+                                "langfre": "https://models.geo.bs.ch/Modellbeschreibungen/"
+                            },
+                            "nameObject": {
+                                "default": "Modellbeschreibung",
+                                "langger": "Modellbeschreibung"
+                            },
+                            "group": 0
+                        }
+                    ],
+                    "id": "265720",
+                    "uuid": "6a876979-67e1-4cca-80d2-73ad37a527f0"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": true,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "cdb289d5-db16-4440-8529-5807a262f6a2",
+                "_score": 36.794445,
+                "_source": {
+                    "owner": "14721",
+                    "groupOwner": "6",
+                    "resourceTitleObject": {
+                        "default": "swissTLM3D Wald",
+                        "langger": "swissTLM3D Wald",
+                        "langeng": "swissTLM3D Forest",
+                        "langroh": "swissTLM3D guaud",
+                        "langita": "swissTLM3D Foresta",
+                        "langfre": "swissTLM3D Forêt"
+                    },
+                    "link": [
+                        {
+                            "protocol": "MAP:Preview",
+                            "descriptionObject": {
+                                "default": "Vorschau map.geo.admin.ch",
+                                "langger": "Vorschau map.geo.admin.ch",
+                                "langeng": "Preview map.geo.admin.ch",
+                                "langita": "Previsione map.geo.admin.ch",
+                                "langfre": "Aperçu map.geo.admin.ch"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://map.geo.admin.ch/?layers=ch.swisstopo.swisstlm3d-wald",
+                                "langger": "https://map.geo.admin.ch/?layers=ch.swisstopo.swisstlm3d-wald",
+                                "langeng": "https://map.geo.admin.ch/?layers=ch.swisstopo.swisstlm3d-wald",
+                                "langroh": "https://map.geo.admin.ch/?layers=ch.swisstopo.swisstlm3d-wald",
+                                "langita": "https://map.geo.admin.ch/?layers=ch.swisstopo.swisstlm3d-wald",
+                                "langfre": "https://map.geo.admin.ch/?layers=ch.swisstopo.swisstlm3d-wald"
+                            },
+                            "nameObject": {
+                                "default": "Vorschau map.geo.admin.ch",
+                                "langger": "Vorschau map.geo.admin.ch",
+                                "langeng": "Preview map.geo.admin.ch",
+                                "langita": "Previsione map.geo.admin.ch",
+                                "langfre": "Aperçu map.geo.admin.ch"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {
+                                "default": "WMS-BGDI Dienst, Layer \"Wald swissTLM3D\"",
+                                "langger": "WMS-BGDI Dienst, Layer \"Wald swissTLM3D\"",
+                                "langeng": "WMS-FSDI service, layer \"Forest swissTLM3D\"",
+                                "langroh": "WMS-BGDI Dienst, Layer \"Wald swissTLM3D\"",
+                                "langita": "Servizio WMS-IFDG, strato \"Foresta swissTLM3D\"",
+                                "langfre": "Service WMS-IFDG, couche \"Forêt swissTLM3D\""
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                                "langger": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                                "langeng": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=en",
+                                "langroh": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                                "langita": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=it",
+                                "langfre": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=fr"
+                            },
+                            "nameObject": {
+                                "default": "ch.swisstopo.swisstlm3d-wald",
+                                "langger": "ch.swisstopo.swisstlm3d-wald",
+                                "langeng": "ch.swisstopo.swisstlm3d-wald",
+                                "langroh": "ch.swisstopo.swisstlm3d-wald",
+                                "langita": "ch.swisstopo.swisstlm3d-wald",
+                                "langfre": "ch.swisstopo.swisstlm3d-wald"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMTS",
+                            "descriptionObject": {
+                                "default": "WMTS-BGDI Dienst, Layer \"Wald swissTLM3D\"",
+                                "langger": "WMTS-BGDI Dienst, Layer \"Wald swissTLM3D\"",
+                                "langeng": "WMTS-FSDI service, layer \"Forest swissTLM3D\"",
+                                "langroh": "WMTS-BGDI Dienst, Layer \"Wald swissTLM3D\"",
+                                "langita": "Servizio WMTS-IFDG, strato \"Foresta swissTLM3D\"",
+                                "langfre": "Service WMTS-IFDG, couche , Layer \"Forêt swissTLM3D\""
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=de",
+                                "langger": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=de",
+                                "langeng": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=en",
+                                "langroh": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=de",
+                                "langita": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=it",
+                                "langfre": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=fr"
+                            },
+                            "nameObject": {
+                                "default": "ch.swisstopo.swisstlm3d-wald",
+                                "langger": "ch.swisstopo.swisstlm3d-wald",
+                                "langeng": "ch.swisstopo.swisstlm3d-wald",
+                                "langroh": "ch.swisstopo.swisstlm3d-wald",
+                                "langita": "ch.swisstopo.swisstlm3d-wald",
+                                "langfre": "ch.swisstopo.swisstlm3d-wald"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK",
+                            "descriptionObject": {
+                                "default": "swissTLM3D",
+                                "langger": "swissTLM3D"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langger": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langeng": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langroh": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langita": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langfre": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d"
+                            },
+                            "nameObject": {},
+                            "group": 1
+                        },
+                        {
+                            "protocol": "WWW:DOWNLOAD-URL",
+                            "descriptionObject": {
+                                "default": "Shop",
+                                "langger": "Shop",
+                                "langeng": "Shop",
+                                "langita": "Shop",
+                                "langfre": "Shop"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langger": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langeng": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langroh": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langita": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d",
+                                "langfre": "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d"
+                            },
+                            "nameObject": {},
+                            "group": 2
+                        }
+                    ],
+                    "id": "36462482",
+                    "uuid": "cdb289d5-db16-4440-8529-5807a262f6a2"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "3603d620-c325-4ca2-9ffe-15dc58fff69b",
+                "_score": 32.688694,
+                "_source": {
+                    "owner": "9542",
+                    "groupOwner": "34946859",
+                    "resourceTitleObject": {
+                        "default": "Vegetationshöhenmodell Wald (LiDAR)",
+                        "langger": "Vegetationshöhenmodell Wald (LiDAR)",
+                        "langfre": "Modèle de hauteur de végétation Forêt (LiDAR)"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:DOWNLOAD-URL",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/geodaten-zum-download/bezug-von-geoprodukten-nach-regionen.html?zoning=WALDVHM",
+                                "langger": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/geodaten-zum-download/bezug-von-geoprodukten-nach-regionen.html?zoning=WALDVHM",
+                                "langfre": "https://www.agi.dij.be.ch/fr/start/geoportal/geodaten/geodaten-zum-download/bezug-von-geoprodukten-nach-regionen.html?zoning=WALDVHM"
+                            },
+                            "nameObject": {
+                                "default": "Link zum Daten-Download (zoniert)",
+                                "langger": "Link zum Daten-Download (zoniert)",
+                                "langfre": "Lien vers le téléchargement de données (zonées)"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDVHM_VHM_VW_25144",
+                                "langger": "WALDVHM_VHM_VW_25144",
+                                "langfre": "WALDVHM_VHM_VW_25144"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK-1.0-http--link",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=WALDVHM",
+                                "langger": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=WALDVHM",
+                                "langfre": "https://www.agi.dij.be.ch/fr/start/geoportal/geodaten/detail.html?type=geoproduct&code=WALDVHM"
+                            },
+                            "nameObject": {
+                                "default": "Link zum Geoportal des Kantons Bern",
+                                "langger": "Link zum Geoportal des Kantons Bern",
+                                "langfre": "Lien vers le Géoportail du canton de Berne"
+                            },
+                            "group": 1
+                        }
+                    ],
+                    "id": "47902834",
+                    "uuid": "3603d620-c325-4ca2-9ffe-15dc58fff69b"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "461aa115-5012-4449-9c40-9eec8e1166f6",
+                "_score": 32.04908,
+                "_source": {
+                    "owner": "9542",
+                    "groupOwner": "34946859",
+                    "resourceTitleObject": {
+                        "default": "Wildschadengutachten",
+                        "langger": "Wildschadengutachten",
+                        "langfre": "Expertise des dégâts du gibier"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:DOWNLOAD-URL",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://geofiles.be.ch/geoportal/pub/download/WILDSGA/WILDSGA.zip",
+                                "langger": "https://geofiles.be.ch/geoportal/pub/download/WILDSGA/WILDSGA.zip",
+                                "langfre": "https://geofiles.be.ch/geoportal/pub/download/WILDSGA/WILDSGA.zip"
+                            },
+                            "nameObject": {
+                                "default": "Link zum Daten-Download (Zip)",
+                                "langger": "Link zum Daten-Download (Zip)",
+                                "langfre": "Lien vers le téléchargement de données (Zip)"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WILDSGA_WILDSGA_VW_24864",
+                                "langger": "WILDSGA_WILDSGA_VW_24864",
+                                "langfre": "WILDSGA_WILDSGA_VW_24864"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WILDSGA_WILDSGA_VW_24863",
+                                "langger": "WILDSGA_WILDSGA_VW_24863",
+                                "langfre": "WILDSGA_WILDSGA_VW_24863"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WILDSGA_WILDSGAR_VW_26049",
+                                "langger": "WILDSGA_WILDSGAR_VW_26049",
+                                "langfre": "WILDSGA_WILDSGAR_VW_26049"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WILDSGA_WILDSGA_VW_24864",
+                                "langger": "WILDSGA_WILDSGA_VW_24864",
+                                "langfre": "WILDSGA_WILDSGA_VW_24864"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WILDSGA_WILDSGA_VW_24863",
+                                "langger": "WILDSGA_WILDSGA_VW_24863",
+                                "langfre": "WILDSGA_WILDSGA_VW_24863"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_biota01_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WILDSGA_WILDSGAR_VW_26049",
+                                "langger": "WILDSGA_WILDSGAR_VW_26049",
+                                "langfre": "WILDSGA_WILDSGAR_VW_26049"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK-1.0-http--link",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=WILDSGA",
+                                "langger": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=WILDSGA",
+                                "langfre": "https://www.agi.dij.be.ch/fr/start/geoportal/geodaten/detail.html?type=geoproduct&code=WILDSGA"
+                            },
+                            "nameObject": {
+                                "default": "Link zum Geoportal des Kantons Bern",
+                                "langger": "Link zum Geoportal des Kantons Bern",
+                                "langfre": "Lien vers le Géoportail du canton de Berne"
+                            },
+                            "group": 1
+                        }
+                    ],
+                    "id": "47902840",
+                    "uuid": "461aa115-5012-4449-9c40-9eec8e1166f6"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "c48b2902-dabc-31a2-e236-2af42bad6db0",
+                "_score": 32.00154,
+                "_source": {
+                    "owner": "47224522",
+                    "groupOwner": "50000005",
+                    "resourceTitleObject": {
+                        "default": "Lichte Wälder",
+                        "langger": "Lichte Wälder"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:LINK-1.0-http--link",
+                            "descriptionObject": { "default": "Lichte Wälder" },
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "http://geolion.zh.ch/api/v2/getGeodatenmeta.html?giszhnr=255"
+                            },
+                            "nameObject": { "default": "GeoLion - Geometadaten Kanton Zürich" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK",
+                            "descriptionObject": { "default": "Viewer und Download Portal" },
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://geo.zh.ch/maps?initialMapIds=FnsLWZH"
+                            },
+                            "nameObject": { "default": "GisBrowser ZH" },
+                            "group": 1
+                        },
+                        {
+                            "protocol": "OGC:WMS-http-get-capabilities",
+                            "descriptionObject": {
+                                "default": "WMS der Teilobjektperimeter Lichte Wälder gemäss Aktionsplan"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.zh.ch/FnsLWZHWMS?Service=WMS&Request=GetCapabilities"
+                            },
+                            "nameObject": {},
+                            "group": 1
+                        },
+                        {
+                            "protocol": "OGC:WFS-http-get-capabilities",
+                            "descriptionObject": {
+                                "default": "WFS für Open-Government-Data des Kantons Zürich (OGD ZH WFS)"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://maps.zh.ch/wfs/OGDZHWFS?Service=WFS&Request=GetCapabilities"
+                            },
+                            "nameObject": {},
+                            "group": 1
+                        }
+                    ],
+                    "id": "48204988",
+                    "uuid": "c48b2902-dabc-31a2-e236-2af42bad6db0"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "48a61e94-a73d-4ddd-ac39-5226e982edc5",
+                "_score": 29.40725,
+                "_source": {
+                    "owner": "34833000",
+                    "groupOwner": "50000004",
+                    "resourceTitleObject": {
+                        "default": "Forst Wald Kanton Schaffhausen",
+                        "langger": "Forst Wald Kanton Schaffhausen"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:DOWNLOAD-URL",
+                            "descriptionObject": { "default": "(GeoPackage, DXF, Shapefile)" },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://data.geo.sh.ch/ogd/wald_gemaess_forst.zip"
+                            },
+                            "nameObject": { "default": "(GeoPackage, DXF, Shapefile)" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS-http-get-capabilities",
+                            "descriptionObject": { "default": "Kanton Schaffhausen" },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.geo.sh.ch/wms?SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": { "default": "Kanton Schaffhausen" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "CHTOPO:specialised-geoportal",
+                            "descriptionObject": { "default": "Kanton Schaffhausen" },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": { "default": "https://map.geo.sh.ch" },
+                            "nameObject": { "default": "Kanton Schaffhausen" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS-http-get-capabilities",
+                            "descriptionObject": { "default": "Kanton Schaffhausen" },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wfs.geo.sh.ch/wfs?SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": { "default": "Kanton Schaffhausen" },
+                            "group": 0
+                        }
+                    ],
+                    "id": "39366016",
+                    "uuid": "48a61e94-a73d-4ddd-ac39-5226e982edc5"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "65f76f08-d3df-4e60-8126-c5bbabe5cf7b",
+                "_score": 26.724514,
+                "_source": {
+                    "owner": "9542",
+                    "groupOwner": "34946859",
+                    "resourceTitleObject": {
+                        "default": "Biodiversitätsförderung im Wald (inkl. Waldreservate)",
+                        "langger": "Biodiversitätsförderung im Wald (inkl. Waldreservate)",
+                        "langfre": "Promotion de la biodiversité en forêt (y compris réserves forestières)"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:DOWNLOAD-URL",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://geofiles.be.ch/geoportal/pub/download/WALDBIO/WALDBIO.zip",
+                                "langger": "https://geofiles.be.ch/geoportal/pub/download/WALDBIO/WALDBIO.zip",
+                                "langfre": "https://geofiles.be.ch/geoportal/pub/download/WALDBIO/WALDBIO.zip"
+                            },
+                            "nameObject": {
+                                "default": "Link zum Daten-Download (Zip)",
+                                "langger": "Link zum Daten-Download (Zip)",
+                                "langfre": "Lien vers le téléchargement de données (Zip)"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_23235",
+                                "langger": "WALDBIO_VERTWALD_VW_23235",
+                                "langfre": "WALDBIO_VERTWALD_VW_23235"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_23234",
+                                "langger": "WALDBIO_VERTWALD_VW_23234",
+                                "langfre": "WALDBIO_VERTWALD_VW_23234"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWRES_VW_14120",
+                                "langger": "WALDBIO_VERTWRES_VW_14120",
+                                "langfre": "WALDBIO_VERTWRES_VW_14120"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_23232",
+                                "langger": "WALDBIO_VERTWALD_VW_23232",
+                                "langfre": "WALDBIO_VERTWALD_VW_23232"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_14082",
+                                "langger": "WALDBIO_VERTWALD_VW_14082",
+                                "langfre": "WALDBIO_VERTWALD_VW_14082"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_WRAND_VW_14368",
+                                "langger": "WALDBIO_WRAND_VW_14368",
+                                "langfre": "WALDBIO_WRAND_VW_14368"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_HABIBA_VW_21890",
+                                "langger": "WALDBIO_HABIBA_VW_21890",
+                                "langfre": "WALDBIO_HABIBA_VW_21890"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WFS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTMEB_VW_14029",
+                                "langger": "WALDBIO_VERTMEB_VW_14029",
+                                "langfre": "WALDBIO_VERTMEB_VW_14029"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_23235",
+                                "langger": "WALDBIO_VERTWALD_VW_23235",
+                                "langfre": "WALDBIO_VERTWALD_VW_23235"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_23234",
+                                "langger": "WALDBIO_VERTWALD_VW_23234",
+                                "langfre": "WALDBIO_VERTWALD_VW_23234"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWRES_VW_14120",
+                                "langger": "WALDBIO_VERTWRES_VW_14120",
+                                "langfre": "WALDBIO_VERTWRES_VW_14120"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_23232",
+                                "langger": "WALDBIO_VERTWALD_VW_23232",
+                                "langfre": "WALDBIO_VERTWALD_VW_23232"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTWALD_VW_14082",
+                                "langger": "WALDBIO_VERTWALD_VW_14082",
+                                "langfre": "WALDBIO_VERTWALD_VW_14082"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_WRAND_VW_14368",
+                                "langger": "WALDBIO_WRAND_VW_14368",
+                                "langfre": "WALDBIO_WRAND_VW_14368"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_HABIBA_VW_21890",
+                                "langger": "WALDBIO_HABIBA_VW_21890",
+                                "langfre": "WALDBIO_HABIBA_VW_21890"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {},
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langger": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                                "langfre": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_environment03_fr_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities"
+                            },
+                            "nameObject": {
+                                "default": "WALDBIO_VERTMEB_VW_14029",
+                                "langger": "WALDBIO_VERTMEB_VW_14029",
+                                "langfre": "WALDBIO_VERTMEB_VW_14029"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK-1.0-http--link",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=WALDBIO",
+                                "langger": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=WALDBIO",
+                                "langfre": "https://www.agi.dij.be.ch/fr/start/geoportal/geodaten/detail.html?type=geoproduct&code=WALDBIO"
+                            },
+                            "nameObject": {
+                                "default": "Link zum Geoportal des Kantons Bern",
+                                "langger": "Link zum Geoportal des Kantons Bern",
+                                "langfre": "Lien vers le Géoportail du canton de Berne"
+                            },
+                            "group": 1
+                        }
+                    ],
+                    "id": "47902826",
+                    "uuid": "65f76f08-d3df-4e60-8126-c5bbabe5cf7b"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "bc4d0e6b-e92e-4f28-a7d2-f41bf61e98bc",
+                "_score": 24.76498,
+                "_source": {
+                    "owner": "38481587",
+                    "groupOwner": "6",
+                    "resourceTitleObject": {
+                        "default": "swissEO VHI: Gesundheitszustand des Waldes",
+                        "langger": "swissEO VHI: Gesundheitszustand des Waldes",
+                        "langeng": "swissEO VHI: state of forest health",
+                        "langita": "swissEO VHI: Stato di salute della foresta",
+                        "langfre": "swissEO VHI: État de santé de la forêt"
+                    },
+                    "link": [
+                        {
+                            "protocol": "MAP:Preview",
+                            "descriptionObject": {
+                                "default": "Vorschau map.geo.admin.ch",
+                                "langger": "Vorschau map.geo.admin.ch",
+                                "langeng": "Preview map.geo.admin.ch",
+                                "langita": "Anteprima map.geo.admin.ch",
+                                "langfre": "Aperçu map.geo.admin.ch"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.swisseo_vhi_v100",
+                                "langger": "https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.swisseo_vhi_v100",
+                                "langeng": "https://map.geo.admin.ch/?lang=en&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.swisseo_vhi_v100",
+                                "langita": "https://map.geo.admin.ch/?lang=it&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.swisseo_vhi_v100",
+                                "langfre": "https://map.geo.admin.ch/?lang=fr&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.swisseo_vhi_v100"
+                            },
+                            "nameObject": {
+                                "default": "Vorschau map.geo.admin.ch",
+                                "langger": "Vorschau map.geo.admin.ch",
+                                "langeng": "Preview map.geo.admin.ch",
+                                "langita": "Anteprima map.geo.admin.ch",
+                                "langfre": "Aperçu map.geo.admin.ch"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK",
+                            "descriptionObject": {},
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.swisstopo.admin.ch/de/satellitenbilder-swisseo",
+                                "langger": "https://www.swisstopo.admin.ch/de/satellitenbilder-swisseo",
+                                "langeng": "https://www.swisstopo.admin.ch/en/satellite-images-swisseo",
+                                "langita": "https://www.swisstopo.admin.ch/it/immagini-satellitari-swisseo",
+                                "langfre": "https://www.swisstopo.admin.ch/fr/images-satellite-swisseo"
+                            },
+                            "nameObject": {
+                                "default": "Link zur Detailbeschreibung",
+                                "langger": "Link zur Detailbeschreibung",
+                                "langeng": "Link to detailed data description",
+                                "langita": "Link alla descrizione dettagliata dei dati",
+                                "langfre": "Lien vers la description détaillée des données"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:DOWNLOAD-URL",
+                            "descriptionObject": {},
+                            "function": "download",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://data.geo.admin.ch/browser/index.html#/collections/ch.swisstopo.swisseo_vhi_v100",
+                                "langger": "https://data.geo.admin.ch/browser/index.html#/collections/ch.swisstopo.swisseo_vhi_v100",
+                                "langeng": "https://data.geo.admin.ch/browser/index.html#/collections/ch.swisstopo.swisseo_vhi_v100",
+                                "langita": "https://data.geo.admin.ch/browser/index.html#/collections/ch.swisstopo.swisseo_vhi_v100",
+                                "langfre": "https://data.geo.admin.ch/browser/index.html#/collections/ch.swisstopo.swisseo_vhi_v100"
+                            },
+                            "nameObject": {
+                                "default": "Link für Datenbezug",
+                                "langger": "Link für Datenbezug",
+                                "langeng": "Link to download data",
+                                "langita": "Link per il download dei dati",
+                                "langfre": "Lien vers les données à télécharger"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "WWW:LINK",
+                            "descriptionObject": {
+                                "default": "allgemeine Information zum Web Map Service (WMS) von geo.admin.ch",
+                                "langger": "allgemeine Information zum Web Map Service (WMS) von geo.admin.ch",
+                                "langeng": "General information on the Web Map Service (WMS) from geo.admin.ch",
+                                "langita": "Informazioni generali sul Web Map Service (WMS) di geo.admin.ch",
+                                "langfre": "Informations générales sur le Web Map Service (WMS) de geo.admin.ch"
+                            },
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://www.geo.admin.ch/de/wms-verfuegbare-dienste-und-daten",
+                                "langger": "https://www.geo.admin.ch/de/wms-verfuegbare-dienste-und-daten",
+                                "langeng": "https://www.geo.admin.ch/en/wms-available-services-an-data",
+                                "langita": "https://www.geo.admin.ch/it/wms-servizi-e-dati-disponibili",
+                                "langfre": "https://www.geo.admin.ch/fr/wms-services-et-donnees-disponibles"
+                            },
+                            "nameObject": {
+                                "default": "Web Map Service (WMS) geo.admin.ch",
+                                "langger": "Web Map Service (WMS) geo.admin.ch"
+                            },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS",
+                            "descriptionObject": {
+                                "default": "WMS-BGDI Dienst, Layer \"swissEO VHI\"",
+                                "langger": "WMS-BGDI Dienst, Layer \"swissEO VHI\"",
+                                "langeng": "WMS-FSDI service, layer \"swissEO VHI\"",
+                                "langroh": "WMS-BGDI Dienst, Layer \"swissEO VHI\"",
+                                "langita": "Servizio WMS-IFDG, strato \"ch.swisstopo.swisseo_vhi_v100\"",
+                                "langfre": "Service WMS-IFDG, couche \"swissEO VHI\""
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                                "langger": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                                "langeng": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=en",
+                                "langroh": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                                "langita": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=it",
+                                "langfre": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=fr"
+                            },
+                            "nameObject": {
+                                "default": "ch.swisstopo.swisseo_vhi_v100",
+                                "langger": "ch.swisstopo.swisseo_vhi_v100",
+                                "langeng": "ch.swisstopo.swisseo_vhi_v100",
+                                "langroh": "ch.swisstopo.swisseo_vhi_v100",
+                                "langita": "ch.swisstopo.swisseo_vhi_v100",
+                                "langfre": "ch.swisstopo.swisseo_vhi_v100"
+                            },
+                            "group": 0
+                        }
+                    ],
+                    "id": "48138056",
+                    "uuid": "bc4d0e6b-e92e-4f28-a7d2-f41bf61e98bc"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "b83d1172-bed6-4e04-a56c-fcc55995dbc9",
+                "_score": 24.76498,
+                "_source": {
+                    "owner": "47224522",
+                    "groupOwner": "50000005",
+                    "resourceTitleObject": {
+                        "default": "WMS der Objekte Lichte Wälder",
+                        "langger": "WMS der Objekte Lichte Wälder"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:LINK-1.0-http--link",
+                            "descriptionObject": { "default": "WMS der Objekte Lichte Wälder" },
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://geolion.zh.ch/geodatenservice/show?amp;nbid=931"
+                            },
+                            "nameObject": { "default": "GeoLion - Geometadaten Kanton Zürich" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS-http-get-capabilities",
+                            "descriptionObject": {
+                                "default": "WMS der Teilobjektperimeter Lichte Wälder gemäss Aktionsplan"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.zh.ch/FnsLWZHWMS?Service=WMS&Request=GetCapabilities"
+                            },
+                            "nameObject": {},
+                            "group": 0
+                        }
+                    ],
+                    "id": "48205023",
+                    "uuid": "b83d1172-bed6-4e04-a56c-fcc55995dbc9"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            },
+            {
+                "_index": "gn-records",
+                "_type": "_doc",
+                "_id": "f454fd4d-d47d-47b6-b09b-21c7c865e61b3",
+                "_score": 24.76498,
+                "_source": {
+                    "owner": "47224522",
+                    "groupOwner": "50000005",
+                    "resourceTitleObject": {
+                        "default": "WMS Vegetationskundliche Kartierung der Wälder",
+                        "langger": "WMS Vegetationskundliche Kartierung der Wälder"
+                    },
+                    "link": [
+                        {
+                            "protocol": "WWW:LINK-1.0-http--link",
+                            "descriptionObject": {
+                                "default": "WMS Vegetationskundliche Kartierung der Wälder"
+                            },
+                            "function": "information",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://geolion.zh.ch/geodatenservice/show?amp;nbid=290"
+                            },
+                            "nameObject": { "default": "GeoLion - Geometadaten Kanton Zürich" },
+                            "group": 0
+                        },
+                        {
+                            "protocol": "OGC:WMS-http-get-capabilities",
+                            "descriptionObject": {
+                                "default": "Vegetationskundliche Kartierung der Wälder im Kanton Zürich"
+                            },
+                            "function": "",
+                            "applicationProfile": "",
+                            "urlObject": {
+                                "default": "https://wms.zh.ch/WaldVKWMS?Service=WMS&Request=GetCapabilities"
+                            },
+                            "nameObject": {},
+                            "group": 0
+                        }
+                    ],
+                    "id": "48205093",
+                    "uuid": "f454fd4d-d47d-47b6-b09b-21c7c865e61b3"
+                },
+                "edit": false,
+                "canReview": false,
+                "owner": false,
+                "isPublishedToAll": true,
+                "view": true,
+                "notify": false,
+                "download": true,
+                "dynamic": true,
+                "featured": false,
+                "selected": false
+            }
+        ]
+    }
+}

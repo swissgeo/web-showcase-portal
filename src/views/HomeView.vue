@@ -5,25 +5,14 @@ import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/SearchDesktop.vue'
 import SearchMobile from '@/components/SearchMobile.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
-
-// These are the default values from
-// from https://tailwindcss.com/docs/responsive-design
-// if we should ever change these, then of course it should be done here as well
-// as in tailwindcss. Unfortunately, since they've moved the configuration to be entirely
-// in CSS, there is no way for us to import it here into JS/TS, but it's probably
-// an unlikely scenario
-const TAILWIND_BREAKPOINTS = {
-    sm: 640,
-    md: 768,
-    lg: 1024,
-    xl: 1280,
-    '2xl': 1536,
-}
+import useBreakpoints from '@/utils/breakpoints'
 
 const showWelcomeOverlay = ref(true)
 const windowWidth = ref(0)
 
-const isDesktop = computed(() => windowWidth.value >= TAILWIND_BREAKPOINTS.md)
+const { breakpoints } = useBreakpoints()
+
+const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
 
 function closeOverlay() {
     showWelcomeOverlay.value = false

@@ -62,7 +62,7 @@ onUnmounted(() => {
 
 <template>
     <main ref="main">
-        <div class="md:flex md:flex-col md:justify-stretch h-screen">
+        <div class="h-screen md:flex md:flex-col md:justify-stretch">
             <SearchMobile
                 v-if="!isDesktop"
                 data-cy="comp-search-mobile"

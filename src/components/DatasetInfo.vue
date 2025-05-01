@@ -33,9 +33,9 @@ watch(infoLayerId, fetchInfo)
 </script>
 
 <template>
-    <div class="fixed md:static top-8 md:top-0">
+    <div class="fixed top-8 md:static md:top-0">
         <div
-            class="flex flex-col p-8 bg-white border shadow-lg border-neutral-500 md:border-neutral-200 md:shadow-none"
+            class="flex flex-col border border-neutral-500 bg-white p-8 shadow-lg md:border-neutral-200 md:shadow-none"
         >
             <div class="self-end">
                 <Button

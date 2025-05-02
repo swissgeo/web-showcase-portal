@@ -3,21 +3,19 @@ import IconField from 'primevue/iconfield'
 import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useSearchStore } from '@/store/search'
-import { type GeonetworkRecord } from '@/types/gnRecord.d'
-import { debounce } from '@/utils/debounce'
+import type { GeonetworkRecord } from '@/types/gnRecord'
 
-// @ts-expect-error The property exists on the window
-// TODO find a better way via types to handle this
-const GNUI = window.GNUI
+import useGeocatSearch from '@/search/geocat'
+import { useSearchStore } from '@/store/search'
 
 const emits = defineEmits(['focus', 'blur'])
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
+const { searchGeocat } = useGeocatSearch()
 
 const isSearching = computed(() => !!searchStore.searchTerm)
 
@@ -27,7 +25,7 @@ const searchTerm = computed({
     },
     set(value: string) {
         searchStore.setSearchTerm(value)
-        doSearch(value)
+        searchGeocat(value, (records: GeonetworkRecord[]) => searchStore.setSearchResults(records))
     },
 })
 
@@ -38,29 +36,6 @@ const onFocus = () => {
 const onBlur = () => {
     emits('blur')
 }
-
-onMounted(() => {
-    GNUI.init('https://www.geocat.ch/geonetwork/srv/api')
-})
-
-const doSearch = debounce((value: string) => {
-    GNUI.recordsRepository
-        .search({
-            filters: {
-                any: value,
-                linkProtocol: '/OGC:WMT?S.*/',
-            },
-            offset: 0,
-            limit: 10,
-            sort: ['desc', '_score'],
-            fields: ['resourceTitleObject', 'link', 'uuid', 'organization', ''],
-        })
-        .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
-            // eslint-disable-next-line no-console
-            console.log(records)
-            searchStore.setSearchResults(records)
-        })
-}, 200)
 
 const clearSearch = () => {
     searchStore.clear()

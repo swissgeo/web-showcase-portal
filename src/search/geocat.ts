@@ -23,7 +23,7 @@ export default function useGeocatSearch() {
                     sort: ['desc', '_score'],
                     // remove this prop to get all the data
                     // in time we'll have to figure out here what exactly we need
-                    fields: ['resourceTitleObject', 'link', 'uuid', 'organization', ''],
+                    // fields: ['resourceTitleObject', 'link', 'uuid', 'ownerOrganization'],
                 })
                 .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
                     // eslint-disable-next-line no-console

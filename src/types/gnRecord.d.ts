@@ -1,38 +1,86 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type GeonetworkRecord = {
     kind: 'dataset'
-    status: string | null
+    status: string
     lineage: string | null
-    recordUpdated: string | null
+    recordUpdated: string
     recordPublished: string | null
-    ownerOrganization: string | null
-    licenses: any[] // You can replace `any` with a more specific type if known
-    legalConstraints: any[]
+    ownerOrganization: {
+        logoUrl: string
+        name: string
+        recordCount: number
+    }
+    licenses: any[] // unclear from data
+    legalConstraints: {
+        text: string
+    }[]
     securityConstraints: any[]
     otherConstraints: any[]
-    contacts: any[]
-    contactsForResource: any[]
-    keywords: any[]
-    topics: any[]
-    spatialExtents: any[]
+    contacts: Contact[]
+    contactsForResource: Contact[]
+    keywords: Keyword[]
+    topics: string[]
+    spatialExtents: SpatialExtent[]
     temporalExtents: any[]
-    overviews: any[]
-    defaultLanguage: string | null
-    otherLanguages: string[]
-    title: string
-    onlineResources: {
-        name?: string
-        description?: string
-        type: 'link' | 'service' | 'download'
-        url: URL
-        accessServiceProtocol?: 'wms' | 'wmts' | 'wfs' | string
-        accessRestricted?: boolean
+    overviews: {
+        url: string
     }[]
+    defaultLanguage: string
+    otherLanguages: string[]
+    updateFrequency: string
+    title: string
+    resourceCreated: string
+    abstract: string
     extras: {
-        id: string
-        edit: boolean
+        isOpenData: boolean
+        ownerInfo: string
         isPublishedToAll: boolean
+        id: string
+        favoriteCount: number
+        catalogUuid: string
+        edit: boolean
     }
+    onlineResources: OnlineResource[]
     uniqueIdentifier: string
     landingPage: string
+    recordCreated: string
+}
+
+type Contact = {
+    lastName: string
+    organization: {
+        name: string
+    }
+    email: string
+    role: string
+    address: string
+    phone: string
+}
+
+type Keyword = {
+    label: string
+    type: string
+    key: string
+    thesaurus: {
+        id: string
+        name: string
+        url: string
+    }
+}
+
+type SpatialExtent = {
+    description: string
+    geometry: {
+        type: string
+        coordinates: any // coordinates are marked "truncated", otherwise should be number[][][] for Polygon
+    }
+}
+
+type OnlineResource = {
+    name: string
+    description: string
+    type: 'link' | 'download' | 'service'
+    url: URL
+    accessServiceProtocol?: string
+    accessRestricted?: boolean
 }

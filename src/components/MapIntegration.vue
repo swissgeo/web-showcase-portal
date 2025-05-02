@@ -4,7 +4,7 @@ import { computed, watch } from 'vue'
 import type { Layer } from '@/types/Layer'
 
 import { useMainStore } from '@/store/main'
-import { getWMSResourceData } from '@/utils/layerUtils'
+import { transformRecordIntoGeoadminLayerParam } from '@/utils/layerUtils'
 
 const mainStore = useMainStore()
 
@@ -12,10 +12,7 @@ const convertToMapParameter = (layer: Layer) => {
     if (!layer.geonetworkRecord) {
         return
     }
-
-    const { url, name } = getWMSResourceData(layer.geonetworkRecord)
-
-    return `WMS|${url}|${name}`
+    return transformRecordIntoGeoadminLayerParam(layer.geonetworkRecord)
 }
 
 const urlString = computed(() => {

@@ -28,6 +28,24 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('match', /(?:\?|&)z=2/)
     })
+    it('loads a search result on the map', () => {
+        cy.intercept(
+            'https://www.geocat.ch/geonetwork/srv/api/search/records/_search?bucket=bucket',
+            {
+                fixture: 'geocat-wald-search-result.json',
+            }
+        )
+        cy.get('[data-cy="input-search"]').type('wald')
+        cy.log(
+            'adding the layer "swissTLM3D Wald" to the map and checking that a tile is request (that it was correctly loaded)'
+        )
+        cy.get('[data-cy="add-result-cdb289d5-db16-4440-8529-5807a262f6a2"]').click()
+        getIframeDocument().its('location.href').should(
+            'contain',
+            // %7C == | encoded for URLs
+            'WMS%7Chttps://wms.geo.admin.ch%7Cch.swisstopo.swisstlm3d-wald'
+        )
+    })
 })
 
 describe('Test the map on mobile', () => {

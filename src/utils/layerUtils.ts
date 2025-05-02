@@ -1,12 +1,12 @@
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
-export const getServiceWMSResource = (record: GeonetworkRecord) => {
+const getServiceResource = (type: 'wms' | 'wmts', record: GeonetworkRecord) => {
     const onlineresources = record.onlineResources
     for (const res of onlineresources) {
         if (
             res.type === 'service' &&
             res.accessServiceProtocol &&
-            ['wms', 'wmts'].includes(res.accessServiceProtocol)
+            [type as string].includes(res.accessServiceProtocol)
         ) {
             return res
         }
@@ -21,27 +21,35 @@ export const getServiceWMSResource = (record: GeonetworkRecord) => {
  * @returns
  */
 export const isAddableToMap = (record: GeonetworkRecord) => {
-    const wmsResource = getServiceWMSResource(record)
-    if (!wmsResource) {
+    const wmsResource = getServiceResource('wms', record)
+    const wmtsResource = getServiceResource('wmts', record)
+    if (!wmsResource && !wmtsResource) {
         return false
     }
 
-    // so far we can only add those that have a WMS url and a layer name
-    return !!wmsResource?.name && !!wmsResource?.url
+    // so far, we can only add those that have a WM(T)S url and a layer name
+    if (wmsResource) {
+        return !!wmsResource?.name && !!wmsResource?.url
+    }
+    return !!wmtsResource?.name && !!wmtsResource?.url
 }
 
-export const getWMSResourceData = (record: GeonetworkRecord) => {
-    const wmsResource = getServiceWMSResource(record)
-    if (!wmsResource) {
-        throw new Error("Can't find the WMS data")
+export const transformRecordIntoGeoadminLayerParam = (record: GeonetworkRecord) => {
+    const wmsResource = getServiceResource('wms', record)
+    const wmtsResource = getServiceResource('wmts', record)
+    if (!wmsResource && !wmtsResource) {
+        throw new Error("Can't find the WM(T)S data")
     }
 
     if (!isAddableToMap(record)) {
         throw new Error("Can't add this layer to the map")
     }
 
-    return {
-        url: wmsResource.url.origin,
-        name: wmsResource.name,
+    if (wmsResource) {
+        return `WMS|${wmsResource.url.origin}|${wmsResource.name}`
     }
+    if (wmtsResource) {
+        return `WMTS|${wmtsResource.url.origin}|${wmtsResource.name}`
+    }
+    return null
 }

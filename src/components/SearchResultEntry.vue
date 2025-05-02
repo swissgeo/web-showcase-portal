@@ -1,18 +1,51 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import Button from 'primevue/button'
+import { computed } from 'vue'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import { useMainStore } from '@/store/main'
-import { isAddableToMap } from '@/utils/layerUtils'
-
-const mainStore = useMainStore()
-const { isLayerOnMap } = storeToRefs(mainStore)
+import { getServiceResource, isAddableToMap } from '@/utils/layerUtils'
 
 const { result } = defineProps<{
     result: GeonetworkRecord
 }>()
+
+const mainStore = useMainStore()
+const { isLayerOnMap } = storeToRefs(mainStore)
+
+// provide some debug info
+// this is for debugging purposes only and will go away after some time
+const tooltipContent = computed(() => {
+    const owner = result.ownerOrganization?.name || ''
+    const title = result.title || ''
+
+    return `Owner: ${owner}\nTitle: ${title}`
+})
+
+// provide some debug info on the wms/wmts service
+// this is for debugging purposes only and will go away after some time
+const layerTooltipContent = computed(() => {
+    const wmsResource = getServiceResource('wms', result)
+    const wmtsResource = getServiceResource('wms', result)
+
+    if (!wmsResource && !wmtsResource) {
+        return ''
+    }
+
+    let url, name
+    if (wmsResource) {
+        url = wmsResource.url.origin
+        name = wmsResource.name
+    }
+    if (wmtsResource) {
+        url = wmtsResource.url.origin
+        name = wmtsResource.name
+    }
+
+    return `Url: ${url}\nName: ${name}`
+})
 
 const addToMap = (record: GeonetworkRecord) => {
     mainStore.addLayerToMap({
@@ -33,7 +66,10 @@ const showLayerInfo = (layerId: string) => {
         :class="{ 'text-gray-400': isLayerOnMap(result.uniqueIdentifier) }"
     >
         <div class="flex flex-col">
-            <div class="">
+            <div
+                class=""
+                :title="tooltipContent"
+            >
                 {{ result.title }}
             </div>
         </div>
@@ -52,7 +88,7 @@ const showLayerInfo = (layerId: string) => {
                     v-if="isAddableToMap(result)"
                     size="small"
                     severity="secondary"
-                    title="Add to map"
+                    :title="layerTooltipContent"
                     class="hover:text-gray-400"
                     icon="pi pi-plus"
                     :disabled="isLayerOnMap(result.uniqueIdentifier)"

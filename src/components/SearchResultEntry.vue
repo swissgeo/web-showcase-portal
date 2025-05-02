@@ -60,6 +60,7 @@ const showLayerInfo = (layerId: string) => {
                         'cursor-default': isLayerOnMap(result.uniqueIdentifier),
                         'cursor-pointer': !isLayerOnMap(result.uniqueIdentifier),
                     }"
+                    :data-cy="`add-result-${result.uniqueIdentifier}`"
                     @click="addToMap(result)"
                 >
                 </Button>

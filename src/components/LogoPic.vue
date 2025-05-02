@@ -5,14 +5,24 @@ const { condensed = false } = defineProps<{
 </script>
 
 <template>
-    <img
+    <!-- the desktop icon in the sidebar -->
+    <div
         v-if="condensed"
-        src="@/assets/images/swissgeo_farbig_klein.png"
-        class=""
-    />
-    <img
+        class="flex h-12 w-full items-center justify-center"
+    >
+        <img
+            src="@/assets/images/swissgeo_rgb_icon.svg"
+            class="h-5"
+        />
+    </div>
+    <!-- the mobile one-->
+    <div
         v-else
-        src="@/assets/images/swissgeo_farbig.png"
-        class="h-16"
-    />
+        class="rounded border border-neutral-200 bg-white p-2"
+    >
+        <img
+            src="@/assets/images/swissgeo_rgb_sek.svg"
+            class="h-5"
+        />
+    </div>
 </template>

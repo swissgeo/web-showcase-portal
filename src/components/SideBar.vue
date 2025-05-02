@@ -6,10 +6,10 @@ import LogoPic from '@/components/LogoPic.vue'
 </script>
 
 <template>
-    <div class="flex flex-col bg-neutral-100 w-16 items-center">
+    <div class="flex w-16 flex-col items-center bg-neutral-100">
         <LogoPic
             condensed
-            class="bg-white p-2"
+            class="bg-white"
         />
         <LayerCartButton />
         <Button

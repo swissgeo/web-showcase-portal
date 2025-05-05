@@ -14,7 +14,7 @@ describe('Test the search on desktop', () => {
             }
         )
         cy.get('[data-cy="input-search"]').type('wald')
-        cy.get('[data-cy="ul-search-results"]').find('li').should('have.length', 10)
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').should('have.length', 10)
     })
 })
 
@@ -35,13 +35,17 @@ describe('Test the search on mobile', () => {
         )
 
         cy.get('[data-cy="input-search"]').type('wald')
-        cy.get('[data-cy="ul-search-results"]').find('li').as('searchResults')
+        // open accordion
+        cy.get('[data-cy="comp-data-accordion"]').click()
+
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
         cy.get('@searchResults').should('have.length', 10)
 
         cy.log('Make sure the result list is scrollable')
         // the list is too long. the last result isn't visible
         cy.get('@searchResults').last().should('not.be.visible')
         cy.get('@searchResults').last().scrollIntoView()
+        cy.get('[data-cy="comp-data-accordion-content"]').scrollTo('bottom')
         cy.get('@searchResults').last().should('be.visible')
         cy.get('@searchResults').first().should('not.be.visible')
     })

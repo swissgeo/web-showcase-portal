@@ -10,7 +10,7 @@ const getIframeBody = () => {
 
 describe('Test the map on desktop', () => {
     beforeEach(() => {
-        cy.viewport('iphone-se2')
+        cy.viewport('macbook-15')
         cy.visit('/')
         cy.get('[data-cy="button-overlay-confirm"]').click()
     })
@@ -50,7 +50,7 @@ describe('Test the map on desktop', () => {
 
 describe('Test the map on mobile', () => {
     beforeEach(() => {
-        cy.viewport('macbook-15')
+        cy.viewport('iphone-se2')
         cy.visit('/')
         cy.get('[data-cy="button-overlay-confirm"]').click()
     })

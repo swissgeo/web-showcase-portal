@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, useTemplateRef, type Ref } from 'vue'
+import { computed, provide, onMounted, onUnmounted, ref, useTemplateRef, type Ref } from 'vue'
 
 import MapPart from '@/components/MapPart.vue'
-import SearchDesktop from '@/components/SearchDesktop.vue'
-import SearchMobile from '@/components/SearchMobile.vue'
+import SearchDesktop from '@/components/search/SearchDesktop.vue'
+import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import useBreakpoints from '@/utils/breakpoints'
@@ -16,6 +16,7 @@ const windowWidth = ref(0)
 const { breakpoints } = useBreakpoints()
 
 const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
+provide('isDesktop', isDesktop)
 
 function closeOverlay() {
     showWelcomeOverlay.value = false

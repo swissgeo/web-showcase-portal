@@ -7,9 +7,13 @@ import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import useBreakpoints from '@/utils/breakpoints'
+import LayerCart from '@/components/LayerCart.vue'
+import { useUiStore } from '@/store/ui'
 
+
+const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const showWelcomeOverlay = ref(true)
+const showWelcomeOverlay = ref(false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 
@@ -64,7 +68,7 @@ onUnmounted(() => {
 
 <template>
     <main ref="main">
-        <div class="h-screen md:flex md:flex-row md:justify-stretch">
+        <div class="h-screen md:flex md:flex-row md:justify-stretch relative">
             <SideBar v-if="isDesktop" />
             <SearchMobile
                 v-if="!isDesktop"
@@ -75,6 +79,7 @@ onUnmounted(() => {
                 data-cy="comp-search-desktop"
                 class="flex"
             ></SearchDesktop>
+            <LayerCart v-if="uiStore.layerCartVisible" class="absolute left-16 top-0 z-10" />
             <MapPart class="grow-1"></MapPart>
         </div>
         <WelcomeOverlay

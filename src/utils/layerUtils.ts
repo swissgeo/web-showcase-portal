@@ -1,6 +1,6 @@
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
-const getServiceResource = (type: 'wms' | 'wmts', record: GeonetworkRecord) => {
+export const getServiceResource = (type: 'wms' | 'wmts', record: GeonetworkRecord) => {
     const onlineresources = record.onlineResources
     for (const res of onlineresources) {
         if (

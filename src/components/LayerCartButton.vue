@@ -59,15 +59,9 @@ const updateTransparency = (layerId: string, transparency: number) => {
             </div>
             <ul v-if="store.layersOnMap.length > 0" class="space-y-2">
                 <li v-for="layer in store.layersOnMap" :key="layer.id" class="flex justify-between items-center p-2 bg-gray-100 shadow rounded-md">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                            <span class="text-xs font-bold text-gray-600">{{ layer.id }}</span>
-                        </div>
-                        <span class="text-sm font-medium">{{ layer.name }}</span>
-                    </div>
                     <div class="flex items-center space-x-2">
-                        <button @click="toggleVisibility(layer.id)" class="px-2 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600">Toggle</button>
-                        <input type="range" min="0" max="100" v-model="layer.transparency" @input="updateTransparency(layer.id, layer.transparency)" class="w-24" />
+                        <input type="checkbox" v-model="layer.visible" class="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500" />
+                        <span class="text-sm font-medium">{{ layer.name }}</span>
                     </div>
                 </li>
             </ul>

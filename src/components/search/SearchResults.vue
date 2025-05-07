@@ -8,6 +8,7 @@ import { computed, inject, ref, type Ref } from 'vue'
 
 import GeocatResultList from '@/components/search/GeocatResultList.vue'
 import { useSearchStore } from '@/store/search'
+import AddressResultList from '@/components/search/AddressResultList.vue'
 
 const searchStore = useSearchStore()
 
@@ -34,7 +35,9 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
             v-if="isDesktop"
             class="flex h-full px-4 pb-4"
         >
-            <div class="h-full w-1/2 overflow-auto">Addresses</div>
+            <div class="h-full w-1/2 overflow-auto">
+                <AddressResultList />
+            </div>
             <div class="h-full w-1/2 overflow-auto">
                 <div
                     v-if="showSpinner"

@@ -10,12 +10,15 @@ import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import useGeocatSearch from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
+import useAddressSearch from '@/search/address'
+import type { GeocodingResult } from '@geospatial-sdk/geocoding'
 
 const emits = defineEmits(['focus', 'blur'])
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
 const { searchGeocat } = useGeocatSearch()
+const { searchAddress } = useAddressSearch()
 
 const isSearching = computed(() => !!searchStore.searchTerm)
 
@@ -26,6 +29,9 @@ const searchTerm = computed({
     set(value: string) {
         searchStore.setSearchTerm(value)
         searchGeocat(value, (records: GeonetworkRecord[]) => searchStore.setSearchResults(records))
+        searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) =>
+            searchStore.setSearchLocationResults(records)
+        )
     },
 })
 

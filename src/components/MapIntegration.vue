@@ -23,7 +23,7 @@ const urlString = computed(() => {
     searchParams.append('lang', 'de')
     searchParams.append('z', '1')
     searchParams.append('center', '2660000,1190000')
-    searchParams.append('bgLayer', 'ch.swisstopo.pixelkarte-farbe')
+    searchParams.append('bgLayer', mainStore.bgLayerId ?? 'ch.swisstopo.pixelkarte-farbe')
 
     searchParams.append(
         'layers',

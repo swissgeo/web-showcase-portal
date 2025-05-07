@@ -48,10 +48,14 @@ const layerTooltipContent = computed(() => {
 })
 
 const addToMap = (record: GeonetworkRecord) => {
+    console.log('addToMap', record)
     mainStore.addLayerToMap({
         id: record.uniqueIdentifier,
         name: record.title,
         geonetworkRecord: record,
+        opacity: 1,
+        visible: true,
+
     })
 }
 

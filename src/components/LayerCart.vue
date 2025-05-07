@@ -1,21 +1,32 @@
 <script setup lang="ts">
 import Panel from 'primevue/panel';
 import { useUiStore } from '@/store/ui';
+import { useMainStore } from '@/store/main';
+import { computed } from 'vue';
+import LayerItem from './LayerItem.vue';
 
+const mainStore = useMainStore();
 const uiStore = useUiStore();
 
+const layers = computed(() => mainStore.layersOnMap || []);
 </script>
 
 <template>
     <Panel
         header="Maps displayed"
-        :style="{ width: '300px' }">
+        :style="{ width: '350px' }">
 
         <template #icons>
             <button class="p-panel-header-icon p-link mr-1 cursor-pointer" @click="uiStore.setLayerCartVisible(false)">
                 <span class="pi pi-chevron-left"></span>
             </button>
         </template>
+        <div>
+            <ul v-if="layers.length > 0" class="space-y-2">
+                <LayerItem v-for="layer in layers" :key="layer.id" :layer="layer" />
+            </ul>
+            <p v-else>No layers selected.</p>
+        </div>
     </Panel>
 </template>
 

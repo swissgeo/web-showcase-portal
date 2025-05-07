@@ -12,7 +12,8 @@ const convertToMapParameter = (layer: Layer) => {
     if (!layer.geonetworkRecord) {
         return
     }
-    return transformRecordIntoGeoadminLayerParam(layer.geonetworkRecord)
+    const mapParamater = `${transformRecordIntoGeoadminLayerParam(layer.geonetworkRecord)},${layer.visible ? 't' : 'f'},${layer.opacity}`
+    return mapParamater
 }
 
 const urlString = computed(() => {

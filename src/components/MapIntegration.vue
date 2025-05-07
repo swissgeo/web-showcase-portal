@@ -35,7 +35,7 @@ const urlString = computed(() => {
 
 watch(urlString, (value) => {
     // eslint-disable-next-line no-console
-    console.log(value)
+    console.debug(value)
 })
 </script>
 

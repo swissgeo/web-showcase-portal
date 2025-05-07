@@ -42,5 +42,8 @@ export const useMainStore = defineStore('main', {
         resetInfoLayerId() {
             this.infoLayerId = null
         },
+        deleteLayerById(layerId: string) {
+            this.layersOnMap = this.layersOnMap.filter(layer => layer.id !== layerId);
+        },
     },
 })

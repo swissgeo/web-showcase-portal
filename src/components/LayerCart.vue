@@ -4,11 +4,16 @@ import { useUiStore } from '@/store/ui';
 import { useMainStore } from '@/store/main';
 import { computed } from 'vue';
 import LayerItem from './LayerItem.vue';
+import type { Layer } from '@/types/Layer';
 
 const mainStore = useMainStore();
 const uiStore = useUiStore();
 
 const layers = computed(() => mainStore.layersOnMap || []);
+
+const handleDeleteLayer = (layer: Layer) => {
+    mainStore.deleteLayerById(layer.id);
+};
 </script>
 
 <template>
@@ -23,7 +28,7 @@ const layers = computed(() => mainStore.layersOnMap || []);
         </template>
         <div>
             <ul v-if="layers.length > 0" class="space-y-2">
-                <LayerItem v-for="layer in layers" :key="layer.id" :layer="layer" />
+                <LayerItem v-for="layer in layers" :key="layer.id" :layer="layer" @delete-layer="handleDeleteLayer" />
             </ul>
             <p v-else>No layers selected.</p>
         </div>

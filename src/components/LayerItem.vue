@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { defineProps } from 'vue';
+import { defineEmits } from 'vue';
 import Button from 'primevue/button';
 import Menu from 'primevue/menu';
 
@@ -12,11 +13,16 @@ const props = defineProps({
     },
 });
 
+// Define emits for the LayerItem component
+const emit = defineEmits(['delete-layer']);
+
 // State to toggle the visibility of the opacity slider
 const showOpacitySlider = ref(false);
+
 const menu = ref();
 const menuShown = ref(false);
 
+// Method to toggle layer visibility
 const toggleVisibility = () => {
     props.layer.visible = !props.layer.visible;
 }
@@ -26,13 +32,22 @@ const updateOpacity = (event: Event) => {
     props.layer.opacity = parseFloat(target.value) / 100;
 };
 
+const metadataMenuClicked = () => {
+    console.log('Metadata clicked');
+    menuShown.value = false;
+};
+const deleteMenuClicked = () => {
+    emit('delete-layer', props.layer);
+    menuShown.value = false
+};
+
 // Menu items for context menu
 const menuItems = [
-    { label: 'Metadata', icon: 'pi pi-info-circle', command: () => console.log('Metadata clicked') },
-    { label: 'Delete', icon: 'pi pi-trash', command: () => console.log('Delete clicked') },
+    { label: 'Metadata', icon: 'pi pi-info-circle', command: () => metadataMenuClicked() },
+    { label: 'Delete', icon: 'pi pi-trash', command: () => deleteMenuClicked() },
 ];
 
-const toggle = (event: any) => {
+const toggleLayerMenu = (event: any) => {
     menu.value.toggle(event);
     menuShown.value = !menuShown.value;
 };
@@ -51,7 +66,7 @@ const toggle = (event: any) => {
                     {{ Math.round((layer.opacity ?? 1) * 100) }}%
                 </span>
             </button>
-            <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" size="small" :severity="menuShown ? 'primary' : 'secondary'" />
+            <Button type="button" icon="pi pi-ellipsis-v" @click="toggleLayerMenu" aria-haspopup="true" aria-controls="overlay_menu" size="small" :severity="menuShown ? 'primary' : 'secondary'" />
             <Menu ref="menu" id="overlay_menu" :model="menuItems" :popup="true" />
         </div>
         <div v-if="showOpacitySlider" class="mt-2">

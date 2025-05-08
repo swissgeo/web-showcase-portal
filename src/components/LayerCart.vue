@@ -21,7 +21,6 @@ const handleDeleteLayer = (layer: Layer) => {
 
 let sortable;
 onMounted(() => {
-    console.log('activeLayersList', activeLayersList.value);
     if (activeLayersList.value === null) {
         console.error('activeLayersList is null');
         return;
@@ -33,9 +32,7 @@ onMounted(() => {
             animation: 150,
             direction: 'vertical',
             onEnd: (event: { oldIndex: number; newIndex: any; }) => {
-                const movedLayer = layers.value[event.oldIndex];
-                const newIndex = event.newIndex;
-                console.log('Moved layer:', movedLayer, event.oldIndex, newIndex);
+                mainStore.moveLayerToIndex(event.oldIndex, event.newIndex);
             },
         });
     }

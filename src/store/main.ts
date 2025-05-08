@@ -77,6 +77,17 @@ export const useMainStore = defineStore('main', {
                     }
                 }
             })
+        },
+        moveLayerToIndex(oldIndex: number, newIndex: number) {
+            if (oldIndex < 0 || oldIndex >= this.layersOnMap.length) {
+                return
+            }
+            if (newIndex < 0 || newIndex >= this.layersOnMap.length) {
+                return
+            }
+            const layer = this.layersOnMap[oldIndex]
+            this.layersOnMap.splice(oldIndex, 1)
+            this.layersOnMap.splice(newIndex, 0, layer)
         }
     },
 })

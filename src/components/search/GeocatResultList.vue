@@ -8,6 +8,7 @@ import { useSearchStore } from '@/store/search'
     <ul
         v-if="searchStore.searchResults.length"
         data-cy="ul-geocat-search-results"
+        class="mt-3"
     >
         <SearchResultEntry
             v-for="result in searchStore.searchResults"

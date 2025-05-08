@@ -8,6 +8,8 @@
     },
     "searchResult": {
         "showInfo": "Details anzeigen",
+        "dataTitle": "Daten",
+        "addressTitle": "Adressen",
         "addToMap": "Zur Karte hinzufügen"
     },
     "layerCart": {

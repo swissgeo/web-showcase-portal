@@ -5,12 +5,14 @@ import AccordionHeader from 'primevue/accordionheader'
 import AccordionPanel from 'primevue/accordionpanel'
 import ProgressSpinner from 'primevue/progressspinner'
 import { computed, inject, ref, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import AddressResultList from '@/components/search/AddressResultList.vue'
 import GeocatResultList from '@/components/search/GeocatResultList.vue'
 import { useSearchStore } from '@/store/search'
 
 const searchStore = useSearchStore()
+const { t } = useI18n()
 
 const isDesktop = inject('isDesktop')
 
@@ -40,6 +42,9 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
             class="flex h-full gap-4 px-4 pb-4"
         >
             <div class="h-full w-1/2 overflow-auto">
+                <div class="h-full w-1/2 overflow-auto pr-2">
+                    <div class="font-bold">{{ t('searchResult.addressTitle') }}</div>
+                </div>
                 <div
                     v-if="showAddressSpinner"
                     class="item-center flex justify-center"
@@ -48,8 +53,9 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                 </div>
                 <AddressResultList />
             </div>
-            <div class="h-full border-l border-gray-200"></div>
-            <div class="h-full w-1/2 overflow-auto">
+
+            <div class="h-full w-1/2 overflow-auto border-l border-neutral-200 pl-2">
+                <div class="font-bold">{{ t('searchResult.dataTitle') }}</div>
                 <div
                     v-if="showSpinner"
                     class="item-center flex justify-center"
@@ -83,7 +89,7 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                     data-cy="comp-data-accordion"
                     :class="{ 'h-full': openAccordionPanel === 'data' }"
                 >
-                    <AccordionHeader>Data</AccordionHeader>
+                    <AccordionHeader>{{ t('searchResult.dataTitle') }}</AccordionHeader>
                     <AccordionContent
                         class="overflow-y-scroll"
                         data-cy="comp-data-accordion-content"
@@ -99,10 +105,12 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                     value="address"
                     :class="{ 'h-full': openAccordionPanel === 'address' }"
                 >
-                    <AccordionHeader>Addresses</AccordionHeader>
+                    <AccordionHeader>{{ t('searchResult.addressTitle') }}</AccordionHeader>
                     <AccordionContent :class="{ 'h-full': openAccordionPanel === 'data' }">
-                        <AddressResultList /> </AccordionContent
-                ></AccordionPanel>
+                        <AddressResultList />
+                    </AccordionContent>
+                    ></AccordionPanel
+                >
             </Accordion>
         </div>
     </div>

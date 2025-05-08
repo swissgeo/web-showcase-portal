@@ -6,7 +6,7 @@ import LogoPic from '@/components/LogoPic.vue'
 </script>
 
 <template>
-    <div class="flex w-16 flex-col items-center bg-neutral-100 z-10">
+    <div class="z-10 flex w-16 flex-col items-center bg-neutral-100">
         <LogoPic
             condensed
             class="bg-white"

@@ -1,6 +1,6 @@
-import type Sortable from "sortablejs";
+import type Sortable from 'sortablejs'
 
 declare module 'sortablejs' {
-  const Sortable: Sortable;
-  export default Sortable;
+    const Sortable: Sortable
+    export default Sortable
 }

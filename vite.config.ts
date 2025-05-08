@@ -10,7 +10,7 @@ export default defineConfig({
         vue(),
         vueDevTools(),
         tailwindcss(),
-        VitePluginSvgSpritemap('./src/assets/icons/*.svg'),
+        VitePluginSvgSpritemap('./src/assets/icons/*.svg', {}),
     ],
     resolve: {
         alias: {

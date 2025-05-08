@@ -22,7 +22,7 @@ const handleDeleteLayer = (layer: Layer) => {
     mainStore.deleteLayerById(layer.id)
 }
 
-let sortable: Sortable | null = null
+let sortable: typeof Sortable | null = null
 onMounted(() => {
     if (activeLayersList.value === null) {
         return

@@ -30,7 +30,7 @@ export const useMainStore = defineStore('main', {
                     opacity: 1,
                     geonetworkRecord: null,
                 },
-            ]
+            ],
         }
     },
     getters: {
@@ -62,18 +62,30 @@ export const useMainStore = defineStore('main', {
             this.infoLayerId = null
         },
         deleteLayerById(layerId: string) {
-            this.layersOnMap = this.layersOnMap.filter(layer => layer.id !== layerId);
+            this.layersOnMap = this.layersOnMap.filter((layer) => layer.id !== layerId)
+        },
+        setLayerVisibility(layerId: string, visible: boolean) {
+            const layer = this.layersOnMap.find((layer) => layer.id === layerId)
+            if (layer) {
+                layer.visible = visible
+            }
+        },
+        setLayerOpacity(layerId: string, opacity: number) {
+            const layer = this.layersOnMap.find((layer) => layer.id === layerId)
+            if (layer) {
+                layer.opacity = opacity
+            }
         },
         // Used to make the background layer exclusive
         // if a new one is selected, the previous one is set to false
         setBgLayerVisibility(layerId: string, visible: boolean) {
-            this.bgLayerId = 'void';
-            this.bgLayers.forEach(layer => {
-                layer.visible = false;
-                if(layer.id === layerId) {
-                    layer.visible = visible;
-                    if(visible) {
-                        this.bgLayerId = layerId;
+            this.bgLayerId = 'void'
+            this.bgLayers.forEach((layer) => {
+                layer.visible = false
+                if (layer.id === layerId) {
+                    layer.visible = visible
+                    if (visible) {
+                        this.bgLayerId = layerId
                     }
                 }
             })
@@ -88,6 +100,6 @@ export const useMainStore = defineStore('main', {
             const layer = this.layersOnMap[oldIndex]
             this.layersOnMap.splice(oldIndex, 1)
             this.layersOnMap.splice(newIndex, 0, layer)
-        }
+        },
     },
 })

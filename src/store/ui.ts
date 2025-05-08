@@ -10,9 +10,7 @@ export const useUiStore = defineStore('ui', {
             layerCartVisible: false,
         }
     },
-    getters: {
-
-    },
+    getters: {},
     actions: {
         setLayerCartVisible(visible: boolean) {
             this.layerCartVisible = visible

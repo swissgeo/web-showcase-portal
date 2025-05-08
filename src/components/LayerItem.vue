@@ -3,8 +3,6 @@ import { GripVertical } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import { ref } from 'vue'
-import { defineProps } from 'vue'
-import { defineEmits } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from

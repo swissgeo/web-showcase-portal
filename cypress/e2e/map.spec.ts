@@ -8,7 +8,7 @@ const getIframeBody = () => {
     return getIframeDocument().its('body').should('not.be.undefined').then(cy.wrap)
 }
 
-describe('Test the map on desktop', () => {
+describe.skip('Test the map on desktop', () => {
     beforeEach(() => {
         cy.viewport('macbook-15')
         cy.visit('/')

@@ -1,35 +1,13 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 
-import type { Layer } from '@/types/Layer'
+import { generateMapUrlParameters } from '@/search/mapUrlUtils'
+import { useMapStore } from '@/store/map'
 
-import { useMainStore } from '@/store/main'
-import { transformRecordIntoGeoadminLayerParam } from '@/utils/layerUtils'
-
-const mainStore = useMainStore()
-
-const convertToMapParameter = (layer: Layer) => {
-    if (!layer.geonetworkRecord) {
-        return
-    }
-    const mapParamater = `${transformRecordIntoGeoadminLayerParam(layer.geonetworkRecord)},${layer.visible ? 't' : 'f'},${layer.opacity}`
-    return mapParamater
-}
-
+const mapStore = useMapStore()
 const urlString = computed(() => {
     const baseUrl = 'https://map.geo.admin.ch/#embed'
-    const searchParams = new URLSearchParams()
-
-    searchParams.append('lang', 'de')
-    searchParams.append('z', '1')
-    searchParams.append('center', '2660000,1190000')
-    searchParams.append('bgLayer', mainStore.bgLayerId ?? 'ch.swisstopo.pixelkarte-farbe')
-
-    searchParams.append(
-        'layers',
-        mainStore.layersOnMap.map((layer) => convertToMapParameter(layer)).join(';')
-    )
-
+    const searchParams = generateMapUrlParameters(mapStore.mapUrlSearchParams)
     return `${baseUrl}/?${searchParams.toString()}`
 })
 

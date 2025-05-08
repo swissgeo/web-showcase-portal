@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { GeocodingResult } from '@geospatial-sdk/geocoding'
+
 import IconField from 'primevue/iconfield'
 import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
@@ -8,10 +10,9 @@ import { useI18n } from 'vue-i18n'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import useAddressSearch from '@/search/address'
 import useGeocatSearch from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
-import useAddressSearch from '@/search/address'
-import type { GeocodingResult } from '@geospatial-sdk/geocoding'
 
 const emits = defineEmits(['focus', 'blur'])
 

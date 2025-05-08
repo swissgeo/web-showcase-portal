@@ -3,6 +3,7 @@ import Accordion from 'primevue/accordion'
 import AccordionContent from 'primevue/accordioncontent'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionPanel from 'primevue/accordionpanel'
+import Badge from 'primevue/badge'
 import ProgressSpinner from 'primevue/progressspinner'
 import { computed, inject, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -41,9 +42,9 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
             v-if="isDesktop"
             class="flex h-full gap-4 px-4 pb-4"
         >
-            <div class="h-full w-1/2 overflow-auto">
-                <div class="h-full w-1/2 overflow-auto pr-2">
-                    <div class="font-bold">{{ t('searchResult.addressTitle') }}</div>
+            <div class="flex h-full w-1/2 flex-col pr-2">
+                <div class="flex items-center gap-2 font-bold">
+                    {{ t('searchResult.addressTitle') }} <Badge value="0"></Badge>
                 </div>
                 <div
                     v-if="showAddressSpinner"
@@ -51,18 +52,20 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                 >
                     <ProgressSpinner />
                 </div>
-                <AddressResultList />
+                <AddressResultList class="overflow-auto" />
             </div>
 
-            <div class="h-full w-1/2 overflow-auto border-l border-neutral-200 pl-2">
-                <div class="font-bold">{{ t('searchResult.dataTitle') }}</div>
+            <div class="flex h-full w-1/2 flex-col border-l border-neutral-200 pl-2">
+                <div class="flex items-center gap-2 font-bold">
+                    {{ t('searchResult.dataTitle') }} <Badge value="0"></Badge>
+                </div>
                 <div
                     v-if="showSpinner"
-                    class="item-center flex justify-center"
+                    class="flex h-full items-center justify-center"
                 >
                     <ProgressSpinner />
                 </div>
-                <GeocatResultList />
+                <GeocatResultList class="overflow-auto" />
             </div>
         </div>
         <div
@@ -89,7 +92,11 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                     data-cy="comp-data-accordion"
                     :class="{ 'h-full': openAccordionPanel === 'data' }"
                 >
-                    <AccordionHeader>{{ t('searchResult.dataTitle') }}</AccordionHeader>
+                    <AccordionHeader>
+                        <div class="flex items-center justify-start gap-2">
+                            {{ t('searchResult.dataTitle') }} <Badge value="0"></Badge>
+                        </div>
+                    </AccordionHeader>
                     <AccordionContent
                         class="overflow-y-scroll"
                         data-cy="comp-data-accordion-content"
@@ -105,12 +112,15 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                     value="address"
                     :class="{ 'h-full': openAccordionPanel === 'address' }"
                 >
-                    <AccordionHeader>{{ t('searchResult.addressTitle') }}</AccordionHeader>
+                    <AccordionHeader>
+                        <div class="flex items-center justify-start gap-2">
+                            {{ t('searchResult.addressTitle') }}
+                            <Badge value="0"></Badge>
+                        </div>
+                    </AccordionHeader>
                     <AccordionContent :class="{ 'h-full': openAccordionPanel === 'data' }">
-                        <AddressResultList />
-                    </AccordionContent>
-                    ></AccordionPanel
-                >
+                        <AddressResultList /> </AccordionContent
+                ></AccordionPanel>
             </Accordion>
         </div>
     </div>

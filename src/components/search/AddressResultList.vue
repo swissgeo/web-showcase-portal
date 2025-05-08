@@ -6,11 +6,14 @@ import AddressSearchResultEntry from './AddressSearchResultEntry.vue'
 const searchStore = useSearchStore()
 </script>
 <template>
-    <template v-if="searchStore.searchLocationResults.length">
+    <ul
+        v-if="searchStore.searchLocationResults.length"
+        class="mt-3"
+    >
         <AddressSearchResultEntry
             v-for="result in searchStore.searchLocationResults"
             :key="result.label"
             :result="result"
         ></AddressSearchResultEntry>
-    </template>
+    </ul>
 </template>

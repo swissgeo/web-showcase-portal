@@ -44,7 +44,8 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
         >
             <div class="flex h-full w-1/2 flex-col pr-2">
                 <div class="flex items-center gap-2 font-bold">
-                    {{ t('searchResult.addressTitle') }} <Badge value="0"></Badge>
+                    {{ t('searchResult.addressTitle') }}
+                    <Badge :value="searchStore.searchLocationResults.length"></Badge>
                 </div>
                 <div
                     v-if="showAddressSpinner"
@@ -57,7 +58,8 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
 
             <div class="flex h-full w-1/2 flex-col border-l border-neutral-200 pl-2">
                 <div class="flex items-center gap-2 font-bold">
-                    {{ t('searchResult.dataTitle') }} <Badge value="0"></Badge>
+                    {{ t('searchResult.dataTitle') }}
+                    <Badge :value="searchStore.searchResultTotal"></Badge>
                 </div>
                 <div
                     v-if="showSpinner"
@@ -94,7 +96,8 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                 >
                     <AccordionHeader>
                         <div class="flex items-center justify-start gap-2">
-                            {{ t('searchResult.dataTitle') }} <Badge value="0"></Badge>
+                            {{ t('searchResult.dataTitle') }}
+                            <Badge :value="searchStore.searchResultTotal"></Badge>
                         </div>
                     </AccordionHeader>
                     <AccordionContent

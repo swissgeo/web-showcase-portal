@@ -29,7 +29,10 @@ const searchTerm = computed({
     },
     set(value: string) {
         searchStore.setSearchTerm(value)
-        searchGeocat(value, (records: GeonetworkRecord[]) => searchStore.setSearchResults(records))
+        searchGeocat(value, (records: GeonetworkRecord[], count: number) => {
+            searchStore.setSearchResults(records)
+            searchStore.setSearchResultTotal(count)
+        })
         searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) =>
             searchStore.setSearchLocationResults(records)
         )

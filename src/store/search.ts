@@ -4,11 +4,11 @@ import { defineStore } from 'pinia'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
-
 export interface SearchStoreState {
     searchTerm: string | null
     searchResults: GeonetworkRecord[]
     searchLocationResults: GeocodingResult[]
+    searchResultTotal: number
 }
 
 export const useSearchStore = defineStore('search', {
@@ -17,6 +17,7 @@ export const useSearchStore = defineStore('search', {
             searchTerm: null as string | null,
             searchResults: [] as GeonetworkRecord[],
             searchLocationResults: [] as GeocodingResult[],
+            searchResultTotal: 0,
         }
     },
     actions: {
@@ -26,6 +27,9 @@ export const useSearchStore = defineStore('search', {
         setSearchLocationResults(results: GeocodingResult[]) {
             this.searchLocationResults = results
         },
+        setSearchResultTotal(total: number) {
+            this.searchResultTotal = total
+        },
         setSearchTerm(term: string) {
             this.searchTerm = term
         },
@@ -34,8 +38,7 @@ export const useSearchStore = defineStore('search', {
             this.searchLocationResults = []
             this.searchResults = []
             this.searchTerm = null
+            this.searchResultTotal = 0
         },
     },
 })
-
-

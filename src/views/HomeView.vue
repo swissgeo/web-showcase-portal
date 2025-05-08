@@ -13,7 +13,7 @@ import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const showWelcomeOverlay = ref(false)
+const showWelcomeOverlay = ref(true)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 

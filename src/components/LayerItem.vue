@@ -5,8 +5,10 @@ import Menu from 'primevue/menu'
 import { ref } from 'vue'
 import { defineProps } from 'vue'
 import { defineEmits } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
+const { t } = useI18n()
 
 // Define props for the LayerItem component
 const props = defineProps({
@@ -56,13 +58,21 @@ const deleteMenuClicked = () => {
 
 // Menu items for context menu
 const menuItems = [
-    { label: 'Metadata', icon: 'pi pi-info-circle', command: () => metadataMenuClicked() },
-    { label: 'Delete', icon: 'pi pi-trash', command: () => deleteMenuClicked() },
+    {
+        label: t('layerCart.showInfo'),
+        icon: 'pi pi-info-circle',
+        command: () => metadataMenuClicked(),
+    },
+    { label: t('layerCart.delete'), icon: 'pi pi-trash', command: () => deleteMenuClicked() },
 ]
 
 // Menu items for context menu for background layers
 const menuItemsBgLayer = [
-    { label: 'Metadata', icon: 'pi pi-info-circle', command: () => metadataMenuClicked() },
+    {
+        label: t('layerCart.showInfo'),
+        icon: 'pi pi-info-circle',
+        command: () => metadataMenuClicked(),
+    },
 ]
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

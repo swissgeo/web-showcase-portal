@@ -5,6 +5,7 @@ import { defineEmits } from 'vue';
 import Button from 'primevue/button';
 import Menu from 'primevue/menu';
 import { useMainStore } from '@/store/main';  // maybe not the best place to import this from
+import { GripVertical } from 'lucide-vue-next';
 
 // Define props for the LayerItem component
 const props = defineProps({
@@ -69,13 +70,17 @@ const toggleLayerMenu = (event: any) => {
 </script>
 
 <template>
-    <li class="flex flex-col p-2 bg-white shadow rounded-md">
+    <li class="flex flex-col p-2 bg-white shadow rounded-md layer-item relative group">
+        <div v-if="!props.isBgLayer" class="absolute -left-4 top-3 h-auto w-auto hidden cursor-grab group-hover:flex shadow rounded-md  border border-[#DFE4E9]" >
+            <GripVertical  />
+        </div>
+        <!-- <GripVertical class="absolute left-0 top-0 h-full hidden cursor-grab group-hover:flex" /> -->
         <div class="flex items-center justify-between space-x-4">
             <button @click="toggleVisibility" class="p-button-rounded p-button-outlined p-button-sm cursor-pointer">
                 <span v-if="layer.visible" class="pi pi-eye"></span>
                 <span v-else class="pi pi-eye-slash"></span>
             </button>
-            <span :class="{'line-through text-gray-400': !layer.visible}" class="text-sm font-medium truncate flex-1" style="max-width: 200px;">{{ layer.name }}</span>
+            <span :class="{'line-through text-gray-400': !layer.visible}" class="text-sm font-medium truncate flex-1 cursor-grab" style="max-width: 200px;">{{ layer.name }}</span>
             <button v-if="layer.visible && !isBgLayer" @click="showOpacitySlider = !showOpacitySlider" class="p-button-text p-button-sm cursor-pointer">
                 <span :class="{'bg-black text-white': showOpacitySlider, 'bg-gray-100 text-black': !showOpacitySlider}" class="text-sm font-medium px-2 py-1 rounded">
                     {{ Math.round((layer.opacity ?? 1) * 100) }}%

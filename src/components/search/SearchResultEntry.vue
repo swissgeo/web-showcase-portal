@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import MapIcon from '@/assets/icons/map.svg?use'
 import AddToMapButton from '@/components/AddToMapButton.vue'
 import { useMainStore } from '@/store/main'
 import { isAddableToMap } from '@/utils/layerUtils'
@@ -13,14 +15,15 @@ const { result } = defineProps<{
 }>()
 
 const mainStore = useMainStore()
+const { t } = useI18n()
 
 // provide some debug info
 // this is for debugging purposes only and will go away after some time
 const tooltipContent = computed(() => {
+    const fullTitle = result.title || ''
     const owner = result.ownerOrganization?.name || ''
-    const title = result.title || ''
 
-    return `Owner: ${owner}\nTitle: ${title}`
+    return `${fullTitle}\n\n${owner}`
 })
 
 const showLayerInfo = (layerId: string) => {
@@ -32,13 +35,12 @@ const showLayerInfo = (layerId: string) => {
     <li
         class="mt-2 flex items-center justify-between gap-4 border border-solid border-gray-200 px-2 py-1 text-sm"
     >
-        <div class="flex flex-col">
-            <div
-                class=""
-                :title="tooltipContent"
-            >
-                {{ result.title }}
-            </div>
+        <MapIcon class="h-4 w-4 shrink-0" />
+        <div
+            class="mr-auto truncate"
+            :title="tooltipContent"
+        >
+            {{ result.title }}
         </div>
         <div>
             <div class="flex gap-2">
@@ -47,7 +49,7 @@ const showLayerInfo = (layerId: string) => {
                     class="mr-auto cursor-pointer hover:text-gray-400"
                     size="small"
                     icon="pi pi-info-circle"
-                    title="Show info"
+                    :title="t('searchResult.showInfo')"
                     variant="text"
                     @click="showLayerInfo(result.uniqueIdentifier)"
                 >

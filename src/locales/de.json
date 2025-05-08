@@ -6,6 +6,10 @@
         "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
         "confirm": "Ich möchte es anschauen!"
     },
+    "searchResult": {
+        "showInfo": "Details anzeigen",
+        "addToMap": "Zur Karte hinzufügen"
+    },
     "layerCart": {
         "showInfo": "Details",
         "delete": "Entfernen",

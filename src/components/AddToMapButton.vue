@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
@@ -12,6 +13,7 @@ const { result } = defineProps<{
 }>()
 
 const mainStore = useMainStore()
+const { t } = useI18n()
 
 const isLayerOnMap = computed(() => {
     return mainStore.isLayerOnMap(result.uniqueIdentifier)
@@ -45,7 +47,9 @@ const layerTooltipContent = computed(() => {
         name = wmtsResource.name
     }
 
-    return `Url: ${url}\nName: ${name}`
+    const info = t('searchResult.addToMap')
+
+    return `${info}\n\nUrl: ${url}\nName: ${name}`
 })
 
 const addToMap = (record: GeonetworkRecord) => {

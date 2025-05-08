@@ -16,5 +16,9 @@
         "showInfo": "Details",
         "delete": "Entfernen",
         "noLayers": "Keine Layers gewählt"
+    },
+    "legend": {
+        "header": "Legende",
+        "noLayers": "Keine Karten dargestellt"
     }
 }

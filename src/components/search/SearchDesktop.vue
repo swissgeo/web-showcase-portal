@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-import LegendButton from '@/components/LegendButton.vue'
+import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchResults from '@/components/search/SearchResults.vue'
 import { useSearchStore } from '@/store/search'

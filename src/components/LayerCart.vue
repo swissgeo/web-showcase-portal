@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import Sortable from 'sortablejs';
 import Panel from 'primevue/panel';
 import { useUiStore } from '@/store/ui';
 import { useMainStore } from '@/store/main';
-import { computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import LayerItem from './LayerItem.vue';
 import type { Layer } from '@/types/Layer';
 
 const mainStore = useMainStore();
 const uiStore = useUiStore();
+
+const activeLayersList = ref(null);
 
 const layers = computed(() => mainStore.layersOnMap || []);
 const bgLayers = computed(() => mainStore.bgLayers || []);
@@ -15,6 +18,29 @@ const bgLayers = computed(() => mainStore.bgLayers || []);
 const handleDeleteLayer = (layer: Layer) => {
     mainStore.deleteLayerById(layer.id);
 };
+
+let sortable;
+onMounted(() => {
+    console.log('activeLayersList', activeLayersList.value);
+    if (activeLayersList.value === null) {
+        console.error('activeLayersList is null');
+        return;
+    } else {
+        sortable = Sortable.create(activeLayersList.value, {
+            delay: 250,
+            delayOnTouchOnly: true,
+            touchStartThreshold: 3,
+            animation: 150,
+            direction: 'vertical',
+            onEnd: (event: { oldIndex: number; newIndex: any; }) => {
+                const movedLayer = layers.value[event.oldIndex];
+                const newIndex = event.newIndex;
+                console.log('Moved layer:', movedLayer, event.oldIndex, newIndex);
+            },
+        });
+    }
+});
+
 </script>
 
 <template>
@@ -28,8 +54,8 @@ const handleDeleteLayer = (layer: Layer) => {
             </button>
         </template>
         <div>
-            <ul v-if="layers.length > 0" class="space-y-2">
-                <LayerItem v-for="layer in layers" :key="layer.id" :layer="layer" @delete-layer="handleDeleteLayer" />
+            <ul v-if="layers.length > -1" class="space-y-2" ref="activeLayersList">
+                <LayerItem v-for="layer in layers" :key="layer.id" :layer="layer" @delete-layer="handleDeleteLayer" class="layer-item"/>
             </ul>
             <p v-else>No layers selected.</p>
         </div>

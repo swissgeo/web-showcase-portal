@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import Button from 'primevue/button'
 import { computed } from 'vue'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import AddToMapButton from '@/components/AddToMapButton.vue'
 import { useMainStore } from '@/store/main'
-import { getServiceResource, isAddableToMap } from '@/utils/layerUtils'
+import { isAddableToMap } from '@/utils/layerUtils'
 
 const { result } = defineProps<{
     result: GeonetworkRecord
 }>()
 
 const mainStore = useMainStore()
-const { isLayerOnMap } = storeToRefs(mainStore)
 
 // provide some debug info
 // this is for debugging purposes only and will go away after some time
@@ -24,39 +23,6 @@ const tooltipContent = computed(() => {
     return `Owner: ${owner}\nTitle: ${title}`
 })
 
-// provide some debug info on the wms/wmts service
-// this is for debugging purposes only and will go away after some time
-const layerTooltipContent = computed(() => {
-    const wmsResource = getServiceResource('wms', result)
-    const wmtsResource = getServiceResource('wms', result)
-
-    if (!wmsResource && !wmtsResource) {
-        return ''
-    }
-
-    let url, name
-    if (wmsResource) {
-        url = wmsResource.url.origin
-        name = wmsResource.name
-    }
-    if (wmtsResource) {
-        url = wmtsResource.url.origin
-        name = wmtsResource.name
-    }
-
-    return `Url: ${url}\nName: ${name}`
-})
-
-const addToMap = (record: GeonetworkRecord) => {
-    mainStore.addLayerToMap({
-        id: record.uniqueIdentifier,
-        name: record.title,
-        geonetworkRecord: record,
-        opacity: 1,
-        visible: true,
-    })
-}
-
 const showLayerInfo = (layerId: string) => {
     mainStore.setInfoLayerId(layerId)
 }
@@ -65,7 +31,6 @@ const showLayerInfo = (layerId: string) => {
 <template>
     <li
         class="mt-2 flex items-center justify-between gap-4 border border-solid border-gray-200 px-2 py-1 text-sm"
-        :class="{ 'text-gray-400': isLayerOnMap(result.uniqueIdentifier) }"
     >
         <div class="flex flex-col">
             <div
@@ -83,25 +48,14 @@ const showLayerInfo = (layerId: string) => {
                     size="small"
                     icon="pi pi-info-circle"
                     title="Show info"
+                    variant="text"
                     @click="showLayerInfo(result.uniqueIdentifier)"
                 >
                 </Button>
-                <Button
+                <AddToMapButton
                     v-if="isAddableToMap(result)"
-                    size="small"
-                    severity="secondary"
-                    :title="layerTooltipContent"
-                    class="hover:text-gray-400"
-                    icon="pi pi-plus"
-                    :disabled="isLayerOnMap(result.uniqueIdentifier)"
-                    :class="{
-                        'cursor-default': isLayerOnMap(result.uniqueIdentifier),
-                        'cursor-pointer': !isLayerOnMap(result.uniqueIdentifier),
-                    }"
-                    :data-cy="`add-result-${result.uniqueIdentifier}`"
-                    @click="addToMap(result)"
-                >
-                </Button>
+                    :result="result"
+                />
                 <div
                     v-else
                     class="w-8"

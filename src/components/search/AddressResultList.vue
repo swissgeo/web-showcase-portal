@@ -8,7 +8,7 @@ const searchStore = useSearchStore()
 <template>
     <ul
         v-if="searchStore.searchLocationResults.length"
-        class="mt-5"
+        class="md:mt-5"
     >
         <AddressSearchResultEntry
             v-for="result in searchStore.searchLocationResults"

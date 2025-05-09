@@ -31,6 +31,7 @@ const toggleLayerCart = () => {
         </Button>
         <!-- Badge for layer count (not possible to use PrimeVue Badge with custon icon)-->
         <span
+            v-if="layerCount"
             class="absolute top-0 right-0 flex h-5 w-5 translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-slate-600 text-xs font-bold text-white"
         >
             {{ layerCount }}

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
@@ -65,12 +66,13 @@ function destroySortable() {
         :style="{ width: '350px' }"
     >
         <template #icons>
-            <button
-                class="p-panel-header-icon p-link mr-1 cursor-pointer"
+            <Button
+                :text="true"
+                class="p-panel-header-icon p-link cursor-pointer"
+                icon="pi pi-chevron-left"
                 @click="uiStore.setLayerCartVisible(false)"
             >
-                <span class="pi pi-chevron-left"></span>
-            </button>
+            </Button>
         </template>
         <div>
             <ul

@@ -9,9 +9,11 @@ export interface SearchStoreState {
     isSearchingAddresses: boolean
     isSearchingGeocat: boolean
     searchTerm: string | null
-    searchResults: GeonetworkRecord[]
+    geocatSearchResults: GeonetworkRecord[]
     searchLocationResults: GeocodingResult[]
     searchResultTotal: number
+    geocatPage: number
+    readonly geocatPageSize: 10
 }
 
 export const useSearchStore = defineStore('search', {
@@ -20,14 +22,16 @@ export const useSearchStore = defineStore('search', {
             isSearchingAddresses: false,
             isSearchingGeocat: false,
             searchTerm: null as string | null,
-            searchResults: [] as GeonetworkRecord[],
+            geocatSearchResults: [] as GeonetworkRecord[],
             searchLocationResults: [] as GeocodingResult[],
             searchResultTotal: 0,
+            geocatPage: 0,
+            geocatPageSize: 10,
         }
     },
     actions: {
-        setSearchResults(results: GeonetworkRecord[]) {
-            this.searchResults = results
+        appendGeocatSearchResults(results: GeonetworkRecord[]) {
+            this.geocatSearchResults.push(...results)
         },
         setSearchLocationResults(results: GeocodingResult[]) {
             this.searchLocationResults = results
@@ -43,6 +47,9 @@ export const useSearchStore = defineStore('search', {
         },
         setIsSearchingGeocat(value: boolean) {
             this.isSearchingGeocat = value
+        },
+        incGeocatPage() {
+            this.geocatPage++
         },
     },
 })

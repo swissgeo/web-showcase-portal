@@ -28,17 +28,7 @@ const isSearching = computed(() => !!searchStore.searchTerm)
 const triggerSearch = debounce((value: string) => {
     searchStore.setIsSearchingAddresses(true)
     searchStore.setIsSearchingGeocat(true)
-    searchGeocat(value, (records: GeonetworkRecord[], count: number) => {
-        // guarding against a pecularity: if the user deletes the search
-        // entry with backspace, then it might be the case that a search is still
-        // being triggered due to debouncing. Then when it returns there will be search results
-        // even if there shouldn't be any
-        if (searchStore.searchTerm) {
-            searchStore.setSearchResults(records)
-            searchStore.setSearchResultTotal(count)
-        }
-        searchStore.setIsSearchingGeocat(false)
-    })
+    searchGeocat(value)
     searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) => {
         // see comment above
         if (searchStore.searchTerm) {
@@ -53,11 +43,11 @@ const searchTerm = computed({
         return searchStore.searchTerm
     },
     set(value: string | null) {
+        searchStore.$reset()
         if (value === '') {
             // if we don't do this, and the user deletes the chars in the input, then the input
             // will be '' and the search is triggered with an empty string
             value = null
-            searchStore.$reset()
             return
         }
 

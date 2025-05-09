@@ -83,7 +83,7 @@ const toggleLayerMenu = (event: any) => {
 </script>
 
 <template>
-    <li class="layer-item group relative flex flex-col rounded-md bg-white p-2 shadow">
+    <li class="group relative flex flex-col rounded-md bg-white p-2 shadow">
         <div
             v-if="!props.isBgLayer"
             class="absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-[#DFE4E9] shadow group-hover:flex"
@@ -158,5 +158,3 @@ const toggleLayerMenu = (event: any) => {
         </div>
     </li>
 </template>
-
-<style scoped></style>

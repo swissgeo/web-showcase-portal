@@ -37,7 +37,3 @@ const toggleLayerCart = () => {
         </span>
     </div>
 </template>
-
-<style scoped>
-/* Removed unnecessary custom styles as Tailwind classes are used */
-</style>

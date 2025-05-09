@@ -107,7 +107,3 @@ function destroySortable() {
         </Panel>
     </Panel>
 </template>
-
-<style scoped>
-/* Add any additional styles here */
-</style>

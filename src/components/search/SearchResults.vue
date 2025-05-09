@@ -111,17 +111,20 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                 <AccordionPanel
                     v-if="searchStore.searchLocationResults.length"
                     data-cy="comp-address-accordion"
-                    class=""
+                    class="overflow-hidden"
                     value="address"
                     :class="{ 'h-full': openAccordionPanel === 'address' }"
                 >
                     <AccordionHeader>
                         <div class="flex items-center justify-start gap-2">
                             {{ t('searchResult.addressTitle') }}
-                            <Badge value="0"></Badge>
+                            <Badge :value="searchStore.searchLocationResults.length"></Badge>
                         </div>
                     </AccordionHeader>
-                    <AccordionContent :class="{ 'h-full': openAccordionPanel === 'data' }">
+                    <AccordionContent
+                        :class="{ 'h-full': openAccordionPanel === 'data' }"
+                        class="overflow-y-scroll"
+                    >
                         <AddressResultList /> </AccordionContent
                 ></AccordionPanel>
             </Accordion>

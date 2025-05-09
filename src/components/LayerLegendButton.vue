@@ -17,6 +17,7 @@ function toggleLayerLegend() {
 
 <template>
     <Button
+        data-cy="comp-layer-legend-button"
         :severity="severity"
         icon="pi pi-bars"
         @click="toggleLayerLegend"

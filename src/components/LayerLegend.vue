@@ -26,7 +26,7 @@ const layers = computed(() => {
 </script>
 
 <template>
-    <div>
+    <div data-cy="div-layer-legend">
         <Panel
             :header="t('legend.header')"
             class="absolute right-0 bottom-0 left-0 z-10 h-1/2 md:top-4 md:right-4 md:bottom-auto md:left-auto md:h-[380px]"
@@ -36,6 +36,7 @@ const layers = computed(() => {
                     :text="true"
                     class="p-panel-header-icon p-link mr-1 cursor-pointer"
                     :icon="closeIcon"
+                    data-cy="comp-layer-legend-close"
                     @click="uiStore.setLayerLegendVisible(false)"
                 >
                 </Button>

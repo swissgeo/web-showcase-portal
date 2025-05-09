@@ -5,5 +5,10 @@
         "title": "Willkommen auf...",
         "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
         "confirm": "Ich möchte es anschauen!"
+    },
+    "layerCart": {
+        "showInfo": "Details",
+        "delete": "Entfernen",
+        "noLayers": "Keine Layers gewählt"
     }
 }

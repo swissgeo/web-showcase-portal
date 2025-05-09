@@ -7,5 +7,7 @@ import type { GeonetworkRecord } from '@/types/gnRecord'
 export type Layer = {
     id: string
     name: string
+    opacity: number
+    visible: boolean
     geonetworkRecord: null | GeonetworkRecord
 }

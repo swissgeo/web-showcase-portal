@@ -52,6 +52,8 @@ const addToMap = (record: GeonetworkRecord) => {
         id: record.uniqueIdentifier,
         name: record.title,
         geonetworkRecord: record,
+        opacity: 1,
+        visible: true,
     })
 }
 

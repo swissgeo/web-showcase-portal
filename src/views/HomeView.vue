@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { computed, provide, onMounted, onUnmounted, ref, useTemplateRef, type Ref } from 'vue'
 
+import LayerCart from '@/components/LayerCart.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/search/SearchDesktop.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
+import { useUiStore } from '@/store/ui'
 import useBreakpoints from '@/utils/breakpoints'
 
+const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const showWelcomeOverlay = ref(true)
 const mainElem = useTemplateRef('main')
@@ -64,7 +67,7 @@ onUnmounted(() => {
 
 <template>
     <main ref="main">
-        <div class="h-screen md:flex md:flex-row md:justify-stretch">
+        <div class="relative h-screen md:flex md:flex-row md:justify-stretch">
             <SideBar v-if="isDesktop" />
             <SearchMobile
                 v-if="!isDesktop"
@@ -75,6 +78,10 @@ onUnmounted(() => {
                 data-cy="comp-search-desktop"
                 class="flex"
             ></SearchDesktop>
+            <LayerCart
+                v-if="uiStore.isLayerCartVisible"
+                class="absolute top-0 left-16 z-10"
+            />
             <MapPart class="grow-1"></MapPart>
         </div>
         <WelcomeOverlay

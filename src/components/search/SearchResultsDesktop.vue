@@ -9,14 +9,22 @@ import useSearchResults from '@/components/search/useSearchResults'
 
 const { t } = useI18n()
 
-const { showSpinner, showAddressSpinner, addressSearchResultCount, geocatSearchResultCount } =
-    useSearchResults()
+const {
+    showSpinner,
+    showAddressSpinner,
+    addressSearchResultCount,
+    geocatSearchResultCount,
+    isSearching,
+} = useSearchResults()
 </script>
 
 <template>
     <div class="flex">
         <div class="flex h-full w-1/2 flex-col">
-            <div class="flex items-center gap-2 font-bold">
+            <div
+                v-if="isSearching"
+                class="flex items-center gap-2 font-bold"
+            >
                 {{ t('searchResult.dataTitle') }}
                 <Badge :value="geocatSearchResultCount"></Badge>
             </div>
@@ -35,7 +43,10 @@ const { showSpinner, showAddressSpinner, addressSearchResultCount, geocatSearchR
         <div class="border-l border-neutral-100"></div>
 
         <div class="flex h-full w-1/2 flex-col">
-            <div class="flex items-center gap-2 font-bold">
+            <div
+                v-if="isSearching"
+                class="flex items-center gap-2 font-bold"
+            >
                 {{ t('searchResult.addressTitle') }}
                 <Badge :value="addressSearchResultCount"></Badge>
             </div>

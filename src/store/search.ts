@@ -35,7 +35,7 @@ export const useSearchStore = defineStore('search', {
         setSearchResultTotal(total: number) {
             this.searchResultTotal = total
         },
-        setSearchTerm(term: string) {
+        setSearchTerm(term: string | null) {
             this.searchTerm = term
         },
         setIsSearchingAddresses(value: boolean) {
@@ -43,13 +43,6 @@ export const useSearchStore = defineStore('search', {
         },
         setIsSearchingGeocat(value: boolean) {
             this.isSearchingGeocat = value
-        },
-
-        clear() {
-            this.searchLocationResults = []
-            this.searchResults = []
-            this.searchTerm = null
-            this.searchResultTotal = 0
         },
     },
 })

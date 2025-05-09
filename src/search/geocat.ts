@@ -1,5 +1,6 @@
 import { onMounted } from 'vue'
 
+import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
 import { debounce } from '@/utils/debounce'
 
@@ -31,7 +32,7 @@ export default function useGeocatSearch() {
                     callback(records, count)
                 })
         },
-        200
+        SEARCH_DEBOUNCE_DELAY
     )
 
     return { searchGeocat }

@@ -23,7 +23,7 @@ const openSearch = () => {
 
 const clearSearch = () => {
     isInputFocused.value = false
-    searchStore.clear()
+    searchStore.$reset()
 }
 </script>
 

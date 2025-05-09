@@ -34,20 +34,20 @@ export const useMainStore = defineStore('main', {
         }
     },
     getters: {
-        layersOnMapCount(state) {
+        layersOnMapCount(state: MainStoreState) {
             return state.layersOnMap.length
         },
-        getLayerById(state) {
+        getLayerById(state: MainStoreState) {
             return (layerId: string): Layer | null => {
                 return state.layersOnMap.find((layer) => layer.id === layerId) ?? null
             }
         },
-        isLayerOnMap(state): (arg0: string) => boolean {
+        isLayerOnMap(state: MainStoreState): (arg0: string) => boolean {
             return (layerId: string): boolean => {
                 return state.layersOnMap.findIndex((layer) => layer.id === layerId) !== -1
             }
         },
-        showLayerInfo(state) {
+        showLayerInfo(state: MainStoreState) {
             return state.infoLayerId !== null
         },
     },

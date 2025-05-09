@@ -13,6 +13,7 @@ import '@fontsource/noto-sans'
 import '@geonetwork-ui/gn-standalone-search.js'
 
 import router from './router'
+import mapUrlPlugin from './store/plugins/map-url.plugin'
 
 const messages = {
     de: deLocale,
@@ -25,8 +26,11 @@ const i18n = createI18n({
 })
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
+pinia.use(mapUrlPlugin)
+
+app.use(pinia)
 app.use(router)
 
 app.use(PrimeVue, {

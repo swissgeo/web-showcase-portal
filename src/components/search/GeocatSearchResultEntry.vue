@@ -33,7 +33,7 @@ const showLayerInfo = (layerId: string) => {
 
 <template>
     <li
-        class="mt-2 flex items-center justify-between gap-4 rounded border border-solid border-gray-100 px-2 py-1 text-sm"
+        class="mt-2 flex items-center justify-between gap-4 border-t border-solid border-gray-200 px-2 py-1 text-sm"
     >
         <MapIcon class="h-4 w-4 shrink-0" />
         <div

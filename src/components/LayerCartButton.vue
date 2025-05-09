@@ -22,7 +22,7 @@ const toggleLayerCart = () => {
 <template>
     <div class="relative inline-block">
         <Button
-            :severity="uiStore.layerCartVisible ? 'primary' : 'secondary'"
+            :severity="uiStore.isLayerCartVisible ? 'primary' : 'secondary'"
             size="small"
             class="h-10 cursor-pointer"
             @click="toggleLayerCart"

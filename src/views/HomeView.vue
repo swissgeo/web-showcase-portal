@@ -79,7 +79,7 @@ onUnmounted(() => {
                 class="flex"
             ></SearchDesktop>
             <LayerCart
-                v-if="uiStore.layerCartVisible"
+                v-if="uiStore.isLayerCartVisible"
                 class="absolute top-0 left-16 z-10"
             />
             <MapPart class="grow-1"></MapPart>

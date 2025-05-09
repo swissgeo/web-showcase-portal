@@ -1,22 +1,22 @@
 import { defineStore } from 'pinia'
 
 export interface UiStoreState {
-    layerCartVisible: boolean
+    isLayerCartVisible: boolean
 }
 
 export const useUiStore = defineStore('ui', {
     state: (): UiStoreState => {
         return {
-            layerCartVisible: false,
+            isLayerCartVisible: false,
         }
     },
     getters: {},
     actions: {
         setLayerCartVisible(visible: boolean) {
-            this.layerCartVisible = visible
+            this.isLayerCartVisible = visible
         },
         toggleLayerCart() {
-            this.layerCartVisible = !this.layerCartVisible
+            this.isLayerCartVisible = !this.isLayerCartVisible
         },
     },
 })

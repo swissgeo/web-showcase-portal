@@ -26,7 +26,16 @@ const handleDeleteLayer = (layer: Layer) => {
 }
 
 let sortable: typeof Sortable | null = null
+
 onMounted(() => {
+    initSortable()
+})
+
+onUnmounted(() => {
+    destroySortable()
+})
+
+function initSortable() {
     if (activeLayersList.value === null) {
         return
     } else {
@@ -41,13 +50,13 @@ onMounted(() => {
             },
         })
     }
-})
+}
 
-onUnmounted(() => {
+function destroySortable() {
     if (sortable) {
         sortable.destroy()
     }
-})
+}
 </script>
 
 <template>

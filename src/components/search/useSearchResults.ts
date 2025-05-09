@@ -2,9 +2,9 @@ import { computed } from 'vue'
 
 import { useSearchStore } from '@/store/search'
 
-const searchStore = useSearchStore()
-
 export default function useSearchResults() {
+    const searchStore = useSearchStore()
+
     const showAddressSpinner = computed(() => {
         return searchStore.isSearchingAddresses
     })

@@ -8,6 +8,7 @@
     },
     "layerCart": {
         "showInfo": "Details",
-        "delete": "Entfernen"
+        "delete": "Entfernen",
+        "noLayers": "Keine Layers gewählt"
     }
 }

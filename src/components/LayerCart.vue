@@ -2,11 +2,14 @@
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/Layer'
 
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
+
+const { t } = useI18n()
 
 import LayerItem from './LayerItem.vue'
 
@@ -74,7 +77,7 @@ onUnmounted(() => {
                     @delete-layer="handleDeleteLayer"
                 />
             </ul>
-            <p v-else>No layers selected.</p>
+            <p v-else>{{ t('layerCart.noLayers') }}</p>
         </div>
 
         <Panel

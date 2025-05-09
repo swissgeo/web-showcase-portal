@@ -15,24 +15,7 @@ const { showSpinner, showAddressSpinner, addressSearchResultCount, geocatSearchR
 
 <template>
     <div class="flex">
-        <div class="flex h-full w-1/2 flex-col pr-2">
-            <div class="flex items-center gap-2 font-bold">
-                {{ t('searchResult.addressTitle') }}
-                <Badge :value="addressSearchResultCount"></Badge>
-            </div>
-            <div
-                v-if="showAddressSpinner"
-                class="flex h-full items-center justify-center"
-            >
-                <ProgressSpinner />
-            </div>
-            <AddressResultList
-                v-else
-                class="overflow-auto"
-            />
-        </div>
-
-        <div class="flex h-full w-1/2 flex-col border-l border-neutral-200 pl-2">
+        <div class="flex h-full w-1/2 flex-col">
             <div class="flex items-center gap-2 font-bold">
                 {{ t('searchResult.dataTitle') }}
                 <Badge :value="geocatSearchResultCount"></Badge>
@@ -44,6 +27,25 @@ const { showSpinner, showAddressSpinner, addressSearchResultCount, geocatSearchR
                 <ProgressSpinner />
             </div>
             <GeocatResultList
+                v-else
+                class="overflow-auto"
+            />
+        </div>
+
+        <div class="border-l border-neutral-100"></div>
+
+        <div class="flex h-full w-1/2 flex-col">
+            <div class="flex items-center gap-2 font-bold">
+                {{ t('searchResult.addressTitle') }}
+                <Badge :value="addressSearchResultCount"></Badge>
+            </div>
+            <div
+                v-if="showAddressSpinner"
+                class="flex h-full items-center justify-center"
+            >
+                <ProgressSpinner />
+            </div>
+            <AddressResultList
                 v-else
                 class="overflow-auto"
             />

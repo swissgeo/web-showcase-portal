@@ -10,15 +10,21 @@ export function mapUrlPlugin({ store }: PiniaPluginContext) {
 
     if (store.$id === 'main') {
         const typedStore = store as Store<'main', MainStoreState>
-        store.$onAction(({
-            name,
-            after,
-        }) => {
-            if (['addLayerToMap', 'deleteLayerById'].includes(name)) {
+        store.$onAction(({ name, after }) => {
+            if (
+                [
+                    'addLayerToMap',
+                    'deleteLayerById',
+                    'setBgLayerVisibility',
+                    'setLayerVisibility',
+                    'setLayerOpacity',
+                ].includes(name)
+            ) {
                 after(() => {
                     const newLayers = typedStore.layersOnMap
                     mapStore.setMapUrlSearchParams({
-                        layers: newLayers.map((layer) => convertToMapParameter(layer)).join(';')
+                        layers: newLayers.map((layer) => convertToMapParameter(layer)).join(';'),
+                        bgLayer: typedStore.bgLayerId ?? 'void',
                     })
                 })
             }

@@ -63,7 +63,7 @@ function destroySortable() {
 <template>
     <Panel
         header="Maps displayed"
-        :style="{ width: '350px' }"
+        class="w-[350px] h-full overflow-y-auto"
     >
         <template #icons>
             <Button

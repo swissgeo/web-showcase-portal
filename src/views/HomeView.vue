@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useStorage } from '@vueuse/core'
 import { computed, provide, onMounted, onUnmounted, ref, useTemplateRef, type Ref } from 'vue'
 
 import LayerCart from '@/components/LayerCart.vue'
@@ -12,7 +13,7 @@ import useBreakpoints from '@/utils/breakpoints'
 
 const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const showWelcomeOverlay = ref(true)
+const showWelcomeOverlay = useStorage('showWelcomeOverlay', true)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 

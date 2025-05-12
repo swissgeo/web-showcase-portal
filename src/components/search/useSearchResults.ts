@@ -9,7 +9,7 @@ export default function useSearchResults() {
         return searchStore.isSearchingAddresses
     })
 
-    const showSpinner = computed(() => {
+    const showGeocatSpinner = computed(() => {
         return searchStore.isSearchingGeocat
     })
 
@@ -28,7 +28,7 @@ export default function useSearchResults() {
     return {
         showAddressSpinner,
         isSearching,
-        showSpinner,
+        showGeocatSpinner,
         addressSearchResultCount,
         geocatSearchResultCount,
     }

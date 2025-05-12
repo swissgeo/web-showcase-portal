@@ -10,7 +10,7 @@ const el = useTemplateRef('resultList')
 const { searchGeocat } = useGeocatSearch()
 const searchStore = useSearchStore()
 
-const { reset } = useInfiniteScroll(
+useInfiniteScroll(
     el,
     () => {
         if (searchStore.searchTerm) {
@@ -20,7 +20,9 @@ const { reset } = useInfiniteScroll(
     {
         distance: 10,
         canLoadMore: () => {
-            return (
+            return !!(
+                !searchStore.isSearchingGeocat &&
+                searchStore.geocatSearchResults.length &&
                 searchStore.geocatPage * searchStore.geocatPageSize < searchStore.searchResultTotal
             )
         },

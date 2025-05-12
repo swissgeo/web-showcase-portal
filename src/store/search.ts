@@ -13,7 +13,7 @@ export interface SearchStoreState {
     searchLocationResults: GeocodingResult[]
     searchResultTotal: number
     geocatPage: number
-    readonly geocatPageSize: 10
+    readonly geocatPageSize: 20
 }
 
 export const useSearchStore = defineStore('search', {
@@ -26,7 +26,7 @@ export const useSearchStore = defineStore('search', {
             searchLocationResults: [] as GeocodingResult[],
             searchResultTotal: 0,
             geocatPage: 0,
-            geocatPageSize: 10,
+            geocatPageSize: 20,
         }
     },
     actions: {

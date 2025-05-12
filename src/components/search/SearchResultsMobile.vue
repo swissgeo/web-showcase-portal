@@ -16,7 +16,7 @@ import useSearchResults from '@/components/search/useSearchResults'
 const openAccordionPanel: Ref<string | null> = ref(null)
 
 const {
-    showSpinner,
+    showGeocatSpinner,
     showAddressSpinner,
     addressSearchResultCount,
     geocatSearchResultCount,
@@ -35,7 +35,7 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
 
 <template>
     <div
-        v-if="showSpinner && showAddressSpinner"
+        v-if="showGeocatSpinner && showAddressSpinner"
         class="flex h-full items-center justify-center"
     >
         <ProgressSpinner />

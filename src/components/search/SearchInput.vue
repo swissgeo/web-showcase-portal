@@ -8,8 +8,6 @@ import InputText from 'primevue/inputtext'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { GeonetworkRecord } from '@/types/gnRecord'
-
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocatSearch from '@/search/geocat'
@@ -20,7 +18,7 @@ const emits = defineEmits(['focus', 'blur'])
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
-const { searchGeocat } = useGeocatSearch()
+const geocatSearch = useGeocatSearch()
 const { searchAddress } = useAddressSearch()
 
 const isSearching = computed(() => !!searchStore.searchTerm)
@@ -28,7 +26,7 @@ const isSearching = computed(() => !!searchStore.searchTerm)
 const triggerSearch = debounce((value: string) => {
     searchStore.setIsSearchingAddresses(true)
     searchStore.setIsSearchingGeocat(true)
-    searchGeocat(value)
+    geocatSearch.searchGeocat(value)
     searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) => {
         // see comment above
         if (searchStore.searchTerm) {
@@ -48,6 +46,7 @@ const searchTerm = computed({
             // if we don't do this, and the user deletes the chars in the input, then the input
             // will be '' and the search is triggered with an empty string
             value = null
+            geocatSearch.cancelSearch()
             return
         }
 

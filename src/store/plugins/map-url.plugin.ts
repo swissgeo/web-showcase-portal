@@ -18,6 +18,7 @@ export function mapUrlPlugin({ store }: PiniaPluginContext) {
                     'setBgLayerVisibility',
                     'setLayerVisibility',
                     'setLayerOpacity',
+                    'moveLayerToIndex',
                 ].includes(name)
             ) {
                 after(() => {

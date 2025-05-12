@@ -135,6 +135,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
         version: 0.6.11(prettier@3.5.3)
+      rxjs:
+        specifier: ^7.8.2
+        version: 7.8.2
       start-server-and-test:
         specifier: ^2.0.11
         version: 2.0.11

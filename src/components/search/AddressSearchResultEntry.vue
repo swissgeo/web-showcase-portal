@@ -27,7 +27,7 @@ function selectAddress() {
 <template>
     <SearchResultEntry @click="selectAddress">
         <div
-            class="flex items-center justify-start gap-2"
+            class="flex w-full items-center justify-start gap-2"
             :title="result?.label"
         >
             <i class="pi pi-map-marker"></i>

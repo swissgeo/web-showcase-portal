@@ -19,47 +19,51 @@ const {
 </script>
 
 <template>
-    <div class="flex">
-        <div class="flex h-full w-1/2 flex-col">
-            <div
-                v-if="isSearching"
-                class="flex items-center gap-2 font-bold"
-            >
-                {{ t('searchResult.dataTitle') }}
-                <Badge :value="geocatSearchResultCount"></Badge>
+    <div class="flex w-full">
+        <div class="flex min-w-0 flex-1">
+            <div class="flex h-full min-h-full w-full flex-col">
+                <div
+                    v-if="isSearching"
+                    class="flex items-center gap-2 font-bold"
+                >
+                    {{ t('searchResult.dataTitle') }}
+                    <Badge :value="geocatSearchResultCount"></Badge>
+                </div>
+                <div
+                    v-if="showSpinner"
+                    class="flex h-full items-center justify-center"
+                >
+                    <ProgressSpinner />
+                </div>
+                <GeocatResultList
+                    v-else
+                    class="overflow-auto"
+                />
             </div>
-            <div
-                v-if="showSpinner"
-                class="flex h-full items-center justify-center"
-            >
-                <ProgressSpinner />
-            </div>
-            <GeocatResultList
-                v-else
-                class="overflow-auto"
-            />
         </div>
 
-        <div class="border-l border-neutral-100"></div>
+        <div class="flex-shrink-0 border-l border-neutral-100"></div>
 
-        <div class="flex h-full w-1/2 flex-col">
-            <div
-                v-if="isSearching"
-                class="flex items-center gap-2 font-bold"
-            >
-                {{ t('searchResult.addressTitle') }}
-                <Badge :value="addressSearchResultCount"></Badge>
+        <div class="flex min-w-0 flex-1">
+            <div class="flex h-full w-full flex-col overflow-hidden">
+                <div
+                    v-if="isSearching"
+                    class="flex items-center gap-2 font-bold"
+                >
+                    {{ t('searchResult.addressTitle') }}
+                    <Badge :value="addressSearchResultCount"></Badge>
+                </div>
+                <div
+                    v-if="showAddressSpinner"
+                    class="flex h-full items-center justify-center"
+                >
+                    <ProgressSpinner />
+                </div>
+                <AddressResultList
+                    v-else
+                    class="overflow-x-hidden overflow-y-auto text-ellipsis"
+                />
             </div>
-            <div
-                v-if="showAddressSpinner"
-                class="flex h-full items-center justify-center"
-            >
-                <ProgressSpinner />
-            </div>
-            <AddressResultList
-                v-else
-                class="overflow-auto"
-            />
         </div>
     </div>
 </template>

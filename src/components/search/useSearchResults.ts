@@ -14,7 +14,7 @@ export default function useSearchResults() {
     })
 
     const addressSearchResultCount = computed(() => {
-        return searchStore.searchResults.length
+        return searchStore.searchLocationResults.length
     })
 
     const geocatSearchResultCount = computed(() => {

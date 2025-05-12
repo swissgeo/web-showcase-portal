@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { GeocodingResult } from '@geospatial-sdk/geocoding/lib/model'
 
+import SearchResultEntry from '@/components/search/SearchResultEntry.vue'
 import { getFirstCoordinate } from '@/search/mapUrlUtils'
 import { useMapStore } from '@/store/map'
 
@@ -24,11 +25,15 @@ function selectAddress() {
 </script>
 
 <template>
-    <li
-        class="flex cursor-pointer items-center gap-3 border-t-1 border-gray-200 px-4 py-4 text-sm"
-        @click="selectAddress"
-    >
-        <i class="pi pi-map-marker"></i>
-        <p>{{ result?.label }}</p>
-    </li>
+    <SearchResultEntry @click="selectAddress">
+        <div
+            class="flex items-center justify-start gap-2"
+            :title="result?.label"
+        >
+            <i class="pi pi-map-marker"></i>
+            <div class="truncate">
+                {{ result?.label }}
+            </div>
+        </div>
+    </SearchResultEntry>
 </template>

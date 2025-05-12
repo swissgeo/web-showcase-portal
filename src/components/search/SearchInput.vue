@@ -27,12 +27,39 @@ const searchTerm = computed({
     get() {
         return searchStore.searchTerm
     },
-    set(value: string) {
+    set(value: string | null) {
+        if (value === '') {
+            // if we don't do this, and the user deletes the chars in the input, then the input
+            // will be '' and the search is triggered with an empty string
+            value = null
+            searchStore.$reset()
+            return
+        }
+
         searchStore.setSearchTerm(value)
-        searchGeocat(value, (records: GeonetworkRecord[]) => searchStore.setSearchResults(records))
-        searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) =>
-            searchStore.setSearchLocationResults(records)
-        )
+
+        if (value) {
+            searchStore.setIsSearchingAddresses(true)
+            searchStore.setIsSearchingGeocat(true)
+            searchGeocat(value, (records: GeonetworkRecord[], count: number) => {
+                // guarding against a pecularity: if the user deletes the search
+                // entry with backspace, then it might be the case that a search is still
+                // being triggered due to debouncing. Then when it returns there will be search results
+                // even if there shouldn't be any
+                if (searchStore.searchTerm) {
+                    searchStore.setSearchResults(records)
+                    searchStore.setSearchResultTotal(count)
+                    searchStore.setIsSearchingGeocat(false)
+                }
+            })
+            searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) => {
+                // see comment above
+                if (searchStore.searchTerm) {
+                    searchStore.setSearchLocationResults(records)
+                    searchStore.setIsSearchingAddresses(false)
+                }
+            })
+        }
     },
 })
 
@@ -45,7 +72,7 @@ const onBlur = () => {
 }
 
 const clearSearch = () => {
-    searchStore.clear()
+    searchStore.$reset()
 }
 </script>
 

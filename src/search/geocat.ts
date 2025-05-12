@@ -1,5 +1,6 @@
 import { onMounted } from 'vue'
 
+import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
 import { debounce } from '@/utils/debounce'
 
@@ -11,7 +12,7 @@ export default function useGeocatSearch() {
     })
 
     const searchGeocat = debounce(
-        (value: string, callback: (records: GeonetworkRecord[]) => void) => {
+        (value: string, callback: (records: GeonetworkRecord[], count: number) => void) => {
             GNUI.recordsRepository
                 .search({
                     filters: {
@@ -25,13 +26,13 @@ export default function useGeocatSearch() {
                     // in time we'll have to figure out here what exactly we need
                     // fields: ['resourceTitleObject', 'link', 'uuid', 'ownerOrganization'],
                 })
-                .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
+                .subscribe(({ records, count }: { records: GeonetworkRecord[]; count: number }) => {
                     // eslint-disable-next-line no-console
                     console.log(records)
-                    callback(records)
+                    callback(records, count)
                 })
         },
-        200
+        SEARCH_DEBOUNCE_DELAY
     )
 
     return { searchGeocat }

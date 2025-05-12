@@ -6,9 +6,19 @@
         "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
         "confirm": "Ich möchte es anschauen!"
     },
+    "searchResult": {
+        "showInfo": "Details anzeigen",
+        "dataTitle": "Daten",
+        "addressTitle": "Adressen",
+        "addToMap": "Zur Karte hinzufügen"
+    },
     "layerCart": {
         "showInfo": "Details",
         "delete": "Entfernen",
         "noLayers": "Keine Layers gewählt"
+    },
+    "legend": {
+        "header": "Legende",
+        "noLayers": "Keine Karten dargestellt"
     }
 }

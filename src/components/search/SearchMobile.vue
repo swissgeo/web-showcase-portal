@@ -3,7 +3,7 @@ import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 
 import LayerCartButton from '@/components/LayerCartButton.vue'
-import LegendButton from '@/components/LegendButton.vue'
+import LegendButton from '@/components/LayerLegendButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchResults from '@/components/search/SearchResults.vue'
@@ -23,7 +23,7 @@ const openSearch = () => {
 
 const clearSearch = () => {
     isInputFocused.value = false
-    searchStore.clear()
+    searchStore.$reset()
 }
 </script>
 
@@ -36,7 +36,10 @@ const clearSearch = () => {
             v-if="!isSearching"
             class="fixed top-4 left-4 rounded bg-white"
         ></LogoPic>
-        <div class="fixed top-4 right-4">
+        <div
+            v-if="!isSearching"
+            class="fixed top-4 right-4"
+        >
             <LegendButton></LegendButton>
         </div>
 

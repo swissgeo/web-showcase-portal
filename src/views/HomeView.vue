@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
-import { computed, provide, onMounted, onUnmounted, ref, useTemplateRef, type Ref } from 'vue'
+import {
+    computed,
+    provide,
+    onMounted,
+    onUnmounted,
+    ref,
+    useTemplateRef,
+    type Ref,
+    readonly,
+} from 'vue'
 
 import LayerCart from '@/components/LayerCart.vue'
+import LayerLegend from '@/components/LayerLegend.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/search/SearchDesktop.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
@@ -20,7 +30,7 @@ const windowWidth = ref(0)
 const { breakpoints } = useBreakpoints()
 
 const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
-provide('isDesktop', isDesktop)
+provide('isDesktop', readonly(isDesktop))
 
 function closeOverlay() {
     showWelcomeOverlay.value = false
@@ -83,6 +93,7 @@ onUnmounted(() => {
                 v-if="uiStore.isLayerCartVisible"
                 class="absolute top-0 left-16 z-10"
             />
+            <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
         </div>
         <WelcomeOverlay

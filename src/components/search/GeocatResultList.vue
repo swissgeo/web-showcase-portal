@@ -13,7 +13,7 @@ const searchStore = useSearchStore()
 useInfiniteScroll(
     el,
     () => {
-        if (searchStore.searchTerm) {
+        if (searchStore.searchTerm && !searchStore.isSearchingGeocat) {
             searchGeocat(searchStore.searchTerm)
         }
     },
@@ -21,9 +21,8 @@ useInfiniteScroll(
         distance: 10,
         canLoadMore: () => {
             return !!(
-                !searchStore.isSearchingGeocat &&
                 searchStore.geocatSearchResults.length &&
-                searchStore.geocatPage * searchStore.geocatPageSize < searchStore.searchResultTotal
+                searchStore.geocatSearchResults.length < searchStore.searchResultTotal
             )
         },
     }

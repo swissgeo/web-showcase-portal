@@ -17,7 +17,6 @@ export default function useGeocatSearch() {
     const cancelSearch = () => {
         if (subscription) {
             subscription.unsubscribe()
-            searchStore.setIsSearchingGeocat(false)
         }
     }
 

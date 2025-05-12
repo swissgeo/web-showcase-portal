@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GeocodingResult } from '@geospatial-sdk/geocoding'
-
 import IconField from 'primevue/iconfield'
 import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
@@ -19,21 +17,13 @@ const emits = defineEmits(['focus', 'blur'])
 const { t } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocatSearch()
-const { searchAddress } = useAddressSearch()
+const addressSearch = useAddressSearch()
 
 const isSearching = computed(() => !!searchStore.searchTerm)
 
 const triggerSearch = debounce((value: string) => {
-    searchStore.setIsSearchingAddresses(true)
-    searchStore.setIsSearchingGeocat(true)
     geocatSearch.searchGeocat(value)
-    searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) => {
-        // see comment above
-        if (searchStore.searchTerm) {
-            searchStore.setSearchLocationResults(records)
-        }
-        searchStore.setIsSearchingAddresses(false)
-    })
+    addressSearch.searchAddress(value, '2056', 'fr', 20)
 }, SEARCH_DEBOUNCE_DELAY)
 
 const searchTerm = computed({

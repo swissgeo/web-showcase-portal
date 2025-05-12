@@ -13,6 +13,14 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
+The project contains a submodule from [geonetwork](https://github.com/geonetwork/geonetwork-ui/tree/wc-dist-main).
+To enable this, simply invoke before anything else.
+
+```sh
+git submodule init
+git submodule update
+```
+
 ```sh
 pnpm install
 ```

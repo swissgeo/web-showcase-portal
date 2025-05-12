@@ -42,7 +42,7 @@ function initSortable() {
     } else {
         sortable = Sortable.create(activeLayersList.value, {
             delay: 250,
-            handle : '.layer-item-grip, .layer-item-name',
+            handle : '.layer-item-drag-handle, .layer-item-name',
             delayOnTouchOnly: true,
             touchStartThreshold: 3,
             animation: 150,

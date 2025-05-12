@@ -19,10 +19,6 @@ const { t } = useI18n()
 const closeIcon = computed(() => {
     return isDesktop?.value ? 'pi pi-chevron-right' : 'pi pi-times'
 })
-
-const layers = computed(() => {
-    return mainStore.layersOnMap.filter((layer) => layer.visible)
-})
 </script>
 
 <template>
@@ -44,7 +40,7 @@ const layers = computed(() => {
             <ScrollPanel class="max-h-[300px] border-t border-neutral-200 py-8 md:w-[300px]">
                 <Accordion v-if="mainStore.layersOnMap.length">
                     <LayerLegendEntry
-                        v-for="layer in layers"
+                        v-for="layer in mainStore.visibleLayers"
                         :key="layer.id"
                         :layer="layer"
                     ></LayerLegendEntry>

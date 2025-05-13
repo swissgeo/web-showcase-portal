@@ -50,6 +50,9 @@ export const useMainStore = defineStore('main', {
         showLayerInfo(state: MainStoreState) {
             return state.infoLayerId !== null
         },
+        visibleLayers(state: MainStoreState) {
+            return state.layersOnMap.filter((layer) => layer.visible)
+        },
     },
     actions: {
         addLayerToMap(layer: Layer) {

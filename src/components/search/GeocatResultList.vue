@@ -30,16 +30,23 @@ useInfiniteScroll(
 </script>
 
 <template>
-    <ul
-        v-if="searchStore.geocatSearchResults.length"
+    <div
         ref="resultList"
-        data-cy="ul-geocat-search-results"
-        class="md:mt-5"
+        class="h-[2000px] overflow-y-scroll"
     >
-        <SearchResultEntry
-            v-for="result in searchStore.geocatSearchResults"
-            :key="result.uniqueIdentifier"
-            :result="result"
-        ></SearchResultEntry>
-    </ul>
+        <!-- the absolute height is needed for the infinite scrolling to work
+         on the mobile
+         -->
+        <ul
+            v-if="searchStore.geocatSearchResults.length"
+            data-cy="ul-geocat-search-results"
+            class="md:mt-5"
+        >
+            <SearchResultEntry
+                v-for="result in searchStore.geocatSearchResults"
+                :key="result.uniqueIdentifier"
+                :result="result"
+            ></SearchResultEntry>
+        </ul>
+    </div>
 </template>

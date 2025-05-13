@@ -22,6 +22,7 @@ export const useMapStore = defineStore('map', {
                 layers: mainStore.layersOnMap
                     .map((layer) => convertToMapParameter(layer))
                     .join(';'),
+                hideEmbedUI: true,
             } as Partial<MapUrlParameter>,
         }
     },

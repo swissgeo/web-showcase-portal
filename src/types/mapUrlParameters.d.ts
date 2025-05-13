@@ -8,6 +8,7 @@ export interface MapUrlParameter {
     layers: string
     crosshair: Crosshair
     crossHairPosition: SingleCoordinate
+    hideEmbedUI: boolean
 }
 
 export type SingleCoordinate = [number, number]

@@ -53,6 +53,8 @@ export function generateMapUrlParameters(params: Partial<MapUrlParameter>) {
         searchParams.append('center', params.center.join(','))
     }
 
+    searchParams.append('hideEmbedUI', 'true')
+
     return searchParams
 }
 
@@ -85,4 +87,14 @@ export function getFirstCoordinate(geometry: Geometry): [number, number] | undef
             console.debug(`Unsupported geometry type: ${geometry.type}`)
             return undefined
     }
+}
+
+/**
+ *
+ * @param increaseZoomLevel a boolean which specify if we should zoom in or out
+ * @param currentZoomLevel the current zoom level
+ * @returns {number} the next rounded zoom level in the wanted direction.
+ */
+export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel:number) : number {
+    return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 15) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
 }

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GeocodingResult } from '@geospatial-sdk/geocoding'
-
 import IconField from 'primevue/iconfield'
 import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
@@ -8,57 +6,44 @@ import InputText from 'primevue/inputtext'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { GeonetworkRecord } from '@/types/gnRecord'
-
+import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocatSearch from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
+import { debounce } from '@/utils/debounce'
 
 const emits = defineEmits(['focus', 'blur'])
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
-const { searchGeocat } = useGeocatSearch()
-const { searchAddress } = useAddressSearch()
+const geocatSearch = useGeocatSearch()
+const addressSearch = useAddressSearch()
 
 const isSearching = computed(() => !!searchStore.searchTerm)
+
+const triggerSearch = debounce((value: string) => {
+    geocatSearch.searchGeocat(value)
+    addressSearch.searchAddress(value, '2056', 'fr', 20)
+}, SEARCH_DEBOUNCE_DELAY)
 
 const searchTerm = computed({
     get() {
         return searchStore.searchTerm
     },
     set(value: string | null) {
+        searchStore.$reset()
         if (value === '') {
             // if we don't do this, and the user deletes the chars in the input, then the input
             // will be '' and the search is triggered with an empty string
             value = null
-            searchStore.$reset()
+            geocatSearch.cancelSearch()
             return
         }
 
         searchStore.setSearchTerm(value)
 
         if (value) {
-            searchStore.setIsSearchingAddresses(true)
-            searchStore.setIsSearchingGeocat(true)
-            searchGeocat(value, (records: GeonetworkRecord[], count: number) => {
-                // guarding against a pecularity: if the user deletes the search
-                // entry with backspace, then it might be the case that a search is still
-                // being triggered due to debouncing. Then when it returns there will be search results
-                // even if there shouldn't be any
-                if (searchStore.searchTerm) {
-                    searchStore.setSearchResults(records)
-                    searchStore.setSearchResultTotal(count)
-                    searchStore.setIsSearchingGeocat(false)
-                }
-            })
-            searchAddress(value, '2056', 'fr', 20, (records: GeocodingResult[]) => {
-                // see comment above
-                if (searchStore.searchTerm) {
-                    searchStore.setSearchLocationResults(records)
-                    searchStore.setIsSearchingAddresses(false)
-                }
-            })
+            triggerSearch(value)
         }
     },
 })

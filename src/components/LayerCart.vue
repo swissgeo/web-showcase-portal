@@ -13,6 +13,8 @@ import { useUiStore } from '@/store/ui'
 
 const { t } = useI18n()
 
+import { PanelRightOpen } from 'lucide-vue-next';
+
 import LayerItem from './LayerItem.vue'
 
 const mainStore = useMainStore()
@@ -71,10 +73,15 @@ function destroySortable() {
                 {{ t('Maps displayed') }}
             </h2>
             <Button
-                icon="pi pi-chevron-left"
-                size="small"
+                severity="secondary"
+                size="medium"
                 @click="uiStore.toggleLayerCart"
-            />
+            >
+            <template #icon>
+                <PanelRightOpen/>
+            </template>
+        </Button>
+
         </div>
         <Divider/>
         <div>

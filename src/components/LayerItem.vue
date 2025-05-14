@@ -105,7 +105,7 @@ const toggleLayerMenu = (event: any) => {
             </button>
             <span
                 :class="{ 'text-gray-400 line-through': !layer.visible }"
-                class="flex-1 cursor-grab truncate text-sm font-medium layer-item-name"
+                class="flex-1 cursor-grab truncate text-sm font-medium layer-item-drag-handle"
                 style="max-width: 200px"
                 >{{ layer.name }}</span
             >

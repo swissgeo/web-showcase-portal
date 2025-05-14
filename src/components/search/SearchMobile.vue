@@ -63,6 +63,7 @@ const clearSearch = () => {
             <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
             <LayerCart
                 v-if="uiStore.isLayerCartVisible"
+                :is-desktop-view="false"
                 class="fixed inset-0 z-50"
             ></LayerCart>
         </div>

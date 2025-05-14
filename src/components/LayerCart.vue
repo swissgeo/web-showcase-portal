@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PanelRightOpen } from 'lucide-vue-next';
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
@@ -8,14 +9,18 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/Layer'
 
+import LayerItem from '@/components/LayerItem.vue'
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
 
 const { t } = useI18n()
 
-import { PanelRightOpen } from 'lucide-vue-next';
-
-import LayerItem from './LayerItem.vue'
+const props = defineProps({
+    isDesktopView: {
+        type: Boolean,
+        default: true,
+    }
+});
 
 const mainStore = useMainStore()
 const uiStore = useUiStore()
@@ -68,20 +73,37 @@ function destroySortable() {
     <Panel
         class="h-full overflow-y-auto"
     >
-        <div class="flex flex-row items-center justify-between p-2">
-            <h2 class="text-xl font-bold m-0">
-                {{ t('Maps displayed') }}
-            </h2>
+        <div
+            class="flex flex-row items-center p-2"
+            :class="{ 'justify-between': isDesktopView, 'justify-start': !isDesktopView }"
+        >
             <Button
+                v-if="!props.isDesktopView"
+                class="mr-2"
                 severity="secondary"
                 size="medium"
                 @click="uiStore.toggleLayerCart"
             >
-            <template #icon>
-                <PanelRightOpen/>
-            </template>
-        </Button>
-
+                <template #icon>
+                    <PanelRightOpen/>
+                </template>
+            </Button>
+            <h2
+                class="text-xl font-bold m-0"
+                :class="{ 'flex-grow text-center': !isDesktopView, 'text-left': isDesktopView }"
+            >
+                {{ t('Maps displayed') }}
+            </h2>
+            <Button
+                v-if="props.isDesktopView"
+                severity="secondary"
+                size="medium"
+                @click="uiStore.toggleLayerCart"
+            >
+                <template #icon>
+                    <PanelRightOpen/>
+                </template>
+            </Button>
         </div>
         <Divider/>
         <div>

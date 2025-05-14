@@ -42,7 +42,7 @@ function initSortable() {
     } else {
         sortable = Sortable.create(activeLayersList.value, {
             delay: 250,
-            handle : '.layer-item-drag-handle',
+            handle: '.layer-item-drag-handle',
             delayOnTouchOnly: true,
             touchStartThreshold: 3,
             animation: 150,
@@ -64,7 +64,7 @@ function destroySortable() {
 <template>
     <Panel
         header="Maps displayed"
-        class="w-[350px] h-full overflow-y-auto"
+        class="h-full overflow-y-auto"
     >
         <template #icons>
             <Button

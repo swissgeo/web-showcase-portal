@@ -31,7 +31,7 @@ function showHelpOverlay() {
             <!-- Second column -->
             <LayerCart
                 v-if="uiStore.isLayerCartVisible"
-                class="h-full w-[300px] bg-white"
+                class="h-full w-[400px] bg-white"
             />
         </div>
     </div>

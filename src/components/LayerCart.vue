@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
+import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
@@ -63,18 +64,19 @@ function destroySortable() {
 
 <template>
     <Panel
-        header="Maps displayed"
         class="h-full overflow-y-auto"
     >
-        <template #icons>
+        <div class="flex flex-row items-center justify-between p-2">
+            <h2 class="text-xl font-bold m-0">
+                {{ t('Maps displayed') }}
+            </h2>
             <Button
-                :text="true"
-                class="p-panel-header-icon p-link cursor-pointer"
                 icon="pi pi-chevron-left"
-                @click="uiStore.setLayerCartVisible(false)"
-            >
-            </Button>
-        </template>
+                size="small"
+                @click="uiStore.toggleLayerCart"
+            />
+        </div>
+        <Divider/>
         <div>
             <ul
                 v-if="layers.length > -1"

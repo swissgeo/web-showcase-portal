@@ -84,7 +84,7 @@ const toggleLayerMenu = (event: any) => {
     <li class="group relative flex flex-col rounded-md bg-white p-2 shadow">
         <div
             v-if="!props.isBgLayer"
-            class="absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-[#DFE4E9] shadow group-hover:flex"
+            class="absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-[#DFE4E9] shadow group-hover:flex layer-item-drag-handle"
         >
             <GripVertical />
         </div>
@@ -105,7 +105,7 @@ const toggleLayerMenu = (event: any) => {
             </button>
             <span
                 :class="{ 'text-gray-400 line-through': !layer.visible }"
-                class="flex-1 cursor-grab truncate text-sm font-medium"
+                class="flex-1 cursor-grab truncate text-sm font-medium layer-item-drag-handle"
                 style="max-width: 200px"
                 >{{ layer.name }}</span
             >

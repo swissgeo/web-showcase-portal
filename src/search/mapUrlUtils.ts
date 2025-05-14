@@ -41,8 +41,8 @@ export function generateMapUrlParameters(params: Partial<MapUrlParameter>) {
         searchParams.append('bgLayer', params.bgLayer)
     }
 
-    if (params.crosshair) {
-        searchParams.append('crosshair', params.crosshair)
+    if (params.crosshair && params.crossHairPosition) {
+        searchParams.append('crosshair', [params.crosshair, ...params.crossHairPosition].join(','))
     }
 
     if (params.z !== undefined) {

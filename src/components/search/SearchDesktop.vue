@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
@@ -7,14 +7,15 @@ import SearchResults from '@/components/search/SearchResults.vue'
 import { useSearchStore } from '@/store/search'
 
 const searchStore = useSearchStore()
-const isInputFocused = ref(false)
+
+const isOpenSearch = computed(() => searchStore.isOpenSearch)
 
 const isSearching = computed(() => {
-    return isInputFocused.value || !!searchStore.searchTerm
+    return !!searchStore.searchTerm && isOpenSearch.value
 })
 
 const openSearch = () => {
-    isInputFocused.value = true
+    searchStore.setIsOpenSearch(true)
 }
 </script>
 
@@ -25,7 +26,6 @@ const openSearch = () => {
             <SearchInput
                 class="relative min-w-[680px]"
                 @focus="openSearch"
-                @blur="isInputFocused = false"
             >
                 <SearchResults
                     v-if="isSearching"

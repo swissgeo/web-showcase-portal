@@ -31,7 +31,7 @@ const searchTerm = computed({
         return searchStore.searchTerm
     },
     set(value: string | null) {
-        searchStore.$reset()
+        searchStore.resetSearch()
         if (value === '') {
             // if we don't do this, and the user deletes the chars in the input, then the input
             // will be '' and the search is triggered with an empty string

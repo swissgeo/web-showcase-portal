@@ -26,6 +26,8 @@ export function mapUrlPlugin({ store }: PiniaPluginContext) {
                     mapStore.setMapUrlSearchParams({
                         layers: newLayers.map((layer) => convertToMapParameter(layer)).join(';'),
                         bgLayer: typedStore.bgLayerId ?? 'void',
+                        z: undefined,
+                        center: undefined,
                     })
                 })
             }

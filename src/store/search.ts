@@ -13,6 +13,7 @@ export interface SearchStoreState {
     searchLocationResults: GeocodingResult[]
     searchResultTotal: number
     geocatPage: number
+    isOpenSearch: boolean
     readonly geocatPageSize: 20
 }
 
@@ -21,6 +22,7 @@ export const useSearchStore = defineStore('search', {
         return {
             isSearchingAddresses: false,
             isSearchingGeocat: false,
+            isOpenSearch: false,
             searchTerm: null as string | null,
             geocatSearchResults: [] as GeonetworkRecord[],
             searchLocationResults: [] as GeocodingResult[],
@@ -48,8 +50,20 @@ export const useSearchStore = defineStore('search', {
         setIsSearchingGeocat(value: boolean) {
             this.isSearchingGeocat = value
         },
+        setIsOpenSearch(value: boolean) {
+            this.isOpenSearch = value
+        },
         incGeocatPage() {
             this.geocatPage++
         },
+        resetSearch() {
+            this.geocatSearchResults = []
+            this.searchLocationResults = []
+            this.searchTerm = null
+            this.isSearchingAddresses = false
+            this.isSearchingGeocat = false
+            this.geocatPage = 0
+            this.searchResultTotal = 0
+        }
     },
 })

@@ -15,6 +15,7 @@
     "layerCart": {
         "showInfo": "Details",
         "delete": "Entfernen",
+        "transparency": "Transparenz",
         "noLayers": "Keine Layers gewählt"
     },
     "legend": {

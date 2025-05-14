@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { GripVertical } from 'lucide-vue-next'
 import Button from 'primevue/button'
+import Divider from 'primevue/divider'
 import Menu from 'primevue/menu'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -49,6 +50,12 @@ const metadataMenuClicked = () => {
     console.log('Metadata clicked')
     menuShown.value = false
 }
+const opacityMenuClicked = () => {
+    // eslint-disable-next-line no-console
+    console.log('Opacity clicked')
+    showOpacitySlider.value = true
+    menuShown.value = false
+}
 const deleteMenuClicked = () => {
     emit('delete-layer', props.layer)
     menuShown.value = false
@@ -61,6 +68,7 @@ const menuItems = [
         icon: 'pi pi-info-circle',
         command: () => metadataMenuClicked(),
     },
+    { label: t('layerCart.transparency'), icon: 'pi pi-clone', command: () => opacityMenuClicked() },
     { label: t('layerCart.delete'), icon: 'pi pi-trash', command: () => deleteMenuClicked() },
 ]
 
@@ -109,21 +117,6 @@ const toggleLayerMenu = (event: any) => {
                 style="max-width: 200px"
                 >{{ layer.name }}</span
             >
-            <button
-                v-if="layer.visible && !isBgLayer"
-                class="p-button-text p-button-sm cursor-pointer"
-                @click="showOpacitySlider = !showOpacitySlider"
-            >
-                <span
-                    :class="{
-                        'bg-black text-white': showOpacitySlider,
-                        'bg-gray-100 text-black': !showOpacitySlider,
-                    }"
-                    class="rounded px-2 py-1 text-sm font-medium"
-                >
-                    {{ Math.round((layer.opacity ?? 1) * 100) }}%
-                </span>
-            </button>
             <Button
                 type="button"
                 icon="pi pi-ellipsis-v"
@@ -140,11 +133,10 @@ const toggleLayerMenu = (event: any) => {
                 :popup="true"
             />
         </div>
+        <Divider v-if="showOpacitySlider && !isBgLayer"/>
         <div
             v-if="showOpacitySlider && !isBgLayer"
-            class="mt-2"
-        >
-            <hr class="mb-2 border-t border-gray-300" />
+            class="flex items-center space-x-2 ">
             <input
                 type="range"
                 min="0"
@@ -152,6 +144,16 @@ const toggleLayerMenu = (event: any) => {
                 :value="Math.round((layer.opacity ?? 1) * 100)"
                 class="w-full"
                 @input="updateOpacity"
+            />
+            <span class="rounded px-2 py-1 text-sm font-medium border border-gray-300">
+                {{ Math.round((layer.opacity ?? 1) * 100) }}%
+            </span>
+            <Button
+                type="button"
+                size="small"
+                severity="secondary"
+                icon="pi pi-times"
+                @click="showOpacitySlider = false"
             />
         </div>
     </li>

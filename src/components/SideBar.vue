@@ -17,10 +17,10 @@ function showHelpOverlay() {
 
 <template>
     <div class="absolute top-0 left-0 z-10 flex h-full w-auto flex-col bg-neutral-100">
-        <LogoPic :condensed="!uiStore.isLayerCartVisible" />
+        <LogoPic class="h-12" :condensed="!uiStore.isLayerCartVisible" />
         <div class="flex h-full w-full flex-row p-0">
             <!-- First column -->
-            <div class="flex flex-col items-center bg-neutral-100">
+            <div class="flex flex-col items-center bg-neutral-100 min-w-16">
                 <LayerCartButton />
                 <Button
                     icon="pi pi-question"

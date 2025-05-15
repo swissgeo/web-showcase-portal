@@ -24,7 +24,7 @@ const toggleLayerCart = () => {
         <Button
             :severity="uiStore.isLayerCartVisible ? 'primary' : 'secondary'"
             size="small"
-            class="h-10 cursor-pointer"
+            class="h-10"
             @click="toggleLayerCart"
         >
             <LayerIcon class="h-6 w-6 stroke-current"></LayerIcon>

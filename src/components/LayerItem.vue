@@ -51,8 +51,6 @@ const metadataMenuClicked = () => {
     menuShown.value = false
 }
 const opacityMenuClicked = () => {
-    // eslint-disable-next-line no-console
-    console.log('Opacity clicked')
     showOpacitySlider.value = true
     menuShown.value = false
 }
@@ -68,7 +66,11 @@ const menuItems = [
         icon: 'pi pi-info-circle',
         command: () => metadataMenuClicked(),
     },
-    { label: t('layerCart.transparency'), icon: 'pi pi-clone', command: () => opacityMenuClicked() },
+    {
+        label: t('layerCart.transparency'),
+        icon: 'pi pi-clone',
+        command: () => opacityMenuClicked(),
+    },
     { label: t('layerCart.delete'), icon: 'pi pi-trash', command: () => deleteMenuClicked() },
 ]
 
@@ -133,10 +135,11 @@ const toggleLayerMenu = (event: any) => {
                 :popup="true"
             />
         </div>
-        <Divider v-if="showOpacitySlider && !isBgLayer"/>
+        <Divider v-if="showOpacitySlider && !isBgLayer" />
         <div
             v-if="showOpacitySlider && !isBgLayer"
-            class="flex items-center space-x-2 ">
+            class="flex items-center space-x-2"
+        >
             <input
                 type="range"
                 min="0"
@@ -145,7 +148,7 @@ const toggleLayerMenu = (event: any) => {
                 class="w-full"
                 @input="updateOpacity"
             />
-            <span class="rounded px-2 py-1 text-sm font-medium border border-gray-300">
+            <span class="rounded border border-gray-300 px-2 py-1 text-sm font-medium">
                 {{ Math.round((layer.opacity ?? 1) * 100) }}%
             </span>
             <Button

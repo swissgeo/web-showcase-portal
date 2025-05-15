@@ -11,7 +11,6 @@ import SearchResults from '@/components/search/SearchResults.vue'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
-
 const searchStore = useSearchStore()
 const uiStore = useUiStore()
 

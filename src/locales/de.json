@@ -15,7 +15,9 @@
     "layerCart": {
         "showInfo": "Details",
         "delete": "Entfernen",
-        "noLayers": "Keine Layers gewählt"
+        "transparency": "Transparenz",
+        "noLayers": "Keine Layers gewählt",
+        "title": "Angezeigte Karten"
     },
     "legend": {
         "header": "Legende",

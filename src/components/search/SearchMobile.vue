@@ -2,14 +2,17 @@
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 
+import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchResults from '@/components/search/SearchResults.vue'
 import { useSearchStore } from '@/store/search'
+import { useUiStore } from '@/store/ui'
 
 const searchStore = useSearchStore()
+const uiStore = useUiStore()
 
 const isInputFocused = ref(false)
 
@@ -56,7 +59,12 @@ const clearSearch = () => {
             ></Button>
             <div v-else></div>
             <div v-if="isSearching">Search</div>
-            <LayerCartButton></LayerCartButton>
+            <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
+            <LayerCart
+                v-if="uiStore.isLayerCartVisible"
+                :is-desktop-view="false"
+                class="fixed inset-0 z-50"
+            ></LayerCart>
         </div>
         <SearchResults
             v-if="isSearching"

@@ -11,7 +11,6 @@ import {
     readonly,
 } from 'vue'
 
-import LayerCart from '@/components/LayerCart.vue'
 import LayerLegend from '@/components/LayerLegend.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/search/SearchDesktop.vue'
@@ -89,10 +88,6 @@ onUnmounted(() => {
                 data-cy="comp-search-desktop"
                 class="flex"
             ></SearchDesktop>
-            <LayerCart
-                v-if="uiStore.isLayerCartVisible"
-                class="absolute top-0 left-16 z-10"
-            />
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
         </div>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { PanelRightOpen } from 'lucide-vue-next'
 import Button from 'primevue/button'
+import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
@@ -7,12 +9,18 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/Layer'
 
+import LayerItem from '@/components/LayerItem.vue'
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
 
 const { t } = useI18n()
 
-import LayerItem from './LayerItem.vue'
+const props = defineProps({
+    isDesktopView: {
+        type: Boolean,
+        default: true,
+    },
+})
 
 const mainStore = useMainStore()
 const uiStore = useUiStore()
@@ -42,7 +50,7 @@ function initSortable() {
     } else {
         sortable = Sortable.create(activeLayersList.value, {
             delay: 250,
-            handle : '.layer-item-drag-handle',
+            handle: '.layer-item-drag-handle',
             delayOnTouchOnly: true,
             touchStartThreshold: 3,
             animation: 150,
@@ -62,19 +70,40 @@ function destroySortable() {
 </script>
 
 <template>
-    <Panel
-        header="Maps displayed"
-        class="w-[350px] h-full overflow-y-auto"
-    >
-        <template #icons>
+    <Panel class="h-full overflow-y-auto">
+        <div
+            class="flex flex-row items-center p-2"
+            :class="{ 'justify-between': props.isDesktopView, 'justify-start': !props.isDesktopView }"
+        >
             <Button
-                :text="true"
-                class="p-panel-header-icon p-link cursor-pointer"
-                icon="pi pi-chevron-left"
-                @click="uiStore.setLayerCartVisible(false)"
+                v-if="!props.isDesktopView"
+                class="mr-2"
+                severity="secondary"
+                size="medium"
+                @click="uiStore.toggleLayerCart"
             >
+                <template #icon>
+                    <PanelRightOpen />
+                </template>
             </Button>
-        </template>
+            <h2
+                class="m-0 text-xl font-bold"
+                :class="{ 'flex-grow text-center': !props.isDesktopView, 'text-left': props.isDesktopView }"
+            >
+                {{ t('layerCart.title') }}
+            </h2>
+            <Button
+                v-if="props.isDesktopView"
+                severity="secondary"
+                size="medium"
+                @click="uiStore.toggleLayerCart"
+            >
+                <template #icon>
+                    <PanelRightOpen />
+                </template>
+            </Button>
+        </div>
+        <Divider />
         <div>
             <ul
                 v-if="layers.length > -1"

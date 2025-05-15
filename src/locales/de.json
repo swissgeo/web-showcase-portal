@@ -16,7 +16,8 @@
         "showInfo": "Details",
         "delete": "Entfernen",
         "transparency": "Transparenz",
-        "noLayers": "Keine Layers gewählt"
+        "noLayers": "Keine Layers gewählt",
+        "title": "Angezeigte Karten"
     },
     "legend": {
         "header": "Legende",

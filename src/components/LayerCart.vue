@@ -73,7 +73,7 @@ function destroySortable() {
     <Panel class="h-full overflow-y-auto">
         <div
             class="flex flex-row items-center p-2"
-            :class="{ 'justify-between': isDesktopView, 'justify-start': !isDesktopView }"
+            :class="{ 'justify-between': props.isDesktopView, 'justify-start': !props.isDesktopView }"
         >
             <Button
                 v-if="!props.isDesktopView"
@@ -88,9 +88,9 @@ function destroySortable() {
             </Button>
             <h2
                 class="m-0 text-xl font-bold"
-                :class="{ 'flex-grow text-center': !isDesktopView, 'text-left': isDesktopView }"
+                :class="{ 'flex-grow text-center': !props.isDesktopView, 'text-left': props.isDesktopView }"
             >
-                {{ t('Maps displayed') }}
+                {{ t('layerCart.title') }}
             </h2>
             <Button
                 v-if="props.isDesktopView"

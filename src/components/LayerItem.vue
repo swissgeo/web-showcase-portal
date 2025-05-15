@@ -3,7 +3,7 @@ import { GripVertical } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
 import Menu from 'primevue/menu'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
@@ -88,6 +88,19 @@ const toggleLayerMenu = (event: any) => {
     menu.value.toggle(event)
     menuShown.value = !menuShown.value
 }
+
+const bgLayerThumbnail = computed(() => {
+    if (props.isBgLayer && props.layer.id) {
+        try {
+            return new URL(`../assets/images/${props.layer.id}.png`, import.meta.url).href;
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.error(`Image not found for layer ID: ${props.layer.id}: ${e}`);
+            return '';
+        }
+    }
+    return '';
+});
 </script>
 
 <template>
@@ -119,6 +132,12 @@ const toggleLayerMenu = (event: any) => {
                 style="max-width: 200px"
                 >{{ layer.name }}</span
             >
+            <img
+                v-if="isBgLayer"
+                :src="bgLayerThumbnail"
+                alt="Background Layer Thumbnail"
+                class="w-10 h-10 object-cover rounded-md"
+            />
             <Button
                 type="button"
                 icon="pi pi-ellipsis-v"

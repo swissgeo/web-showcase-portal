@@ -136,7 +136,7 @@ const bgLayerThumbnail = computed(() => {
                 v-if="isBgLayer"
                 :src="bgLayerThumbnail"
                 alt="Background Layer Thumbnail"
-                class="w-10 h-10 object-cover rounded-md"
+                class="w-10 h-10 object-cover rounded-full"
             />
             <Button
                 type="button"

@@ -95,6 +95,9 @@ export function getFirstCoordinate(geometry: Geometry): [number, number] | undef
  * @param currentZoomLevel the current zoom level
  * @returns {number} the next rounded zoom level in the wanted direction.
  */
-export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel:number) : number {
-    return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 15) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
+export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel:number | undefined) : number {
+    if (currentZoomLevel) {
+        return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 15) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
+    }
+    return 1
 }

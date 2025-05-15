@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Button from 'primevue/button'
+import ButtonGroup from 'primevue/buttongroup'
 import { computed, watch } from 'vue'
 
 import { changeZoomLevel, generateMapUrlParameters } from '@/search/mapUrlUtils'
@@ -11,13 +13,14 @@ const urlString = computed(() => {
     const searchParams = generateMapUrlParameters(mapStore.mapUrlSearchParams)
     return `${baseUrl}?${searchParams.toString()}`
 })
+const currentZoomLevel = computed(() => mapStore.mapUrlSearchParams.z)
 
 watch(urlString, (value) => {
     // eslint-disable-next-line no-console
     console.debug(value)
 })
 
-function changeZoom(direction) {
+function changeZoom(direction: boolean) {
     const params = mapStore.mapUrlSearchParams
     params.z = changeZoomLevel(direction, params.z)
     mapStore.setMapUrlSearchParams(params)
@@ -31,18 +34,18 @@ function changeZoom(direction) {
         class="h-full w-full"
         allow="geolocation"
     ></iframe>
-    <span class="row absolute right-32 bottom-16 flex">
-        <button
+    <ButtonGroup class="absolute right-2 bottom-38 md:right-6 md:bottom-8">
+        <Button
+            :disabled="currentZoomLevel === 1"
+            icon="pi pi-minus"
+            severity="secondary"
             @click="changeZoom(false)"
-            class="size-8 rounded-md rounded-r-none bg-gray-50 shadow-md hover:bg-gray-100 hover:shadow-lg"
-        >
-            -
-        </button>
-        <button
+        />
+        <Button
+            :disabled="currentZoomLevel === 15"
+            icon="pi pi-plus"
+            severity="secondary"
             @click="changeZoom(true)"
-            class="size-8 rounded-md rounded-l-none bg-gray-50 shadow-md hover:bg-gray-100 hover:shadow-lg"
-        >
-            +
-        </button>
-    </span>
+        />
+    </ButtonGroup>
 </template>

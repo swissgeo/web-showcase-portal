@@ -32,21 +32,29 @@ describe('Test the search on mobile', () => {
             {
                 fixture: 'geocat-wald-search-result.json',
             }
-        )
+        ).as('geoCatWaldResults')
 
         cy.get('[data-cy="input-search"]').type('wald')
         // open accordion
         cy.get('[data-cy="comp-data-accordion"]').click()
 
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
+
+        // we get the last element in the list, which initially isn't visible
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li:nth-child(10)')
+            .as('lastSearchResult')
+
         cy.get('@searchResults').should('have.length', 10)
 
         cy.log('Make sure the result list is scrollable')
         // the list is too long. the last result isn't visible
-        cy.get('@searchResults').last().should('not.be.visible')
-        cy.get('@searchResults').last().scrollIntoView()
-        cy.get('[data-cy="comp-data-accordion-content"]').scrollTo('bottom')
-        cy.get('@searchResults').last().should('be.visible')
+        cy.get('@lastSearchResult').should('not.be.visible')
+        cy.get('@lastSearchResult').scrollIntoView()
+
+        // now after scrolling it is visible (beware: scrolling loads more items)
+        cy.get('@lastSearchResult').should('be.visible')
+        // first one is scrolled out of view
         cy.get('@searchResults').first().should('not.be.visible')
     })
 })

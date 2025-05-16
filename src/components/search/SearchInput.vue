@@ -10,6 +10,7 @@ import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocatSearch from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
+import { isLanguageSupported } from '@/types/language'
 import { debounce } from '@/utils/debounce'
 
 const emits = defineEmits(['focus', 'blur'])
@@ -18,12 +19,11 @@ const { t } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocatSearch()
 const addressSearch = useAddressSearch()
-
 const isSearching = computed(() => !!searchStore.searchTerm)
 
 const triggerSearch = debounce((value: string) => {
     geocatSearch.searchGeocat(value)
-    addressSearch.searchAddress(value, '2056', 'fr', 20)
+    addressSearch.searchAddress(value, '2056', getBrowserLanguage(), 20)
 }, SEARCH_DEBOUNCE_DELAY)
 
 const searchTerm = computed({
@@ -47,6 +47,16 @@ const searchTerm = computed({
         }
     },
 })
+
+function getBrowserLanguage() {
+    const language = navigator.language
+    const lang = language.split('-')[0]
+    if (isLanguageSupported(lang)) {
+        return lang
+    } else {
+        return 'en'
+    }
+}
 
 const onFocus = () => {
     emits('focus')

@@ -13,8 +13,25 @@ describe('Test the search on desktop', () => {
                 fixture: 'geocat-wald-search-result.json',
             }
         )
-        cy.get('[data-cy="input-search"]').type('wald')
-        cy.get('[data-cy="ul-geocat-search-results"]').find('li').should('have.length', 10)
+        cy.get('[data-cy="input-search"]').realClick().realType('wald')
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
+        cy.get('@searchResults').should('have.length', 20)
+
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li:nth-child(10)')
+            .as('tenthSearchResult')
+
+        // on desktop we already see all 10 entries
+        cy.get('@tenthSearchResult').should('be.visible')
+
+        // we need to scroll in two steps: one that updates the "canLoadMore" of the infinite scroll
+        // then another one that gets to the bottom, which then triggers the loading
+        // probably this is needed because otherwise the cypress scroll isn't really mimicking
+        // a "real" scrolling
+        cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 20 })
+        cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 500 })
+
+        cy.get('@searchResults').should('have.length', 40)
     })
 })
 
@@ -32,21 +49,35 @@ describe('Test the search on mobile', () => {
             {
                 fixture: 'geocat-wald-search-result.json',
             }
-        )
+        ).as('geoCatWaldResults')
 
         cy.get('[data-cy="input-search"]').type('wald')
         // open accordion
         cy.get('[data-cy="comp-data-accordion"]').click()
 
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
-        cy.get('@searchResults').should('have.length', 10)
+
+        // we get the last element in the list, which initially isn't visible
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li:nth-child(10)')
+            .as('tenthSearchResult')
+
+        cy.get('@searchResults').should('have.length', 20)
 
         cy.log('Make sure the result list is scrollable')
         // the list is too long. the last result isn't visible
-        cy.get('@searchResults').last().should('not.be.visible')
-        cy.get('@searchResults').last().scrollIntoView()
-        cy.get('[data-cy="comp-data-accordion-content"]').scrollTo('bottom')
-        cy.get('@searchResults').last().should('be.visible')
+        cy.get('@tenthSearchResult').should('not.be.visible')
+        // cy.get('@tenthSearchResult').scrollIntoView()
+        // cy.pause()
+        cy.get('[data-cy="comp-data-accordion-content"]').realMouseWheel({ deltaY: 300 })
+
+        // now after scrolling it is visible (beware: scrolling loads more items)
+        cy.get('@tenthSearchResult').should('be.visible')
+        // first one is scrolled out of view
         cy.get('@searchResults').first().should('not.be.visible')
+
+        // lets scroll some more, this loads more data
+        cy.get('[data-cy="comp-data-accordion-content"]').realMouseWheel({ deltaY: 500 })
+        cy.get('@searchResults').should('have.length', 40)
     })
 })

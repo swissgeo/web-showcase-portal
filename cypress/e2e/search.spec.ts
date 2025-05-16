@@ -67,12 +67,17 @@ describe('Test the search on mobile', () => {
         cy.log('Make sure the result list is scrollable')
         // the list is too long. the last result isn't visible
         cy.get('@tenthSearchResult').should('not.be.visible')
-        cy.get('@tenthSearchResult').scrollIntoView()
+        // cy.get('@tenthSearchResult').scrollIntoView()
+        // cy.pause()
+        cy.get('[data-cy="comp-data-accordion-content"]').realMouseWheel({ deltaY: 300 })
 
         // now after scrolling it is visible (beware: scrolling loads more items)
         cy.get('@tenthSearchResult').should('be.visible')
         // first one is scrolled out of view
         cy.get('@searchResults').first().should('not.be.visible')
+
+        // lets scroll some more, this loads more data
+        cy.get('[data-cy="comp-data-accordion-content"]').realMouseWheel({ deltaY: 500 })
         cy.get('@searchResults').should('have.length', 40)
     })
 })

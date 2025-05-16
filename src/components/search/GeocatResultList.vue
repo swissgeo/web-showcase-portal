@@ -49,6 +49,7 @@ const height = computed(() => {
         ref="resultList"
         class="overflow-y-scroll md:mt-5"
         :style="height"
+        data-cy="div-geocat-search-results"
     >
         <ul
             v-if="searchStore.geocatSearchResults.length"

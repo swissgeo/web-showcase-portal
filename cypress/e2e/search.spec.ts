@@ -56,5 +56,6 @@ describe('Test the search on mobile', () => {
         cy.get('@lastSearchResult').should('be.visible')
         // first one is scrolled out of view
         cy.get('@searchResults').first().should('not.be.visible')
+        cy.get('@searchResults').should('have.length', 20)
     })
 })

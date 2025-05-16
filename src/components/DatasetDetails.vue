@@ -39,6 +39,10 @@ const close = () => {
 }
 
 watch(infoLayerId, fetchInfo)
+
+// The Panel has a bit of additional styling to achieve two things:
+// * Make it overflow scrollable
+// * Swap the order of button and title on mobile and center the title
 </script>
 
 <template>
@@ -50,10 +54,14 @@ watch(infoLayerId, fetchInfo)
             :pt="{
                 contentContainer: { class: 'overflow-hidden h-full' },
                 content: { class: 'overflow-hidden h-full' },
+                header: { class: '!justify-center md:!justify-between' },
+                headerActions: { class: 'order-1 md:order-2 absolute left-4 md:static' },
             }"
         >
             <template #header>
-                <div class="flex items-center justify-start gap-2 font-bold">
+                <div
+                    class="md:text-lef md:m-initial order-2 flex items-center justify-start gap-2 font-bold md:order-1"
+                >
                     <i class="pi pi-info-circle" />
                     {{ t('details.header') }}
                 </div>

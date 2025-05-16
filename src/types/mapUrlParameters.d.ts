@@ -7,6 +7,7 @@ export interface MapUrlParameter {
     bgLayer: string
     layers: string
     crosshair: Crosshair
+    crossHairPosition: SingleCoordinate
 }
 
 export type SingleCoordinate = [number, number]

@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import { computed, useTemplateRef } from 'vue'
 
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchResults from '@/components/search/SearchResults.vue'
 import { useSearchStore } from '@/store/search'
 
-const searchStore = useSearchStore()
+const searchInput = useTemplateRef<HTMLElement>('searchInput')
 
+const searchStore = useSearchStore()
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 
 const isSearching = computed(() => {
@@ -17,14 +19,34 @@ const isSearching = computed(() => {
 const openSearch = () => {
     searchStore.setIsOpenSearch(true)
 }
+
+// To correctly close the search results when clicking outside of the search input or the search results
+// we need to use the onClickOutside function from vueuse (to detect clicks on elements of this website) but also the
+// @click handler on the div to detect clicks on the iframe
+const handleClickOutsideSearch = () => {
+    if (searchStore.isOpenSearch) {
+        searchStore.setIsOpenSearch(false)
+    }
+}
+onClickOutside(searchInput, handleClickOutsideSearch)
 </script>
 
 <template>
-    <div class="fixed top-0 right-0 left-0">
+    <!-- This div overlay is used to close the search results when clicking outside of the input -->
+    <div
+        v-if="isSearching"
+        class="absolute inset-0 z-0"
+        @click="handleClickOutsideSearch"
+    ></div>
+    <div
+        class="fixed top-0 right-0 left-0"
+        data-cy="div-search-desktop"
+    >
         <div class="flex w-full flex-row items-center justify-between px-6">
             <div><!-- empty element to push the others to the middle and right --></div>
             <SearchInput
-                class="relative min-w-[680px]"
+                ref="searchInput"
+                class="relative z-10 min-w-[680px]"
                 @focus="openSearch"
             >
                 <SearchResults

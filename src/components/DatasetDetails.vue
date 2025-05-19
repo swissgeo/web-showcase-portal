@@ -47,7 +47,7 @@ watch(infoLayerId, fetchInfo)
 
 <template>
     <div
-        class="dataset-detail fixed top-8 right-0 bottom-0 z-15 h-full w-full md:top-0 md:w-[420px]"
+        class="dataset-detail fixed top-4 right-0 bottom-0 z-15 h-full w-full md:top-0 md:w-[420px]"
     >
         <Panel
             class="h-full"

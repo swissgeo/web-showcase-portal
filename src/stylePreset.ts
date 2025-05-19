@@ -17,5 +17,8 @@ export const SwissGeo = definePreset(Aura, {
             900: '{red.900}',
             950: '{red.950}',
         },
+        // content: {
+        //     borderRadius: '8px',
+        // },
     },
 })

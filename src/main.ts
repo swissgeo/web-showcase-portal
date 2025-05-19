@@ -40,6 +40,10 @@ app.use(PrimeVue, {
             // explicitly setting the dark mode toggle class
             // so that the browser preference isn't taken into account
             darkModeSelector: '.dark-mode',
+            cssLayer: {
+                name: 'primevue',
+                order: 'theme, base, primevue, custom',
+            },
         },
     },
 })

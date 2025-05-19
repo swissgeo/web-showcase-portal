@@ -42,8 +42,12 @@ const toggleVisibility = () => {
 // Method to update opacity
 const updateOpacity = (event: Event) => {
     const target = event.target as HTMLInputElement
-    mainStore.setLayerOpacity(props.layer.id, parseFloat(target.value) / 100)
+    let value = parseInt(target.value, 10)
+    if (isNaN(value)) value = 0
+    value = Math.max(0, Math.min(100, value))
+    mainStore.setLayerOpacity(props.layer.id, value / 100)
 }
+
 
 const metadataMenuClicked = () => {
     // eslint-disable-next-line no-console
@@ -167,9 +171,16 @@ const bgLayerThumbnail = computed(() => {
                 class="w-full"
                 @input="updateOpacity"
             />
-            <span class="rounded border border-gray-300 px-2 py-1 text-sm font-medium">
-                {{ Math.round((layer.opacity ?? 1) * 100) }}%
-            </span>
+            <div class="flex items-center border border-gray-300 rounded px-1 py-1 w-24 bg-white">
+                <input
+                    type="text"
+                    :value="Math.round((layer.opacity ?? 1) * 100)"
+                    class="w-10 text-center outline-none border-0 focus:ring-0 px-0 py-0 bg-transparent text-base font-medium"
+                    @input="updateOpacity"
+                    @keydown.enter.prevent
+                />
+                <span class="ml-1 text-gray-700 text-base font-medium">%</span>
+            </div>
             <Button
                 type="button"
                 size="small"

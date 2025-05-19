@@ -5,7 +5,7 @@ describe('Test the search on desktop', () => {
         cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('Search yields a result', () => {
-        cy.get('[data-cy="comp-search-desktop"]').should('exist').should('be.visible')
+        cy.get('[data-cy="div-search-desktop"]').should('exist').should('be.visible')
         cy.get('[data-cy="comp-search-mobile"]').should('not.exist')
         cy.intercept(
             'https://www.geocat.ch/geonetwork/srv/api/search/records/_search?bucket=bucket',
@@ -43,7 +43,7 @@ describe('Test the search on mobile', () => {
     })
     it('Search yields a result', () => {
         cy.get('[data-cy="comp-search-mobile"]').should('exist').should('be.visible')
-        cy.get('[data-cy="comp-search-desktop"]').should('not.exist')
+        cy.get('[data-cy="div-search-desktop"]').should('not.exist')
         cy.intercept(
             'https://www.geocat.ch/geonetwork/srv/api/search/records/_search?bucket=bucket',
             {

@@ -83,6 +83,7 @@ onUnmounted(() => {
                 v-if="!isDesktop"
                 data-cy="comp-search-mobile"
             ></SearchMobile>
+            <!-- This data-cy is not visible due to the overlay div inside -->
             <SearchDesktop
                 v-if="isDesktop"
                 data-cy="comp-search-desktop"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PanelRightOpen } from 'lucide-vue-next'
+import { PanelLeftClose } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
@@ -73,7 +73,10 @@ function destroySortable() {
     <Panel class="h-full overflow-y-auto">
         <div
             class="flex flex-row items-center p-2"
-            :class="{ 'justify-between': props.isDesktopView, 'justify-start': !props.isDesktopView }"
+            :class="{
+                'justify-between': props.isDesktopView,
+                'justify-start': !props.isDesktopView,
+            }"
         >
             <Button
                 v-if="!props.isDesktopView"
@@ -83,12 +86,15 @@ function destroySortable() {
                 @click="uiStore.toggleLayerCart"
             >
                 <template #icon>
-                    <PanelRightOpen />
+                    <PanelLeftClose />
                 </template>
             </Button>
             <h2
                 class="m-0 text-xl font-bold"
-                :class="{ 'flex-grow text-center': !props.isDesktopView, 'text-left': props.isDesktopView }"
+                :class="{
+                    'flex-grow text-center': !props.isDesktopView,
+                    'text-left': props.isDesktopView,
+                }"
             >
                 {{ t('layerCart.title') }}
             </h2>
@@ -99,7 +105,7 @@ function destroySortable() {
                 @click="uiStore.toggleLayerCart"
             >
                 <template #icon>
-                    <PanelRightOpen />
+                    <PanelLeftClose />
                 </template>
             </Button>
         </div>

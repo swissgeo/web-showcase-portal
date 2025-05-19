@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
 import {
     computed,
     provide,
@@ -11,22 +12,26 @@ import {
     readonly,
 } from 'vue'
 
+import DatasetInfo from '@/components/DatasetDetails.vue'
 import LayerLegend from '@/components/LayerLegend.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/search/SearchDesktop.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
+import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
 import useBreakpoints from '@/utils/breakpoints'
 
+const mainStore = useMainStore()
+const { breakpoints } = useBreakpoints()
+
+const { showLayerInfo } = storeToRefs(mainStore)
 const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const showWelcomeOverlay = useStorage('showWelcomeOverlay', true)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
-
-const { breakpoints } = useBreakpoints()
 
 const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
 provide('isDesktop', readonly(isDesktop))
@@ -91,6 +96,7 @@ onUnmounted(() => {
             ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
+            <DatasetInfo v-if="showLayerInfo" />
         </div>
         <WelcomeOverlay
             v-if="showWelcomeOverlay"

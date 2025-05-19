@@ -22,5 +22,12 @@
     "legend": {
         "header": "Legende",
         "noLayers": "Keine Karten dargestellt"
+    },
+    "details": {
+        "header": "Details",
+        "info": "Info",
+        "contact": "Kontakt",
+        "downloads": "Downloads",
+        "links": "Links"
     }
 }

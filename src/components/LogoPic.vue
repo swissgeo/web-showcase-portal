@@ -8,7 +8,7 @@ const { condensed = false } = defineProps<{
     <!-- the desktop icon in the sidebar -->
     <div
         v-if="condensed"
-        class="flex h-12 w-full items-center justify-center blur-md"
+        class="flex h-12 w-full items-center justify-center blur-xs"
     >
         <img
             src="@/assets/images/swissgeo_rgb_icon.svg"
@@ -18,7 +18,7 @@ const { condensed = false } = defineProps<{
     <!-- the mobile one-->
     <div
         v-else
-        class="rounded border border-neutral-200 bg-white p-2 blur-md"
+        class="rounded border border-neutral-200 bg-white p-2 blur-xs"
     >
         <img
             src="@/assets/images/swissgeo_rgb_sek.svg"

@@ -18,7 +18,7 @@ const { condensed = false } = defineProps<{
     <!-- the mobile one-->
     <div
         v-else
-        class="rounded border border-neutral-200 bg-white p-2 blur-xs"
+        class="flex items-center rounded border border-neutral-200 bg-white p-2 blur-xs md:rounded-none md:border-none"
     >
         <img
             src="@/assets/images/swissgeo_rgb_sek.svg"

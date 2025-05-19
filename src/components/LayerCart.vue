@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { PanelLeftClose } from 'lucide-vue-next'
 import Button from 'primevue/button'
-import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'

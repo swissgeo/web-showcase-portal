@@ -29,5 +29,19 @@
         "contact": "Kontakt",
         "downloads": "Downloads",
         "links": "Links"
+    },
+    "keywords": {
+        "title": "Beliebte Suchen",
+        "categories": {
+            "climate": "Klima",
+            "solar": "Solar",
+            "mobility": "Mobilität",
+            "energy": "Energie",
+            "water": "Wasser",
+            "waste": "Abfall",
+            "biodiversity": "Biodiversität",
+            "air quality": "Luftqualität",
+            "noise": "Lärm"
+        }
     }
 }

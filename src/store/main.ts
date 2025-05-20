@@ -62,8 +62,12 @@ export const useMainStore = defineStore('main', {
             this.layersOnMap.push(layer)
         },
         setInfoLayerId(layerId: string) {
+            if (this.infoLayerId !== layerId) {
+                // layer id has changed, reset the info to trigger the
+                // watcher in the details
+                this.infoLayerRecord = null
+            }
             this.infoLayerId = layerId
-            this.infoLayerRecord = null
         },
         setInfoLayerRecord(record: GeonetworkRecord) {
             this.infoLayerRecord = record

@@ -59,10 +59,10 @@ const opacityValue = computed({
 })
 
 const metadataMenuClicked = () => {
-    // eslint-disable-next-line no-console
-    console.log('Metadata clicked')
     menuShown.value = false
+    mainStore.setInfoLayerId(props.layer.id)
 }
+
 const opacityMenuClicked = () => {
     showOpacitySlider.value = true
     menuShown.value = false

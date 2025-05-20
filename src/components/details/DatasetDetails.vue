@@ -90,11 +90,11 @@ const logoUrl = computed((): string | null => {
     <div class="h-full overflow-scroll border-t border-neutral-200 pb-28 md:pb-20">
         <div class="">
             <div
-                class="flex min-h-[230px] flex-col justify-end gap-3 bg-slate-200 px-4 pb-11 text-lg font-bold"
+                class="flex min-h-[230px] flex-col justify-end gap-3 bg-slate-200 px-8 pb-11 text-xl font-bold"
             >
                 {{ info?.title }}
 
-                <div class="rounded-md bg-white p-2 text-sm font-medium">
+                <div class="w-fit rounded-md bg-white px-3 py-2 text-sm font-medium">
                     {{ t('details.lastUpdated') }}
                     {{ lastUpdated }}
                 </div>

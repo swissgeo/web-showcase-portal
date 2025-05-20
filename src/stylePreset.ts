@@ -4,18 +4,20 @@ import Aura from '@primeuix/themes/aura'
 // Adding this here as an example for later
 export const SwissGeo = definePreset(Aura, {
     semantic: {
+        // intermediary solution, I just took the base color
+        // and increased and decreased the lightness by 5%
         primary: {
-            50: '{red.50}',
-            100: '{red.100}',
-            200: '{red.200}',
-            300: '{red.300}',
-            400: '{red.400}',
-            500: '{red.500}',
-            600: '{red.600}',
-            700: '{red.700}',
-            800: '{red.800}',
-            900: '{red.900}',
-            950: '{red.950}',
+            50: 'hsl(199 46% 59%)',
+            100: 'hsl(199 46% 54%)',
+            200: 'hsl(199 46% 49%)',
+            300: 'hsl(199 46% 44%)',
+            400: 'hsl(199 46% 39%)',
+            500: 'hsl(199 46% 34%)', // base color
+            600: 'hsl(199 46% 29%)',
+            700: 'hsl(199 46% 24%)',
+            800: 'hsl(199 46% 19%)',
+            900: 'hsl(199 46% 14%)',
+            950: 'hsl(199 46% 9)',
         },
     },
 })

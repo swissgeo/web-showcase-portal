@@ -13,6 +13,10 @@ const { layer } = defineProps<{
 <template>
     <AccordionPanel :value="layer.id">
         <AccordionHeader>{{ layer.name }}</AccordionHeader>
-        <AccordionContent></AccordionContent>
+        <AccordionContent>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolor doloremque
+            cupiditate recusandae sed explicabo accusamus vero? Asperiores, illo. Ea nobis natus
+            debitis commodi sed amet repellat iste neque quae.
+        </AccordionContent>
     </AccordionPanel>
 </template>

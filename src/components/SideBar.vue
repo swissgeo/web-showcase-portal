@@ -16,14 +16,16 @@ function showHelpOverlay() {
 </script>
 
 <template>
-    <div class="absolute top-0 left-0 z-10 flex h-full w-auto flex-col bg-neutral-100">
-        <LogoPic
-            class="h-12"
-            :condensed="!uiStore.isLayerCartVisible"
-        />
+    <div class="absolute top-0 left-0 z-10 flex h-full w-auto flex-col bg-neutral-100 shadow-lg">
+        <div class="bg-white">
+            <LogoPic
+                class="h-12"
+                :condensed="!uiStore.isLayerCartVisible"
+            />
+        </div>
         <div class="flex h-full w-full flex-row p-0">
             <!-- First column -->
-            <div class="flex min-w-16 flex-col items-center bg-neutral-100">
+            <div class="flex min-w-16 flex-col items-center bg-neutral-100 pt-4">
                 <LayerCartButton />
                 <Button
                     icon="pi pi-question"

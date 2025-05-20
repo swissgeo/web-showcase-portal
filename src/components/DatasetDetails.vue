@@ -53,8 +53,8 @@ watch(infoLayerId, fetchInfo)
             class="h-full"
             :pt="{
                 contentContainer: { class: 'overflow-hidden h-full' },
-                content: { class: 'overflow-hidden h-full' },
-                header: { class: '!justify-center md:!justify-between' },
+                content: { class: 'overflow-hidden h-full !px-0 pt-0' },
+                header: { class: '!justify-center md:!justify-between h-16' },
                 headerActions: { class: 'order-1 md:order-2 absolute left-4 md:static' },
             }"
         >
@@ -75,35 +75,43 @@ watch(infoLayerId, fetchInfo)
                 />
             </template>
             <!-- pb-20/pb-28 is needed so the content at the bottom becomes visible -->
-            <div class="h-full overflow-scroll border-t border-neutral-200 pt-4 pb-28 md:pb-20">
-                <div class="flex flex-col gap-4">
-                    <div class="text-lg font-bold">
+            <div class="h-full overflow-scroll border-t border-neutral-200 pb-28 md:pb-20">
+                <div class="">
+                    <div
+                        class="flex min-h-[230px] flex-col justify-end gap-3 bg-slate-200 px-4 pb-11 text-lg font-bold"
+                    >
                         Electrical installations with a nominal voltage exceeding 36k Volt
+
+                        <div class="rounded-md bg-white p-2 text-sm font-medium">
+                            Last updated on 19.05.2025
+                        </div>
                     </div>
 
-                    <!-- TODO probably refactor these into a reusable component -->
-                    <Panel :header="t('details.info')">
-                        The electricity grid is the point of connection between producers and
-                        consumers of electrical energy. Via the grid, electricity is transported,
-                        transformed (from a higher to lower voltage and vice versa) and distributed.
-                        As the link between production and consumption, the electricity grid is a
-                        key element in ensuring the security of electricity supply. The term
-                        electrical installations refers to all components of an electricity network
-                        that serve to transmit electrical current, such as lines, substations and
-                        transformer stations. The geodatabase dataset 'Electrical installations with
-                        a nominal voltage exceeding 36kV' contains a geographical overview of the
-                        electrical installations of the extra-high and high-voltage grid in
-                        Switzerland. Some plant operators have not yet provided data, so the
-                        overview is not yet complete.
-                    </Panel>
+                    <div class="mx-4 flex -translate-y-5 flex-col gap-4">
+                        <Panel :header="t('details.info')">
+                            The electricity grid is the point of connection between producers and
+                            consumers of electrical energy. Via the grid, electricity is
+                            transported, transformed (from a higher to lower voltage and vice versa)
+                            and distributed. As the link between production and consumption, the
+                            electricity grid is a key element in ensuring the security of
+                            electricity supply. The term electrical installations refers to all
+                            components of an electricity network that serve to transmit electrical
+                            current, such as lines, substations and transformer stations. The
+                            geodatabase dataset 'Electrical installations with a nominal voltage
+                            exceeding 36kV' contains a geographical overview of the electrical
+                            installations of the extra-high and high-voltage grid in Switzerland.
+                            Some plant operators have not yet provided data, so the overview is not
+                            yet complete.
+                        </Panel>
 
-                    <Panel :header="t('details.contact')">
-                        <address>Bundesamt für BGDI Seftigenstrasse</address>
-                    </Panel>
+                        <Panel :header="t('details.contact')">
+                            <address>Bundesamt für BGDI Seftigenstrasse</address>
+                        </Panel>
 
-                    <Panel :header="t('details.downloads')">
-                        <a href="http://swisstopo.ch">Swisstopo</a>
-                    </Panel>
+                        <Panel :header="t('details.downloads')">
+                            <a href="http://swisstopo.ch">Swisstopo</a>
+                        </Panel>
+                    </div>
                 </div>
             </div>
         </Panel>

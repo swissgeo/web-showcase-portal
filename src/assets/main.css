@@ -19,3 +19,23 @@ body {
     --breakpoint-xl: var(--breakpoint-xl);
     --breakpoint-2xl: var(--breakpoint-2xl);
 }
+
+@layer custom {
+    :root {
+        --p-content-border-radius: 8px;
+        --p-panel-content-padding: 0px;
+    }
+
+    .p-panel {
+        @apply shadow;
+    }
+
+    .p-panel-header {
+        border-bottom-width: 1px;
+        @apply h-16 px-6;
+    }
+
+    .p-panel-content {
+        @apply px-6 py-4;
+    }
+}

@@ -1,3 +1,4 @@
+import type { Crosshair } from '@/types/crosshair'
 import type { Language } from '@/types/language'
 
 export interface MapUrlParameter {
@@ -12,5 +13,3 @@ export interface MapUrlParameter {
 }
 
 export type SingleCoordinate = [number, number]
-
-export type Crosshair = 'cross' | 'circle' | 'bowl' | 'point' | 'marker'

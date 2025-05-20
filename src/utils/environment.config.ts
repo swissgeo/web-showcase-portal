@@ -9,7 +9,7 @@
  */
 const environmentVariables: {[key: string]: string | number | boolean} = {
     // mapviewer embed base URL, default to the prod
-    mapviewerEmbedUrl : import.meta.env.VITE_MAPVIEWER_BASE_EMBED_URL ?? 'https://map.geo.admin.ch/#embed/',
+    mapviewerEmbedUrl : import.meta.env.VITE_MAPVIEWER_BASE_EMBED_URL ?? 'https://map.geo.admin.ch/#/embed',
 }
 
 /**

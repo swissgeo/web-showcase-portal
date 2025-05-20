@@ -3,6 +3,8 @@ import type { Geometry } from 'geojson'
 import type { Layer } from '@/types/Layer'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
+import { isCrosshair, type Crosshair } from '@/types/crosshair'
+import { isLanguageSupported, type Language } from '@/types/language'
 import { transformRecordIntoGeoadminLayerParam } from '@/utils/layerUtils'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -89,15 +91,53 @@ export function getFirstCoordinate(geometry: Geometry): [number, number] | undef
     }
 }
 
+
+export function getUrlParamsFromSource(embedUrlParams: string, currentStoreParams: Partial<MapUrlParameter>) {
+
+    const params = new URLSearchParams(embedUrlParams)
+    const paramsToPush = {} as Partial<MapUrlParameter>
+
+    // typescript will yell at us if we don't ensure each value is of the correct type :)
+
+        params.forEach((value, key) => {
+
+            if (key === 'z') {
+                paramsToPush[key] = parseFloat(value as string)
+            }
+            else if (key === 'center' || key === 'crossHairPosition') {
+
+                const coordinates : string[] = value.split(',') as string[]
+                paramsToPush[key] = [parseFloat(coordinates[0]),parseFloat(coordinates[1])]
+            }
+            else if (key === 'hideEmbedUI') {
+                paramsToPush[key] = true
+            }
+            else if (key === 'lang'){
+                if (isLanguageSupported(value as string)) {
+                    paramsToPush[key] = value as Language
+                }
+            }
+            else if (key === 'crosshair') {
+                if (isCrosshair(value as string)) {
+                    paramsToPush[key] = value as Crosshair
+                }
+            }
+            else if (key === 'layers' || key === 'bgLayer'){
+                paramsToPush[key] = value as string
+            }
+
+    })
+    return {...currentStoreParams, ...paramsToPush}
+}
 /**
  *
  * @param increaseZoomLevel a boolean which specify if we should zoom in or out
  * @param currentZoomLevel the current zoom level
  * @returns {number} the next rounded zoom level in the wanted direction.
  */
-export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel:number | undefined) : number {
+export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel: number) : number {
     if (currentZoomLevel) {
-        return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 15) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
+        return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 13) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
     }
     return 1
 }

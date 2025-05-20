@@ -71,6 +71,19 @@ const links = computed(() => {
     }
     return []
 })
+
+const logoUrl = computed((): string | null => {
+    if (!info.ownerOrganization.logoUrl) {
+        return null
+    }
+    try {
+        const url = new URL(info.ownerOrganization.logoUrl)
+        const filename = url.pathname.split('/').pop()
+        return `https://www.geocat.ch/geonetwork/images/harvesting/${filename}`
+    } catch {
+        return null
+    }
+})
 </script>
 
 <template>
@@ -96,6 +109,17 @@ const links = computed(() => {
                     v-if="contact"
                     :header="t('details.contact')"
                 >
+                    <template #icons>
+                        <div
+                            v-if="logoUrl"
+                            class="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-100 p-1"
+                        >
+                            <img
+                                :src="logoUrl"
+                                class="h-full"
+                            />
+                        </div>
+                    </template>
                     <address class="text-sm not-italic">
                         <div class="flex flex-col gap-1">
                             <div class="mb-2">

@@ -1,12 +1,11 @@
 import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
-import { createI18n } from 'vue-i18n'
 
 import { SwissGeo } from '@/stylePreset'
+import { i18n } from '@/types/language'
 
 import App from './App.vue'
-import deLocale from './locales/de.json'
 import './assets/main.css'
 
 import '@fontsource/noto-sans'
@@ -14,16 +13,6 @@ import '@geonetwork-ui/gn-standalone-search.js'
 
 import router from './router'
 import mapUrlPlugin from './store/plugins/map-url.plugin'
-
-const messages = {
-    de: deLocale,
-}
-
-const i18n = createI18n({
-    locale: 'de',
-    fallbackLocale: 'de',
-    messages,
-})
 
 const app = createApp(App)
 const pinia = createPinia()

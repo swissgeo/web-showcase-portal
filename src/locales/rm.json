@@ -1,0 +1,48 @@
+{
+    "welcome": "Bainvegni",
+    "searchPlaceholder": "Tschertga qua...",
+    "welcomeOverlay": {
+        "title": "Bainvegni sin...",
+        "intro": "Ti es sin... quai è in prototip",
+        "confirm": "Vuless guardar!"
+    },
+    "searchResult": {
+        "mobileSearchTitle": "Tschertga",
+        "showInfo": "Mussar detagls",
+        "dataTitle": "Datas",
+        "addressTitle": "Adressas",
+        "addToMap": "Agiuntar a la charta"
+    },
+    "layerCart": {
+        "showInfo": "Detagls",
+        "delete": "Allontanar",
+        "transparency": "Transparenza",
+        "noLayers": "Naginas datas tschernidas",
+        "title": "Chartas visualisadas"
+    },
+    "legend": {
+        "header": "Legenda",
+        "noLayers": "Naginas chartas visualisadas"
+    },
+    "details": {
+        "header": "Detagls",
+        "info": "Infurmaziuns",
+        "contact": "Contact",
+        "downloads": "Telechargiadas",
+        "links": "Colliaziuns"
+    },
+    "keywords": {
+        "title": "Tschertgas popularas",
+        "categories": {
+            "climate": "Clima",
+            "solar": "Solar",
+            "mobility": "Mobilitad",
+            "energy": "Energia",
+            "water": "Aua",
+            "waste": "Retschats",
+            "biodiversity": "Biodiversitad",
+            "air quality": "Qualitad da l’aria",
+            "noise": "Canera"
+        }
+    }
+}

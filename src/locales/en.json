@@ -1,0 +1,48 @@
+{
+    "welcome": "Welcome",
+    "searchPlaceholder": "Search here...",
+    "welcomeOverlay": {
+        "title": "Welcome to...",
+        "intro": "You are on... this is a prototype",
+        "confirm": "I want to take a look!"
+    },
+    "searchResult": {
+        "mobileSearchTitle": "Search",
+        "showInfo": "Show details",
+        "dataTitle": "Data",
+        "addressTitle": "Addresses",
+        "addToMap": "Add to map"
+    },
+    "layerCart": {
+        "showInfo": "Details",
+        "delete": "Remove",
+        "transparency": "Transparency",
+        "noLayers": "No layers selected",
+        "title": "Displayed maps"
+    },
+    "legend": {
+        "header": "Legend",
+        "noLayers": "No maps displayed"
+    },
+    "details": {
+        "header": "Details",
+        "info": "Info",
+        "contact": "Contact",
+        "downloads": "Downloads",
+        "links": "Links"
+    },
+    "keywords": {
+        "title": "Popular Searches",
+        "categories": {
+            "climate": "Climate",
+            "solar": "Solar",
+            "mobility": "Mobility",
+            "energy": "Energy",
+            "water": "Water",
+            "waste": "Waste",
+            "biodiversity": "Biodiversity",
+            "air quality": "Air Quality",
+            "noise": "Noise"
+        }
+    }
+}

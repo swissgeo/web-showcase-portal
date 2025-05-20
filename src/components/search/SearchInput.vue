@@ -11,8 +11,8 @@ import { useI18n } from 'vue-i18n'
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
+import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
-import { isLanguageSupported } from '@/types/language'
 import { debounce } from '@/utils/debounce'
 
 const keywords = [
@@ -34,12 +34,15 @@ const emits = defineEmits(['focus', 'blur'])
 const { t } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
+const mainStore = useMainStore()
 const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
 const scrollContainer = ref<HTMLElement | null>(null)
+const language = computed(() => mainStore.language)
+
 const triggerSearch = debounce((value: string) => {
     geocatSearch.searchGeocat(value)
-    addressSearch.searchAddress(value, '2056', getBrowserLanguage(), 20)
+    addressSearch.searchAddress(value, '2056', language.value, 20)
 }, SEARCH_DEBOUNCE_DELAY)
 
 const searchTerm = computed({
@@ -74,16 +77,6 @@ const visibleKeywords = computed(() => {
         t(`keywords.categories.${value.toLowerCase()}`, value).toLowerCase().includes(term)
     )
 })
-
-function getBrowserLanguage() {
-    const language = navigator.language
-    const lang = language.split('-')[0]
-    if (isLanguageSupported(lang)) {
-        return lang
-    } else {
-        return 'en'
-    }
-}
 
 const onFocus = () => {
     emits('focus')

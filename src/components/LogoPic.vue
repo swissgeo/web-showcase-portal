@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
+
 const { condensed = false } = defineProps<{
     condensed?: boolean
 }>()
@@ -35,5 +37,8 @@ const { condensed = false } = defineProps<{
         /> -->
         </div>
         <div class="text-primary-500 font-extrabold">GPS</div>
+        <!-- This is the separator between the logo and the language switch button -->
+        <div class="mx-3 inline-block h-5 w-0.5 bg-gray-300"></div>
+        <LanguageSwitchButton :is-desktop="false" />
     </div>
 </template>

@@ -54,7 +54,7 @@ onClickOutside(searchInput, handleClickOutsideSearch)
             >
                 <SearchResults
                     v-if="isSearching"
-                    class="absolute top-20 right-5 left-5 h-[620px] min-h-1/3 border border-t-0 border-neutral-300 pt-4 shadow"
+                    class="my-2 h-[620px] min-h-1/3 w-[680px] border border-t-0 border-neutral-300 pt-4 shadow"
                 ></SearchResults>
             </SearchInput>
             <div>

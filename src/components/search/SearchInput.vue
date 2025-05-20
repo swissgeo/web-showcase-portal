@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import Card from 'primevue/card'
 import IconField from 'primevue/iconfield'
 import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed } from 'vue'
+import Tag from 'primevue/tag'
+import { computed, inject, onMounted, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
@@ -13,6 +15,20 @@ import { useSearchStore } from '@/store/search'
 import { isLanguageSupported } from '@/types/language'
 import { debounce } from '@/utils/debounce'
 
+const keywords = [
+    'Solar',
+    'Mobility',
+    'Climate',
+    'Energy',
+    'Water',
+    'Waste',
+    'Biodiversity',
+    'Air Quality',
+    'Noise',
+]
+
+const isDesktop = inject<Ref<boolean>>('isDesktop')
+
 const emits = defineEmits(['focus', 'blur'])
 
 const { t } = useI18n()
@@ -20,7 +36,7 @@ const searchStore = useSearchStore()
 const geocatSearch = useGeocatSearch()
 const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
-
+const scrollContainer = ref<HTMLElement | null>(null)
 const triggerSearch = debounce((value: string) => {
     geocatSearch.searchGeocat(value)
     addressSearch.searchAddress(value, '2056', getBrowserLanguage(), 20)
@@ -48,6 +64,17 @@ const searchTerm = computed({
     },
 })
 
+const visibleKeywords = computed(() => {
+    const term = searchTerm.value?.trim().toLowerCase()
+    if (!term) {
+        return keywords
+    }
+
+    return keywords.filter((value) =>
+        t(`keywords.categories.${value.toLowerCase()}`, value).toLowerCase().includes(term)
+    )
+})
+
 function getBrowserLanguage() {
     const language = navigator.language
     const lang = language.split('-')[0]
@@ -69,31 +96,138 @@ const onBlur = () => {
 const clearSearch = () => {
     searchStore.$reset()
 }
+
+function handleWheel(event: WheelEvent): void {
+    if (event.deltaY === 0) {
+        return
+    }
+    event.preventDefault()
+    scrollContainer!.value!.scrollLeft += event.deltaY
+}
+
+onMounted(() => {
+    scrollContainer.value!.addEventListener('wheel', handleWheel, { passive: false })
+})
+
+function onClickKeyword(topic: string) {
+    searchTerm.value = t(`keywords.categories.${topic.toLowerCase()}`, topic)
+    searchStore.setIsOpenSearch(true)
+}
 </script>
 
 <template>
     <div class="rounded-t-lg p-4">
-        <IconField>
-            <IftaLabel>
-                <InputIcon
-                    class="pi"
-                    :class="{ 'pi-search': !isSearching, 'pi-times cursor-pointer': isSearching }"
-                    @click="clearSearch"
-                ></InputIcon>
-                <InputText
-                    id="search"
-                    v-model="searchTerm"
-                    data-cy="input-search"
-                    class="w-full"
-                    @focus="onFocus"
-                    @blur="onBlur"
-                ></InputText>
-                <label for="search">{{ t('searchPlaceholder') }}</label>
-            </IftaLabel>
-        </IconField>
+        <!-- Desktop version -->
+        <Card
+            v-if="isDesktop"
+            class="w-[680px]"
+        >
+            <template #content>
+                <IconField>
+                    <IftaLabel>
+                        <InputIcon
+                            class="pi"
+                            :class="{
+                                'pi-search': !isSearching,
+                                'pi-times cursor-pointer': isSearching,
+                            }"
+                            @click="clearSearch"
+                        ></InputIcon>
+                        <InputText
+                            id="search"
+                            v-model="searchTerm"
+                            data-cy="input-search"
+                            class="w-full"
+                            @focus="onFocus"
+                            @blur="onBlur"
+                        ></InputText>
+                        <label for="search">{{ t('searchPlaceholder') }}</label>
+                    </IftaLabel>
+                </IconField>
+                <div class="flex items-center gap-2 pt-4">
+                    <span
+                        v-if="isDesktop && !isSearching"
+                        class="text-sm font-medium text-nowrap text-gray-600"
+                    >
+                        {{ t('keywords.title') }}:
+                    </span>
+                    <div
+                        ref="scrollContainer"
+                        class="no-scrollbar w-full grow-0 gap-2 overflow-x-auto bg-white whitespace-nowrap"
+                    >
+                        <Tag
+                            v-for="topic in visibleKeywords"
+                            :key="topic"
+                            :pt="{
+                                root: {
+                                    class: 'mr-2 cursor-pointer rounded-lg !border !border-gray-300 !bg-white !text-black',
+                                },
+                            }"
+                            severity="secondary"
+                            :value="t(`keywords.categories.${topic.toLowerCase()}`, topic)"
+                            @click="onClickKeyword(topic)"
+                        ></Tag>
+                    </div>
+                </div>
+            </template>
+        </Card>
+        <!-- Mobile version -->
+        <template v-else>
+            <IconField>
+                <IftaLabel>
+                    <InputIcon
+                        class="pi"
+                        :class="{
+                            'pi-search': !isSearching,
+                            'pi-times cursor-pointer': isSearching,
+                        }"
+                        @click="clearSearch"
+                    ></InputIcon>
+                    <InputText
+                        id="search"
+                        v-model="searchTerm"
+                        data-cy="input-search"
+                        class="w-full"
+                        @focus="onFocus"
+                        @blur="onBlur"
+                    ></InputText>
+                    <label for="search">{{ t('searchPlaceholder') }}</label>
+                </IftaLabel>
+            </IconField>
+            <div class="flex items-center gap-2">
+                <span
+                    v-if="!isSearching"
+                    class="text-sm font-medium text-nowrap text-gray-600"
+                >
+                    {{ t('keywords.title') }}:
+                </span>
+                <div
+                    ref="scrollContainer"
+                    class="no-scrollbar w-full grow-0 gap-2 overflow-x-auto bg-white py-2 whitespace-nowrap"
+                >
+                    <Tag
+                        v-for="topic in visibleKeywords"
+                        :key="topic"
+                        :pt="{
+                            root: {
+                                class: 'mr-2 cursor-pointer rounded-lg !border !border-gray-300 !bg-white !text-black',
+                            },
+                        }"
+                        severity="secondary"
+                        :value="t(`keywords.categories.${topic.toLowerCase()}`, topic)"
+                        @click="onClickKeyword(topic)"
+                    ></Tag>
+                </div>
+            </div>
+        </template>
         <!-- on desktop, we need the search results positioned here as a child
          of the input, hence the slot
          -->
         <slot></slot>
     </div>
 </template>
+<style>
+.no-scrollbar {
+    scrollbar-width: none;
+}
+</style>

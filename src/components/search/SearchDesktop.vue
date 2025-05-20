@@ -5,11 +5,13 @@ import { computed, useTemplateRef } from 'vue'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchResults from '@/components/search/SearchResults.vue'
+import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 
 const searchInput = useTemplateRef<HTMLElement>('searchInput')
 
 const searchStore = useSearchStore()
+const mainStore = useMainStore()
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 
 const isSearching = computed(() => {
@@ -24,7 +26,8 @@ const openSearch = () => {
 // we need to use the onClickOutside function from vueuse (to detect clicks on elements of this website) but also the
 // @click handler on the div to detect clicks on the iframe
 const handleClickOutsideSearch = () => {
-    if (searchStore.isOpenSearch) {
+    // don't handle the click outside when the info layer is open
+    if (searchStore.isOpenSearch && !mainStore.infoLayerId) {
         searchStore.setIsOpenSearch(false)
     }
 }

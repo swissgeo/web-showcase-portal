@@ -46,10 +46,10 @@ export const transformRecordIntoGeoadminLayerParam = (record: GeonetworkRecord) 
     }
 
     if (wmsResource) {
-        return `WMS|${wmsResource.url.origin}|${wmsResource.name}`
+        return `WMS|${wmsResource.url.origin}${wmsResource.url.pathname}|${wmsResource.name}`
     }
     if (wmtsResource) {
-        return `WMTS|${wmtsResource.url.origin}|${wmtsResource.name}`
+        return `WMTS|${wmtsResource.url.origin}${wmtsResource.url.pathname}|${wmtsResource.name}`
     }
     return null
 }

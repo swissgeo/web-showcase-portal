@@ -1,22 +1,17 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import MapIcon from '@/assets/icons/map.svg?use'
-import AddToMapButton from '@/components/AddToMapButton.vue'
+import AddToMapButton from '@/components/search/AddToMapButton.vue'
 import SearchResultEntry from '@/components/search/SearchResultEntry.vue'
-import { useMainStore } from '@/store/main'
+import ShowLayerDetailButton from '@/components/search/ShowLayerDetailButton.vue'
 import { isAddableToMap } from '@/utils/layerUtils'
 
 const { result } = defineProps<{
     result: GeonetworkRecord
 }>()
-
-const mainStore = useMainStore()
-const { t } = useI18n()
 
 // provide some debug info
 // this is for debugging purposes only and will go away after some time
@@ -26,10 +21,6 @@ const tooltipContent = computed(() => {
 
     return `${fullTitle}\n\n${owner}`
 })
-
-const showLayerInfo = (layerId: string) => {
-    mainStore.setInfoLayerId(layerId)
-}
 </script>
 
 <template>
@@ -41,16 +32,7 @@ const showLayerInfo = (layerId: string) => {
         >
             {{ result.title }}
         </div>
-        <Button
-            severity="secondary"
-            class="mr-auto cursor-pointer hover:text-gray-400"
-            size="small"
-            icon="pi pi-info-circle"
-            :title="t('searchResult.showInfo')"
-            variant="text"
-            @click="showLayerInfo(result.uniqueIdentifier)"
-        >
-        </Button>
+        <ShowLayerDetailButton :layer-id="result.uniqueIdentifier" />
         <AddToMapButton
             v-if="isAddableToMap(result)"
             :result="result"

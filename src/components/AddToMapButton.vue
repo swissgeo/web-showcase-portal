@@ -52,6 +52,14 @@ const layerTooltipContent = computed(() => {
     return `${info}\n\nUrl: ${url}\nName: ${name}`
 })
 
+const onClick = (record: GeonetworkRecord) => {
+    if (isLayerOnMap.value) {
+        removeFromMap(record)
+    } else {
+        addToMap(record)
+    }
+}
+
 const addToMap = (record: GeonetworkRecord) => {
     mainStore.addLayerToMap({
         id: record.uniqueIdentifier,
@@ -61,6 +69,10 @@ const addToMap = (record: GeonetworkRecord) => {
         visible: true,
     })
 }
+
+const removeFromMap = (record: GeonetworkRecord) => {
+    mainStore.deleteLayerById(record.uniqueIdentifier)
+}
 </script>
 
 <template>
@@ -68,15 +80,10 @@ const addToMap = (record: GeonetworkRecord) => {
         size="small"
         :severity="severity"
         :title="layerTooltipContent"
-        class="hover:text-gray-400"
+        class="cursor-pointer hover:text-gray-400"
         :icon="icon"
-        :disabled="isLayerOnMap"
-        :class="{
-            'cursor-default': isLayerOnMap,
-            'cursor-pointer': !isLayerOnMap,
-        }"
         :data-cy="`add-result-${result.uniqueIdentifier}`"
-        @click="addToMap(result)"
+        @click="onClick(result)"
     >
     </Button>
 </template>

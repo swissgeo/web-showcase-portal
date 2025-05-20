@@ -13,6 +13,7 @@ export type GeonetworkRecord = {
     licenses: any[] // unclear from data
     legalConstraints: {
         text: string
+        url?: URL
     }[]
     securityConstraints: any[]
     otherConstraints: any[]
@@ -76,7 +77,7 @@ type SpatialExtent = {
     }
 }
 
-type OnlineResource = {
+export type OnlineResource = {
     name: string
     description: string
     type: 'link' | 'download' | 'service'

@@ -1,23 +1,31 @@
 <script setup lang="ts">
+import { format } from 'date-fns'
+import { Link as LinkIcon, Mail as MailIcon, MapPin } from 'lucide-vue-next'
 import { storeToRefs } from 'pinia'
 import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import { watch, onMounted, ref, inject, computed, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import DetailLink from '@/components/DetailLink.vue'
+import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
+import { getLegalConstraint, getLicense, getResources } from '@/utils/layerUtils'
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
 const { t } = useI18n()
 const mainStore = useMainStore()
 const { infoLayerId } = storeToRefs(mainStore)
+const geocat = useGeocat()
 
 const layerInfo = ref('')
 
 const fetchInfo = async () => {
-    // TODO implement
     layerInfo.value = ''
+    if (mainStore.infoLayerId) {
+        geocat.getRecordDetails(mainStore.infoLayerId)
+    }
 }
 
 const icon = computed(() => {
@@ -28,6 +36,64 @@ const icon = computed(() => {
         icon.push('pi-chevron-left')
     }
     return icon.join(' ')
+})
+
+const info = computed(() => {
+    return mainStore.infoLayerRecord
+})
+
+const lastUpdated = computed(() => {
+    if (info.value?.recordUpdated) {
+        return format(info.value?.recordUpdated, 'dd.MM.yyyy')
+    }
+    return ''
+})
+
+const contact = computed(() => {
+    return info.value?.contacts[0] ?? null
+})
+
+const downloads = computed(() => {
+    if (info.value) {
+        return getResources('download', info.value)
+    }
+    return []
+})
+
+const links = computed(() => {
+    if (info.value) {
+        const links = getResources('link', info.value)
+
+        const legalConstraint = getLegalConstraint(info.value)
+        if (legalConstraint) {
+            links.push({
+                url: legalConstraint,
+                description: t('details.legalConstraints'),
+                name: t('details.legalConstraints'),
+                type: 'link',
+            })
+        }
+
+        const license = getLicense(info.value)
+        if (license) {
+            links.push({
+                url: license,
+                description: t('details.license'),
+                name: t('details.license'),
+                type: 'link',
+            })
+        }
+
+        links.push({
+            url: new URL(`https://www.geocat.ch/datahub/dataset/${info.value.uniqueIdentifier}`),
+            description: t('details.geocatLink'),
+            name: t('details.geocatLink'),
+            type: 'link',
+        })
+
+        return links
+    }
+    return []
 })
 
 onMounted(async () => {
@@ -80,36 +146,79 @@ watch(infoLayerId, fetchInfo)
                     <div
                         class="flex min-h-[230px] flex-col justify-end gap-3 bg-slate-200 px-4 pb-11 text-lg font-bold"
                     >
-                        Electrical installations with a nominal voltage exceeding 36k Volt
+                        {{ info?.title }}
 
                         <div class="rounded-md bg-white p-2 text-sm font-medium">
-                            Last updated on 19.05.2025
+                            {{ t('details.lastUpdated') }}
+                            {{ lastUpdated }}
                         </div>
                     </div>
 
                     <div class="mx-4 flex -translate-y-5 flex-col gap-4">
                         <Panel :header="t('details.info')">
-                            The electricity grid is the point of connection between producers and
-                            consumers of electrical energy. Via the grid, electricity is
-                            transported, transformed (from a higher to lower voltage and vice versa)
-                            and distributed. As the link between production and consumption, the
-                            electricity grid is a key element in ensuring the security of
-                            electricity supply. The term electrical installations refers to all
-                            components of an electricity network that serve to transmit electrical
-                            current, such as lines, substations and transformer stations. The
-                            geodatabase dataset 'Electrical installations with a nominal voltage
-                            exceeding 36kV' contains a geographical overview of the electrical
-                            installations of the extra-high and high-voltage grid in Switzerland.
-                            Some plant operators have not yet provided data, so the overview is not
-                            yet complete.
+                            {{ mainStore.infoLayerRecord?.abstract }}
                         </Panel>
 
-                        <Panel :header="t('details.contact')">
-                            <address>Bundesamt für BGDI Seftigenstrasse</address>
+                        <Panel
+                            v-if="contact"
+                            :header="t('details.contact')"
+                        >
+                            <address class="text-sm not-italic">
+                                <div class="flex flex-col gap-1">
+                                    <div class="mb-2">
+                                        <div class="font-bold">{{ contact.organization.name }}</div>
+                                        <div
+                                            v-if="contact.lastName"
+                                            class="font-bold"
+                                        >
+                                            {{ contact.lastName }}
+                                        </div>
+                                    </div>
+                                    <div v-if="contact.email">
+                                        <a
+                                            href="mailto:{{contact.email}}"
+                                            class="flex items-center gap-2"
+                                            ><LinkIcon class="h-4" />{{ contact.email }}</a
+                                        >
+                                    </div>
+                                    <div v-if="contact.phone">
+                                        <a
+                                            href="tel:{{contact.phone}}"
+                                            class="flex items-center gap-2"
+                                            ><MailIcon class="h-4" />{{ contact.phone }}</a
+                                        >
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <MapPin class="h-4" />{{ contact.address }}
+                                    </div>
+                                </div>
+                            </address>
                         </Panel>
 
-                        <Panel :header="t('details.downloads')">
-                            <a href="http://swisstopo.ch">Swisstopo</a>
+                        <Panel
+                            v-if="downloads.length"
+                            :header="t('details.downloads')"
+                        >
+                            <ul>
+                                <DetailLink
+                                    v-for="download in downloads"
+                                    :key="download.name"
+                                    :data="download"
+                                ></DetailLink>
+                            </ul>
+                        </Panel>
+
+                        <Panel
+                            v-if="links.length"
+                            :header="t('details.links')"
+                        >
+                            <ul>
+                                <DetailLink
+                                    v-for="link in links"
+                                    :key="link.name"
+                                    :data="link"
+                                ></DetailLink>
+                            </ul>
                         </Panel>
                     </div>
                 </div>

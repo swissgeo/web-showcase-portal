@@ -39,3 +39,11 @@ body {
         @apply px-6 py-4;
     }
 }
+
+a {
+    @apply text-blue-700;
+}
+
+a:hover {
+    @apply text-blue-500;
+}

@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 
+import type { GeonetworkRecord } from '@/types/gnRecord'
 import type { Layer } from '@/types/Layer'
 
 export interface MainStoreState {
     layersOnMap: Layer[]
     infoLayerId: string | null
+    infoLayerRecord: GeonetworkRecord | null
     bgLayerId: string | null
     bgLayers: Layer[]
 }
@@ -14,6 +16,7 @@ export const useMainStore = defineStore('main', {
         return {
             layersOnMap: [],
             infoLayerId: null,
+            infoLayerRecord: null,
             bgLayerId: 'ch.swisstopo.pixelkarte-farbe',
             bgLayers: [
                 {
@@ -60,9 +63,14 @@ export const useMainStore = defineStore('main', {
         },
         setInfoLayerId(layerId: string) {
             this.infoLayerId = layerId
+            this.infoLayerRecord = null
+        },
+        setInfoLayerRecord(record: GeonetworkRecord) {
+            this.infoLayerRecord = record
         },
         resetInfoLayerId() {
             this.infoLayerId = null
+            this.infoLayerRecord = null
         },
         deleteLayerById(layerId: string) {
             this.layersOnMap = this.layersOnMap.filter((layer) => layer.id !== layerId)

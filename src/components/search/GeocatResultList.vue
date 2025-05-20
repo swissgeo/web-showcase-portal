@@ -3,11 +3,11 @@ import { useInfiniteScroll } from '@vueuse/core'
 import { computed, inject, type Ref, useTemplateRef } from 'vue'
 
 import SearchResultEntry from '@/components/search/GeocatSearchResultEntry.vue'
-import useGeocatSearch from '@/search/geocat'
+import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
 
 const el = useTemplateRef('resultList')
-const { searchGeocat } = useGeocatSearch()
+const { searchGeocat } = useGeocat()
 const searchStore = useSearchStore()
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')

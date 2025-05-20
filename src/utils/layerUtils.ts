@@ -1,13 +1,35 @@
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+export const getResources = (type: 'link' | 'download' | 'service', record: GeonetworkRecord) => {
+    const onlineResources = record.onlineResources
+
+    return onlineResources.filter((resource) => resource.type === type)
+}
+
+export const getLicense = (record: GeonetworkRecord) => {
+    if (record.licenses.length) {
+        const license = record.licenses[0]
+        if (license.url) {
+            return license.url
+        }
+    }
+    return null
+}
+
+export const getLegalConstraint = (record: GeonetworkRecord) => {
+    if (record.legalConstraints.length) {
+        const constraint = record.legalConstraints[0]
+        if (constraint.url) {
+            return constraint.url
+        }
+    }
+    return null
+}
+
 export const getServiceResource = (type: 'wms' | 'wmts', record: GeonetworkRecord) => {
-    const onlineresources = record.onlineResources
-    for (const res of onlineresources) {
-        if (
-            res.type === 'service' &&
-            res.accessServiceProtocol &&
-            [type as string].includes(res.accessServiceProtocol)
-        ) {
+    const services = getResources('service', record)
+    for (const res of services) {
+        if (res.accessServiceProtocol && [type as string].includes(res.accessServiceProtocol)) {
             return res
         }
     }

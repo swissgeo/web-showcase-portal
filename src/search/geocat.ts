@@ -1,14 +1,16 @@
 import { Subscription } from 'rxjs'
 import { onMounted } from 'vue'
 
+import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
 
-export default function useGeocatSearch() {
+export default function useGeocat() {
     const GNUI = window.GNUI
     let subscription: Subscription | null = null
 
     const searchStore = useSearchStore()
+    const mainStore = useMainStore()
 
     onMounted(() => {
         GNUI.init('https://www.geocat.ch/geonetwork/srv/api')
@@ -39,6 +41,14 @@ export default function useGeocatSearch() {
         searchStore.setIsSearchingGeocat(false)
     }
 
+    const recordCallback = (record: GeonetworkRecord) => {
+        if (record) {
+            // eslint-disable-next-line no-console
+            console.log('Record info:', record)
+            mainStore.setInfoLayerRecord(record)
+        }
+    }
+
     const searchGeocat = (value: string) => {
         // if there's a request ongoing, we cancel that
         cancelSearch()
@@ -60,5 +70,9 @@ export default function useGeocatSearch() {
             .subscribe(searchCallback)
     }
 
-    return { searchGeocat, cancelSearch }
+    const getRecordDetails = (uuid: string) => {
+        GNUI.recordsRepository.getRecord(uuid).subscribe(recordCallback)
+    }
+
+    return { searchGeocat, cancelSearch, getRecordDetails }
 }

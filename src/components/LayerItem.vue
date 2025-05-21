@@ -2,7 +2,9 @@
 import { GripVertical } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
+import InputNumber from 'primevue/inputnumber'
 import Menu from 'primevue/menu'
+import Slider from 'primevue/slider'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -39,11 +41,22 @@ const toggleVisibility = () => {
         mainStore.setLayerVisibility(props.layer.id, !props.layer.visible)
     }
 }
-// Method to update opacity
-const updateOpacity = (event: Event) => {
-    const target = event.target as HTMLInputElement
-    mainStore.setLayerOpacity(props.layer.id, parseFloat(target.value) / 100)
-}
+
+// Computed property for opacity value with getter and setter
+const opacityValue = computed({
+    get() {
+        return Math.round((props.layer.opacity ?? 1) * 100)
+    },
+    set(val: number | number[]) {
+        let value = Array.isArray(val) ? val[0] : val
+        value = Number(value)
+        if (isNaN(value)) {
+            value = 0
+        }
+        value = Math.max(0, Math.min(100, value))
+        mainStore.setLayerOpacity(props.layer.id, value / 100)
+    },
+})
 
 const metadataMenuClicked = () => {
     // eslint-disable-next-line no-console
@@ -92,15 +105,15 @@ const toggleLayerMenu = (event: any) => {
 const bgLayerThumbnail = computed(() => {
     if (props.isBgLayer && props.layer.id) {
         try {
-            return new URL(`../assets/images/${props.layer.id}.png`, import.meta.url).href;
+            return new URL(`../assets/images/${props.layer.id}.png`, import.meta.url).href
         } catch (e) {
             // eslint-disable-next-line no-console
-            console.error(`Image not found for layer ID: ${props.layer.id}: ${e}`);
-            return '';
+            console.error(`Image not found for layer ID: ${props.layer.id}: ${e}`)
+            return ''
         }
     }
-    return '';
-});
+    return ''
+})
 </script>
 
 <template>
@@ -136,7 +149,7 @@ const bgLayerThumbnail = computed(() => {
                 v-if="isBgLayer"
                 :src="bgLayerThumbnail"
                 alt="Background Layer Thumbnail"
-                class="w-10 h-10 object-cover rounded-md"
+                class="h-10 w-10 rounded-full object-cover"
             />
             <Button
                 type="button"
@@ -157,19 +170,22 @@ const bgLayerThumbnail = computed(() => {
         <Divider v-if="showOpacitySlider && !isBgLayer" />
         <div
             v-if="showOpacitySlider && !isBgLayer"
-            class="flex items-center space-x-2"
+            class="flex items-center space-x-4"
         >
-            <input
-                type="range"
-                min="0"
-                max="100"
-                :value="Math.round((layer.opacity ?? 1) * 100)"
+            <Slider
+                v-model="opacityValue"
+                :min="0"
+                :max="100"
                 class="w-full"
-                @input="updateOpacity"
             />
-            <span class="rounded border border-gray-300 px-2 py-1 text-sm font-medium">
-                {{ Math.round((layer.opacity ?? 1) * 100) }}%
-            </span>
+            <InputNumber
+                v-model="opacityValue"
+                :min="0"
+                :max="100"
+                fluid
+                suffix="%"
+                style="width: 8rem"
+            />
             <Button
                 type="button"
                 size="small"

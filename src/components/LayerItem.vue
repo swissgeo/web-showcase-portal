@@ -50,10 +50,12 @@ const opacityValue = computed({
     set(val: number | number[]) {
         let value = Array.isArray(val) ? val[0] : val
         value = Number(value)
-        if (isNaN(value)) value = 0
+        if (isNaN(value)) {
+            value = 0
+        }
         value = Math.max(0, Math.min(100, value))
         mainStore.setLayerOpacity(props.layer.id, value / 100)
-    }
+    },
 })
 
 const metadataMenuClicked = () => {
@@ -103,15 +105,15 @@ const toggleLayerMenu = (event: any) => {
 const bgLayerThumbnail = computed(() => {
     if (props.isBgLayer && props.layer.id) {
         try {
-            return new URL(`../assets/images/${props.layer.id}.png`, import.meta.url).href;
+            return new URL(`../assets/images/${props.layer.id}.png`, import.meta.url).href
         } catch (e) {
             // eslint-disable-next-line no-console
-            console.error(`Image not found for layer ID: ${props.layer.id}: ${e}`);
-            return '';
+            console.error(`Image not found for layer ID: ${props.layer.id}: ${e}`)
+            return ''
         }
     }
-    return '';
-});
+    return ''
+})
 </script>
 
 <template>
@@ -147,7 +149,7 @@ const bgLayerThumbnail = computed(() => {
                 v-if="isBgLayer"
                 :src="bgLayerThumbnail"
                 alt="Background Layer Thumbnail"
-                class="w-10 h-10 object-cover rounded-full"
+                class="h-10 w-10 rounded-full object-cover"
             />
             <Button
                 type="button"

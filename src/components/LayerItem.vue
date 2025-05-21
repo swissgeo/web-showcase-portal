@@ -2,7 +2,9 @@
 import { GripVertical } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
+import InputNumber from 'primevue/inputnumber'
 import Menu from 'primevue/menu'
+import Slider from 'primevue/slider'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -40,12 +42,12 @@ const toggleVisibility = () => {
     }
 }
 // Method to update opacity
-const updateOpacity = (event: Event) => {
-    const target = event.target as HTMLInputElement
-    let value = parseInt(target.value, 10)
-    if (isNaN(value)) value = 0
-    value = Math.max(0, Math.min(100, value))
-    mainStore.setLayerOpacity(props.layer.id, value / 100)
+const updateOpacity = (value: number | number[]) => {
+    let val = Array.isArray(value) ? value[0] : value
+    val = Number(val)
+    if (isNaN(val)) val = 0
+    val = Math.max(0, Math.min(100, val))
+    mainStore.setLayerOpacity(props.layer.id, val / 100)
 }
 
 
@@ -161,26 +163,24 @@ const bgLayerThumbnail = computed(() => {
         <Divider v-if="showOpacitySlider && !isBgLayer" />
         <div
             v-if="showOpacitySlider && !isBgLayer"
-            class="flex items-center space-x-2"
+            class="flex items-center space-x-4"
         >
-            <input
-                type="range"
-                min="0"
-                max="100"
-                :value="Math.round((layer.opacity ?? 1) * 100)"
+            <Slider
+                :min="0"
+                :max="100"
+                :model-value="Math.round((layer.opacity ?? 1) * 100)"
                 class="w-full"
-                @input="updateOpacity"
+                @update:model-value="updateOpacity"
             />
-            <div class="flex items-center border border-gray-300 rounded px-1 py-1 w-24 bg-white">
-                <input
-                    type="text"
-                    :value="Math.round((layer.opacity ?? 1) * 100)"
-                    class="w-10 text-center outline-none border-0 focus:ring-0 px-0 py-0 bg-transparent text-base font-medium"
-                    @input="updateOpacity"
-                    @keydown.enter.prevent
-                />
-                <span class="ml-1 text-gray-700 text-base font-medium">%</span>
-            </div>
+            <InputNumber
+                :min="0"
+                :max="100"
+                :model-value="Math.round((layer.opacity ?? 1) * 100)"
+                fluid
+                suffix="%"
+                style="width: 8rem"
+                @update:model-value="updateOpacity"
+            />
             <Button
                 type="button"
                 size="small"

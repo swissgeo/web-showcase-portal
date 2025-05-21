@@ -41,15 +41,20 @@ const toggleVisibility = () => {
         mainStore.setLayerVisibility(props.layer.id, !props.layer.visible)
     }
 }
-// Method to update opacity
-const updateOpacity = (value: number | number[]) => {
-    let val = Array.isArray(value) ? value[0] : value
-    val = Number(val)
-    if (isNaN(val)) val = 0
-    val = Math.max(0, Math.min(100, val))
-    mainStore.setLayerOpacity(props.layer.id, val / 100)
-}
 
+// Computed property for opacity value with getter and setter
+const opacityValue = computed({
+    get() {
+        return Math.round((props.layer.opacity ?? 1) * 100)
+    },
+    set(val: number | number[]) {
+        let value = Array.isArray(val) ? val[0] : val
+        value = Number(value)
+        if (isNaN(value)) value = 0
+        value = Math.max(0, Math.min(100, value))
+        mainStore.setLayerOpacity(props.layer.id, value / 100)
+    }
+})
 
 const metadataMenuClicked = () => {
     // eslint-disable-next-line no-console
@@ -166,20 +171,18 @@ const bgLayerThumbnail = computed(() => {
             class="flex items-center space-x-4"
         >
             <Slider
+                v-model="opacityValue"
                 :min="0"
                 :max="100"
-                :model-value="Math.round((layer.opacity ?? 1) * 100)"
                 class="w-full"
-                @update:model-value="updateOpacity"
             />
             <InputNumber
+                v-model="opacityValue"
                 :min="0"
                 :max="100"
-                :model-value="Math.round((layer.opacity ?? 1) * 100)"
                 fluid
                 suffix="%"
                 style="width: 8rem"
-                @update:model-value="updateOpacity"
             />
             <Button
                 type="button"

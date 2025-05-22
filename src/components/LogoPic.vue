@@ -28,7 +28,7 @@ const isDesktop = inject<boolean>('isDesktop')
     <!-- the mobile one and when the sidebar is extended -->
     <div
         v-else
-        class="flex h-14 items-center rounded border border-neutral-200 bg-white md:rounded-none md:border-none"
+        class="flex h-10 items-center gap-2 rounded-lg border border-neutral-200 bg-white md:h-14 md:gap-0 md:rounded-none md:border-none"
     >
         <!--
         include this for the real version
@@ -40,7 +40,7 @@ const isDesktop = inject<boolean>('isDesktop')
         </div> -->
 
         <!--- remove from here -->
-        <div class="flex w-[75px] items-center justify-center gap-2">
+        <div class="ml-2 flex items-center justify-center gap-2 md:ml-0 md:w-[75px]">
             <img
                 src="@/assets/images/pwip-logo.png"
                 class="h-5"

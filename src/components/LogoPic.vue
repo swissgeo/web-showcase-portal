@@ -14,7 +14,7 @@ const isDesktop = inject<boolean>('isDesktop')
     <!-- the desktop icon in the sidebar -->
     <div
         v-if="condensed"
-        class="flex h-12 w-full items-center justify-center"
+        class="flex h-14 w-full items-center justify-center"
     >
         <img
             src="@/assets/images/pwip-logo.png"
@@ -28,7 +28,7 @@ const isDesktop = inject<boolean>('isDesktop')
     <!-- the mobile one and when the sidebar is extended -->
     <div
         v-else
-        class="flex items-center rounded border border-neutral-200 bg-white md:rounded-none md:border-none"
+        class="flex h-14 items-center rounded border border-neutral-200 bg-white md:rounded-none md:border-none"
     >
         <!--
         include this for the real version

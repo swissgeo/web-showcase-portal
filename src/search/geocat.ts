@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs'
+import { catchError, Subscription } from 'rxjs'
 import { onMounted } from 'vue'
 
 import { useMainStore } from '@/store/main'
@@ -66,13 +66,60 @@ export default function useGeocat() {
                 // remove this prop to get all the data
                 // in time we'll have to figure out here what exactly we need
                 // fields: ['resourceTitleObject', 'link', 'uuid', 'ownerOrganization'],
-            })
+            }).pipe(
+                catchError((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error('Error during GeoCat search:', error)
+                    return []
+                })
+            )
             .subscribe(searchCallback)
+
+    }
+
+    const searchConfigGeocat = (ids: string[]) => {
+        // if there's a request ongoing, we cancel that
+        cancelSearch()
+
+        subscription = GNUI.recordsRepository
+            .search({
+                filters: {
+                    linkProtocol: '/OGC:WMT?S.*/',
+                },
+                offset: searchStore.geocatPage,
+                limit: searchStore.geocatPageSize,
+                filterIds: ids
+            })
+            .pipe(
+                catchError((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error('Error during GeoCat search:', error)
+                    return []
+                })
+            )
+            .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
+                // Sort records in the order of the ids
+                const sortedRecords = ids
+                    .map(id => records.find(record => record.uniqueIdentifier === id))
+                    .filter((record): record is GeonetworkRecord => !!record)
+
+                sortedRecords.forEach((record: GeonetworkRecord) => {
+                    if (!mainStore.getLayerById(record.uniqueIdentifier)) {
+                        mainStore.addLayerToMap({
+                            id: record.uniqueIdentifier,
+                            name: record.title,
+                            geonetworkRecord: record,
+                            opacity: 1,
+                            visible: true,
+                        })
+                    }
+                })
+            })
     }
 
     const getRecordDetails = (uuid: string) => {
         GNUI.recordsRepository.getRecord(uuid).subscribe(recordCallback)
     }
 
-    return { searchGeocat, cancelSearch, getRecordDetails }
+    return { searchGeocat, cancelSearch, getRecordDetails, searchConfigGeocat }
 }

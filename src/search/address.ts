@@ -19,11 +19,15 @@ export default function useAddressSearch() {
     const searchAddress = (value: string, sr: SupportedSr, lang: Language, limit: number) => {
         searchStore.setIsSearchingAddresses(true)
         // 'address', 'zipcode', 'district', 'kantone', 'gazetteer', 'address', 'parcel'
-        queryGeoadmin(value, { sr, lang: lang as "en" | "de" | "fr" | "it" | "rm", limit, origins: LOCATION_SEARCH_ORIGINS }).then(
-            (response: GeocodingResult[]) => {
+        queryGeoadmin(value, { sr, lang: lang as "en" | "de" | "fr" | "it" | "rm", limit, origins: LOCATION_SEARCH_ORIGINS })
+            .then((response: GeocodingResult[]) => {
                 callback(response)
-            }
-        )
+            })
+            .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.debug('Error in address search:', error)
+                searchStore.setIsSearchingAddresses(false)
+            })
     }
 
     return { searchAddress }

@@ -4,9 +4,12 @@ import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
 import Tag from 'primevue/tag'
-import { computed, inject, onMounted, ref, type Ref } from 'vue'
+import { computed, inject, onMounted, ref, type ComputedRef, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { SearchKeywordUseCase, SearchKeywordUseCaseConfig } from '@/types/search'
+
+import data from '@/assets/searchKeywordUseCases.json' with { type: 'json' }
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
@@ -14,23 +17,13 @@ import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { debounce } from '@/utils/debounce'
 
-const keywords = [
-    'Solar',
-    'Mobility',
-    'Climate',
-    'Energy',
-    'Water',
-    'Waste',
-    'Biodiversity',
-    'Air Quality',
-    'Noise',
-]
+const keywordConfig = data as SearchKeywordUseCaseConfig
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
 const emits = defineEmits(['focus', 'blur'])
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
 const mainStore = useMainStore()
@@ -43,6 +36,10 @@ const triggerSearch = debounce((value: string) => {
     geocatSearch.searchGeocat(value)
     addressSearch.searchAddress(value, '2056', language.value, 20)
 }, SEARCH_DEBOUNCE_DELAY)
+
+const localeString = computed(() => {
+    return locale.value.split('-')[0]
+})
 
 const searchTerm = computed({
     get() {
@@ -66,14 +63,13 @@ const searchTerm = computed({
     },
 })
 
-const visibleKeywords = computed(() => {
+const visibleKeywordUseCases: ComputedRef<SearchKeywordUseCase[]> = computed(() => {
     const term = searchTerm.value?.trim().toLowerCase()
     if (!term) {
-        return keywords
+        return keywordConfig.useCases
     }
-
-    return keywords.filter((value) =>
-        t(`keywords.categories.${value.toLowerCase()}`, value).toLowerCase().includes(term)
+    return keywordConfig.useCases.filter((value) =>
+        value.keyword?.[localeString.value].toLowerCase().includes(term)
     )
 })
 
@@ -101,9 +97,9 @@ onMounted(() => {
     scrollContainer.value!.addEventListener('wheel', handleWheel, { passive: false })
 })
 
-function onClickKeyword(topic: string) {
-    searchTerm.value = t(`keywords.categories.${topic.toLowerCase()}`, topic)
-    searchStore.setIsOpenSearch(true)
+function onClickKeyword(useCase: SearchKeywordUseCase) {
+    searchTerm.value = useCase.keyword?.[localeString.value]
+    geocatSearch.searchConfigGeocat(useCase.geocatIds)
 }
 </script>
 
@@ -144,16 +140,16 @@ function onClickKeyword(topic: string) {
                         class="no-scrollbar w-full grow-0 gap-2 overflow-x-auto bg-white whitespace-nowrap"
                     >
                         <Tag
-                            v-for="topic in visibleKeywords"
-                            :key="topic"
+                            v-for="useCase in visibleKeywordUseCases"
+                            :key="useCase.keyword?.[localeString]"
                             :pt="{
                                 root: {
                                     class: 'mr-2 cursor-pointer rounded-lg !border !border-gray-300 !bg-white !text-black',
                                 },
                             }"
                             severity="secondary"
-                            :value="t(`keywords.categories.${topic.toLowerCase()}`, topic)"
-                            @click="onClickKeyword(topic)"
+                            :value="useCase.keyword?.[localeString]"
+                            @click="onClickKeyword(useCase)"
                         ></Tag>
                     </div>
                 </div>
@@ -191,16 +187,16 @@ function onClickKeyword(topic: string) {
                         class="no-scrollbar w-full grow-0 gap-2 overflow-x-auto bg-white py-2 whitespace-nowrap"
                     >
                         <Tag
-                            v-for="topic in visibleKeywords"
-                            :key="topic"
+                            v-for="useCase in visibleKeywordUseCases"
+                            :key="useCase.keyword?.[localeString]"
                             :pt="{
                                 root: {
                                     class: 'mr-2 cursor-pointer rounded-lg !border !border-gray-300 !bg-white !text-black',
                                 },
                             }"
+                            :value="useCase.keyword?.[localeString]"
                             severity="secondary"
-                            :value="t(`keywords.categories.${topic.toLowerCase()}`, topic)"
-                            @click="onClickKeyword(topic)"
+                            @click="onClickKeyword(useCase)"
                         ></Tag>
                     </div>
                 </div>

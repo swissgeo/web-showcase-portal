@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ChevronLeft } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -58,11 +59,14 @@ const clearSearch = () => {
         >
             <Button
                 v-if="isSearching"
-                icon="pi pi-arrow-left"
-                size="small"
+                outlined
                 severity="secondary"
                 @click="clearSearch"
-            ></Button>
+            >
+                <template #icon>
+                    <ChevronLeft />
+                </template>
+            </Button>
             <div v-else></div>
             <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
             <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>

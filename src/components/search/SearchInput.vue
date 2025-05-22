@@ -117,25 +117,23 @@ function onClickKeyword(topic: string) {
         >
             <template #content>
                 <IconField>
-                    <IftaLabel>
-                        <InputIcon
-                            class="pi"
-                            :class="{
-                                'pi-search': !isSearching,
-                                'pi-times cursor-pointer': isSearching,
-                            }"
-                            @click="clearSearch"
-                        ></InputIcon>
-                        <InputText
-                            id="search"
-                            v-model="searchTerm"
-                            data-cy="input-search"
-                            class="w-full"
-                            @focus="onFocus"
-                            @blur="onBlur"
-                        ></InputText>
-                        <label for="search">{{ t('searchPlaceholder') }}</label>
-                    </IftaLabel>
+                    <!-- <IftaLabel> -->
+                    <InputIcon class="pi pi-search"></InputIcon>
+                    <InputText
+                        id="search"
+                        v-model="searchTerm"
+                        data-cy="input-search"
+                        class="w-full border-none shadow-none"
+                        @focus="onFocus"
+                        @blur="onBlur"
+                    ></InputText>
+                    <!-- <label for="search">{{ t('searchPlaceholder') }}</label> -->
+                    <InputIcon
+                        v-if="isSearching"
+                        class="pi pi-times cursor-pointer"
+                        @click="clearSearch"
+                    />
+                    <!-- </IftaLabel> -->
                 </IconField>
                 <div class="flex items-center gap-2 pt-4">
                     <span

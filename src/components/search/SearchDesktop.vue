@@ -57,7 +57,7 @@ onClickOutside(searchInput, handleClickOutsideSearch)
                     class="my-2 h-[620px] min-h-1/3 w-[680px] border border-t-0 border-neutral-300 pt-4 shadow"
                 ></SearchResults>
             </SearchInput>
-            <div>
+            <div class="mt-4 self-start">
                 <LegendButton />
             </div>
         </div>

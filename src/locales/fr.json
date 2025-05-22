@@ -1,6 +1,7 @@
 {
     "welcome": "Bienvenue",
     "searchPlaceholder": "Rechercher ici...",
+    "disclaimer": "Site de test, pour démonstration",
     "welcomeOverlay": {
         "title": "Bienvenue sur...",
         "intro": "Vous êtes sur... ceci est un prototype",

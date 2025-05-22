@@ -1,6 +1,7 @@
 {
     "welcome": "Willkommen",
     "searchPlaceholder": "Hier suchen...",
+    "disclaimer": "Testseite nur für Demozwecke",
     "welcomeOverlay": {
         "title": "Willkommen auf...",
         "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",

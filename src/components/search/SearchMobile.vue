@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
@@ -11,6 +12,8 @@ import SearchResults from '@/components/search/SearchResults.vue'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
+
+const { t } = useI18n()
 
 const searchStore = useSearchStore()
 const uiStore = useUiStore()
@@ -50,7 +53,7 @@ const clearSearch = () => {
         </div>
 
         <div
-            class="flex flex-row justify-between border-b border-solid border-neutral-200 px-2 py-4"
+            class="flex flex-row items-center justify-between border-b border-solid border-neutral-200 px-2 py-4"
             :class="{ 'bg-white': isSearching }"
         >
             <Button
@@ -61,7 +64,7 @@ const clearSearch = () => {
                 @click="clearSearch"
             ></Button>
             <div v-else></div>
-            <div v-if="isSearching">Search</div>
+            <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
             <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
             <LayerCart
                 v-if="uiStore.isLayerCartVisible"

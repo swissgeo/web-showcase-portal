@@ -2,6 +2,7 @@
 import { useStorage } from '@vueuse/core'
 import Button from 'primevue/button'
 
+import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
@@ -25,13 +26,16 @@ function showHelpOverlay() {
         </div>
         <div class="flex h-full w-full flex-row p-0">
             <!-- First column -->
-            <div class="flex min-w-16 flex-col items-center bg-neutral-100 pt-4">
-                <LayerCartButton />
-                <Button
-                    icon="pi pi-question"
-                    severity="secondary"
-                    @click="showHelpOverlay"
-                />
+            <div class="flex min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4">
+                <div class="flex flex-col items-center gap-2">
+                    <LayerCartButton />
+                    <Button
+                        icon="pi pi-question"
+                        severity="secondary"
+                        @click="showHelpOverlay"
+                    />
+                </div>
+                <LanguageSwitchButton class="w-19 py-5" />
             </div>
             <!-- Second column -->
             <LayerCart

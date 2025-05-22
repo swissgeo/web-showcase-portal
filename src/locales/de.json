@@ -22,8 +22,10 @@
         "title": "Angezeigte Karten"
     },
     "legend": {
+        "brokenImage": "Legende konnte nicht geladen werden",
         "header": "Legende",
-        "noLayers": "Keine Karten dargestellt"
+        "noLayers": "Keine Karten dargestellt",
+        "noLegend": "Keine Legende verfügbar"
     },
     "details": {
         "header": "Details",

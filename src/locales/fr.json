@@ -22,8 +22,10 @@
         "title": "Cartes affichées"
     },
     "legend": {
+        "brokenImage": "Échec du chargement de la légende",
         "header": "Légende",
-        "noLayers": "Aucune carte affichée"
+        "noLayers": "Aucune carte affichée",
+        "noLegend": "Aucune légende disponible"
     },
     "details": {
         "header": "Détails",

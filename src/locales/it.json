@@ -22,8 +22,10 @@
         "title": "Mappe visualizzate"
     },
     "legend": {
+        "brokenImage": "Impossibile caricare la legenda",
         "header": "Legenda",
-        "noLayers": "Nessuna mappa visualizzata"
+        "noLayers": "Nessuna mappa visualizzata",
+        "noLegend": "Nessuna legenda disponibile"
     },
     "details": {
         "header": "Dettagli",

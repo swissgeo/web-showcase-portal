@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Card from 'primevue/card'
 import IconField from 'primevue/iconfield'
-import IftaLabel from 'primevue/iftalabel'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
 import Tag from 'primevue/tag'
@@ -117,7 +116,6 @@ function onClickKeyword(topic: string) {
         >
             <template #content>
                 <IconField>
-                    <!-- <IftaLabel> -->
                     <InputIcon class="pi pi-search"></InputIcon>
                     <InputText
                         id="search"
@@ -127,13 +125,11 @@ function onClickKeyword(topic: string) {
                         @focus="onFocus"
                         @blur="onBlur"
                     ></InputText>
-                    <!-- <label for="search">{{ t('searchPlaceholder') }}</label> -->
                     <InputIcon
                         v-if="isSearching"
                         class="pi pi-times cursor-pointer"
                         @click="clearSearch"
                     />
-                    <!-- </IftaLabel> -->
                 </IconField>
                 <div class="flex items-center gap-2 pt-4">
                     <span
@@ -166,7 +162,6 @@ function onClickKeyword(topic: string) {
         <template v-else>
             <div class="rounded-t-2xl border-t-2 border-neutral-200 bg-white px-4 pt-4 pb-2">
                 <IconField>
-                    <!-- <IftaLabel> -->
                     <InputIcon class="pi pi-search"></InputIcon>
                     <InputText
                         id="search"
@@ -176,13 +171,11 @@ function onClickKeyword(topic: string) {
                         @focus="onFocus"
                         @blur="onBlur"
                     ></InputText>
-                    <!-- <label for="search">{{ t('searchPlaceholder') }}</label> -->
                     <InputIcon
                         v-if="isSearching"
                         class="pi pi-times cursor-pointer"
                         @click="clearSearch"
                     />
-                    <!-- </IftaLabel> -->
                 </IconField>
                 <div class="flex items-center gap-2">
                     <span

@@ -10,7 +10,7 @@ import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
-import useGeocatSearch from '@/search/geocat'
+import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
 import { isLanguageSupported } from '@/types/language'
 import { debounce } from '@/utils/debounce'
@@ -33,7 +33,7 @@ const emits = defineEmits(['focus', 'blur'])
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
-const geocatSearch = useGeocatSearch()
+const geocatSearch = useGeocat()
 const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
 const scrollContainer = ref<HTMLElement | null>(null)

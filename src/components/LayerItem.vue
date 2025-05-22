@@ -33,6 +33,10 @@ const showOpacitySlider = ref(false)
 const menu = ref()
 const menuShown = ref(false)
 
+const isLayerDetailsDisplayed = computed(() => {
+    return mainStore.infoLayerId === props.layer.id
+})
+
 // Method to toggle layer visibility
 const toggleVisibility = () => {
     if (props.isBgLayer) {
@@ -59,10 +63,10 @@ const opacityValue = computed({
 })
 
 const metadataMenuClicked = () => {
-    // eslint-disable-next-line no-console
-    console.log('Metadata clicked')
     menuShown.value = false
+    mainStore.setInfoLayerId(props.layer.id)
 }
+
 const opacityMenuClicked = () => {
     showOpacitySlider.value = true
     menuShown.value = false
@@ -117,7 +121,10 @@ const bgLayerThumbnail = computed(() => {
 </script>
 
 <template>
-    <li class="group relative flex flex-col rounded-md bg-white p-2 shadow">
+    <li
+        class="group relative flex flex-col rounded-md p-2 shadow"
+        :class="{ 'bg-slate-200': isLayerDetailsDisplayed, 'bg-white': !isLayerDetailsDisplayed }"
+    >
         <div
             v-if="!props.isBgLayer"
             class="layer-item-drag-handle absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-[#DFE4E9] shadow group-hover:flex"

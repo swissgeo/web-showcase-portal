@@ -28,7 +28,11 @@
         "info": "Info",
         "contact": "Kontakt",
         "downloads": "Downloads",
-        "links": "Links"
+        "links": "Links",
+        "lastUpdated": "Zuletzt aktualisiert am",
+        "geocatLink": "Weitere Informationen (geocat)",
+        "legalConstraints": "Rechtliche Hinweise",
+        "license": "Lizenz"
     },
     "keywords": {
         "title": "Beliebte Suchen",

@@ -9,6 +9,7 @@ declare global {
             init(string): void
             recordsRepository: {
                 search(object)
+                getRecord(string)
             }
         }
     }

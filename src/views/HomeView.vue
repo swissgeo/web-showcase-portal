@@ -12,7 +12,7 @@ import {
     readonly,
 } from 'vue'
 
-import DatasetInfo from '@/components/DatasetDetails.vue'
+import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
 import LayerLegend from '@/components/LayerLegend.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/search/SearchDesktop.vue'
@@ -96,7 +96,7 @@ onUnmounted(() => {
             ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
-            <DatasetInfo v-if="showLayerInfo" />
+            <DatasetDetailPanel v-if="showLayerInfo" />
         </div>
         <WelcomeOverlay
             v-if="showWelcomeOverlay"

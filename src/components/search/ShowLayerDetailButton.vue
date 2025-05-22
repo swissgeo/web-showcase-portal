@@ -1,0 +1,43 @@
+<script setup lang="ts">
+import Button from 'primevue/button'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import { useMainStore } from '@/store/main'
+
+const mainStore = useMainStore()
+const { t } = useI18n()
+
+const { layerId } = defineProps<{
+    layerId: string
+}>()
+
+const showLayerInfo = (layerId: string) => {
+    mainStore.setInfoLayerId(layerId)
+}
+
+const currentlyDisplayed = computed(() => {
+    return mainStore.infoLayerId === layerId
+})
+
+const severity = computed(() => {
+    return currentlyDisplayed.value ? 'primary' : 'secondary'
+})
+
+const variant = computed(() => {
+    return currentlyDisplayed.value ? '' : 'text'
+})
+</script>
+
+<template>
+    <Button
+        :severity="severity"
+        class="mr-auto cursor-pointer hover:text-gray-400"
+        size="small"
+        icon="pi pi-info-circle"
+        :title="t('searchResult.showInfo')"
+        :variant="variant"
+        @click="showLayerInfo(layerId)"
+    >
+    </Button>
+</template>

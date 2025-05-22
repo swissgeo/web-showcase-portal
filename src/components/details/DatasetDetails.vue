@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { format } from 'date-fns'
-import { Link as LinkIcon, Mail as MailIcon, MapPin } from 'lucide-vue-next'
+import { Phone as PhoneIcon, Mail as MailIcon, MapPin } from 'lucide-vue-next'
 import Panel from 'primevue/panel'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -133,16 +133,16 @@ const logoUrl = computed((): string | null => {
                             </div>
                             <div v-if="contact.email">
                                 <a
-                                    href="mailto:{{contact.email}}"
+                                    :href="`mailto:${contact.email}`"
                                     class="flex items-center gap-2"
-                                    ><LinkIcon class="h-4" />{{ contact.email }}</a
+                                    ><MailIcon class="h-4" />{{ contact.email }}</a
                                 >
                             </div>
                             <div v-if="contact.phone">
                                 <a
-                                    href="tel:{{contact.phone}}"
+                                    :href="`tel:${contact.phone}`"
                                     class="flex items-center gap-2"
-                                    ><MailIcon class="h-4" />{{ contact.phone }}</a
+                                    ><PhoneIcon class="h-4" />{{ contact.phone }}</a
                                 >
                             </div>
                             <div class="flex items-center gap-2">

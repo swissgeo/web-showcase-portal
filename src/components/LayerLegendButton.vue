@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { List as ListIcon } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { computed } from 'vue'
 
@@ -7,7 +8,7 @@ import { useUiStore } from '@/store/ui'
 const uiStore = useUiStore()
 
 const severity = computed(() => {
-    return uiStore.isLayerLegendVisible ? 'contrast' : 'primary'
+    return uiStore.isLayerLegendVisible ? 'contrast' : 'secondary'
 })
 
 function toggleLayerLegend() {
@@ -19,8 +20,10 @@ function toggleLayerLegend() {
     <Button
         data-cy="comp-layer-legend-button"
         :severity="severity"
-        icon="pi pi-bars"
+        outlined
+        class="h-14 w-14 rounded-xl bg-white shadow hover:bg-neutral-100"
         @click="toggleLayerLegend"
     >
+        <ListIcon class="h-5 w-5 text-black" />
     </Button>
 </template>

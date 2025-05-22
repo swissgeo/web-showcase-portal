@@ -32,7 +32,11 @@
         "info": "Informations",
         "contact": "Contact",
         "downloads": "Téléchargements",
-        "links": "Liens"
+        "links": "Liens",
+        "lastUpdated": "Dernière actualisation",
+        "geocatLink": "Plus d'informations (geocat)",
+        "legalConstraints": "Mentions légales",
+        "license": "Licence"
     },
     "keywords": {
         "title": "Recherches populaires",

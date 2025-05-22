@@ -3,8 +3,11 @@ import AccordionContent from 'primevue/accordioncontent'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionPanel from 'primevue/accordionpanel'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/Layer'
+
+const { t } = useI18n()
 
 const { layer } = defineProps<{
     layer: Layer
@@ -77,12 +80,14 @@ function handleImgError(index: number) {
                         v-else
                         class="text-xs text-red-400"
                     >
-                        Legend image not available
+                        {{ t('legend.brokenImage') }}
                     </div>
                 </template>
             </template>
             <template v-else>
-                <div class="text-sm font-medium text-gray-500">No legend available</div>
+                <div class="text-sm font-medium text-gray-500">
+                    {{ t('legend.noLegend') }}
+                </div>
             </template>
         </AccordionContent>
     </AccordionPanel>

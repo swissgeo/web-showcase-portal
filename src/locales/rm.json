@@ -22,8 +22,10 @@
         "title": "Chartas visualisadas"
     },
     "legend": {
+        "brokenImage": "Naśti te ćhivel pes i legenda",
         "header": "Legenda",
-        "noLayers": "Naginas chartas visualisadas"
+        "noLayers": "Naginas chartas visualisadas",
+        "noLegend": "Naj legenda disponibilo"
     },
     "details": {
         "header": "Detagls",

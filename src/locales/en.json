@@ -22,8 +22,10 @@
         "title": "Displayed maps"
     },
     "legend": {
+        "brokenImage": "Failed to load legend",
         "header": "Legend",
-        "noLayers": "No maps displayed"
+        "noLayers": "No maps displayed",
+        "noLegend": "No legend available"
     },
     "details": {
         "header": "Details",

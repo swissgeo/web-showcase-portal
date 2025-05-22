@@ -45,7 +45,7 @@ onClickOutside(searchInput, handleClickOutsideSearch)
         class="fixed top-0 right-0 left-0"
         data-cy="div-search-desktop"
     >
-        <div class="flex w-full flex-row items-start justify-between px-6">
+        <div class="flex w-full flex-row items-center justify-between px-6">
             <div><!-- empty element to push the others to the middle and right --></div>
             <SearchInput
                 ref="searchInput"

@@ -55,8 +55,7 @@ function onEmbedChange(e: MessageEvent) {
     <iframe
         data-cy="iframe-mapviewer"
         :src="urlString"
-        class="h-full w-full"
-        :class="{ 'pl-20': isDesktop }"
+        class="h-full w-full md:pl-20"
         allow="geolocation"
     ></iframe>
     <ButtonGroup

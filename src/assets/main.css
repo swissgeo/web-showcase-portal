@@ -4,10 +4,6 @@
 
 @custom-variant dark (&:where(.dark-mode, .dark-mode *));
 
-@theme {
-    --font-sans: 'Inter';
-}
-
 body {
     /* We have to reset these variables here again. I don't quite know why
     but it seems that tailwind removes them if they're not referenced anywhere.

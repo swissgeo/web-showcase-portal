@@ -20,6 +20,8 @@
         "format": "prettier --write src/"
     },
     "dependencies": {
+        "@fontsource/dm-sans": "^5.2.5",
+        "@fontsource/geologica": "^5.2.5",
         "@fontsource/inter": "^5.2.5",
         "@fontsource/noto-sans": "^5.2.6",
         "@geospatial-sdk/core": "0.0.5-alpha.2",

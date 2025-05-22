@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/dm-sans':
+        specifier: ^5.2.5
+        version: 5.2.5
+      '@fontsource/geologica':
+        specifier: ^5.2.5
+        version: 5.2.5
       '@fontsource/inter':
         specifier: ^5.2.5
         version: 5.2.5
@@ -555,6 +561,12 @@ packages:
   '@eslint/plugin-kit@0.2.8':
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@fontsource/dm-sans@5.2.5':
+    resolution: {integrity: sha512-P+RiK+bvyvBqfUZjFqhntCFvKlrH1rm42ME7wpYXwFpmpr9jWD/FP6vnp0iCbP3cYeqDyML1KcwIspiHy1rHmA==}
+
+  '@fontsource/geologica@5.2.5':
+    resolution: {integrity: sha512-KmOYZ1jT4cINhxA1uShmXBs/2FFHMQJrOnAXTSm24XHmJiOq7VQ/NxQ6dS0gkQhaTPCwC9SO/tuDzpRAVKL9PQ==}
 
   '@fontsource/inter@5.2.5':
     resolution: {integrity: sha512-kbsPKj0S4p44JdYRFiW78Td8Ge2sBVxi/PIBwmih+RpSXUdvS9nbs1HIiuUSPtRMi14CqLEZ/fbk7dj7vni1Sg==}
@@ -3821,6 +3833,10 @@ snapshots:
     dependencies:
       '@eslint/core': 0.13.0
       levn: 0.4.1
+
+  '@fontsource/dm-sans@5.2.5': {}
+
+  '@fontsource/geologica@5.2.5': {}
 
   '@fontsource/inter@5.2.5': {}
 

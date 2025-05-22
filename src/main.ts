@@ -9,6 +9,8 @@ import App from './App.vue'
 import './assets/main.css'
 
 import '@fontsource/inter'
+import '@fontsource/geologica'
+import '@fontsource/dm-sans'
 import '@geonetwork-ui/gn-standalone-search.js'
 
 import router from './router'

@@ -29,7 +29,7 @@ const { breakpoints } = useBreakpoints()
 const { showLayerInfo } = storeToRefs(mainStore)
 const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const showWelcomeOverlay = useStorage('showWelcomeOverlay', true)
+const showWelcomeOverlay = useStorage('showWelcomeOverlay', false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 

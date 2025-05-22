@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ChevronLeft } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -39,7 +40,7 @@ const clearSearch = () => {
     <div
         v-show="!mainStore.infoLayerId"
         class="fixed right-0 bottom-0 left-0 flex flex-col md:static md:p-8"
-        :class="{ 'top-0 justify-stretch': isSearching, 'justify-end': !isSearching }"
+        :class="{ 'top-0 justify-stretch bg-white': isSearching, 'justify-end': !isSearching }"
     >
         <LogoPic
             v-if="!isSearching"
@@ -53,16 +54,19 @@ const clearSearch = () => {
         </div>
 
         <div
-            class="flex flex-row items-center justify-between border-b border-solid border-neutral-200 px-2 py-4"
+            class="flex flex-row items-center justify-between px-2 py-4"
             :class="{ 'bg-white': isSearching }"
         >
             <Button
                 v-if="isSearching"
-                icon="pi pi-arrow-left"
-                size="small"
+                outlined
                 severity="secondary"
                 @click="clearSearch"
-            ></Button>
+            >
+                <template #icon>
+                    <ChevronLeft />
+                </template>
+            </Button>
             <div v-else></div>
             <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
             <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
@@ -76,9 +80,6 @@ const clearSearch = () => {
             v-if="isSearching"
             class="max-h-full grow-1 px-2 pt-4"
         ></SearchResults>
-        <SearchInput
-            class="bg-white"
-            @focus="openSearch"
-        ></SearchInput>
+        <SearchInput @focus="openSearch"></SearchInput>
     </div>
 </template>

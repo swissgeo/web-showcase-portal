@@ -1,7 +1,7 @@
 {
     "welcome": "Bainvegni",
     "searchPlaceholder": "Tschertga qua...",
-    "disclaimer": "Sito di prova non per uso operativo",
+    "disclaimer": "Pagina da test – betg per diever operativ",
     "welcomeOverlay": {
         "title": "Bainvegni sin...",
         "intro": "Ti es sin... quai è in prototip",
@@ -32,7 +32,11 @@
         "info": "Infurmaziuns",
         "contact": "Contact",
         "downloads": "Telechargiadas",
-        "links": "Colliaziuns"
+        "links": "Colliaziuns",
+        "lastUpdated": "Ultima actualisaziun ils",
+        "geocatLink": "Ulteriuras infurmaziuns (geocat)",
+        "legalConstraints": "Cundiziuns legalas",
+        "license": "Licenza"
     },
     "keywords": {
         "title": "Tschertgas popularas",

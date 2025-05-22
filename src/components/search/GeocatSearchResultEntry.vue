@@ -39,7 +39,7 @@ const tooltipContent = computed(() => {
         />
         <div
             v-else
-            class="w-8"
+            class="w-10"
         >
             <!-- we need an empty element so the i button stays-->
         </div>

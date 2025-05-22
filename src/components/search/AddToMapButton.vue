@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Plus as PlusIcon, Check as CheckIcon } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -17,10 +18,6 @@ const { t } = useI18n()
 
 const isLayerOnMap = computed(() => {
     return mainStore.isLayerOnMap(result.uniqueIdentifier)
-})
-
-const icon = computed(() => {
-    return isLayerOnMap.value ? 'pi pi-check' : 'pi pi-plus'
 })
 
 const severity = computed(() => {
@@ -77,13 +74,22 @@ const removeFromMap = (record: GeonetworkRecord) => {
 
 <template>
     <Button
-        size="small"
         :severity="severity"
         :title="layerTooltipContent"
-        class="cursor-pointer hover:text-gray-400"
-        :icon="icon"
+        class="cursor-pointer"
+        :outlined="!isLayerOnMap"
         :data-cy="`add-result-${result.uniqueIdentifier}`"
         @click="onClick(result)"
     >
+        <template #icon>
+            <PlusIcon
+                v-if="!isLayerOnMap"
+                class="h-4 w-4"
+            />
+            <CheckIcon
+                v-else
+                class="h-4 w-4"
+            />
+        </template>
     </Button>
 </template>

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 
 import LayerIcon from '@/assets/icons/layers.svg?use'
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
+
+const isDesktop = inject<boolean>('isDesktop')
 
 // Access the store
 const mainStore = useMainStore()
@@ -23,11 +25,15 @@ const toggleLayerCart = () => {
     <div class="relative inline-block">
         <Button
             :severity="uiStore.isLayerCartVisible ? 'primary' : 'secondary'"
-            size="small"
+            :text="isDesktop"
+            :outlined="!isDesktop"
             class="h-10"
+            :class="{ 'h-14 w-14 rounded-xl bg-white shadow': !isDesktop }"
             @click="toggleLayerCart"
         >
-            <LayerIcon class="h-6 w-6 stroke-current"></LayerIcon>
+            <template #icon>
+                <LayerIcon class="h-6 w-6 stroke-current"></LayerIcon>
+            </template>
         </Button>
         <!-- Badge for layer count (not possible to use PrimeVue Badge with custon icon)-->
         <span

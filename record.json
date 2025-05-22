@@ -1,0 +1,452 @@
+[
+    {
+        "kind": "dataset",
+        "status": null,
+        "lineage": null,
+        "recordUpdated": "2023-01-24T12:43:45.135Z",
+        "recordPublished": null,
+        "ownerOrganization": {
+            "logoUrl": "http://localhost:5173/geonetwork/images/harvesting/047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+            "name": "Bundesamt für Gesundheit BAG",
+            "recordCount": 3
+        },
+        "licenses": [
+            {
+                "text": "http://disclaimer.admin.ch/",
+                "url": "http://disclaimer.admin.ch/"
+            }
+        ],
+        "legalConstraints": [
+            {
+                "text": "http://disclaimer.admin.ch/",
+                "url": "http://disclaimer.admin.ch/"
+            }
+        ],
+        "securityConstraints": [],
+        "otherConstraints": [],
+        "contacts": [
+            {
+                "lastName": "Martha Palacios",
+                "organization": {
+                    "name": "Bundesamt für Gesundheit"
+                },
+                "email": "martha.palacios@bag.admin.ch",
+                "role": "point_of_contact",
+                "address": "Bern, 3003"
+            }
+        ],
+        "contactsForResource": [
+            {
+                "lastName": "",
+                "organization": {
+                    "name": "Bundesamt für Gesundheit BAG"
+                },
+                "email": "info@bag.admin.ch",
+                "role": "owner",
+                "address": "Bern, 3003",
+                "phone": "058 462 21 11"
+            }
+        ],
+        "keywords": [
+            {
+                "label": "Gesundheit",
+                "type": "theme",
+                "key": "http://www.eionet.europa.eu/gemet/concept/3865",
+                "thesaurus": {
+                    "id": "geonetwork.thesaurus.external.theme.gemet",
+                    "name": "GEMET",
+                    "url": "https://www.geocat.ch/geonetwork/srv/api/registries/vocabularies/external.theme.gemet"
+                }
+            },
+            {
+                "label": "Radon",
+                "type": "theme",
+                "key": "http://www.eionet.europa.eu/gemet/concept/6935",
+                "thesaurus": {
+                    "id": "geonetwork.thesaurus.external.theme.gemet",
+                    "name": "GEMET",
+                    "url": "https://www.geocat.ch/geonetwork/srv/api/registries/vocabularies/external.theme.gemet"
+                }
+            },
+            {
+                "label": "Konzentration",
+                "type": "theme",
+                "key": "http://www.eionet.europa.eu/gemet/concept/1673",
+                "thesaurus": {
+                    "id": "geonetwork.thesaurus.external.theme.gemet",
+                    "name": "GEMET",
+                    "url": "https://www.geocat.ch/geonetwork/srv/api/registries/vocabularies/external.theme.gemet"
+                }
+            },
+            {
+                "label": "BGDI Bundesgeodaten-Infrastruktur",
+                "type": "theme",
+                "key": "http://custom.shared.obj.ch/concept#ae677a16-f81a-4533-9243-a87831115079",
+                "thesaurus": {
+                    "id": "geonetwork.thesaurus.local.theme.geocat.ch",
+                    "name": "geocat.ch",
+                    "url": "https://www.geocat.ch/geonetwork/srv/api/registries/vocabularies/local.theme.geocat.ch"
+                }
+            },
+            {
+                "label": "Aufbewahrungs- und Archivierungsplanung AAP - Bund",
+                "type": "theme",
+                "key": "http://geocat.ch/concept#94202915-c2c1-44fd-a106-71488110e399",
+                "thesaurus": {
+                    "id": "geonetwork.thesaurus.local.theme.geocat.ch",
+                    "name": "geocat.ch",
+                    "url": "https://www.geocat.ch/geonetwork/srv/api/registries/vocabularies/local.theme.geocat.ch"
+                }
+            }
+        ],
+        "topics": ["Geowissenschaften", "F3 Naturbedingte Risiken"],
+        "spatialExtents": [
+            {
+                "description": "Schweiz",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[[47.8085, 8.5679]]]
+                }
+            }
+        ],
+        "temporalExtents": [],
+        "overviews": [],
+        "defaultLanguage": "de",
+        "otherLanguages": ["fr", "it"],
+        "updateFrequency": "irregular",
+        "title": "Radonkarte",
+        "resourceUpdated": "2017-12-20T00:00:00.000Z",
+        "abstract": "Die Radonkarte zeigt die Wahrscheinlichkeit (in %) einer Überschreitung des Referenzwerts der Radonkonzentration von 300 Bq/m3 in Gebäuden. Dennoch kann ausschliesslich durch eine Messung, die Radonkonzentration in einem bestimmten, bestehenden Gebäude festgestellt werden. Die Liste der anerkannten Radonmessstellen steht auf www.ch-radon.ch zur Verfügung. Empfehlungen zu Radonschutzmassnahmen in neuen Gebäuden werden zurzeit erarbeitet. Der Vertrauensindex (hoch, mittel, niedrig, sehr niedrig) gibt die Verlässlichkeit der berechneten Wahrscheinlichkeit an.",
+        "extras": {
+            "isOpenData": false,
+            "ownerInfo": "bagadmin|admin|BAG|UserAdmin",
+            "isPublishedToAll": true,
+            "id": "37942273",
+            "favoriteCount": 0,
+            "catalogUuid": "7ea582d4-9ddf-422e-b28f-29760a4c0147",
+            "edit": false
+        },
+        "onlineResources": [
+            {
+                "name": "Vorschau map.geo.admin.ch",
+                "description": "Vorschau map.geo.admin.ch",
+                "type": "link",
+                "url": "https://map.geo.admin.ch/?layers=ch.bag.radonkarte"
+            },
+            {
+                "name": "ch.bag.radonkarte",
+                "description": "WMS-BGDI Dienst, Layer \"Radonkarte\"",
+                "type": "service",
+                "url": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+                "accessServiceProtocol": "wms",
+                "accessRestricted": false
+            },
+            {
+                "name": "ch.bag.radonkarte",
+                "description": "WMTS-BGDI Dienst, Layer \"Radonkarte\"",
+                "type": "service",
+                "url": "https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=de",
+                "accessServiceProtocol": "wmts",
+                "accessRestricted": false
+            },
+            {
+                "description": "Radon Information",
+                "type": "link",
+                "url": "https://www.bag.admin.ch/bag/de/home/gesund-leben/umwelt-und-gesundheit/strahlung-radioaktivitaet-schall/radon/radongebiete-ch.html"
+            },
+            {
+                "name": "Radon",
+                "description": "Download Server geo.admin.ch",
+                "type": "download",
+                "url": "https://data.geo.admin.ch/browser/index.html#/collections/ch.bag.radonkarte/items/radonkarte"
+            },
+            {
+                "name": "RESTful API von geo.admin.ch",
+                "description": "RESTful API von geo.admin.ch",
+                "type": "link",
+                "url": "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bag.radonkarte"
+            }
+        ],
+        "uniqueIdentifier": "54a8a239-ace3-4510-8fd4-7b4ddc370727",
+        "landingPage": "https://www.geocat.ch/geonetwork/srv/eng/catalog.search#/metadata/54a8a239-ace3-4510-8fd4-7b4ddc370727",
+        "recordCreated": "2020-11-03T09:41:03.000Z"
+    },
+    {
+        "kind": "dataset",
+        "status": "completed",
+        "lineage": null,
+        "recordUpdated": "2024-09-16T10:59:26.196Z",
+        "recordPublished": null,
+        "ownerOrganization": {
+            "logoUrl": "http://localhost:5173/geonetwork/images/harvesting/502d787f-5caf-4261-b800-39ba9c14869d.png",
+            "name": "Kanton Basel-Stadt",
+            "recordCount": 296
+        },
+        "licenses": [],
+        "legalConstraints": [
+            {
+                "text": "Die Geodaten sind beschränkt öffentlich zugänglich. (Zugangsberechtigungsstufe [B3] = Person)"
+            },
+            {
+                "text": "Es gelten die Nutzungsbedingungen für Geodaten des Kantons Basel-Stadt. (http://www.geo.bs.ch/agb)"
+            }
+        ],
+        "securityConstraints": [],
+        "otherConstraints": [],
+        "contacts": [
+            {
+                "lastName": "Grundbuch- und Vermessungsamt Fachstelle für Geoinformation",
+                "organization": {
+                    "name": "Kanton Basel-Stadt"
+                },
+                "email": "geo@bs.ch",
+                "role": "custodian",
+                "address": "Basel, 4052, CH",
+                "phone": "+41 (0)61 267 92 85"
+            }
+        ],
+        "contactsForResource": [
+            {
+                "lastName": "Bereich Gesundheitsschutz Kantonales Laboratorium",
+                "organization": {
+                    "name": "Kanton Basel-Stadt"
+                },
+                "email": "sekr.kantonslabor@bs.ch",
+                "role": "owner",
+                "address": "Basel, 4056, CH",
+                "phone": "+41 (0)61 385 25 00"
+            }
+        ],
+        "keywords": [
+            {
+                "label": "Radon",
+                "type": "theme",
+                "key": "http://www.eionet.europa.eu/gemet/concept/6935",
+                "thesaurus": {
+                    "id": "geonetwork.thesaurus.external.theme.gemet",
+                    "name": "GEMET",
+                    "url": "https://www.geocat.ch/geonetwork/srv/api/registries/vocabularies/external.theme.gemet"
+                }
+            }
+        ],
+        "topics": ["Gesundheitswesen"],
+        "spatialExtents": [
+            {
+                "description": "Kanton Basel-Stadt (BS)",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[[7.6718, 47.5874]]]
+                }
+            }
+        ],
+        "temporalExtents": [],
+        "overviews": [
+            {
+                "url": "https://www.geocat.ch/geonetwork/srv/api/records/cad974ba-5103-49cc-94ee-b3631ff476a7/attachments/Radonpotential.png"
+            }
+        ],
+        "defaultLanguage": "de",
+        "otherLanguages": [],
+        "updateFrequency": "asNeeded",
+        "title": "Radonpotential",
+        "resourceCreated": "2024-10-01T00:00:00.000Z",
+        "abstract": "Die Karte zeigt die gemessenen Radonkonzentrationen der Schulstandorte in Basel und in den Gemeinden Riehen und Bettingen. Zu den Standorten gehören u.a. Kitas, Kindergärten, Primar- und Sekundarschulen sowie Gymnasien.",
+        "extras": {
+            "isOpenData": false,
+            "ownerInfo": "bs-svagrp|Graf|Philipp|Reviewer",
+            "isPublishedToAll": true,
+            "id": "48374062",
+            "favoriteCount": 0,
+            "catalogUuid": "7ea582d4-9ddf-422e-b28f-29760a4c0147",
+            "edit": false
+        },
+        "onlineResources": [
+            {
+                "name": "MapBS",
+                "description": "Öffentliches Auskunftssystem des Kantons Basel-Stadt",
+                "type": "link",
+                "url": "http://map.geo.bs.ch/"
+            },
+            {
+                "name": "WMS BS",
+                "description": "Die derzeit im WMS BS verfügbaren Datenebenen entsprechen, bis auf wenige Ausnahmen, den Geodaten, welche auch in MapBS dargestellt sind. Der WMS BS ist kostenlos nutzbar und bietet Zugriff auf öffentliche sowie beschränkt öffentliche Geodaten, wobei gegebenenfalls Benutzername und Passwort benötigt werden (Zugangsdaten von MapBS).",
+                "type": "service",
+                "url": "https://wms.geo.bs.ch/?SERVICE=wms&REQUEST=GetCapabilities",
+                "accessServiceProtocol": "wms",
+                "accessRestricted": false
+            },
+            {
+                "name": "WFS BS",
+                "description": "Die derzeit im WFS BS verfügbaren Datenebenen entsprechen, bis auf wenige Ausnahmen, den Geodaten, welche auch in MapBS dargestellt sind. Der WFS BS ist kostenlos nutzbar und bietet Zugriff auf öffentliche sowie beschränkt öffentliche Geodaten, wobei gegebenenfalls Benutzername und Passwort benötigt werden (Zugangsdaten von MapBS).",
+                "type": "service",
+                "url": "https://wfs.geo.bs.ch/?SERVICE=wfs&REQUEST=GetCapabilities",
+                "accessServiceProtocol": "wfs",
+                "accessRestricted": false
+            }
+        ],
+        "uniqueIdentifier": "cad974ba-5103-49cc-94ee-b3631ff476a7",
+        "landingPage": "https://www.geocat.ch/geonetwork/srv/eng/catalog.search#/metadata/cad974ba-5103-49cc-94ee-b3631ff476a7",
+        "recordCreated": "2024-08-29T12:14:31.885Z"
+    },
+    {
+        "kind": "dataset",
+        "status": "ongoing",
+        "lineage": null,
+        "recordUpdated": "2025-05-15T09:06:18.000Z",
+        "recordPublished": null,
+        "ownerOrganization": {
+            "logoUrl": "http://localhost:5173/geonetwork/images/harvesting/logo_print_kanton-be.png",
+            "name": "Kantonales Laboratorium",
+            "recordCount": 4
+        },
+        "licenses": [],
+        "legalConstraints": [
+            {
+                "text": "A: öffentlich zugängliche Geodaten"
+            },
+            {
+                "text": "Die Daten sind nur zum verwaltungsinternen Gebrauch bestimmt und unterliegen den Nutzungsbestimmungen kantonaler Geodaten gemäss geltendem Vertrag."
+            }
+        ],
+        "securityConstraints": [],
+        "otherConstraints": [
+            {
+                "text": "Radonkonzentration in Innenräumen © Kantonales Laboratorium Bern"
+            }
+        ],
+        "contacts": [
+            {
+                "lastName": "Pascal Kuhn",
+                "organization": {
+                    "name": "Amt für Geoinformation - Geodatenmanagement"
+                },
+                "email": "pascal.kuhn@be.ch",
+                "role": "point_of_contact",
+                "address": "Bern, 3013, CH",
+                "phone": "+41 31 633 33 11"
+            }
+        ],
+        "contactsForResource": [
+            {
+                "lastName": "",
+                "organization": {
+                    "name": "Kantonales Laboratorium"
+                },
+                "email": "info.kl@be.ch",
+                "role": "owner",
+                "address": "Bern, 3012, CH",
+                "phone": "+41 31 633 11 11"
+            },
+            {
+                "lastName": "Stephan Kyburz",
+                "organization": {
+                    "name": "Kantonales Laboratorium"
+                },
+                "email": "stephan.kyburz@be.ch",
+                "role": "principal_investigator",
+                "address": "Bern, 3012, CH",
+                "phone": "+41 31 633 11 11"
+            },
+            {
+                "lastName": "Bernadette Blättler",
+                "organization": {
+                    "name": "Amt für Geoinformation - Geodatenmanagement"
+                },
+                "email": "bernadette.blaettler@be.ch",
+                "role": "distributor",
+                "address": "Bern, 3013, CH",
+                "phone": "+41 31 633 33 11"
+            }
+        ],
+        "keywords": [
+            {
+                "label": "Radon",
+                "type": "other"
+            },
+            {
+                "label": "Bodenluft",
+                "type": "other"
+            }
+        ],
+        "topics": ["Geowissenschaften"],
+        "spatialExtents": [
+            {
+                "description": "Kanton Bern (erweitert)",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [6.876563, 46.378504],
+                            [8.371072, 46.378504],
+                            [8.371072, 47.336921],
+                            [6.876563, 47.336921],
+                            [6.876563, 46.378504]
+                        ]
+                    ]
+                }
+            }
+        ],
+        "temporalExtents": [],
+        "overviews": [
+            {
+                "url": "https://geofiles.be.ch/geoportal/pub/geoproduktbild/geo_geoprodukt_radon.gif",
+                "description": "thumbnail"
+            }
+        ],
+        "defaultLanguage": "de",
+        "otherLanguages": ["fr"],
+        "updateFrequency": "irregular",
+        "title": "Radonkonzentration in Innenräumen",
+        "resourceCreated": "2008-09-30T00:00:00.000Z",
+        "resourceUpdated": "2022-01-03T00:00:00.000Z",
+        "resourcePublished": "2023-06-15T00:00:00.000Z",
+        "abstract": "In der Karte werden die gemessenen Radonkonzentrationen in bewohnten und/oder unbewohnten Innenräumen farblich dargestellt. Es sind jeweils immer die ersten Messungen dargestellt. Die Karte soll das Risiko bezüglich Radon abbilden, die aktuelle Belastung einzelner Innenräume ist somit nicht in der Karte dargestellt. Falls z.B. nach Umbauten oder Radonsanierungen weitere Messungen vorgenommen wurden, sind diese nicht aus der Karte ersichtlich.",
+        "extras": {
+            "isOpenData": false,
+            "ownerInfo": "admin_be|Kanton Bern|admin|UserAdmin",
+            "isPublishedToAll": true,
+            "id": "47902855",
+            "favoriteCount": 0,
+            "catalogUuid": "2e4c02b8-9f31-42cb-9581-98d77985a91b",
+            "edit": false
+        },
+        "onlineResources": [
+            {
+                "name": "Link zum Geoportal des Kantons Bern",
+                "type": "link",
+                "url": "https://www.agi.dij.be.ch/de/start/geoportal/geodaten/detail.html?type=geoproduct&code=RADON"
+            },
+            {
+                "name": "RADON_RADON_VW_20916",
+                "type": "service",
+                "url": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_geoscientificinformation02_de_ms_wfs/MapServer/WFSServer?&SERVICE=WFS&REQUEST=GetCapabilities",
+                "accessServiceProtocol": "wfs",
+                "accessRestricted": false
+            },
+            {
+                "name": "RADON_RADON_VW_20919",
+                "type": "service",
+                "url": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_geoscientificinformation02_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                "accessServiceProtocol": "wms",
+                "accessRestricted": false
+            },
+            {
+                "name": "RADON_RADON_VW_20918",
+                "type": "service",
+                "url": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_geoscientificinformation02_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                "accessServiceProtocol": "wms",
+                "accessRestricted": false
+            },
+            {
+                "name": "RADON_RADON_VW_20916",
+                "type": "service",
+                "url": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_geoscientificinformation02_de_ms_wms/MapServer/WMSServer?&SERVICE=WMS&REQUEST=GetCapabilities",
+                "accessServiceProtocol": "wms",
+                "accessRestricted": false
+            }
+        ],
+        "uniqueIdentifier": "869dd54c-f973-4c6c-9203-c653f64b2067",
+        "landingPage": "https://www.geocat.ch/geonetwork/srv/eng/catalog.search#/metadata/869dd54c-f973-4c6c-9203-c653f64b2067",
+        "recordCreated": "2023-02-20T08:34:04.000Z"
+    }
+]

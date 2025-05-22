@@ -78,6 +78,7 @@ watch(infoLayerId, fetchInfo)
             <template #icons>
                 <Button
                     :text="true"
+                    severity="secondary"
                     :icon="icon"
                     @click="close"
                 />

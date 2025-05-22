@@ -14,7 +14,7 @@ const isDesktop = inject<boolean>('isDesktop')
     <!-- the desktop icon in the sidebar -->
     <div
         v-if="condensed"
-        class="flex h-12 w-full items-center justify-center"
+        class="flex h-14 w-full items-center justify-center"
     >
         <img
             src="@/assets/images/pwip-logo.png"
@@ -28,7 +28,7 @@ const isDesktop = inject<boolean>('isDesktop')
     <!-- the mobile one and when the sidebar is extended -->
     <div
         v-else
-        class="flex items-center rounded border border-neutral-200 bg-white md:rounded-none md:border-none"
+        class="flex h-10 items-center gap-2 rounded-lg border border-neutral-200 bg-white md:h-14 md:gap-0 md:rounded-none md:border-none"
     >
         <!--
         include this for the real version
@@ -40,7 +40,7 @@ const isDesktop = inject<boolean>('isDesktop')
         </div> -->
 
         <!--- remove from here -->
-        <div class="flex w-[75px] items-center justify-center gap-2">
+        <div class="ml-2 flex items-center justify-center gap-2 md:ml-0 md:w-[75px]">
             <img
                 src="@/assets/images/pwip-logo.png"
                 class="h-5"
@@ -55,7 +55,10 @@ const isDesktop = inject<boolean>('isDesktop')
         >
             <!-- This is the separator between the logo and the language switch button -->
             <div class="mx-3 inline-block h-5 w-0.5 bg-gray-300"></div>
-            <LanguageSwitchButton :is-desktop="false" />
+            <LanguageSwitchButton
+                :is-desktop="false"
+                class="mr-4"
+            />
         </div>
     </div>
 </template>

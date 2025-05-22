@@ -1,6 +1,6 @@
-import type { GeonetworkRecord } from '@/types/gnRecord'
+import type { GeonetworkRecord, OnlineResourceType } from '@/types/gnRecord'
 
-export const getResources = (type: 'link' | 'download' | 'service', record: GeonetworkRecord) => {
+export const getResources = (type: OnlineResourceType, record: GeonetworkRecord) => {
     const onlineResources = record.onlineResources
 
     return onlineResources.filter((resource) => resource.type === type)

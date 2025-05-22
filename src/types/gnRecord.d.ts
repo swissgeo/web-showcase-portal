@@ -77,10 +77,12 @@ type SpatialExtent = {
     }
 }
 
+export type OnlineResourceType = 'link' | 'download' | 'service'
+
 export type OnlineResource = {
     name: string
     description: string
-    type: 'link' | 'download' | 'service'
+    type: OnlineResourceType
     url: URL
     accessServiceProtocol?: string
     accessRestricted?: boolean

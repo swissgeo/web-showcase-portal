@@ -109,11 +109,11 @@ function onClickKeyword(topic: string) {
 </script>
 
 <template>
-    <div class="rounded-t-lg p-4">
+    <div>
         <!-- Desktop version -->
         <Card
             v-if="isDesktop"
-            class="w-[680px]"
+            class="mt-4 w-[680px]"
         >
             <template #content>
                 <IconField>
@@ -164,50 +164,50 @@ function onClickKeyword(topic: string) {
         </Card>
         <!-- Mobile version -->
         <template v-else>
-            <IconField>
-                <IftaLabel>
-                    <InputIcon
-                        class="pi"
-                        :class="{
-                            'pi-search': !isSearching,
-                            'pi-times cursor-pointer': isSearching,
-                        }"
-                        @click="clearSearch"
-                    ></InputIcon>
+            <div class="rounded-t-2xl border-t-2 border-neutral-200 bg-white px-4 pt-4 pb-2">
+                <IconField>
+                    <!-- <IftaLabel> -->
+                    <InputIcon class="pi pi-search"></InputIcon>
                     <InputText
                         id="search"
                         v-model="searchTerm"
                         data-cy="input-search"
-                        class="w-full"
+                        class="w-full border-none shadow-none"
                         @focus="onFocus"
                         @blur="onBlur"
                     ></InputText>
-                    <label for="search">{{ t('searchPlaceholder') }}</label>
-                </IftaLabel>
-            </IconField>
-            <div class="flex items-center gap-2">
-                <span
-                    v-if="!isSearching"
-                    class="text-sm font-medium text-nowrap text-gray-600"
-                >
-                    {{ t('keywords.title') }}:
-                </span>
-                <div
-                    ref="scrollContainer"
-                    class="no-scrollbar w-full grow-0 gap-2 overflow-x-auto bg-white py-2 whitespace-nowrap"
-                >
-                    <Tag
-                        v-for="topic in visibleKeywords"
-                        :key="topic"
-                        :pt="{
-                            root: {
-                                class: 'mr-2 cursor-pointer rounded-lg !border !border-gray-300 !bg-white !text-black',
-                            },
-                        }"
-                        severity="secondary"
-                        :value="t(`keywords.categories.${topic.toLowerCase()}`, topic)"
-                        @click="onClickKeyword(topic)"
-                    ></Tag>
+                    <!-- <label for="search">{{ t('searchPlaceholder') }}</label> -->
+                    <InputIcon
+                        v-if="isSearching"
+                        class="pi pi-times cursor-pointer"
+                        @click="clearSearch"
+                    />
+                    <!-- </IftaLabel> -->
+                </IconField>
+                <div class="flex items-center gap-2">
+                    <span
+                        v-if="!isSearching"
+                        class="text-sm font-medium text-nowrap text-gray-600"
+                    >
+                        {{ t('keywords.title') }}:
+                    </span>
+                    <div
+                        ref="scrollContainer"
+                        class="no-scrollbar w-full grow-0 gap-2 overflow-x-auto bg-white py-2 whitespace-nowrap"
+                    >
+                        <Tag
+                            v-for="topic in visibleKeywords"
+                            :key="topic"
+                            :pt="{
+                                root: {
+                                    class: 'mr-2 cursor-pointer rounded-lg !border !border-gray-300 !bg-white !text-black',
+                                },
+                            }"
+                            severity="secondary"
+                            :value="t(`keywords.categories.${topic.toLowerCase()}`, topic)"
+                            @click="onClickKeyword(topic)"
+                        ></Tag>
+                    </div>
                 </div>
             </div>
         </template>

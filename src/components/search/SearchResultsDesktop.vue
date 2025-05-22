@@ -38,7 +38,7 @@ const {
         <div class="flex-shrink-0 border-l border-neutral-100"></div>
 
         <div class="flex min-w-0 flex-1">
-            <div class="flex h-full w-full flex-col overflow-hidden">
+            <div class="relative flex h-full w-full flex-col overflow-hidden">
                 <div
                     v-if="isSearching"
                     class="flex items-center gap-2 font-bold"

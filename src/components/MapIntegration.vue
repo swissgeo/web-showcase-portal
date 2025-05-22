@@ -51,10 +51,12 @@ function onEmbedChange(e: MessageEvent) {
 </script>
 
 <template>
+    <!-- pl-20 is used to show the scale bar so it's not covered by the side bar -->
     <iframe
         data-cy="iframe-mapviewer"
         :src="urlString"
         class="h-full w-full"
+        :class="{ 'pl-20': isDesktop }"
         allow="geolocation"
     ></iframe>
     <ButtonGroup

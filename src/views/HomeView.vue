@@ -13,6 +13,7 @@ import {
 } from 'vue'
 
 import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
+import DisclaimerBanner from '@/components/DisclaimerBanner.vue'
 import LayerLegend from '@/components/LayerLegend.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchDesktop from '@/components/search/SearchDesktop.vue'
@@ -84,6 +85,7 @@ onUnmounted(() => {
     <main ref="main">
         <div class="relative h-screen md:flex md:flex-row md:justify-stretch">
             <SideBar v-if="isDesktop" />
+            <DisclaimerBanner />
             <SearchMobile
                 v-if="!isDesktop"
                 data-cy="comp-search-mobile"

@@ -2,7 +2,7 @@ describe('Layer Legend on desktop', () => {
     beforeEach(() => {
         cy.viewport('macbook-15')
         cy.visit('/')
-        cy.get('[data-cy="button-overlay-confirm"]').click()
+        // cy.get('[data-cy="button-overlay-confirm"]').click()
     })
 
     it('Can open and close the layer legend on Desktop', () => {
@@ -19,7 +19,7 @@ describe('Layer Legend on mobile', () => {
     beforeEach(() => {
         cy.viewport('iphone-se2')
         cy.visit('/')
-        cy.get('[data-cy="button-overlay-confirm"]').click()
+        // cy.get('[data-cy="button-overlay-confirm"]').click()
     })
 
     it('Can open and close the layer legend on Mobile', () => {

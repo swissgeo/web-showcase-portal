@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PanelLeftClose } from 'lucide-vue-next'
+import { ChevronLeft, PanelLeftClose } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
@@ -74,19 +74,21 @@ function destroySortable() {
         :header="t('layerCart.title')"
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',
+            header: 'md:justify-between justify-center',
+            title: 'order-2 md:order-1 ',
+            headerActions: 'absolute left-4 md:static md:order-2',
         }"
     >
         <template #icons>
             <Button
                 v-if="!props.isDesktopView"
-                :text="true"
-                class="mr-2"
                 severity="secondary"
-                size="medium"
+                outlined
+                class="order-1"
                 @click="uiStore.toggleLayerCart"
             >
                 <template #icon>
-                    <i class="pi pi-times"></i>
+                    <ChevronLeft />
                 </template>
             </Button>
             <Button

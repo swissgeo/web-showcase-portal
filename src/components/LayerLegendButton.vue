@@ -24,6 +24,8 @@ function toggleLayerLegend() {
         class="h-14 w-14 rounded-xl bg-white shadow hover:bg-neutral-100"
         @click="toggleLayerLegend"
     >
-        <ListIcon class="h-5 w-5 text-black" />
+        <template #icon>
+            <ListIcon class="h-5 w-5 text-black" />
+        </template>
     </Button>
 </template>

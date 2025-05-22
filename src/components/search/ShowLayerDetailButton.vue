@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Info as InfoIcon } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -32,12 +33,13 @@ const variant = computed(() => {
 <template>
     <Button
         :severity="severity"
-        class="mr-auto cursor-pointer hover:text-gray-400"
-        size="small"
-        icon="pi pi-info-circle"
+        class="mr-auto cursor-pointer"
         :title="t('searchResult.showInfo')"
         :variant="variant"
         @click="showLayerInfo(layerId)"
     >
+        <template #icon>
+            <InfoIcon class="h-4 w-4" />
+        </template>
     </Button>
 </template>

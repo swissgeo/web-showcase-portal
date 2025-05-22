@@ -24,6 +24,12 @@ body {
     :root {
         --p-content-border-radius: 8px;
         --p-panel-content-padding: 0px;
+        --p-iconfield-icon-color: var(--color-black);
+        --p-form-field-icon-color: var(--color-black);
+        --p-button-secondary-color: var(--color-black);
+        --p-button-text-secondary-color: var(--color-black);
+        --p-panel-header-color: var(--color-black);
+        --p-button-outlined-secondary-color: var(--color-black);
     }
 
     .p-panel {

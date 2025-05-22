@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import ButtonGroup from 'primevue/buttongroup'
-import { computed, onBeforeMount, watch } from 'vue'
+import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
 
 import {
     changeZoomLevel,
@@ -10,6 +10,8 @@ import {
 } from '@/search/mapUrlUtils'
 import { useMapStore } from '@/store/map'
 import { getEmbedViewerUrl } from '@/utils/environment.config'
+
+const isDesktop = inject<Ref<boolean>>('isDesktop')
 
 const mapStore = useMapStore()
 const mapUrlSearchParams = computed(() => mapStore.mapUrlSearchParams)
@@ -56,6 +58,7 @@ function onEmbedChange(e: MessageEvent) {
         allow="geolocation"
     ></iframe>
     <ButtonGroup
+        v-if="isDesktop"
         class="absolute right-2 bottom-38 md:right-6 md:bottom-8"
         data-cy="zoom-button-group"
     >

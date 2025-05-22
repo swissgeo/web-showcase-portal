@@ -2,7 +2,7 @@
 import AccordionContent from 'primevue/accordioncontent'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionPanel from 'primevue/accordionpanel'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 import type { Layer } from '@/types/Layer'
 
@@ -50,6 +50,12 @@ const legendUrls = computed(() => {
 
     return serviceLinks
 })
+
+const brokenImages = ref<Set<number>>(new Set())
+
+function handleImgError(index: number) {
+    brokenImages.value.add(index)
+}
 </script>
 
 <template>
@@ -57,12 +63,23 @@ const legendUrls = computed(() => {
         <AccordionHeader>{{ layer.name }}</AccordionHeader>
         <AccordionContent>
             <template v-if="legendUrls.length > 0">
-                <img
+                <template
                     v-for="(service, index) in legendUrls"
                     :key="index"
-                    class="h-auto w-fit"
-                    :src="service?.legendUrl"
-                />
+                >
+                    <img
+                        v-if="!brokenImages.has(index)"
+                        class="h-auto w-fit"
+                        :src="service?.legendUrl"
+                        @error="handleImgError(index)"
+                    />
+                    <div
+                        v-else
+                        class="text-xs text-red-400"
+                    >
+                        Legend image not available
+                    </div>
+                </template>
             </template>
             <template v-else>
                 <div class="text-sm font-medium text-gray-500">No legend available</div>

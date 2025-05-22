@@ -56,11 +56,17 @@ const legendUrls = computed(() => {
     <AccordionPanel :value="layer.id">
         <AccordionHeader>{{ layer.name }}</AccordionHeader>
         <AccordionContent>
-            <img
-                v-for="(service, index) in legendUrls"
-                :key="index"
-                :src="service?.legendUrl"
-            />
+            <template v-if="legendUrls.length > 0">
+                <img
+                    v-for="(service, index) in legendUrls"
+                    :key="index"
+                    class="h-auto w-fit"
+                    :src="service?.legendUrl"
+                />
+            </template>
+            <template v-else>
+                <div class="text-sm font-medium text-gray-500">No legend available</div>
+            </template>
         </AccordionContent>
     </AccordionPanel>
 </template>

@@ -122,6 +122,7 @@ function onClickKeyword(topic: string) {
                         v-model="searchTerm"
                         data-cy="input-search"
                         class="w-full border-none shadow-none"
+                        :placeholder="t('searchPlaceholder')"
                         @focus="onFocus"
                         @blur="onBlur"
                     ></InputText>
@@ -168,6 +169,7 @@ function onClickKeyword(topic: string) {
                         v-model="searchTerm"
                         data-cy="input-search"
                         class="w-full border-none shadow-none"
+                        :placeholder="t('searchPlaceholder')"
                         @focus="onFocus"
                         @blur="onBlur"
                     ></InputText>

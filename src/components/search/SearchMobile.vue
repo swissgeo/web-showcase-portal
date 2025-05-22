@@ -53,7 +53,7 @@ const clearSearch = () => {
         </div>
 
         <div
-            class="flex flex-row justify-between border-b border-solid border-neutral-200 px-2 py-4"
+            class="flex flex-row items-center justify-between border-b border-solid border-neutral-200 px-2 py-4"
             :class="{ 'bg-white': isSearching }"
         >
             <Button

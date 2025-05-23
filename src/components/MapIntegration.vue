@@ -40,12 +40,15 @@ onBeforeMount(() => {
 function onEmbedChange(e: MessageEvent) {
     // this catches changes made to the embed map url and send them to the parent component
     if (e?.data?.type === 'gaChange') {
-        mapStore.setMapUrlSearchParams(
-            getUrlParamsFromSource(
-                e.data.payload.newUrl.split('embed')[1],
-                mapUrlSearchParams.value
-            )
-        )
+        const oldParams = mapUrlSearchParams.value
+
+        const newParams = getUrlParamsFromSource(e.data.payload.newUrl.split('embed')[1], oldParams)
+        // Only update if values actually change
+        const hasChanged = JSON.stringify(newParams) !== JSON.stringify(oldParams)
+        if (!hasChanged) {
+            return
+        }
+        mapStore.setMapUrlSearchParams(newParams)
     }
 }
 </script>

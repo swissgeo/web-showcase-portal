@@ -7,12 +7,6 @@ describe('Test the search on desktop', () => {
     it('Search yields a result', () => {
         cy.get('[data-cy="div-search-desktop"]').should('exist').should('be.visible')
         cy.get('[data-cy="comp-search-mobile"]').should('not.exist')
-        cy.intercept(
-            'https://www.geocat.ch/geonetwork/srv/api/search/records/_search?bucket=bucket',
-            {
-                fixture: 'geocat-wald-search-result.json',
-            }
-        )
         cy.get('[data-cy="input-search"]').realClick().realType('wald')
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
         cy.get('@searchResults').should('have.length', 20)
@@ -44,12 +38,6 @@ describe('Test the search on mobile', () => {
     it('Search yields a result', () => {
         cy.get('[data-cy="comp-search-mobile"]').should('exist').should('be.visible')
         cy.get('[data-cy="div-search-desktop"]').should('not.exist')
-        cy.intercept(
-            'https://www.geocat.ch/geonetwork/srv/api/search/records/_search?bucket=bucket',
-            {
-                fixture: 'geocat-wald-search-result.json',
-            }
-        ).as('geoCatWaldResults')
 
         cy.get('[data-cy="input-search"]').type('wald')
         // open accordion

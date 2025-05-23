@@ -64,9 +64,11 @@ export default function useGeocat() {
                 limit: searchStore.geocatPageSize,
                 sort: ['desc', '_score'],
                 // remove this prop to get all the data
-                // in time we'll have to figure out here what exactly we need
-                // fields: ['resourceTitleObject', 'link', 'uuid', 'ownerOrganization'],
-            }).pipe(
+                // the field names were deduced from looking at this code
+                // https://github.com/geonetwork/geonetwork-ui/blob/c5432f39ff5649e8df1647bfd9eefc9a7c264061/libs/api/metadata-converter/src/lib/gn4/gn4.field.mapper.ts#L70
+                fields: ['resourceTitleObject', 'link', 'contact', 'uuid'],
+            })
+            .pipe(
                 catchError((error) => {
                     // eslint-disable-next-line no-console
                     console.error('Error during GeoCat search:', error)
@@ -74,7 +76,6 @@ export default function useGeocat() {
                 })
             )
             .subscribe(searchCallback)
-
     }
 
     const searchConfigGeocat = (ids: string[]) => {
@@ -88,7 +89,7 @@ export default function useGeocat() {
                 },
                 offset: searchStore.geocatPage,
                 limit: searchStore.geocatPageSize,
-                filterIds: ids
+                filterIds: ids,
             })
             .pipe(
                 catchError((error) => {
@@ -100,7 +101,7 @@ export default function useGeocat() {
             .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
                 // Sort records in the order of the ids
                 const sortedRecords = ids
-                    .map(id => records.find(record => record.uniqueIdentifier === id))
+                    .map((id) => records.find((record) => record.uniqueIdentifier === id))
                     .filter((record): record is GeonetworkRecord => !!record)
 
                 sortedRecords.forEach((record: GeonetworkRecord) => {

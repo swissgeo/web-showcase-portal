@@ -37,6 +37,23 @@ const windowWidth = ref(0)
 const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
 provide('isDesktop', readonly(isDesktop))
 
+const fontSettings = computed(() => {
+    const inter = 'Inter, ui sans serif'
+    const geologica = 'Geologica'
+    const dmSans = 'DM Sans'
+
+    const params = new URL(window.location.href)
+    const fontParam = params.searchParams.get('font')
+    let font = inter
+    if (fontParam === 'geologica') {
+        font = geologica
+    } else if (fontParam === 'dmsans') {
+        font = dmSans
+    }
+
+    return { '--font-sans': font }
+})
+
 function closeOverlay() {
     showWelcomeOverlay.value = false
 }
@@ -82,7 +99,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <main ref="main">
+    <main
+        ref="main"
+        :style="fontSettings"
+        class="font-sans"
+    >
         <div class="relative h-screen md:flex md:flex-row md:justify-stretch">
             <SideBar v-if="isDesktop" />
             <DisclaimerBanner />

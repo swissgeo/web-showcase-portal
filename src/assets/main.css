@@ -1,11 +1,8 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
-@custom-variant dark (&:where(.dark-mode, .dark-mode *));
 
-@theme {
-    --font-sans: Noto Sans, sans-serif;
-}
+@custom-variant dark (&:where(.dark-mode, .dark-mode *));
 
 body {
     /* We have to reset these variables here again. I don't quite know why

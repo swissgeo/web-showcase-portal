@@ -1,3 +1,5 @@
+const RADON_UID = '54a8a239-ace3-4510-8fd4-7b4ddc370727'
+
 describe('Layer Legend on desktop', () => {
     beforeEach(() => {
         cy.viewport('macbook-15')
@@ -12,6 +14,23 @@ describe('Layer Legend on desktop', () => {
         cy.get('[data-cy="comp-layer-legend-button"]').should('not.be.visible')
         cy.get('[data-cy="comp-layer-legend-close"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
+    })
+
+    it('Shows the legend of Radon', () => {
+        cy.intercept(
+            'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
+        ).as('legendGraphicRequest')
+        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li')
+            .first()
+            .find(`[data-cy="add-result-${RADON_UID}"`)
+            .click()
+
+        cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
+        cy.get('[data-cy="div-layer-legend"]').should('be.visible')
+        cy.get(`[data-cy="accordion-layer-legend-${RADON_UID}"]`).click()
+        cy.wait('@legendGraphicRequest')
     })
 })
 
@@ -28,5 +47,25 @@ describe('Layer Legend on mobile', () => {
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
         cy.get('[data-cy="comp-layer-legend-close"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
+    })
+    it('Shows the legend of Radon', () => {
+        cy.intercept(
+            'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
+        ).as('legendGraphicRequest')
+        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="comp-data-accordion"]').click()
+
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li')
+            .first()
+            .find(`[data-cy="add-result-${RADON_UID}"`)
+            .click()
+
+        cy.get('[data-cy="button-close-search"]').click()
+
+        cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
+        cy.get('[data-cy="div-layer-legend"]').should('be.visible')
+        cy.get(`[data-cy="accordion-layer-legend-${RADON_UID}"]`).click()
+        cy.wait('@legendGraphicRequest')
     })
 })

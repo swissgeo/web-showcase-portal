@@ -114,7 +114,6 @@ onUnmounted(() => {
             <!-- This data-cy is not visible due to the overlay div inside -->
             <SearchDesktop
                 v-if="isDesktop"
-                data-cy="comp-search-desktop"
                 class="flex"
             ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />

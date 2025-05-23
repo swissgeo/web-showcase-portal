@@ -171,6 +171,7 @@ const bgLayerThumbnail = computed(() => {
                 aria-controls="overlay_menu"
                 size="small"
                 :severity="menuShown ? 'primary' : 'secondary'"
+                :data-cy="`button-layer-item-${layer.id}`"
                 @click="toggleLayerMenu"
             />
             <Menu

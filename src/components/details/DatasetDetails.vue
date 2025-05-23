@@ -88,9 +88,10 @@ const logoUrl = computed((): string | null => {
 
 <template>
     <div class="h-full overflow-scroll border-t border-neutral-200 pb-28 md:pb-20">
-        <div class="">
+        <div>
             <div
                 class="flex min-h-[230px] flex-col justify-end gap-3 bg-slate-200 px-8 pb-11 text-xl font-bold"
+                data-cy="div-dataset-details-title"
             >
                 {{ info?.title }}
 
@@ -101,13 +102,17 @@ const logoUrl = computed((): string | null => {
             </div>
 
             <div class="mx-4 flex -translate-y-5 flex-col gap-4">
-                <Panel :header="t('details.info')">
+                <Panel
+                    :header="t('details.info')"
+                    data-cy="panel-dataset-details-info"
+                >
                     {{ mainStore.infoLayerRecord?.abstract }}
                 </Panel>
 
                 <Panel
                     v-if="contact"
                     :header="t('details.contact')"
+                    data-cy="panel-dataset-details-contact"
                 >
                     <template #icons>
                         <div
@@ -155,6 +160,7 @@ const logoUrl = computed((): string | null => {
                 <Panel
                     v-if="downloads.length"
                     :header="t('details.downloads')"
+                    data-cy="panel-dataset-details-downloads"
                 >
                     <ul>
                         <DetailLink
@@ -168,6 +174,7 @@ const logoUrl = computed((): string | null => {
                 <Panel
                     v-if="links.length"
                     :header="t('details.links')"
+                    data-cy="panel-dataset-details-links"
                 >
                     <ul>
                         <DetailLink

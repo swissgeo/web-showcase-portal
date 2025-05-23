@@ -26,7 +26,6 @@ describe('Layer Legend on mobile', () => {
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
         cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
-        cy.pause()
         cy.get('[data-cy="comp-layer-legend-close"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
     })

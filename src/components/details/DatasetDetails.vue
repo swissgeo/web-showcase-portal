@@ -117,11 +117,11 @@ const logoUrl = computed((): string | null => {
                     <template #icons>
                         <div
                             v-if="logoUrl"
-                            class="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-100 p-1"
+                            class="flex h-10 min-w-10 items-center justify-center rounded-lg border border-neutral-100 p-1"
                         >
                             <img
                                 :src="logoUrl"
-                                class="h-full"
+                                class="max-h-full"
                             />
                         </div>
                     </template>

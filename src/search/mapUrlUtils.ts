@@ -30,6 +30,8 @@ export const LOCATION_SEARCH_ORIGINS: OriginType[] = [
     'parcel',
 ]
 
+export const TRANSPARENCY_DEBOUNCE_DELAY = 500
+
 export function generateMapUrlParameters(params: Partial<MapUrlParameter>) {
     const searchParams = new URLSearchParams()
     // if the layers parameter is not provided, the layers will not get updated / removed
@@ -99,35 +101,35 @@ export function getUrlParamsFromSource(embedUrlParams: string, currentStoreParam
 
     // typescript will yell at us if we don't ensure each value is of the correct type :)
 
-        params.forEach((value, key) => {
+    params.forEach((value, key) => {
 
-            if (key === 'z') {
-                paramsToPush[key] = parseFloat(value as string)
-            }
-            else if (key === 'center' || key === 'crossHairPosition') {
+        if (key === 'z') {
+            paramsToPush[key] = parseFloat(value as string)
+        }
+        else if (key === 'center' || key === 'crossHairPosition') {
 
-                const coordinates : string[] = value.split(',') as string[]
-                paramsToPush[key] = [parseFloat(coordinates[0]),parseFloat(coordinates[1])]
+            const coordinates: string[] = value.split(',') as string[]
+            paramsToPush[key] = [parseFloat(coordinates[0]), parseFloat(coordinates[1])]
+        }
+        else if (key === 'hideEmbedUI') {
+            paramsToPush[key] = true
+        }
+        else if (key === 'lang') {
+            if (isLanguageSupported(value as string)) {
+                paramsToPush[key] = value as Language
             }
-            else if (key === 'hideEmbedUI') {
-                paramsToPush[key] = true
+        }
+        else if (key === 'crosshair') {
+            if (isCrosshair(value as string)) {
+                paramsToPush[key] = value as Crosshair
             }
-            else if (key === 'lang'){
-                if (isLanguageSupported(value as string)) {
-                    paramsToPush[key] = value as Language
-                }
-            }
-            else if (key === 'crosshair') {
-                if (isCrosshair(value as string)) {
-                    paramsToPush[key] = value as Crosshair
-                }
-            }
-            else if (key === 'layers' || key === 'bgLayer'){
-                paramsToPush[key] = value as string
-            }
+        }
+        else if (key === 'layers' || key === 'bgLayer') {
+            paramsToPush[key] = value as string
+        }
 
     })
-    return {...currentStoreParams, ...paramsToPush}
+    return { ...currentStoreParams, ...paramsToPush }
 }
 /**
  *
@@ -135,7 +137,7 @@ export function getUrlParamsFromSource(embedUrlParams: string, currentStoreParam
  * @param currentZoomLevel the current zoom level
  * @returns {number} the next rounded zoom level in the wanted direction.
  */
-export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel: number) : number {
+export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel: number): number {
     if (currentZoomLevel) {
         return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 13) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
     }

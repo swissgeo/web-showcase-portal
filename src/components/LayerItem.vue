@@ -8,7 +8,9 @@ import Slider from 'primevue/slider'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
+import { debounce } from '@/utils/debounce'
 const { t } = useI18n()
 
 // Define props for the LayerItem component
@@ -58,9 +60,13 @@ const opacityValue = computed({
             value = 0
         }
         value = Math.max(0, Math.min(100, value))
-        mainStore.setLayerOpacity(props.layer.id, value / 100)
+        debouncedChangeOpacity(props.layer.id, value)
     },
 })
+
+const debouncedChangeOpacity = debounce((layerId: string, value: number) => {
+    mainStore.setLayerOpacity(layerId, value / 100)
+}, TRANSPARENCY_DEBOUNCE_DELAY)
 
 const metadataMenuClicked = () => {
     menuShown.value = false

@@ -50,6 +50,7 @@ export default defineConfigWithVueTs(
                 { type: 'alphabetical', internalPattern: ['^@/.*'] },
             ],
             'vue/html-indent': ['error', 4],
+            'mocha/no-exclusive-tests': 'error',
         },
     },
 

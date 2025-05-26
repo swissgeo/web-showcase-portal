@@ -1,0 +1,45 @@
+{
+    "useCases": [
+        {
+            "keyword": {
+                "de": "Luftqualität",
+                "en": "Air Quality",
+                "fr": "Qualité de l'air",
+                "it": "Qualità dell'aria",
+                "rm": "Qualitad da l'aria"
+            },
+            "geocatIds": [ 
+                "54a8a239-ace3-4510-8fd4-7b4ddc370727",
+                "47b30108-d19e-4ac1-ab93-cba6a777003b",
+                "95e73bc3-da75-4356-9b04-2cc7c3b1cec9"
+            ]
+        },
+        {
+            "keyword": {
+                "de": "Nachhaltigkeit",
+                "en": "Sustainability",
+                "fr": "Durabilité",
+                "it": "Sostenibilità",
+                "rm": "Sustegnibladad"
+            },
+            "geocatIds": [
+                "b614de5c-2f12-4355-b2c9-7aef2c363ad6",
+                "3849f57d-9bdd-428c-8d13-08be446e197a",
+                "ur-1864",
+                "ed1c050e-320b-4c08-8024-a5311dcdaeb2-6571"
+            ]
+        },
+        {
+            "keyword": {
+                "de": "Schule",
+                "en": "School",
+                "fr": "École",
+                "it": "Scuola",
+                "rm": "Scola"
+            },
+            "geocatIds": [
+                "0bdf8df3-9d13-499e-ab0b-aebf3fd217d9"
+            ]
+        }
+    ]
+}

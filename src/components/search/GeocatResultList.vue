@@ -16,6 +16,7 @@ useInfiniteScroll(
     el,
     () => {
         if (searchStore.searchTerm && !searchStore.isSearchingGeocat) {
+            searchStore.incGeocatPage()
             searchGeocat(searchStore.searchTerm)
         }
     },

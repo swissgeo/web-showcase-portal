@@ -36,7 +36,6 @@ export default function useGeocat() {
         if (searchStore.searchTerm) {
             searchStore.appendGeocatSearchResults(records)
             searchStore.setSearchResultTotal(count)
-            searchStore.incGeocatPage()
         }
         searchStore.setIsSearchingGeocat(false)
     }
@@ -60,7 +59,7 @@ export default function useGeocat() {
                     any: value,
                     linkProtocol: '/OGC:WMT?S.*/',
                 },
-                offset: searchStore.geocatPage,
+                offset: searchStore.geocatPage * searchStore.geocatPageSize,
                 limit: searchStore.geocatPageSize,
                 sort: ['desc', '_score'],
                 // remove this prop to get all the data

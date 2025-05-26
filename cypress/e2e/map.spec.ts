@@ -5,13 +5,16 @@ const getIframeDocument = () => {
 
 describe('Test the map on desktop', () => {
     beforeEach(() => {
+        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services/all/MapServer/layersConfig?lang=de').as('layersConfig')
+        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services').as('services')
+        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services/ech/CatalogServer?lang=de').as('catalogServer')
         cy.viewport('macbook-15')
         cy.visit('/')
+        cy.wait(['@layersConfig', '@services', '@catalogServer'])
         // cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('renders the map', () => {
         cy.log('Test if the map renders and can be zoomed in and out')
-
         cy.get('[data-cy="iframe-mapviewer"]').should('exist')
         cy.get('[data-cy="zoom-button-group"]').should('exist')
         cy.get('[data-cy="zoom-out"]').should('exist')
@@ -19,9 +22,11 @@ describe('Test the map on desktop', () => {
 
         cy.get('[data-cy="zoom-in"]').should('exist')
         cy.get('[data-cy="zoom-in"]').click()
+        getIframeDocument()
+            .its('location.href')
+            .should('match', /(?:\?|&)z=2/)
         cy.get('[data-cy="zoom-in"]').click()
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(500)
+
         getIframeDocument()
             .its('location.href')
             .should('match', /(?:\?|&)z=3/)

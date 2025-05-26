@@ -32,6 +32,7 @@ const variant = computed(() => {
 
 <template>
     <Button
+        :data-cy="`button-show-layer-details-${layerId}`"
         :severity="severity"
         class="mr-auto cursor-pointer"
         :title="t('searchResult.showInfo')"

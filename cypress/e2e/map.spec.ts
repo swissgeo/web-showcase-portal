@@ -3,7 +3,7 @@ const getIframeDocument = () => {
     return cy.get('[data-cy="iframe-mapviewer"]').its('0.contentDocument').should('exist')
 }
 
-describe.skip('Test the map on desktop', () => {
+describe('Test the map on desktop', () => {
     beforeEach(() => {
         cy.viewport('macbook-15')
         cy.visit('/')
@@ -30,12 +30,6 @@ describe.skip('Test the map on desktop', () => {
             .should('match', /(?:\?|&)z=2/)
     })
     it('loads a search result on the map', () => {
-        cy.intercept(
-            'https://www.geocat.ch/geonetwork/srv/api/search/records/_search?bucket=bucket',
-            {
-                fixture: 'geocat-wald-search-result.json',
-            }
-        )
         cy.get('[data-cy="input-search"]').type('wald')
         cy.log(
             'adding the layer "swissTLM3D Wald" to the map and checking that a tile is request (that it was correctly loaded)'
@@ -44,7 +38,7 @@ describe.skip('Test the map on desktop', () => {
         getIframeDocument().its('location.href').should(
             'contain',
             // %7C == | encoded for URLs
-            'WMS%7Chttps://wms.geo.admin.ch%7Cch.swisstopo.swisstlm3d-wald'
+            'WMS%7Chttps://wms.geo.admin.ch/%7Cch.swisstopo.swisstlm3d-wald'
         )
     })
 })

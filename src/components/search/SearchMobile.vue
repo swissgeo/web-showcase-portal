@@ -61,6 +61,7 @@ const clearSearch = () => {
                 v-if="isSearching"
                 outlined
                 severity="secondary"
+                data-cy="button-close-search"
                 @click="clearSearch"
             >
                 <template #icon>

@@ -8,21 +8,21 @@ import Slider from 'primevue/slider'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { Layer } from '@/types/Layer'
+
 import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
 import { debounce } from '@/utils/debounce'
 const { t } = useI18n()
 
+interface Props {
+    layer: Layer
+    isBgLayer?: boolean
+}
+
 // Define props for the LayerItem component
-const props = defineProps({
-    layer: {
-        type: Object,
-        required: true,
-    },
-    isBgLayer: {
-        type: Boolean,
-        default: false,
-    },
+const props = withDefaults(defineProps<Props>(), {
+    isBgLayer: false,
 })
 
 // Define emits for the LayerItem component
@@ -171,6 +171,7 @@ const bgLayerThumbnail = computed(() => {
                 aria-controls="overlay_menu"
                 size="small"
                 :severity="menuShown ? 'primary' : 'secondary'"
+                :data-cy="`button-layer-item-${layer.id}`"
                 @click="toggleLayerMenu"
             />
             <Menu

@@ -32,7 +32,7 @@ describe('Test the layer details on desktop', () => {
     })
 
     it('Shows the layer details from the search', () => {
-        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -43,7 +43,7 @@ describe('Test the layer details on desktop', () => {
     })
 
     it('Shows the layer details from the layer cart', () => {
-        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -65,7 +65,7 @@ describe('Test the layer details on mobile', () => {
     })
 
     it('Shows the layer details from the search', () => {
-        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
         cy.get('[data-cy="comp-data-accordion"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
@@ -77,7 +77,7 @@ describe('Test the layer details on mobile', () => {
     })
 
     it('Shows the layer details from the layer cart', () => {
-        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
         cy.get('[data-cy="comp-data-accordion"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')

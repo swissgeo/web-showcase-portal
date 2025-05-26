@@ -20,7 +20,7 @@ describe('Layer Legend on desktop', () => {
         cy.intercept(
             'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
         ).as('legendGraphicRequest')
-        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -52,7 +52,7 @@ describe('Layer Legend on mobile', () => {
         cy.intercept(
             'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
         ).as('legendGraphicRequest')
-        cy.get('[data-cy="input-search"]').realClick().realType(RADON_UID)
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
         cy.get('[data-cy="comp-data-accordion"]').click()
 
         cy.get('[data-cy="ul-geocat-search-results"]')

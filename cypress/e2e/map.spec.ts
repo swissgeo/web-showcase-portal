@@ -20,6 +20,8 @@ describe('Test the map on desktop', () => {
         cy.get('[data-cy="zoom-in"]').should('exist')
         cy.get('[data-cy="zoom-in"]').click()
         cy.get('[data-cy="zoom-in"]').click()
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(500)
         getIframeDocument()
             .its('location.href')
             .should('match', /(?:\?|&)z=3/)

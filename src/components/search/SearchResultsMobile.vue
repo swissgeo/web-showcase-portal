@@ -36,21 +36,24 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
 <template>
     <Accordion
         v-if="isSearching"
-        class="flex h-full flex-col overflow-hidden"
+        class="flex flex-col overflow-hidden"
         @update:value="onUpdateAccordion"
     >
         <AccordionPanel
-            v-if="geocatSearchResultCount"
+            v-if="geocatSearchResultCount || showGeocatSpinner"
             value="data"
             class="overflow-hidden"
             data-cy="comp-data-accordion"
             :class="{ 'h-full': openAccordionPanel === 'data' }"
         >
             <AccordionHeader class="!relative">
-                <SearchSpinner v-if="showGeocatSpinner" />
+                <SearchSpinner
+                    v-if="showGeocatSpinner"
+                    :size="'40px'"
+                />
                 <div class="flex items-center justify-start gap-2">
                     {{ t('searchResult.dataTitle') }}
-                    <Badge :value="geocatSearchResultCount"></Badge>
+                    <Badge :value="showGeocatSpinner ? 0 : geocatSearchResultCount"></Badge>
                 </div>
             </AccordionHeader>
             <AccordionContent
@@ -62,17 +65,20 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
         </AccordionPanel>
 
         <AccordionPanel
-            v-if="addressSearchResultCount"
+            v-if="addressSearchResultCount || showAddressSpinner"
             data-cy="comp-address-accordion"
             class="overflow-hidden"
             value="address"
             :class="{ 'h-fit': openAccordionPanel === 'address' }"
         >
             <AccordionHeader class="!relative">
-                <SearchSpinner v-if="showAddressSpinner" />
+                <SearchSpinner
+                    v-if="showAddressSpinner"
+                    :size="'40px'"
+                />
                 <div class="flex items-center justify-start gap-2">
                     {{ t('searchResult.addressTitle') }}
-                    <Badge :value="addressSearchResultCount"></Badge>
+                    <Badge :value="showAddressSpinner ? 0 : addressSearchResultCount"></Badge>
                 </div>
             </AccordionHeader>
             <AccordionContent class="overflow-y-scroll"> <AddressResultList /> </AccordionContent

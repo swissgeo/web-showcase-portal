@@ -19,9 +19,9 @@ const {
 </script>
 
 <template>
-    <div class="flex w-full">
+    <div class="flex overflow-hidden bg-white md:overflow-visible">
         <div class="flex min-w-0 flex-1">
-            <div class="relative flex h-full min-h-full w-full flex-col">
+            <div class="relative flex w-full flex-col">
                 <div
                     v-if="isSearching"
                     class="flex items-center gap-2 font-bold"

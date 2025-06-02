@@ -2,7 +2,7 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
@@ -25,7 +25,7 @@ const isSearching = computed(() => !!searchStore.searchTerm)
 const language = computed(() => mainStore.language)
 
 const triggerSearch = debounce((value: string) => {
-    geocatSearch.searchGeocat(value)
+    geocatSearch.searchGeocat(value, selectedGroupId.value ?? undefined)
     addressSearch.searchAddress(value, '2056', language.value, 20)
 }, SEARCH_DEBOUNCE_DELAY)
 
@@ -65,6 +65,14 @@ const clearSearch = () => {
         crossHairPosition: undefined,
     })
 }
+
+const selectedGroupId = ref<number | null>(null)
+
+watch(selectedGroupId, () => {
+    if (searchTerm.value) {
+        triggerSearch(searchTerm.value)
+    }
+})
 </script>
 
 <template>

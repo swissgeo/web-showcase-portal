@@ -1,22 +1,23 @@
 <script lang="ts" setup>
 import { onClickOutside } from '@vueuse/core'
+import Card from 'primevue/card'
 import { computed, useTemplateRef } from 'vue'
 
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
-import SearchResults from '@/components/search/SearchResults.vue'
+import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
+import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 
-const searchInput = useTemplateRef<HTMLElement>('searchInput')
+const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
 const searchStore = useSearchStore()
 const mainStore = useMainStore()
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
+const searchTerm = computed(() => searchStore.searchTerm)
 
-const isSearching = computed(() => {
-    return !!searchStore.searchTerm && isOpenSearch.value
-})
+const isSearching = computed(() => !!searchTerm.value && isOpenSearch.value)
 
 const openSearch = () => {
     searchStore.setIsOpenSearch(true)
@@ -31,7 +32,7 @@ const handleClickOutsideSearch = () => {
         searchStore.setIsOpenSearch(false)
     }
 }
-onClickOutside(searchInput, handleClickOutsideSearch)
+onClickOutside(searchContainer, handleClickOutsideSearch)
 </script>
 
 <template>
@@ -47,16 +48,21 @@ onClickOutside(searchInput, handleClickOutsideSearch)
     >
         <div class="flex w-full flex-row items-center justify-between px-6">
             <div><!-- empty element to push the others to the middle and right --></div>
-            <SearchInput
-                ref="searchInput"
-                class="relative z-10 min-w-[680px]"
-                @focus="openSearch"
-            >
-                <SearchResults
+            <div ref="searchContainer">
+                <Card class="relative z-10 mt-4 w-[680px]">
+                    <template #content>
+                        <SearchInput
+                            class="relative z-10"
+                            @focus="openSearch"
+                        />
+                        <SearchKeywordContainer />
+                    </template>
+                </Card>
+                <SearchResultsDesktop
                     v-if="isSearching"
-                    class="my-2 h-[620px] min-h-1/3 w-[680px] border border-t-0 border-neutral-300 pt-4 shadow"
-                ></SearchResults>
-            </SearchInput>
+                    class="my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 px-4 pt-4 pb-4 shadow"
+                ></SearchResultsDesktop>
+            </div>
             <div class="mt-4 self-start">
                 <LegendButton />
             </div>

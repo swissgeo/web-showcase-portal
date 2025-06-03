@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ChevronLeft } from 'lucide-vue-next'
 import Button from 'primevue/button'
+import Card from 'primevue/card'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -9,7 +10,8 @@ import LayerCartButton from '@/components/LayerCartButton.vue'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
-import SearchResults from '@/components/search/SearchResults.vue'
+import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
+import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
@@ -39,8 +41,8 @@ const clearSearch = () => {
 <template>
     <div
         v-show="!mainStore.infoLayerId"
-        class="fixed right-0 bottom-0 left-0 flex flex-col md:static md:p-8"
-        :class="{ 'top-0 justify-stretch bg-white': isSearching, 'justify-end': !isSearching }"
+        class="fixed right-0 bottom-0 left-0 flex flex-col place-content-between md:static md:p-8"
+        :class="{ 'top-0 bg-white': isSearching, 'justify-end': !isSearching }"
     >
         <LogoPic
             v-if="!isSearching"
@@ -77,10 +79,22 @@ const clearSearch = () => {
                 class="fixed inset-0 z-50"
             ></LayerCart>
         </div>
-        <SearchResults
+        <SearchResultsMobile
             v-if="isSearching"
-            class="max-h-full grow-1 px-2 pt-4"
-        ></SearchResults>
-        <SearchInput @focus="openSearch"></SearchInput>
+            class="min-h-0 flex-1 grow-1 overflow-hidden bg-white px-2 pt-4 md:overflow-visible"
+        >
+        </SearchResultsMobile>
+        <Card
+            class="border border-neutral-300"
+            :pt="{
+                root: 'rounded-b-none',
+                body: 'p-4',
+            }"
+        >
+            <template #content>
+                <SearchInput @focus="openSearch" />
+                <SearchKeywordContainer />
+            </template>
+        </Card>
     </div>
 </template>

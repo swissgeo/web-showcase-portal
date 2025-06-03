@@ -58,7 +58,7 @@ const onBlur = () => {
 }
 
 const clearSearch = () => {
-    searchStore.$reset()
+    searchStore.resetSearch()
 }
 </script>
 

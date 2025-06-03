@@ -4,6 +4,8 @@ import { defineStore } from 'pinia'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import { SEARCH_RESULTS_DESKTOP_COLUMN_DEFAULT_WIDTH } from '@/search'
+
 export interface SearchStoreState {
     // if the address search is currently making a request
     isSearchingAddresses: boolean
@@ -13,6 +15,7 @@ export interface SearchStoreState {
     searchLocationResults: GeocodingResult[]
     searchResultTotal: number
     geocatPage: number
+    dataSearchPanelWidth: number
     isOpenSearch: boolean
     readonly geocatPageSize: 20
 }
@@ -28,6 +31,7 @@ export const useSearchStore = defineStore('search', {
             searchLocationResults: [] as GeocodingResult[],
             searchResultTotal: 0,
             geocatPage: 0,
+            dataSearchPanelWidth: SEARCH_RESULTS_DESKTOP_COLUMN_DEFAULT_WIDTH,
             geocatPageSize: 20,
         }
     },
@@ -40,6 +44,9 @@ export const useSearchStore = defineStore('search', {
         },
         setSearchResultTotal(total: number) {
             this.searchResultTotal = total
+        },
+        setDataSearchPanelWidth(newWidth: number) {
+            this.dataSearchPanelWidth = newWidth
         },
         setSearchTerm(term: string | null) {
             this.searchTerm = term

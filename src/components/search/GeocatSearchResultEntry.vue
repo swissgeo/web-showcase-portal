@@ -25,16 +25,20 @@ const tooltipContent = computed(() => {
 
 <template>
     <SearchResultEntry class="flex justify-end gap-2">
-        <MapIcon class="h-4 w-4 shrink-0" />
+        <MapIcon class="h-4 w-4 overflow-hidden" />
         <div
             class="mr-auto flex-1 truncate"
             :title="tooltipContent"
         >
             {{ result.title }}
         </div>
-        <ShowLayerDetailButton :layer-id="result.uniqueIdentifier" />
+        <ShowLayerDetailButton
+            class="h-4 w-4 shrink-0"
+            :layer-id="result.uniqueIdentifier"
+        />
         <AddToMapButton
             v-if="isAddableToMap(result)"
+            class="shrink-0"
             :result="result"
         />
         <div

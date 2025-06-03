@@ -140,18 +140,18 @@ const logoUrl = computed((): string | null => {
                                 <a
                                     :href="`mailto:${contact.email}`"
                                     class="flex items-center gap-2"
-                                    ><MailIcon class="h-4" />{{ contact.email }}</a
+                                    ><MailIcon class="h-4 flex-shrink-0" />{{ contact.email }}</a
                                 >
                             </div>
                             <div v-if="contact.phone">
                                 <a
                                     :href="`tel:${contact.phone}`"
                                     class="flex items-center gap-2"
-                                    ><PhoneIcon class="h-4" />{{ contact.phone }}</a
+                                    ><PhoneIcon class="h-4 flex-shrink-0" />{{ contact.phone }}</a
                                 >
                             </div>
                             <div class="flex items-center gap-2">
-                                <MapPin class="h-4" />{{ contact.address }}
+                                <MapPin class="h-4 flex-shrink-0" />{{ contact.address }}
                             </div>
                         </div>
                     </address>

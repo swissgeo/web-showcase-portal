@@ -7,17 +7,37 @@ export interface GroupLabel {
     [key: string]: string | undefined;
 }
 
+export interface Category {
+    id: number;
+    name: string;
+}
+
 export interface Group {
     id: number;
     website: string;
     label: GroupLabel;
-    allowedCategories: string[];
+    defaultCategory: Category | null;
 }
 
 import geocatGroups from '@/assets/geocatGroups.json'
 
+interface RawGroup {
+    id: number;
+    website: string;
+    label: GroupLabel;
+    defaultCategory: Category[] | string | null;
+}
+
 export async function fetchGeocatGroups(): Promise<Group[]> {
-    return geocatGroups as Group[];
+    return (geocatGroups as RawGroup[]).map((group) => ({
+        id: group.id,
+        website: group.website,
+        label: group.label,
+        defaultCategory:
+            group.defaultCategory && typeof group.defaultCategory === 'object' && !Array.isArray(group.defaultCategory)
+                ? group.defaultCategory as Category
+                : null,
+    }));
 }
 
 // // CORS issue, so we use a local JSON file instead
@@ -52,9 +72,9 @@ export async function fetchGeocatGroups(): Promise<Group[]> {
 //     }));
 // }
 
-export function getGroupLabel(
-    label: GroupLabel,
-    lang: string = 'eng'
-): string {
-    return label[lang] || Object.values(label)[0] || '';
-}
+// export function getGroupLabel(
+//     label: GroupLabel,
+//     lang: string = 'eng'
+// ): string {
+//     return label[lang] || Object.values(label)[0] || '';
+// }

@@ -71,6 +71,9 @@ export const useSearchStore = defineStore('search', {
             this.isSearchingGeocat = false
             this.geocatPage = 0
             this.searchResultTotal = 0
-        }
+        },
+        setGeocatSearchResults(results: GeonetworkRecord[]) {
+            this.geocatSearchResults = results
+        },
     },
 })

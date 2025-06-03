@@ -36,7 +36,7 @@ export default function useGeocat() {
         // the promise is already underway to being resolved
 
         if (searchStore.searchTerm) {
-            searchStore.appendGeocatSearchResults(records)
+        searchStore.setGeocatSearchResults(records)
             searchStore.setSearchResultTotal(count)
         }
         searchStore.setIsSearchingGeocat(false)
@@ -50,7 +50,7 @@ export default function useGeocat() {
         }
     }
 
-    const searchGeocat = (value: string, groupOwnerId?: number) => {
+    const searchGeocat = (value: string, groupIds?: number[] | null) => {
         cancelSearch()
         searchStore.setIsSearchingGeocat(true)
 
@@ -58,9 +58,11 @@ export default function useGeocat() {
             any: value,
             linkProtocol: '/OGC:WMT?S.*/',
         }
-        if (groupOwnerId !== null && groupOwnerId !== undefined) {
-            filters.groupOwner = String(groupOwnerId)
+        if (groupIds && groupIds.length) {
+            filters.groupOwner = '(' + groupIds.map(id => `groupOwner:"${id}"`).join(' OR ') + ')'
         }
+
+        // logs...
 
         subscription = GNUI.recordsRepository
             .search({

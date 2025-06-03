@@ -42,7 +42,17 @@
         "legalConstraints": "Cundiziuns legalas",
         "license": "Licenza"
     },
-    "selectGroup": "Organisaziuns",
+    "organisation": {
+        "filter": "Filtrar per",
+        "selectGroup": "Organisaziuns",
+        "category": {
+            "federal": "Federala",
+            "cantonal": "Cantonala",
+            "communal": "Communala",
+            "other": "Autra"
+        },
+        "selectCategory": "Tscherni ina categoria"
+    },
     "keywords": {
         "title": "Tschertgas popularas",
         "categories": {

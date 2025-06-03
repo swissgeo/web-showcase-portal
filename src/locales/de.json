@@ -42,7 +42,17 @@
         "legalConstraints": "Rechtliche Hinweise",
         "license": "Lizenz"
     },
-    "selectGroup": "Organisationen",
+    "organisation": {
+        "filter": "Filter nach",
+        "selectGroup": "Organisationen",
+        "category": {
+            "federal": "Bundesebene",
+            "cantonal": "Kantonsebene",
+            "communal": "Gemeindeebene",
+            "other": "Andere"
+        },
+        "selectCategory": "Kategorie auswählen"
+    },
     "keywords": {
         "title": "Beliebte Suchen",
         "categories": {

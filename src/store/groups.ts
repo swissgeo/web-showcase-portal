@@ -26,4 +26,17 @@ export const useGroupsStore = defineStore('groups', {
             }
         },
     },
+    getters: {
+        groupIdsByCategory: (state) => {
+            const result: Record<string, number[]> = {}
+            for (const group of state.groups) {
+                const cat = group.defaultCategory?.name
+                if (cat) {
+                    if (!result[cat]) result[cat] = []
+                    result[cat].push(group.id)
+                }
+            }
+            return result
+        },
+    },
 })

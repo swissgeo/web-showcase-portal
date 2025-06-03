@@ -42,7 +42,17 @@
         "legalConstraints": "Legal information",
         "license": "License"
     },
-    "selectGroup": "Organisations",
+    "organisation": {
+        "filter": "Filter by",
+        "selectGroup": "Organisations",
+        "category": {
+            "federal": "Federal",
+            "cantonal": "Cantonal",
+            "communal": "Communal",
+            "other": "Other"
+        },
+        "selectCategory": "Select a category"
+    },
     "keywords": {
         "title": "Popular Searches",
         "categories": {

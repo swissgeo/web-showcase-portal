@@ -25,7 +25,7 @@ const isSearching = computed(() => !!searchStore.searchTerm)
 const language = computed(() => mainStore.language)
 
 const triggerSearch = debounce((value: string) => {
-    geocatSearch.searchGeocat(value, selectedGroupId.value ?? undefined)
+    geocatSearch.searchGeocat(value)
     addressSearch.searchAddress(value, '2056', language.value, 20)
 }, SEARCH_DEBOUNCE_DELAY)
 

@@ -51,7 +51,10 @@
             "communal": "Communala",
             "other": "Autra"
         },
-        "selectCategory": "Tscherni ina categoria"
+        "selectCategory": "Tscherni tut",
+        "selectFederal": "Offizi federals",
+        "selectCanton": "Canton",
+        "selectCommune": "Communas"
     },
     "keywords": {
         "title": "Tschertgas popularas",

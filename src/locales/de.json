@@ -51,7 +51,10 @@
             "communal": "Gemeindeebene",
             "other": "Andere"
         },
-        "selectCategory": "Kategorie auswählen"
+        "selectCategory": "Alles",
+        "selectFederal": "Bundesämter",
+        "selectCanton": "Kantonen",
+        "selectCommune": "Gemeinden"
     },
     "keywords": {
         "title": "Beliebte Suchen",

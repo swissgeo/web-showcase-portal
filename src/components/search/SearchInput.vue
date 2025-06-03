@@ -2,10 +2,11 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
+import { computed, ref, watch } from 'vue'
+
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
@@ -36,17 +37,14 @@ const searchTerm = computed({
     set(value: string | null) {
         searchStore.resetSearch()
         if (value === '') {
-            // if we don't do this, and the user deletes the chars in the input, then the input
-            // will be '' and the search is triggered with an empty string
             value = null
             geocatSearch.cancelSearch()
             return
         }
-
         searchStore.setSearchTerm(value)
-
         if (value) {
-            triggerSearch(value)
+            geocatSearch.searchGeocat(value)
+            addressSearch.searchAddress(value, '2056', language.value, 20)
         }
     },
 })

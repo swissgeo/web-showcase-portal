@@ -51,7 +51,10 @@
             "communal": "Comune",
             "other": "Altro"
         },
-        "selectCategory": "Seleziona una categoria"
+        "selectCategory": "Tutti",
+        "selectFederal": "Office federali",
+        "selectCanton": "Cantoni",
+        "selectCommune": "Comuni"
     },
     "keywords": {
         "title": "Ricerche popolari",

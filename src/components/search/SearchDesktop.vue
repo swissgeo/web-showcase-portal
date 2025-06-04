@@ -43,29 +43,26 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
         @click="handleClickOutsideSearch"
     ></div>
     <div
-        class="fixed top-0 right-0 left-0"
+        class="fixed top-0 left-0 right-0 pointer-events-none"
         data-cy="div-search-desktop"
     >
-        <div class="flex w-full flex-row items-center justify-between px-6">
-            <div><!-- empty element to push the others to the middle and right --></div>
-            <div ref="searchContainer">
-                <Card class="relative z-10 mt-4 w-[680px]">
-                    <template #content>
-                        <SearchInput
-                            class="relative z-10"
-                            @focus="openSearch"
-                        />
-                        <SearchKeywordContainer />
-                    </template>
-                </Card>
-                <SearchResultsDesktop
-                    v-if="isSearching"
-                    class="my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 px-4 pt-4 pb-4 shadow"
-                ></SearchResultsDesktop>
-            </div>
-            <div class="mt-4 self-start">
-                <LegendButton />
-            </div>
+        <div ref="searchContainer" class="absolute left-1/2 top-4 z-10 w-[680px] -translate-x-1/2 pointer-events-auto">
+            <Card class="w-full">
+                <template #content>
+                    <SearchInput
+                        class="relative z-10"
+                        @focus="openSearch"
+                    />
+                    <SearchKeywordContainer />
+                </template>
+            </Card>
+            <SearchResultsDesktop
+                v-if="isSearching"
+                class="my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 px-4 pt-4 pb-4 shadow"
+            ></SearchResultsDesktop>
+        </div>
+        <div class="absolute right-6 top-4 pointer-events-auto">
+            <LegendButton />
         </div>
     </div>
 </template>

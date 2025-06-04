@@ -44,9 +44,8 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
     ></div>
     <div
         class="fixed top-0 left-0 right-0 pointer-events-none"
-        data-cy="div-search-desktop"
     >
-        <div ref="searchContainer" class="absolute left-1/2 top-4 z-10 w-[680px] -translate-x-1/2 pointer-events-auto">
+        <div ref="searchContainer" class="absolute left-1/2 top-4 z-10 w-[680px] -translate-x-1/2 pointer-events-auto" data-cy="div-search-desktop">
             <Card class="w-full">
                 <template #content>
                     <SearchInput

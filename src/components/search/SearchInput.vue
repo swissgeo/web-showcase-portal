@@ -2,10 +2,10 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
-import { computed, ref, watch } from 'vue'
 
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'

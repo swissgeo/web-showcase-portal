@@ -6,7 +6,6 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
-
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
@@ -16,6 +15,9 @@ import { debounce } from '@/utils/debounce'
 
 const emits = defineEmits(['focus', 'blur'])
 
+const searchArea = ref<HTMLElement | null>(null)
+defineExpose({ searchArea })
+
 const { t } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
@@ -24,7 +26,6 @@ const mapStore = useMapStore()
 const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
 const language = computed(() => mainStore.language)
-
 const triggerSearch = debounce((value: string) => {
     geocatSearch.searchGeocat(value)
     addressSearch.searchAddress(value, '2056', language.value, 20)
@@ -37,14 +38,15 @@ const searchTerm = computed({
     set(value: string | null) {
         searchStore.resetSearch()
         if (value === '') {
+            // if we don't do this, and the user deletes the chars in the input, then the input
+            // will be '' and the search is triggered with an empty string
             value = null
             geocatSearch.cancelSearch()
             return
         }
         searchStore.setSearchTerm(value)
         if (value) {
-            geocatSearch.searchGeocat(value)
-            addressSearch.searchAddress(value, '2056', language.value, 20)
+            triggerSearch(value)
         }
     },
 })
@@ -64,15 +66,21 @@ const clearSearch = () => {
     })
 }
 
-const selectedGroupId = ref<number | null>(null)
+const selectedFederal = ref<number[]>([])
+const selectedCantonal = ref<number[]>([])
+const selectedCommunal = ref<number[]>([])
 
-watch(selectedGroupId, () => {
+const selectedGroupIds = computed(() => [
+    ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),
+    ...(Array.isArray(selectedCantonal.value) ? selectedCantonal.value : []),
+    ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
+])
+watch(selectedGroupIds, (ids) => {
     if (searchTerm.value) {
-        triggerSearch(searchTerm.value)
+        geocatSearch.searchGeocat(searchTerm.value, ids.length ? ids : undefined)
     }
 })
 </script>
-
 <template>
     <div>
         <IconField>
@@ -92,5 +100,9 @@ watch(selectedGroupId, () => {
                 @click="clearSearch"
             />
         </IconField>
+        <SearchFilter
+            @focus="onFocus"
+            @blur="onBlur"
+        />
     </div>
 </template>

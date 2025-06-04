@@ -31,37 +31,36 @@ function langToLabelKey(lang: string): string {
 
 const labelKey = computed(() => langToLabelKey(localeString.value))
 
-const cantonGroups = computed(() =>
-  groupsStore.groups
-    .filter(g => g.defaultCategory?.name === 'cantonal')
-    .map(g => ({
-      label: g.label[labelKey.value] || g.label.eng || g.name,
-      value: g.id,
-    }))
-    .sort((a, b) => lastWord(a.label).localeCompare(lastWord(b.label)))
-)
-
 const federalGroups = computed(() =>
   groupsStore.groups
     .filter(g => g.defaultCategory?.name === 'federal')
     .map(g => ({
-      label: g.label[labelKey.value] || g.label.eng || g.name,
+      label: `${lastWord(g.label[labelKey.value]  || g.label.eng || g.name)}`,
       value: g.id,
     }))
-    .sort((a, b) => lastWord(a.label).localeCompare(lastWord(b.label)))
+    .sort((a, b) => a.label.localeCompare(b.label))
+)
+
+const cantonGroups = computed(() =>
+  groupsStore.groups
+    .filter(g => g.defaultCategory?.name === 'cantonal')
+    .map(g => ({
+      label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
+      value: g.id,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label))
 )
 
 const communalGroups = computed(() =>
   groupsStore.groups
     .filter(g => g.defaultCategory?.name === 'communal')
     .map(g => ({
-      label: g.label[labelKey.value] || g.label.eng || g.name,
+      label: `${lastWord(g.label[labelKey.value]  || g.label.eng || g.name)}`,
       value: g.id,
     }))
-    .sort((a, b) => lastWord(a.label).localeCompare(lastWord(b.label)))
+    .sort((a, b) => a.label.localeCompare(b.label))
 )
 
-// Sélections
 const selectedFederal = ref<number[]>([])
 const selectedCantonal = ref<number[]>([])
 const selectedCommunal = ref<number[]>([])
@@ -84,7 +83,6 @@ function lastWord(label: string): string {
   return words[words.length - 1]
 }
 
-// Exposer les données nécessaires
 defineExpose({
   selectedFederal,
   selectedCantonal,
@@ -100,11 +98,9 @@ onMounted(() => {
   groupsStore.loadGroups()
 })
 </script>
-
 <template>
   <div class="mt-2 w-full flex items-center">
     <MultiSelect
-      :key="federalGroups.length"
       v-model="selectedFederal"
       :max-selected-labels="0"
       :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
@@ -124,7 +120,6 @@ onMounted(() => {
     >
     </MultiSelect>
     <MultiSelect
-      :key="cantonGroups.length"
       v-model="selectedCantonal"
       :max-selected-labels="0"
       :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
@@ -142,15 +137,9 @@ onMounted(() => {
       @focus="emit('focus')"
       @blur="emit('blur')"
     >
-      <template #option="{ option }">
-        <span :class="selectedCantonal.includes(option.value) ? 'font-bold' : ''">
-          {{ lastWord(option.label) }}
-        </span>
-      </template>
     </MultiSelect>
     <MultiSelect
-      :key="communalGroups.length"
-       v-model="selectedCommunal"
+      v-model="selectedCommunal"
       :max-selected-labels="0"
       :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
       :checkbox-icon="'pi pi-check'"
@@ -167,11 +156,6 @@ onMounted(() => {
       @focus="emit('focus')"
       @blur="emit('blur')"
     >
-      <template #option="{ option }">
-        <span :class="selectedCommunal.includes(option.value) ? 'font-bold' : ''">
-          {{ lastWord(option.label) }}
-        </span>
-      </template>
     </MultiSelect>
   </div>
   <div class="flex flex-wrap gap-2 mb-2">

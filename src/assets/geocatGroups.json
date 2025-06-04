@@ -71,20 +71,8 @@
         "eng": "federal"
       }
     },
-    "allowedCategories": [
-      {
-        "id": 42521578,
-        "name": "federal",
-        "label": {
-          "ger": "federal",
-          "ita": "federal",
-          "fre": "federal",
-          "roh": "federal",
-          "eng": "federal"
-        }
-      }
-    ],
-    "enableAllowedCategories": true,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
     "id": 6,
     "email": "geocat@swisstopo.ch",
     "referrer": null,
@@ -101,17 +89,7 @@
   {
     "logo": "663e1a62-b61e-4fee-9854-ce7490af06ec.png",
     "website": "http://www.ne.ch/sitn",
-    "defaultCategory": {
-      "id": 42521579,
-      "name": "cantonal",
-      "label": {
-        "ger": "cantonal",
-        "ita": "cantonal",
-        "fre": "cantonal",
-        "roh": "cantonal",
-        "eng": "cantonal"
-      }
-    },
+    "defaultCategory": null,
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 7,
@@ -120,11 +98,11 @@
     "description": "Systeme d Information du Territoire Neuchatelois\r\nFrancois Voisard\r\n+ 41 32 889 47 69",
     "name": "Neuchatel",
     "label": {
-      "ger": "Kanton Neuenburg (SITN)",
-      "ita": "Cantone di Neuchâtel (SITN)",
-      "fre": "Canton de Neuchâtel (SITN)",
-      "roh": "Canton de Neuchâtel (SITN)",
-      "eng": "Canton of Neuchâtel (SITN)"
+      "ger": "SITN Kanton Neuenburg",
+      "ita": "SITN Cantone di Neuchâtel",
+      "fre": "SITN Canton de Neuchâtel",
+      "roh": "SITN Canton de Neuchâtel",
+      "eng": "SITN Canton of Neuchâtel"
     }
   },
   {
@@ -159,7 +137,17 @@
   {
     "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
     "website": "https://www.agroscope.admin.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 10,
@@ -245,7 +233,17 @@
   {
     "logo": "59c8de21-5b28-4cbf-85a3-f2dc569e5497.png",
     "website": "http://www.raumdatenpool.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 18,
@@ -322,7 +320,17 @@
   {
     "logo": "geoProSuisse.png",
     "website": "https://geoprosuisse.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 21,
@@ -901,11 +909,21 @@
   {
     "logo": "ca8ce937-6c36-4cee-8b83-501f642f493a.png",
     "website": "http://www.wsl.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 57,
-    "email": "martin.haegeli@wsl.ch",
+    "email": "christian.ginzler@wsl.ch",
     "referrer": null,
     "description": "",
     "name": "WSL",
@@ -920,7 +938,17 @@
   {
     "logo": "37fb15ea-583e-4797-8195-06800fe55433.png",
     "website": "http://www.grande-caricaie.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 61,
@@ -939,7 +967,17 @@
   {
     "logo": "834f5472-3bb5-4a88-821a-a8fc16dcf76f.png",
     "website": "http://www.naturmuseum.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 62,
@@ -977,11 +1015,11 @@
     "description": "Kanton Graubünden",
     "name": "Graubünden",
     "label": {
-      "ger": "Kanton Graubünden (ANU)",
-      "ita": "Cantone dei Grigioni (ANU)",
-      "fre": "Canton des Grisons (ANU)",
-      "roh": "Chantun Grischun (ANU)",
-      "eng": "Canton of Graubünden (ANU)"
+      "ger": "ANU Kanton Graubünden",
+      "ita": "ANU Cantone dei Grigioni",
+      "fre": "ANU Canton des Grisons",
+      "roh": "ANU Chantun Grischun",
+      "eng": "ANU Canton of Graubünden"
     }
   },
   {
@@ -1074,7 +1112,17 @@
   {
     "logo": "Logo_GRUT-distributeur d'energie romands.png",
     "website": "",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 73,
@@ -1093,7 +1141,17 @@
   {
     "logo": "5fc63ea8-cfbc-4326-abbe-ae0c8e0477a3.png",
     "website": "",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 74,
@@ -1112,7 +1170,17 @@
   {
     "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
     "website": "",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 6436437,
@@ -1218,7 +1286,17 @@
   {
     "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
     "website": "",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 26805108,
@@ -1324,7 +1402,17 @@
   {
     "logo": "gemeinde_koeniz_weiss.png",
     "website": "https://koeniz.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 34838580,
@@ -1372,7 +1460,17 @@
   {
     "logo": "Geoinfo_logo.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 34923929,
@@ -1449,7 +1547,17 @@
   {
     "logo": "uster_logo_farbig_klein.jpg",
     "website": "www.uster.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 35747878,
@@ -1555,7 +1663,17 @@
   {
     "logo": "Gemeinde_Horgen_klein.jpg",
     "website": "www.horgen.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 38021751,
@@ -1574,7 +1692,17 @@
   {
     "logo": "bbp_geomatik_logo_weiss.png",
     "website": "www.geozen.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 39285840,
@@ -1593,7 +1721,17 @@
   {
     "logo": "viageo_logo_couleur.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 40514879,
@@ -1612,7 +1750,17 @@
   {
     "logo": "Logo_Gemeinde_EMMEN_jpg.jpg",
     "website": "www.emmen.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 41625764,
@@ -1631,7 +1779,17 @@
   {
     "logo": "Meteodat.png",
     "website": "https://www.meteodat.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 42675150,
@@ -1650,7 +1808,17 @@
   {
     "logo": "ebs_klein.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 42934520,
@@ -1669,7 +1837,17 @@
   {
     "logo": "Stadt-Biel-Hauptlogo-borderless-Rot-RGB.jpg",
     "website": "www.biel-bienne.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 43006540,
@@ -1736,7 +1914,17 @@
   {
     "logo": "Genève-SITG-New.gif",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000003,
@@ -1805,9 +1993,9 @@
     "label": {
       "ger": "Kanton Zürich",
       "ita": "Canton Zurigo",
-      "fre": "Canton Zürich",
+      "fre": "Canton de Zurich",
       "roh": "Chantun Turitg",
-      "eng": "Canton Zurich"
+      "eng": "Canton of Zurich"
     }
   },
   {
@@ -1929,7 +2117,17 @@
   {
     "logo": "ibw_technik_mit_quadrat_claim_rot_rgb_adresse.jpg",
     "website": "www.ibw.ag",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000011,
@@ -1977,7 +2175,17 @@
   {
     "logo": "BFH.png",
     "website": "https://www.bfh.ch/de/forschung/forschungsbereiche/public-sector-transformation",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000014,
@@ -2036,15 +2244,25 @@
     "label": {
       "ger": "Kanton Graubünden",
       "ita": "Cantone dei Grigioni",
-      "fre": "Kanton Graubünden",
+      "fre": "Canton des Grisons",
       "roh": "Cantun Grischun",
-      "eng": "Kanton Graubünden"
+      "eng": "Canton of Graubünden"
     }
   },
   {
     "logo": "GeoDataSolutions.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000017,
@@ -2063,7 +2281,17 @@
   {
     "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000018,
@@ -2101,7 +2329,17 @@
   {
     "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
     "website": "https://www.eawag.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000020,
@@ -2120,7 +2358,17 @@
   {
     "logo": "66275bd527140806480199.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000021,
@@ -2139,7 +2387,17 @@
   {
     "logo": "1028.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000022,
@@ -2158,7 +2416,17 @@
   {
     "logo": "1541.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000023,
@@ -2254,7 +2522,17 @@
   {
     "logo": "67232feac64b0516328554.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000027,
@@ -2273,7 +2551,17 @@
   {
     "logo": "1054.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000028,
@@ -2292,7 +2580,17 @@
   {
     "logo": "1056.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000029,
@@ -2311,7 +2609,17 @@
   {
     "logo": "1057.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000030,
@@ -2330,7 +2638,17 @@
   {
     "logo": "1058.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000031,
@@ -2349,7 +2667,17 @@
   {
     "logo": "66aa39dca10e3673511453.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000032,
@@ -2368,7 +2696,17 @@
   {
     "logo": "6231b8c7db356720820358.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000033,
@@ -2387,7 +2725,17 @@
   {
     "logo": "62f4daa036143588983663.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000034,
@@ -2406,7 +2754,17 @@
   {
     "logo": "550.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000035,
@@ -2425,7 +2783,17 @@
   {
     "logo": "1062.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000036,
@@ -2444,7 +2812,17 @@
   {
     "logo": "65562684a4f10009497860.png",
     "website": "https://lully.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000037,
@@ -2463,7 +2841,17 @@
   {
     "logo": "61d4487242193714125455.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000038,
@@ -2482,7 +2870,17 @@
   {
     "logo": "3116.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000039,
@@ -2501,7 +2899,17 @@
   {
     "logo": "633c46a04ffd9540766924.png",
     "website": "https://www.monthey.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000040,
@@ -2549,7 +2957,17 @@
   {
     "logo": "832.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000042,
@@ -2568,7 +2986,17 @@
   {
     "logo": "6283b941c1e5e075617278.png",
     "website": "https://www.tvtservices.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000043,
@@ -2587,7 +3015,17 @@
   {
     "logo": "673c4e1fa263c923817528.png",
     "website": "http://www.bex.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000044,
@@ -2606,7 +3044,17 @@
   {
     "logo": "2123.png",
     "website": "https://www.payerne.ch/guichet-cartographique/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000045,
@@ -2625,7 +3073,17 @@
   {
     "logo": "2124.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000046,
@@ -2644,7 +3102,17 @@
   {
     "logo": "10576.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000047,
@@ -2692,7 +3160,17 @@
   {
     "logo": "3416.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000049,
@@ -2711,7 +3189,17 @@
   {
     "logo": "861.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000050,
@@ -2730,7 +3218,17 @@
   {
     "logo": "65c5d939b845b932935371.png",
     "website": "https://www.thermoreso-gland.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000051,
@@ -2749,7 +3247,17 @@
   {
     "logo": "872.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000052,
@@ -2768,7 +3276,17 @@
   {
     "logo": "63495541849c1220126633.png",
     "website": "https://cjl.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000053,
@@ -2845,7 +3363,17 @@
   {
     "logo": "1909.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000056,
@@ -2893,7 +3421,17 @@
   {
     "logo": "1912.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000058,
@@ -2912,7 +3450,17 @@
   {
     "logo": "1913.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000059,
@@ -2931,7 +3479,17 @@
   {
     "logo": "891.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000060,
@@ -2950,7 +3508,17 @@
   {
     "logo": "1916.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000061,
@@ -2969,7 +3537,17 @@
   {
     "logo": "6630a6c09aa30231705364.png",
     "website": "https://www.moudon.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000062,
@@ -2988,7 +3566,17 @@
   {
     "logo": "633ef02be493b275269922.png",
     "website": "https://www.genedis.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000063,
@@ -3036,7 +3624,17 @@
   {
     "logo": "2184.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000065,
@@ -3055,7 +3653,17 @@
   {
     "logo": "2443.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000066,
@@ -3074,7 +3682,17 @@
   {
     "logo": "2444.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000067,
@@ -3093,7 +3711,17 @@
   {
     "logo": "909.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000068,
@@ -3112,7 +3740,17 @@
   {
     "logo": "911.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000069,
@@ -3131,7 +3769,17 @@
   {
     "logo": "2447.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000070,
@@ -3150,7 +3798,17 @@
   {
     "logo": "61e6dd1363f06843407980.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000071,
@@ -3169,7 +3827,17 @@
   {
     "logo": "60c8d59ca87bd861468924.jpg",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000072,
@@ -3188,7 +3856,17 @@
   {
     "logo": "64b6ae9a67411320834486.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000073,
@@ -3207,7 +3885,17 @@
   {
     "logo": "64b6ae34ce972067360092.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000074,
@@ -3226,7 +3914,17 @@
   {
     "logo": "917.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000075,
@@ -3245,7 +3943,17 @@
   {
     "logo": "7319.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000076,
@@ -3264,7 +3972,17 @@
   {
     "logo": "3031.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000077,
@@ -3283,7 +4001,17 @@
   {
     "logo": "1945.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000078,
@@ -3302,7 +4030,17 @@
   {
     "logo": "923.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000079,
@@ -3350,7 +4088,17 @@
   {
     "logo": "6316ecce16e0c026694900.jpg",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000081,
@@ -3369,7 +4117,17 @@
   {
     "logo": "1955.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000082,
@@ -3388,7 +4146,17 @@
   {
     "logo": "937.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000083,
@@ -3407,7 +4175,17 @@
   {
     "logo": "174.png",
     "website": "https://www.lasarraz.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000084,
@@ -3426,7 +4204,17 @@
   {
     "logo": "943.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000085,
@@ -3445,7 +4233,17 @@
   {
     "logo": "65a65287afd23721151053.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000086,
@@ -3464,7 +4262,17 @@
   {
     "logo": "1978.png",
     "website": "https://www.sefa.ch/demande-de-raccordement/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000087,
@@ -3483,7 +4291,17 @@
   {
     "logo": "1979.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000088,
@@ -3502,7 +4320,17 @@
   {
     "logo": "956.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000089,
@@ -3521,7 +4349,17 @@
   {
     "logo": "959.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000090,
@@ -3540,7 +4378,17 @@
   {
     "logo": "1985.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000091,
@@ -3559,7 +4407,17 @@
   {
     "logo": "1986.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000092,
@@ -3578,7 +4436,17 @@
   {
     "logo": "611a1a5ec61be791227594.jpg",
     "website": "https://www.groupe-e.ch/fr",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000093,
@@ -3597,7 +4465,17 @@
   {
     "logo": "969.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000094,
@@ -3616,7 +4494,17 @@
   {
     "logo": "970.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000095,
@@ -3635,7 +4523,17 @@
   {
     "logo": "9676.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000096,
@@ -3654,7 +4552,17 @@
   {
     "logo": "1997.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000097,
@@ -3702,7 +4610,17 @@
   {
     "logo": "6556244d8d244947585170.png",
     "website": "https://moiry.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000099,
@@ -3721,7 +4639,17 @@
   {
     "logo": "721.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000100,
@@ -3740,7 +4668,17 @@
   {
     "logo": "63032f4f79c65501369976.png",
     "website": "https://www.romanel-sur-lausanne.ch",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000101,
@@ -3759,7 +4697,17 @@
   {
     "logo": "2003.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000102,
@@ -3778,7 +4726,17 @@
   {
     "logo": "2773.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000103,
@@ -3797,7 +4755,17 @@
   {
     "logo": "1750.png",
     "website": "https://www.pully.ch/fr/accueil/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000104,
@@ -3845,7 +4813,17 @@
   {
     "logo": "1752.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000106,
@@ -3864,7 +4842,17 @@
   {
     "logo": "1753.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000107,
@@ -3883,7 +4871,17 @@
   {
     "logo": "65bbccd93299e483413467.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000108,
@@ -3902,7 +4900,17 @@
   {
     "logo": "1749.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000109,
@@ -3921,7 +4929,17 @@
   {
     "logo": "1756.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000110,
@@ -3940,7 +4958,17 @@
   {
     "logo": "1757.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000111,
@@ -3959,7 +4987,17 @@
   {
     "logo": "6294a1f0955a0814691860.png",
     "website": "https://www.sie.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000112,
@@ -3978,7 +5016,17 @@
   {
     "logo": "641ae3b2803a0083289132.png",
     "website": "https://mont-la-ville.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000113,
@@ -4055,7 +5103,17 @@
   {
     "logo": "637b54fc7c26d137999912.png",
     "website": "https://www.noville.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000116,
@@ -4074,7 +5132,17 @@
   {
     "logo": "617815cd2789a143306513.png",
     "website": "http://sagenord.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000117,
@@ -4093,7 +5161,17 @@
   {
     "logo": "1765.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000118,
@@ -4141,7 +5219,17 @@
   {
     "logo": "1767.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000120,
@@ -4189,7 +5277,17 @@
   {
     "logo": "6540baf7af2d6176207111.jfif",
     "website": "https://seic.ch/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000122,
@@ -4237,7 +5335,17 @@
   {
     "logo": "6384.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000124,
@@ -4256,7 +5364,17 @@
   {
     "logo": "1013.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000125,
@@ -4304,7 +5422,17 @@
   {
     "logo": "64be22b3b04c8843903451.jpg",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000127,
@@ -4323,14 +5451,24 @@
   {
     "logo": "1761.png",
     "website": "https://www.vd.ch/toutes-les-autorites/departements/departement-des-institutions-et-du-territoire-dit/direction-generale-du-territoire-et-du-logement-dgtl/direction-du-cadastre-et-de-la-geoinformation-dcg/",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000128,
     "email": "xavier.merour@asit-asso.ch",
     "referrer": null,
     "description": null,
-    "name": "administration-cantonale-vaudoise",
+    "name": "Canton de Vaud",
     "label": {
       "ger": "Administration cantonale vaudoise",
       "ita": "Administration cantonale vaudoise",
@@ -4366,320 +5504,6 @@
       "fre": "Aubonne",
       "roh": "Aubonne",
       "eng": "Aubonne"
-    }
-  },
-  {
-    "logo": "IMAD.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000130,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "institution-genevoise-de-maintien-a-domicile",
-    "label": {
-      "ger": "Institution genevoise de maintien à domicile",
-      "ita": "Institution genevoise de maintien à domicile",
-      "fre": "Institution genevoise de maintien à domicile",
-      "roh": "Institution genevoise de maintien à domicile",
-      "eng": "Institution genevoise de maintien à domicile"
-    }
-  },
-  {
-    "logo": "DIN.png",
-    "website": "",
-    "defaultCategory": {
-      "id": 42521579,
-      "name": "cantonal",
-      "label": {
-        "ger": "cantonal",
-        "ita": "cantonal",
-        "fre": "cantonal",
-        "roh": "cantonal",
-        "eng": "cantonal"
-      }
-    },
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000131,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "canton-de-geneve",
-    "label": {
-      "ger": "Canton de Genève",
-      "ita": "Canton de Genève",
-      "fre": "Canton de Genève",
-      "roh": "Canton de Genève",
-      "eng": "Canton de Genève"
-    }
-  },
-  {
-    "logo": "GVA.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000132,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "geneve-aeroport",
-    "label": {
-      "ger": "Genève Aéroport",
-      "ita": "Genève Aéroport",
-      "fre": "Genève Aéroport",
-      "roh": "Genève Aéroport",
-      "eng": "Genève Aéroport"
-    }
-  },
-  {
-    "logo": "659ea4843d7d6893001905.png",
-    "website": "https://www.thermoreso-nyon.ch/",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000133,
-    "email": "xavier.merour@asit-asso.ch",
-    "referrer": null,
-    "description": null,
-    "name": "thermoreso-nyon",
-    "label": {
-      "ger": "ThermorésÔ Nyon SA",
-      "ita": "ThermorésÔ Nyon SA",
-      "fre": "ThermorésÔ Nyon SA",
-      "roh": "ThermorésÔ Nyon SA",
-      "eng": "ThermorésÔ Nyon SA"
-    }
-  },
-  {
-    "logo": "6229ccda8922f748464637.png",
-    "website": null,
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000134,
-    "email": "xavier.merour@asit-asso.ch",
-    "referrer": null,
-    "description": null,
-    "name": "prangins",
-    "label": {
-      "ger": "Prangins",
-      "ita": "Prangins",
-      "fre": "Prangins",
-      "roh": "Prangins",
-      "eng": "Prangins"
-    }
-  },
-  {
-    "logo": "68090177d157e124921715.jpg",
-    "website": "https://www.cheseaux.ch/",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000135,
-    "email": "xavier.merour@asit-asso.ch",
-    "referrer": null,
-    "description": null,
-    "name": "cheseaux-sur-lausanne",
-    "label": {
-      "ger": "Cheseaux-sur-Lausanne",
-      "ita": "Cheseaux-sur-Lausanne",
-      "fre": "Cheseaux-sur-Lausanne",
-      "roh": "Cheseaux-sur-Lausanne",
-      "eng": "Cheseaux-sur-Lausanne"
-    }
-  },
-  {
-    "logo": "SIG.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000136,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "services-industriels-de-geneve",
-    "label": {
-      "ger": "Services industriels de Genève",
-      "ita": "Services industriels de Genève",
-      "fre": "Services industriels de Genève",
-      "roh": "Services industriels de Genève",
-      "eng": "Services industriels de Genève"
-    }
-  },
-  {
-    "logo": "67d2ded8dd319308339952.png",
-    "website": "https://www.energie360.ch/fr/",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000137,
-    "email": "xavier.merour@asit-asso.ch",
-    "referrer": null,
-    "description": null,
-    "name": "energie-360",
-    "label": {
-      "ger": "Energie 360° SA",
-      "ita": "Energie 360° SA",
-      "fre": "Energie 360° SA",
-      "roh": "Energie 360° SA",
-      "eng": "Energie 360° SA"
-    }
-  },
-  {
-    "logo": "FTI.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000138,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "fondation-pour-les-terrains-industriels-de-geneve",
-    "label": {
-      "ger": "Fondation pour les terrains industriels de Genève",
-      "ita": "Fondation pour les terrains industriels de Genève",
-      "fre": "Fondation pour les terrains industriels de Genève",
-      "roh": "Fondation pour les terrains industriels de Genève",
-      "eng": "Fondation pour les terrains industriels de Genève"
-    }
-  },
-  {
-    "logo": "HES_SO.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000139,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "haute-ecole-specialisee-de-suisse-occidentale",
-    "label": {
-      "ger": "Haute école spécialisée de Suisse occidentale",
-      "ita": "Haute école spécialisée de Suisse occidentale",
-      "fre": "Haute école spécialisée de Suisse occidentale",
-      "roh": "Haute école spécialisée de Suisse occidentale",
-      "eng": "Haute école spécialisée de Suisse occidentale"
-    }
-  },
-  {
-    "logo": "TPG.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000140,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "transports-public-genevois",
-    "label": {
-      "ger": "Transports public genevois",
-      "ita": "Transports public genevois",
-      "fre": "Transports public genevois",
-      "roh": "Transports public genevois",
-      "eng": "Transports public genevois"
-    }
-  },
-  {
-    "logo": "67f530c1e9c90657206808.jpg",
-    "website": null,
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000141,
-    "email": "xavier.merour@asit-asso.ch",
-    "referrer": null,
-    "description": null,
-    "name": "sil",
-    "label": {
-      "ger": "SiL - Services industriels de Lausanne",
-      "ita": "SiL - Services industriels de Lausanne",
-      "fre": "SiL - Services industriels de Lausanne",
-      "roh": "SiL - Services industriels de Lausanne",
-      "eng": "SiL - Services industriels de Lausanne"
-    }
-  },
-  {
-    "logo": "VDG.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000142,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "ville-de-geneve",
-    "label": {
-      "ger": "Ville de Genève",
-      "ita": "Ville de Genève",
-      "fre": "Ville de Genève",
-      "roh": "Ville de Genève",
-      "eng": "Ville de Genève"
-    }
-  },
-  {
-    "logo": "FP.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000143,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "fondation-des-parkings",
-    "label": {
-      "ger": "Fondation des parkings",
-      "ita": "Fondation des parkings",
-      "fre": "Fondation des parkings",
-      "roh": "Fondation des parkings",
-      "eng": "Fondation des parkings"
-    }
-  },
-  {
-    "logo": "CERN.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000144,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "organisation-europeenne-pour-la-recherche-nucleaire",
-    "label": {
-      "ger": "Organisation européenne pour la recherche nucléaire",
-      "ita": "Organisation européenne pour la recherche nucléaire",
-      "fre": "Organisation européenne pour la recherche nucléaire",
-      "roh": "Organisation européenne pour la recherche nucléaire",
-      "eng": "Organisation européenne pour la recherche nucléaire"
-    }
-  },
-  {
-    "logo": "CHA.png",
-    "website": "",
-    "defaultCategory": null,
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000145,
-    "email": "markus.kesseler@etat.ge.ch",
-    "referrer": null,
-    "description": null,
-    "name": "chancellerie-detat",
-    "label": {
-      "ger": "Chancellerie d'état",
-      "ita": "Chancellerie d'état",
-      "fre": "Chancellerie d'état",
-      "roh": "Chancellerie d'état",
-      "eng": "Chancellerie d'état"
     }
   }
 ]

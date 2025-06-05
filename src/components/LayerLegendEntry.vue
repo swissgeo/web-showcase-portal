@@ -63,9 +63,13 @@ function handleImgError(index: number) {
 
 <template>
     <AccordionPanel :value="layer.id">
-        <AccordionHeader :data-cy="`accordion-layer-legend-${layer.id}`">{{
-            layer.name
-        }}</AccordionHeader>
+        <AccordionHeader
+            :data-cy="`accordion-layer-legend-${layer.id}`"
+            :pt="{
+                toggleicon: 'flex-shrink-0 ml-1',
+            }"
+            ><span class="break-words">{{ layer.name }}</span></AccordionHeader
+        >
         <AccordionContent>
             <template v-if="legendUrls.length > 0">
                 <template

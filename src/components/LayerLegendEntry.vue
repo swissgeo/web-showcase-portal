@@ -28,7 +28,7 @@ const legendUrls = computed(() => {
 
                 // Set parameters for GetLegendGraphic
                 legendUrl.search = new URLSearchParams({
-                    SERVICE: resource.accessServiceProtocol || 'WMS',
+                    SERVICE: resource.accessServiceProtocol?.toUpperCase() || 'WMS',
                     REQUEST: 'GetLegendGraphic',
                     VERSION: '1.3.0',
                     FORMAT: 'image/png',

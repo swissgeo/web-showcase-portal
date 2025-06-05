@@ -6,6 +6,7 @@ export default defineConfig({
         baseUrl: 'http://localhost:4173',
         chromeWebSecurity: false,
         numTestsKeptInMemory: 1,
+        watchForFileChanges: false, // Prevent Cypress from automatically re-running tests on file changes
     },
     component: {
         specPattern: 'src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}',

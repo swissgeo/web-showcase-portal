@@ -35,7 +35,7 @@ watch(layerCount, (newValue, oldValue) => {
             :text="isDesktop"
             :outlined="!isDesktop"
             class="h-10"
-            :class="{ 'h-14 w-14 rounded-xl bg-white shadow': !isDesktop }"
+            :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"
             data-cy="button-layer-cart"
             @click="toggleLayerCart"
         >

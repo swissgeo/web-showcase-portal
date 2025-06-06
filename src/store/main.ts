@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import type { GeonetworkRecord } from '@/types/gnRecord'
 import type { Layer } from '@/types/Layer'
 
-import { i18n, getBrowserLanguage, type Language, langToLocal } from '@/types/language'
+import { i18n, getBrowserLanguage, type Language, langToLocal, SUPPORTED_LANG } from '@/types/language'
 
 export interface MainStoreState {
     layersOnMap: Layer[]
@@ -16,7 +16,14 @@ export interface MainStoreState {
 
 export const useMainStore = defineStore('main', {
     state: (): MainStoreState => {
+        const storedLanguage = localStorage.getItem('selectedLanguage') as Language | null
         const browserLanguage = getBrowserLanguage()
+
+        const initialLanguage: Language = storedLanguage && SUPPORTED_LANG.includes(storedLanguage)
+            ? storedLanguage
+            : browserLanguage
+
+        i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
         return {
             layersOnMap: [],
             infoLayerId: null,
@@ -45,7 +52,7 @@ export const useMainStore = defineStore('main', {
                     geonetworkRecord: null,
                 },
             ],
-            language: browserLanguage,
+            language: initialLanguage,
         }
     },
     getters: {
@@ -87,6 +94,7 @@ export const useMainStore = defineStore('main', {
         setLanguage(language: Language) {
             this.language = language
             i18n.global.locale.value = langToLocal(language) as typeof i18n.global.locale.value
+            localStorage.setItem('selectedLanguage', language)
         },
         resetInfoLayerId() {
             this.infoLayerId = null

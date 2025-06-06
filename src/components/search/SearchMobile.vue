@@ -25,11 +25,12 @@ const mainStore = useMainStore()
 const isInputFocused = ref(false)
 
 const isSearching = computed(() => {
-    return isInputFocused.value || !!searchStore.searchTerm
+    return (isInputFocused.value || !!searchStore.searchTerm) && searchStore.isOpenSearch
 })
 
 const openSearch = () => {
     isInputFocused.value = true
+    searchStore.setIsOpenSearch(true)
 }
 
 const clearSearch = () => {

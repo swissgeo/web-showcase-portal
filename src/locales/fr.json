@@ -11,7 +11,7 @@
         "mobileSearchTitle": "Recherche",
         "showInfo": "Afficher les détails",
         "dataTitle": "Données",
-        "addressTitle": "Adresses",
+        "placesTitle": "Lieux",
         "addToMap": "Ajouter à la carte"
     },
     "layerCart": {

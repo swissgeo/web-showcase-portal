@@ -77,7 +77,7 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                     :size="'40px'"
                 />
                 <div class="flex items-center justify-start gap-2">
-                    {{ t('searchResult.addressTitle') }}
+                    {{ t('searchResult.placesTitle') }}
                     <Badge :value="showAddressSpinner ? 0 : addressSearchResultCount"></Badge>
                 </div>
             </AccordionHeader>

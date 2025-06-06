@@ -102,6 +102,7 @@ const menuItemsBgLayer = [
     {
         label: t('layerCart.showInfo'),
         icon: 'pi pi-info-circle',
+        disabled: true,
         command: () => metadataMenuClicked(),
     },
 ]

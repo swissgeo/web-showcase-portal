@@ -19,7 +19,11 @@
         "delete": "Supprimer",
         "transparency": "Transparence",
         "noLayers": "Aucune couche sélectionnée",
-        "title": "Cartes affichées"
+        "title": "Cartes affichées",
+        "backgroundMap": "Carte de base",
+        "colorMap": "Cartes couleurs",
+        "greyMap": "Cartes N&B",
+        "aerialImagery": "Photo aérienne"
     },
     "legend": {
         "brokenImage": "Échec du chargement de la légende",

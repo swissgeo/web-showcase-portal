@@ -19,7 +19,11 @@
         "delete": "Allontanar",
         "transparency": "Transparenza",
         "noLayers": "Naginas datas tschernidas",
-        "title": "Chartas visualisadas"
+        "title": "Chartas visualisadas",
+        "backgroundMap": "Carta davos",
+        "colorMap": "Charta en colur",
+        "greyMap": "Charta en aiv e nair",
+        "aerialImagery": "Fotografia ord l'aria"
     },
     "legend": {
         "brokenImage": "Naśti te ćhivel pes i legenda",

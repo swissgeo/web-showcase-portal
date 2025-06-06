@@ -93,7 +93,7 @@ function stopDragging() {
                     v-if="isSearching"
                     class="flex items-center gap-2 font-bold"
                 >
-                    {{ t('searchResult.addressTitle') }}
+                    {{ t('searchResult.placesTitle') }}
                     <Badge :value="addressSearchResultCount" />
                 </div>
                 <SearchSpinner v-if="showAddressSpinner" />

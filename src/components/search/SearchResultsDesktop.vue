@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { UnfoldHorizontal } from 'lucide-vue-next'
 import Badge from 'primevue/badge'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -82,9 +83,11 @@ function stopDragging() {
 
         <!-- Draggable divider -->
         <div
-            class="w-2 max-w-[2px] min-w-[2px] cursor-col-resize bg-gray-300 hover:bg-gray-400"
+            class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-gray-300 hover:bg-gray-400"
             @mousedown="startDragging"
-        ></div>
+        >
+            <UnfoldHorizontal class="w-4 flex-shrink-0 bg-white" />
+        </div>
 
         <!-- Right panel -->
         <div class="flex min-w-0 flex-1">

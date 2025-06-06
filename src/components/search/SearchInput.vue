@@ -9,6 +9,7 @@ import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
+import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { debounce } from '@/utils/debounce'
 
@@ -18,6 +19,7 @@ const { t } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
 const mainStore = useMainStore()
+const mapStore = useMapStore()
 const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
 const language = computed(() => mainStore.language)
@@ -59,6 +61,9 @@ const onBlur = () => {
 
 const clearSearch = () => {
     searchStore.resetSearch()
+    mapStore.setMapUrlSearchParams({
+        crossHairPosition: undefined,
+    })
 }
 </script>
 

@@ -17,37 +17,21 @@ const isDesktop = inject<boolean>('isDesktop')
         class="flex h-14 w-full items-center justify-center"
     >
         <img
-            src="@/assets/images/pwip-logo.png"
-            class="h-5"
-        />
-        <!-- <img
             src="@/assets/images/swissgeo_rgb_icon.svg"
             class="h-5"
-        /> -->
+        />
     </div>
     <!-- the mobile one and when the sidebar is extended -->
     <div
         v-else
         class="flex h-10 items-center gap-2 rounded-lg border border-neutral-200 bg-white md:h-14 md:gap-0 md:rounded-none md:border-none"
     >
-        <!--
-        include this for the real version
         <div class="ml-3.5 flex translate-x-[0.5px] items-center justify-center p-2">
             <img
                 src="@/assets/images/swissgeo_rgb_sek.svg"
                 class="h-5"
             />
-        </div> -->
-
-        <!--- remove from here -->
-        <div class="ml-2 flex items-center justify-center gap-2 md:ml-0 md:w-[75px]">
-            <img
-                src="@/assets/images/pwip-logo.png"
-                class="h-5"
-            />
         </div>
-        <div class="text-primary-500 font-extrabold">GPS</div>
-        <!-- to here for the uncensored version -->
 
         <div
             v-if="!isDesktop"

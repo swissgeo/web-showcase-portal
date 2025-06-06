@@ -156,7 +156,7 @@ const bgLayerThumbnail = computed(() => {
                 :class="{ 'text-gray-400 line-through': !layer.visible }"
                 class="layer-item-drag-handle flex-1 cursor-grab truncate text-sm font-medium"
                 style="max-width: 200px"
-                >{{ layer.name }}</span
+                >{{ t(layer.name) }}</span
             >
             <img
                 v-if="isBgLayer"

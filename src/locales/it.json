@@ -19,7 +19,11 @@
         "delete": "Rimuovi",
         "transparency": "Trasparenza",
         "noLayers": "Nessun layer selezionato",
-        "title": "Mappe visualizzate"
+        "title": "Mappe visualizzate",
+        "backgroundMap": "Mappa di sfondo",
+        "colorMap": "Carta a colori",
+        "greyMap": "Carta B/N",
+        "aerialImagery": "Veduta aerea"
     },
     "legend": {
         "brokenImage": "Impossibile caricare la legenda",

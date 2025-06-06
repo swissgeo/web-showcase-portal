@@ -19,7 +19,11 @@
         "delete": "Remove",
         "transparency": "Transparency",
         "noLayers": "No layers selected",
-        "title": "Displayed maps"
+        "title": "Displayed maps",
+        "backgroundMap": "Background Map",
+        "colorMap": "Color Map",
+        "greyMap": "Color Map",
+        "aerialImagery": "Aerial Imagery"
     },
     "legend": {
         "brokenImage": "Failed to load legend",

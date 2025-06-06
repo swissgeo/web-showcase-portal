@@ -128,7 +128,7 @@ function destroySortable() {
         </div>
 
         <Panel
-            header="Background Layer"
+            :header="t('layerCart.backgroundMap')"
             class="mt-2"
         >
             <ul

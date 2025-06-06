@@ -25,14 +25,21 @@ export const useMainStore = defineStore('main', {
             bgLayers: [
                 {
                     id: 'ch.swisstopo.pixelkarte-farbe',
-                    name: 'Color Map',
+                    name: 'layerCart.colorMap',
                     visible: true,
                     opacity: 1,
                     geonetworkRecord: null,
                 },
                 {
                     id: 'ch.swisstopo.pixelkarte-grau',
-                    name: 'Gray Map',
+                    name: 'layerCart.greyMap',
+                    visible: false,
+                    opacity: 1,
+                    geonetworkRecord: null,
+                },
+                {
+                    id: 'ch.swisstopo.swissimage',
+                    name: 'layerCart.aerialImagery',
                     visible: false,
                     opacity: 1,
                     geonetworkRecord: null,

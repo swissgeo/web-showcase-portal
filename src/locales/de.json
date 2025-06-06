@@ -19,7 +19,11 @@
         "delete": "Entfernen",
         "transparency": "Transparenz",
         "noLayers": "Keine Layers gewählt",
-        "title": "Angezeigte Karten"
+        "title": "Angezeigte Karten",
+        "backgroundMap": "Hintergrundkarte",
+        "colorMap": "Karte farbig",
+        "greyMap": "Karte SW",
+        "aerialImagery": "Luftbilder"
     },
     "legend": {
         "brokenImage": "Legende konnte nicht geladen werden",

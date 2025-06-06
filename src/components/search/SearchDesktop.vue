@@ -7,13 +7,11 @@ import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
-import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 
 const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
 const searchStore = useSearchStore()
-const mainStore = useMainStore()
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const searchTerm = computed(() => searchStore.searchTerm)
 
@@ -26,12 +24,17 @@ const openSearch = () => {
 // To correctly close the search results when clicking outside of the search input or the search results
 // we need to use the onClickOutside function from vueuse (to detect clicks on elements of this website) but also the
 // @click handler on the div to detect clicks on the iframe
-const handleClickOutsideSearch = () => {
-    // don't handle the click outside when the info layer is open
-    if (searchStore.isOpenSearch && !mainStore.infoLayerId) {
+const handleClickOutsideSearch = (event: MouseEvent) => {
+    // close the search results if the user clicks outside of the search input
+    // and outside of the info panel
+    const target = event.target as HTMLElement
+    const clickedInsideInfoPanel = !!target.closest('[data-cy="div-dataset-detail-panel"]')
+
+    if (searchStore.isOpenSearch && !clickedInsideInfoPanel) {
         searchStore.setIsOpenSearch(false)
     }
 }
+
 onClickOutside(searchContainer, handleClickOutsideSearch)
 </script>
 

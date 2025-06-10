@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MultiSelect from 'primevue/multiselect'
+import MultiSelect, { type MultiSelectChangeEvent } from 'primevue/multiselect'
 import Tag from 'primevue/tag'
 import { computed, ref, watch } from 'vue'
 import { onMounted } from 'vue'
@@ -32,33 +32,33 @@ function langToLabelKey(lang: string): string {
 const labelKey = computed(() => langToLabelKey(localeString.value))
 
 const federalGroups = computed(() =>
-  groupsStore.groups
-    .filter(g => g.defaultCategory?.name === 'federal')
-    .map(g => ({
-      label: `${lastWord(g.label[labelKey.value]  || g.label.eng || g.name)}`,
-      value: g.id,
-    }))
-    .sort((a, b) => a.label.localeCompare(b.label))
+    groupsStore.groups
+        .filter((g) => g.defaultCategory?.name === 'federal')
+        .map((g) => ({
+            label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
+            value: g.id,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label))
 )
 
 const cantonGroups = computed(() =>
-  groupsStore.groups
-    .filter(g => g.defaultCategory?.name === 'cantonal')
-    .map(g => ({
-      label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
-      value: g.id,
-    }))
-    .sort((a, b) => a.label.localeCompare(b.label))
+    groupsStore.groups
+        .filter((g) => g.defaultCategory?.name === 'cantonal')
+        .map((g) => ({
+            label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
+            value: g.id,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label))
 )
 
 const communalGroups = computed(() =>
-  groupsStore.groups
-    .filter(g => g.defaultCategory?.name === 'communal')
-    .map(g => ({
-      label: `${lastWord(g.label[labelKey.value]  || g.label.eng || g.name)}`,
-      value: g.id,
-    }))
-    .sort((a, b) => a.label.localeCompare(b.label))
+    groupsStore.groups
+        .filter((g) => g.defaultCategory?.name === 'communal')
+        .map((g) => ({
+            label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
+            value: g.id,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label))
 )
 
 const selectedFederal = ref<number[]>([])
@@ -66,126 +66,149 @@ const selectedCantonal = ref<number[]>([])
 const selectedCommunal = ref<number[]>([])
 
 const selectedGroupIds = computed(() => [
-  ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),
-  ...(Array.isArray(selectedCantonal.value) ? selectedCantonal.value : []),
-  ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
+    ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),
+    ...(Array.isArray(selectedCantonal.value) ? selectedCantonal.value : []),
+    ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
 ])
 
 watch(selectedGroupIds, (ids) => {
-  if (searchStore.searchTerm) {
-    geocatSearch.searchGeocat(searchStore.searchTerm, ids.length ? ids : undefined)
-  }
+    if (searchStore.searchTerm) {
+        geocatSearch.searchGeocat(searchStore.searchTerm, ids.length ? ids : undefined)
+    }
 })
 
 function lastWord(label: string): string {
-  if (!label) return ''
-  const words = label.trim().split(/[\s']/).filter(Boolean)
-  return words[words.length - 1]
+    if (!label) return ''
+    const words = label.trim().split(/[\s']/).filter(Boolean)
+    return words[words.length - 1]
+}
+
+function changeFederal(event: MultiSelectChangeEvent) {
+    if (event.value.length > 0) {
+        selectedCantonal.value = []
+        selectedCommunal.value = []
+    }
+}
+
+function changeCommunal(event: MultiSelectChangeEvent) {
+    if (event.value.length > 0) {
+        selectedCantonal.value = []
+        selectedFederal.value = []
+    }
+}
+
+function changeCantonal(event: MultiSelectChangeEvent) {
+    if (event.value.length > 0) {
+        selectedFederal.value = []
+        selectedCommunal.value = []
+    }
 }
 
 defineExpose({
-  selectedFederal,
-  selectedCantonal,
-  selectedCommunal,
-  federalGroups,
-  cantonGroups,
-  communalGroups,
-  lastWord,
-  labelKey
+    selectedFederal,
+    selectedCantonal,
+    selectedCommunal,
+    federalGroups,
+    cantonGroups,
+    communalGroups,
+    lastWord,
+    labelKey,
 })
 
 onMounted(() => {
-  groupsStore.loadGroups()
+    groupsStore.loadGroups()
 })
 </script>
 <template>
-  <div class="mt-2 w-full flex items-center">
-    <MultiSelect
-      v-model="selectedFederal"
-      :max-selected-labels="0"
-      :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-      :checkbox-icon="'pi pi-check'"
-      :filter="true"
-      :filter-placeholder="t('organisation.selectFederal')"
-      :filter-by="labelKey"
-      :show-select-all="false"
-      :options="federalGroups"
-      option-label="label"
-      option-value="value"
-      :placeholder="t('organisation.selectFederal')"
-      show-clear
-      class="flex-1 min-w-[100px] text-xs mb-2 mr-2"
-      @focus="emit('focus')"
-      @blur="emit('blur')"
-    >
-    </MultiSelect>
-    <MultiSelect
-      v-model="selectedCantonal"
-      :max-selected-labels="0"
-      :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-      :checkbox-icon="'pi pi-check'"
-      :filter="true"
-      :filter-placeholder="t('organisation.selectCanton')"
-      :filter-by="labelKey"
-      :show-select-all="false"
-      :options="cantonGroups"
-      option-label="label"
-      option-value="value"
-      :placeholder="t('organisation.selectCanton')"
-      show-clear
-      class="flex-1 min-w-[100px] text-xs mb-2 mr-2"
-      @focus="emit('focus')"
-      @blur="emit('blur')"
-    >
-    </MultiSelect>
-    <MultiSelect
-      v-model="selectedCommunal"
-      :max-selected-labels="0"
-      :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-      :checkbox-icon="'pi pi-check'"
-      :filter="true"
-      :filter-placeholder="t('organisation.selectCommune')"
-      :filter-by="labelKey"
-      :show-select-all="false"
-      :options="communalGroups"
-      option-label="label"
-      option-value="value"
-      :placeholder="t('organisation.selectCommune')"
-      show-clear
-      class="flex-1 min-w-[100px] text-xs mb-2"
-      @focus="emit('focus')"
-      @blur="emit('blur')"
-    >
-    </MultiSelect>
-  </div>
-  <div class="flex flex-wrap gap-2 mb-2">
-    <Tag
-      v-for="id in selectedFederal"
-      :key="'federal-' + id"
-      severity="danger"
-      :value="lastWord(federalGroups.find(g => g.value === id)?.label || '')"
-      class="font-bold"
-      removable
-      @remove="selectedFederal = []"
-
-    />
-    <Tag
-      v-for="id in selectedCantonal"
-      :key="'cantonal-' + id"
-      severity="info"
-      :value="lastWord(cantonGroups.find(g => g.value === id)?.label || '')"
-      class="font-bold"
-      removable
-      @remove="selectedCantonal = []"
-    />
-    <Tag
-      v-for="id in selectedCommunal"
-      :key="'communal-' + id"
-      severity="success"
-      :value="lastWord(communalGroups.find(g => g.value === id)?.label || '')"
-      class="font-bold"
-      removable
-      @remove="selectedCommunal = []"
-    />
-  </div>
+    <div class="mt-2 flex w-full items-center">
+        <MultiSelect
+            v-model="selectedFederal"
+            :max-selected-labels="0"
+            :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
+            :checkbox-icon="'pi pi-check'"
+            :filter="true"
+            :filter-placeholder="t('organisation.selectFederal')"
+            :filter-by="labelKey"
+            :show-select-all="false"
+            :options="federalGroups"
+            option-label="label"
+            option-value="value"
+            :placeholder="t('organisation.selectFederal')"
+            show-clear
+            class="mr-2 mb-2 min-w-[100px] flex-1 text-xs"
+            @focus="emit('focus')"
+            @blur="emit('blur')"
+            @change="changeFederal"
+        >
+        </MultiSelect>
+        <MultiSelect
+            v-model="selectedCantonal"
+            :max-selected-labels="0"
+            :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
+            :checkbox-icon="'pi pi-check'"
+            :filter="true"
+            :filter-placeholder="t('organisation.selectCanton')"
+            :filter-by="labelKey"
+            :show-select-all="false"
+            :options="cantonGroups"
+            option-label="label"
+            option-value="value"
+            :placeholder="t('organisation.selectCanton')"
+            show-clear
+            class="mr-2 mb-2 min-w-[100px] flex-1 text-xs"
+            @focus="emit('focus')"
+            @blur="emit('blur')"
+            @change="changeCantonal"
+        >
+        </MultiSelect>
+        <MultiSelect
+            v-model="selectedCommunal"
+            :max-selected-labels="0"
+            :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
+            :checkbox-icon="'pi pi-check'"
+            :filter="true"
+            :filter-placeholder="t('organisation.selectCommune')"
+            :filter-by="labelKey"
+            :show-select-all="false"
+            :options="communalGroups"
+            option-label="label"
+            option-value="value"
+            :placeholder="t('organisation.selectCommune')"
+            show-clear
+            class="mb-2 min-w-[100px] flex-1 text-xs"
+            @focus="emit('focus')"
+            @blur="emit('blur')"
+            @change="changeCommunal"
+        >
+        </MultiSelect>
+    </div>
+    <div class="mb-2 flex flex-wrap gap-2">
+        <Tag
+            v-for="id in selectedFederal"
+            :key="'federal-' + id"
+            severity="danger"
+            :value="lastWord(federalGroups.find((g) => g.value === id)?.label || '')"
+            class="font-bold"
+            removable
+            @remove="selectedFederal = []"
+        />
+        <Tag
+            v-for="id in selectedCantonal"
+            :key="'cantonal-' + id"
+            severity="info"
+            :value="lastWord(cantonGroups.find((g) => g.value === id)?.label || '')"
+            class="font-bold"
+            removable
+            @remove="selectedCantonal = []"
+        />
+        <Tag
+            v-for="id in selectedCommunal"
+            :key="'communal-' + id"
+            severity="success"
+            :value="lastWord(communalGroups.find((g) => g.value === id)?.label || '')"
+            class="font-bold"
+            removable
+            @remove="selectedCommunal = []"
+        />
+    </div>
 </template>

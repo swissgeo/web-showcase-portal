@@ -1,24 +1,32 @@
 <script lang="ts" setup>
-// import { useStorage } from '@vueuse/core'
-// import Button from 'primevue/button'
-
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import { useMainStore } from '@/store/main'
+import { useMapStore } from '@/store/map'
+import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
-// const showWelcomeOverlay = useStorage('showWelcomeOverlay', true)
 const uiStore = useUiStore()
+const mapStore = useMapStore()
+const mainStore = useMainStore()
+const searchStore = useSearchStore()
 
-// function showHelpOverlay() {
-//     showWelcomeOverlay.value = true
-// }
+function resetApp() {
+    uiStore.$reset()
+    searchStore.$reset()
+    mainStore.$reset()
+    mapStore.$reset()
+}
 </script>
 
 <template>
     <div class="absolute top-0 left-0 z-10 flex h-full w-auto flex-col bg-neutral-100 shadow-lg">
-        <div class="bg-white">
+        <div
+            class="cursor-pointer bg-white"
+            @click="resetApp"
+        >
             <LogoPic
                 class="h-12"
                 :condensed="!uiStore.isLayerCartVisible"
@@ -29,12 +37,6 @@ const uiStore = useUiStore()
             <div class="flex min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4">
                 <div class="flex flex-col items-center gap-2">
                     <LayerCartButton />
-                    <!-- Hide the button to show the overlay for now -->
-                    <!-- <Button
-                        icon="pi pi-question"
-                        severity="secondary"
-                        @click="showHelpOverlay"
-                    /> -->
                 </div>
                 <LanguageSwitchButton class="w-19 py-5" />
             </div>

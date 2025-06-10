@@ -1,6 +1,8 @@
 import { catchError, Subscription } from 'rxjs'
 import { onMounted } from 'vue'
 
+import type { SearchKeywordLayer } from '@/types/search'
+
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
@@ -77,7 +79,7 @@ export default function useGeocat() {
             .subscribe(searchCallback)
     }
 
-    const searchConfigGeocat = (ids: string[]) => {
+    const searchConfigGeocat = (layers: SearchKeywordLayer[]) => {
         // if there's a request ongoing, we cancel that
         cancelSearch()
 
@@ -88,7 +90,7 @@ export default function useGeocat() {
                 },
                 offset: searchStore.geocatPage,
                 limit: searchStore.geocatPageSize,
-                filterIds: ids,
+                filterIds: layers.map((layer) => layer.geocatId),
             })
             .pipe(
                 catchError((error) => {
@@ -98,9 +100,9 @@ export default function useGeocat() {
                 })
             )
             .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
-                // Sort records in the order of the ids
-                const sortedRecords = ids
-                    .map((id) => records.find((record) => record.uniqueIdentifier === id))
+                // Sort records in the order of the provided layers
+                const sortedRecords = layers
+                    .map((layer) => records.find((record) => record.uniqueIdentifier === layer.geocatId))
                     .filter((record): record is GeonetworkRecord => !!record)
 
                 sortedRecords.forEach((record: GeonetworkRecord) => {
@@ -109,7 +111,7 @@ export default function useGeocat() {
                             id: record.uniqueIdentifier,
                             name: record.title,
                             geonetworkRecord: record,
-                            opacity: 1,
+                            opacity: layers.find((layer) => layer.geocatId === record.uniqueIdentifier)?.opacity ?? 1,
                             visible: true,
                         })
                     }

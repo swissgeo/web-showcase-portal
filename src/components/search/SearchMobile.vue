@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronLeft } from 'lucide-vue-next'
+import { ArrowLeft } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
 import { computed, ref } from 'vue'
@@ -9,6 +9,7 @@ import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
@@ -69,13 +70,13 @@ const clearSearch = () => {
         >
             <Button
                 v-if="isSearching"
-                outlined
-                severity="secondary"
+                aria-label="Back"
+                text
                 data-cy="button-close-search"
                 @click="clearSearch"
             >
                 <template #icon>
-                    <ChevronLeft />
+                    <ArrowLeft />
                 </template>
             </Button>
             <div v-else></div>
@@ -102,6 +103,7 @@ const clearSearch = () => {
             <template #content>
                 <SearchInput @focus="openSearch" />
                 <SearchKeywordContainer />
+                <SearchFilterMobile />
             </template>
         </Card>
     </div>

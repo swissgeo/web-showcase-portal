@@ -12,7 +12,8 @@
         "showInfo": "Mussar detagls",
         "dataTitle": "Datas",
         "placesTitle": "Posts",
-        "addToMap": "Agiuntar a la charta"
+        "addToMap": "Agiuntar a la charta",
+        "buttonLabel": "Resultats da las retschertgas"
     },
     "layerCart": {
         "showInfo": "Detagls",
@@ -47,10 +48,16 @@
         "selectGroup": "Organisaziuns",
         "category": {
             "federal": "Federala",
+            "federation": "Federaziun",
             "cantonal": "Cantonala",
+            "canton": "Canton",
             "communal": "Communala",
+            "commune": "Communa",
             "other": "Autra"
         },
+        "selectAll": "Tscherni tut",
+        "reset": "Resetgar",
+        "showResults": "Mussar resultats",
         "selectCategory": "Tscherni tut",
         "selectFederal": "Offizi federals",
         "selectCanton": "Canton",

@@ -16,6 +16,10 @@ const searchStore = useSearchStore()
 
 const emit = defineEmits(['focus', 'blur'])
 
+const { isShowTags = true } = defineProps<{
+    isShowTags?: boolean
+}>()
+
 const localeString = computed(() => {
     return locale.value.split('-')[0]
 })
@@ -182,7 +186,10 @@ onMounted(() => {
         >
         </MultiSelect>
     </div>
-    <div class="mb-2 flex flex-wrap gap-2">
+    <div
+        v-if="isShowTags"
+        class="mb-2 flex flex-wrap gap-2"
+    >
         <Tag
             v-for="id in selectedFederal"
             :key="'federal-' + id"

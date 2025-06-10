@@ -5,13 +5,10 @@ import InputText from 'primevue/inputtext'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { SEARCH_DEBOUNCE_DELAY } from '@/search'
-import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
-import { useMainStore } from '@/store/main'
 import { useMapStore } from '@/store/map'
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useSearchStore } from '@/store/search'
-import { debounce } from '@/utils/debounce'
 
 const emits = defineEmits(['focus', 'blur'])
 
@@ -21,15 +18,10 @@ defineExpose({ searchArea })
 const { t } = useI18n()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
-const mainStore = useMainStore()
 const mapStore = useMapStore()
-const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
-const language = computed(() => mainStore.language)
-const triggerSearch = debounce((value: string) => {
-    geocatSearch.searchGeocat(value)
-    addressSearch.searchAddress(value, '2056', language.value, 20)
-}, SEARCH_DEBOUNCE_DELAY)
+
+const { triggerSearch } = useTriggerSearch()
 
 const searchTerm = computed({
     get() {
@@ -100,9 +92,5 @@ watch(selectedGroupIds, (ids) => {
                 @click="clearSearch"
             />
         </IconField>
-        <SearchFilter
-            @focus="onFocus"
-            @blur="onBlur"
-        />
     </div>
 </template>

@@ -12,7 +12,8 @@
         "showInfo": "Show details",
         "dataTitle": "Data",
         "placesTitle": "Places",
-        "addToMap": "Add to map"
+        "addToMap": "Add to map",
+        "buttonLabel": "Search Results"
     },
     "layerCart": {
         "showInfo": "Details",
@@ -47,10 +48,16 @@
         "selectGroup": "Organisations",
         "category": {
             "federal": "Federal",
+            "federation": "Federation",
             "cantonal": "Cantonal",
+            "canton": "Canton",
             "communal": "Communal",
+            "commune": "Commune",
             "other": "Other"
         },
+        "selectAll": "Select all",
+        "reset": "Reset",
+        "showResults": "Show results",
         "selectCategory": "All",
         "selectFederal": "Federal offices",
         "selectCanton": "Cantons",

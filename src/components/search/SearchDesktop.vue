@@ -2,24 +2,37 @@
 import { onClickOutside } from '@vueuse/core'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
-import { computed, useTemplateRef } from 'vue'
+import { computed, useTemplateRef, ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { fetchTopicCatalogJson } from '@/api/topics.api'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
+import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useSearchStore } from '@/store/search'
+
+interface TopicTreeNode {
+  id: number | string
+  label?: string
+  category: string
+  children?: TopicTreeNode[]
+  layerBodId?: string
+  [key: string]: unknown
+}
 
 const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
+
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const searchTerm = computed(() => searchStore.searchTerm)
 
 const isSearching = computed(() => !!searchTerm.value && isOpenSearch.value)
+const isCatalogShown = computed(() => !searchTerm.value && isOpenSearch.value)
 
 const openSearch = () => {
     searchStore.setIsOpenSearch(true)
@@ -44,12 +57,22 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
 }
 
 onClickOutside(searchContainer, handleClickOutsideSearch)
+
+const topicTreeRoot = ref<TopicTreeNode | null>(null)
+
+onMounted(async () => {
+    // Example: fetch 'ech' topic in 'en' language
+    const data = await fetchTopicCatalogJson('ech', 'en')
+    // Defensive: check structure
+    topicTreeRoot.value = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null
+})
+
 </script>
 
 <template>
     <!-- This div overlay is used to close the search results when clicking outside of the input -->
     <div
-        v-if="isSearching"
+        v-if="isOpenSearch"
         class="absolute inset-0 z-0"
         @click="handleClickOutsideSearch"
     ></div>
@@ -108,6 +131,13 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                 @click="closeSearch"
             >
             </Button>
+            <div
+                v-if=" topicTreeRoot && isCatalogShown"
+                class="my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 px-4 pt-4 pb-4 shadow bg-white absolute left-0 top-full z-20"
+                style="min-height: 200px;"
+            >
+                <TopicTreeBrowser :root="topicTreeRoot" />
+            </div>
         </div>
         <div class="pointer-events-auto absolute top-4 right-6">
             <LegendButton />

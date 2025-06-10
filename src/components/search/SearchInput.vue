@@ -10,7 +10,7 @@ import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 
-const emits = defineEmits(['focus', 'blur'])
+const emits = defineEmits(['focus', 'blur', 'click'])
 
 const searchArea = ref<HTMLElement | null>(null)
 defineExpose({ searchArea })
@@ -51,6 +51,10 @@ const onBlur = () => {
     emits('blur')
 }
 
+const onClick = () => {
+    emits('click')
+}
+
 const clearSearch = () => {
     searchStore.resetSearch()
     mapStore.setMapUrlSearchParams({
@@ -72,6 +76,7 @@ const clearSearch = () => {
                 :placeholder="t('searchPlaceholder')"
                 @focus="onFocus"
                 @blur="onBlur"
+                @click="onClick"
             ></InputText>
             <InputIcon
                 v-if="isSearching"

@@ -45,7 +45,14 @@ watch(
   () => props.root,
   (root) => {
     if (root) {
-      treeNodes.value = [toPrimeTreeNodes(root)]
+      // If root has only one child, show its children as the root nodes
+      if (root.children && root.children.length === 1) {
+        treeNodes.value = [toPrimeTreeNodes(root.children[0])]
+      } else if (root.children && root.children.length > 1) {
+        treeNodes.value = root.children.map(toPrimeTreeNodes)
+      } else {
+        treeNodes.value = [toPrimeTreeNodes(root)]
+      }
     }
   },
   { immediate: true }
@@ -54,9 +61,10 @@ watch(
 function addLayerToMapFromNode(node: TreeNode) {
   const data = node.data as TopicTreeNode
   if (data.category === 'layer' && data.layerBodId) {
+    // Fix me, use the same logic as in AddToMapButton.vue
     mainStore.addLayerToMap({
       id: data.layerBodId,
-      name: String(data.layerBodId),
+      name: String(data.label),
       opacity: 1,
       visible: true,
       geonetworkRecord: null,  // FIXME
@@ -66,29 +74,31 @@ function addLayerToMapFromNode(node: TreeNode) {
 </script>
 
 <template>
-  <div>
-    <Tree
-      :value="treeNodes"
-      :filter="true"
-      filter-placeholder="Filter..."
-      :expand-all="false"
-      selection-mode="single"
-    >
-      <template #default="slotProps">
-        <span>{{ slotProps.node.label }}</span>
-        <template v-if="slotProps.node.data.category === 'layer'">
-          <Button
-            class="ml-2"
-            size="small"
-            severity="secondary"
-            :data-cy="`add-layer-from-topic-tree-${slotProps.node.data.layerBodId}`"
-            @click.stop="addLayerToMapFromNode(slotProps.node)"
-          >
-            {{ t('searchResult.addToMap') }}
-          </Button>
+  <div class="h-full overflow-hidden">
+    <div class="h-full overflow-y-auto">
+      <Tree
+        :value="treeNodes"
+        :filter="true"
+        filter-placeholder="Filter..."
+        :expand-all="false"
+        selection-mode="single"
+      >
+        <template #default="slotProps">
+          <span>{{ slotProps.node.label }}</span>
+          <template v-if="slotProps.node.data.category === 'layer'">
+            <Button
+              class="ml-2"
+              size="small"
+              severity="secondary"
+              :data-cy="`add-layer-from-topic-tree-${slotProps.node.data.layerBodId}`"
+              @click.stop="addLayerToMapFromNode(slotProps.node)"
+            >
+              {{ t('searchResult.addToMap') }}
+            </Button>
+          </template>
         </template>
-      </template>
-    </Tree>
+      </Tree>
+    </div>
   </div>
 </template>
 

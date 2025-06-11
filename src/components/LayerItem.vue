@@ -51,7 +51,7 @@ const toggleVisibility = () => {
 // Computed property for opacity value with getter and setter
 const opacityValue = computed({
     get() {
-        return Math.round((props.layer.opacity ?? 1) * 100)
+        return Math.abs(100 - (props.layer.opacity ?? 1) * 100)
     },
     set(val: number | number[]) {
         let value = Array.isArray(val) ? val[0] : val
@@ -65,7 +65,8 @@ const opacityValue = computed({
 })
 
 const debouncedChangeOpacity = debounce((layerId: string, value: number) => {
-    mainStore.setLayerOpacity(layerId, value / 100)
+    const opacity = 1 - value / 100 //such that we have 0% opacity at 100 and 100% opacity at 0
+    mainStore.setLayerOpacity(layerId, opacity)
 }, TRANSPARENCY_DEBOUNCE_DELAY)
 
 const metadataMenuClicked = () => {

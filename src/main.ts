@@ -2,10 +2,9 @@ import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
 
-import { SwissGeo } from '@/stylePreset'
-import { i18n } from '@/types/language'
+import router from '@/router'
+import mapUrlPlugin from '@/store/plugins/map-url.plugin'
 
-import App from './App.vue'
 import './assets/main.css'
 
 import '@fontsource/inter'
@@ -13,8 +12,10 @@ import '@fontsource/geologica'
 import '@fontsource/dm-sans'
 import '@geonetwork-ui/gn-standalone-search.js'
 
-import router from './router'
-import mapUrlPlugin from './store/plugins/map-url.plugin'
+import { SwissGeo } from '@/stylePreset'
+import { i18n } from '@/types/language'
+
+import App from './App.vue'
 
 const app = createApp(App)
 const pinia = createPinia()

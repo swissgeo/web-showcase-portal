@@ -1,124 +1,20 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
-import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import MobileFullScreenMultiSelect from '@/components/search/MobileFullScreenMultiSelect.vue'
-import { useTriggerSearch } from '@/search/triggerSearch.composable'
-import { useGroupsStore } from '@/store/groups'
-import { useSearchStore } from '@/store/search'
+import { useSearchFilter } from '@/search/searchFilter.composable'
 
-const { t, locale } = useI18n()
-const { triggerGeocatSearch } = useTriggerSearch()
-const groupsStore = useGroupsStore()
-const searchStore = useSearchStore()
-
-const localeString = computed(() => {
-    return locale.value.split('-')[0]
-})
-
-function langToLabelKey(lang: string): string {
-    if (lang === 'de') return 'ger'
-    if (lang === 'fr') return 'fre'
-    if (lang === 'it') return 'ita'
-    if (lang === 'rm') return 'roh'
-    if (lang === 'en') return 'eng'
-    return 'eng'
-}
-
-const labelKey = computed(() => langToLabelKey(localeString.value))
-
-const federalGroups = computed(() =>
-    groupsStore.groups
-        .filter((g) => g.defaultCategory?.name === 'federal')
-        .map((g) => ({
-            label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
-            value: g.id,
-        }))
-        .sort((a, b) => a.label.localeCompare(b.label))
-)
-
-const cantonGroups = computed(() =>
-    groupsStore.groups
-        .filter((g) => g.defaultCategory?.name === 'cantonal')
-        .map((g) => ({
-            label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
-            value: g.id,
-        }))
-        .sort((a, b) => a.label.localeCompare(b.label))
-)
-
-const communalGroups = computed(() =>
-    groupsStore.groups
-        .filter((g) => g.defaultCategory?.name === 'communal')
-        .map((g) => ({
-            label: `${lastWord(g.label[labelKey.value] || g.label.eng || g.name)}`,
-            value: g.id,
-        }))
-        .sort((a, b) => a.label.localeCompare(b.label))
-)
-
-const selectedFederal = computed({
-    get: () => searchStore.selectedFederal,
-    set: (val) => {
-        searchStore.setGeocatSearchResults([])
-        searchStore.setSelectedCantonal([])
-        searchStore.setSelectedCommunal([])
-        searchStore.setSelectedFederal(val)
-    },
-})
-const selectedCantonal = computed({
-    get: () => searchStore.selectedCantonal,
-    set: (val) => {
-        searchStore.setGeocatSearchResults([])
-        searchStore.setSelectedFederal([])
-        searchStore.setSelectedCommunal([])
-        searchStore.setSelectedCantonal(val)
-    },
-})
-const selectedCommunal = computed({
-    get: () => searchStore.selectedCommunal,
-    set: (val) => {
-        searchStore.setGeocatSearchResults([])
-        searchStore.setSelectedCantonal([])
-        searchStore.setSelectedFederal([])
-        searchStore.setSelectedCommunal(val)
-    },
-})
-
-const selectedGroupIds = computed(() => [
-    ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),
-    ...(Array.isArray(selectedCantonal.value) ? selectedCantonal.value : []),
-    ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
-])
-
-watch(selectedGroupIds, () => {
-    if (searchStore.searchTerm) {
-        triggerGeocatSearch()
-    }
-})
-
-function lastWord(label: string): string {
-    if (!label) return ''
-    const words = label.trim().split(/[\s']/).filter(Boolean)
-    return words[words.length - 1]
-}
-
-defineExpose({
-    selectedFederal,
-    selectedCantonal,
-    selectedCommunal,
+const { t } = useI18n()
+const {
     federalGroups,
     cantonGroups,
     communalGroups,
-    lastWord,
-    labelKey,
-})
-
-onMounted(() => {
-    groupsStore.loadGroups()
-})
+    selectedFederal,
+    selectedCantonal,
+    selectedCommunal,
+} = useSearchFilter()
 </script>
+
 <template>
     <div class="mt-2 flex w-full items-center overflow-x-auto">
         <MobileFullScreenMultiSelect

@@ -43,6 +43,11 @@ body {
     }
 }
 
+@theme {
+    --color-swissgeo-blue: oklch(0.4936 0.0836 224.92);
+    --color-swissgeo-lightblue: oklch(0.8981 0.015 218.06);
+}
+
 a:not(.p-menu-item-link) {
     @apply text-blue-700;
 }

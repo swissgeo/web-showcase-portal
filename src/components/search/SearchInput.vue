@@ -36,6 +36,7 @@ const searchTerm = computed({
             return
         }
         searchStore.setSearchTerm(value)
+
         if (value) {
             triggerSearch()
         }
@@ -57,6 +58,7 @@ const clearSearch = () => {
     })
 }
 </script>
+
 <template>
     <div>
         <IconField>

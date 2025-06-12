@@ -13,3 +13,8 @@ export interface SearchKeywordLayer {
     geocatId: string
     opacity: number
 }
+
+export interface FilterGroup {
+    label: string
+    value: number
+}

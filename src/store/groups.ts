@@ -4,8 +4,15 @@ import type { Group } from '@/search/geocatGroups'
 
 import { fetchGeocatGroups } from '@/search/geocatGroups'
 
+export interface GroupStoreState {
+    groups: Group[]
+    loading: boolean
+    error: string | null
+    rawResponse: unknown
+}
+
 export const useGroupsStore = defineStore('groups', {
-    state: () => ({
+    state: (): GroupStoreState => ({
         groups: [] as Group[],
         loading: false as boolean,
         error: null as string | null,
@@ -16,7 +23,7 @@ export const useGroupsStore = defineStore('groups', {
             this.loading = true
             this.error = null
             try {
-                const response = await fetchGeocatGroups()
+                const response: Group[] = await fetchGeocatGroups()
                 this.groups = response
                 this.rawResponse = response
             } catch (e) {
@@ -32,7 +39,9 @@ export const useGroupsStore = defineStore('groups', {
             for (const group of state.groups) {
                 const cat = group.defaultCategory?.name
                 if (cat) {
-                    if (!result[cat]) result[cat] = []
+                    if (!result[cat]) {
+                        result[cat] = []
+                    }
                     result[cat].push(group.id)
                 }
             }

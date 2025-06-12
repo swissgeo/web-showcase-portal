@@ -6,7 +6,7 @@ import { computed, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import LegendButton from '@/components/LayerLegendButton.vue'
-import SearchFilter from '@/components/search/SearchFilter.vue'
+import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
@@ -37,9 +37,7 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
     // outside of the info panel, and outside of the search filter (including its children)
     const target = event.target as HTMLElement
     const clickedInsideInfoPanel = !!target.closest('[data-cy="div-dataset-detail-panel"]')
-    const clickedInsideSearchFilter = !!document
-        .querySelector('[data-cy="search-filter"]')
-        ?.contains(target)
+    const clickedInsideSearchFilter = !!target.closest('[data-cy="multiselect-filter-list"]')
     if (searchStore.isOpenSearch && !clickedInsideInfoPanel && !clickedInsideSearchFilter) {
         searchStore.setIsOpenSearch(false)
     }
@@ -61,14 +59,22 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
             class="pointer-events-auto absolute top-4 left-1/2 z-10 w-[680px] -translate-x-1/2"
             data-cy="div-search-desktop"
         >
-            <Card class="w-full">
+            <Card
+                class="w-full"
+                :pt="{
+                    body: 'p-0',
+                }"
+            >
                 <template #content>
                     <SearchInput
-                        class="relative z-10"
+                        class="relative z-10 px-4 pt-3"
                         @focus="openSearch"
                     />
-                    <SearchKeywordContainer />
-                    <SearchFilter data-cy="search-filter" />
+                    <SearchKeywordContainer class="mb-5 px-4 pt-4" />
+                    <SearchFilter
+                        data-cy="search-filter"
+                        class="bg-swissgeo-lightblue p-4"
+                    />
                 </template>
             </Card>
             <SearchResultsDesktop
@@ -82,9 +88,9 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                 :badge="searchStore.searchResultTotal.toString()"
                 :pt="{
                     root: 'border-gray-300 bg-white shadow-md hover:bg-gray-100 hover:shadow-lg text-black font-semibold',
-                    label: 'text-bold text-[#1C6B85] font-semibold mr-2',
+                    label: 'text-bold text-swissgeo-blue font-semibold mr-2',
                     pcBadge: {
-                        root: 'text-black font-semibold bg-[#D3E0E4]',
+                        root: 'text-black font-semibold bg-swissgeo-lightblue',
                     },
                 }"
                 @click="openSearch"
@@ -95,9 +101,9 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                 class="background-white relative left-1/2 inline-block w-auto -translate-x-1/2 -translate-y-2/3 p-2 text-sm"
                 icon="pi pi-angle-up"
                 :pt="{
-                    root: 'border-[#1C6B85] bg-white shadow-md hover:bg-gray-100 hover:shadow-lg',
+                    root: 'border-swissgeo-blue bg-white shadow-md hover:bg-gray-100 hover:shadow-lg',
                     label: 'hidden',
-                    icon: 'text-[#1C6B85]',
+                    icon: 'text-swissgeo-blue',
                 }"
                 @click="closeSearch"
             >

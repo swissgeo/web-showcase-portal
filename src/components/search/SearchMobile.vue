@@ -97,13 +97,16 @@ const clearSearch = () => {
             class="border border-neutral-300"
             :pt="{
                 root: 'rounded-b-none',
-                body: 'p-4',
+                body: 'p-0',
             }"
         >
             <template #content>
-                <SearchInput @focus="openSearch" />
-                <SearchKeywordContainer />
-                <SearchFilterMobile />
+                <SearchInput
+                    class="px-4 pt-4"
+                    @focus="openSearch"
+                />
+                <SearchKeywordContainer class="px-4" />
+                <SearchFilterMobile class="bg-swissgeo-lightblue p-4" />
             </template>
         </Card>
     </div>

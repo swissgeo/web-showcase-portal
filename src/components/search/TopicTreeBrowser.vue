@@ -4,7 +4,6 @@ import type { TreeNode } from 'primevue/treenode'
 import Tree from 'primevue/tree'
 import { ref, watch, type PropType } from 'vue'
 
-import AddToMapButton from '@/components/search/AddToMapButton.vue'
 import { type TopicTreeNode } from '@/types/geocatalog'
 
 const props = defineProps({
@@ -15,6 +14,7 @@ const props = defineProps({
 })
 
 const treeNodes = ref<TreeNode[]>([])
+const selectedKey = ref(undefined);
 
 function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
     const isLayer = node.category === 'layer'
@@ -51,21 +51,20 @@ watch(
     <div class="h-full overflow-hidden">
         <div class="h-full overflow-y-auto">
             <Tree
+                v-model:selection-keys="selectedKey"
                 :value="treeNodes"
                 :filter="true"
                 filter-placeholder="Filter..."
                 :expand-all="false"
+                selection-mode="checkbox"
+                :pt="{
+                    pcNodeCheckbox:  (options) => {
+                        return options.context.node.data?.category !== 'layer'
+                            ? { root: 'hidden' } // hide the checkbox
+                            : {};
+                        }
+                }"
             >
-                <template #default="slotProps">
-                    <span>{{ slotProps.node.label }}</span>
-                    <template v-if="slotProps.node.data.category === 'layer'">
-                        <AddToMapButton
-                            class="ml-2"
-                            :result="slotProps.node.data"
-                            :data-cy="`add-layer-from-topic-tree-${slotProps.node.data.layerBodId}`"
-                        />
-                    </template>
-                </template>
             </Tree>
         </div>
     </div>

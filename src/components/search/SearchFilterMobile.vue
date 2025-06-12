@@ -4,13 +4,13 @@ import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import MobileFullScreenMultiSelect from '@/components/search/MobileFullScreenMultiSelect.vue'
-import useGeocat from '@/search/geocat'
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useGroupsStore } from '@/store/groups'
 import { useSearchStore } from '@/store/search'
 
 const { t, locale } = useI18n()
+const { triggerGeocatSearch } = useTriggerSearch()
 const groupsStore = useGroupsStore()
-const geocatSearch = useGeocat()
 const searchStore = useSearchStore()
 
 const localeString = computed(() => {
@@ -61,6 +61,7 @@ const communalGroups = computed(() =>
 const selectedFederal = computed({
     get: () => searchStore.selectedFederal,
     set: (val) => {
+        searchStore.setGeocatSearchResults([])
         searchStore.setSelectedCantonal([])
         searchStore.setSelectedCommunal([])
         searchStore.setSelectedFederal(val)
@@ -69,6 +70,7 @@ const selectedFederal = computed({
 const selectedCantonal = computed({
     get: () => searchStore.selectedCantonal,
     set: (val) => {
+        searchStore.setGeocatSearchResults([])
         searchStore.setSelectedFederal([])
         searchStore.setSelectedCommunal([])
         searchStore.setSelectedCantonal(val)
@@ -77,6 +79,7 @@ const selectedCantonal = computed({
 const selectedCommunal = computed({
     get: () => searchStore.selectedCommunal,
     set: (val) => {
+        searchStore.setGeocatSearchResults([])
         searchStore.setSelectedCantonal([])
         searchStore.setSelectedFederal([])
         searchStore.setSelectedCommunal(val)
@@ -89,9 +92,9 @@ const selectedGroupIds = computed(() => [
     ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
 ])
 
-watch(selectedGroupIds, (ids) => {
+watch(selectedGroupIds, () => {
     if (searchStore.searchTerm) {
-        geocatSearch.searchGeocat(searchStore.searchTerm, ids.length ? ids : undefined)
+        triggerGeocatSearch()
     }
 })
 

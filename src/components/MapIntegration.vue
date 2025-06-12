@@ -8,11 +8,13 @@ import {
     generateMapUrlParameters,
     getUrlParamsFromSource,
 } from '@/search/mapUrlUtils'
+import { useGroupsStore } from '@/store/groups'
 import { useMapStore } from '@/store/map'
 import { getEmbedViewerUrl } from '@/utils/environment.config'
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
+const groupsStore = useGroupsStore()
 const mapStore = useMapStore()
 const mapUrlSearchParams = computed(() => mapStore.mapUrlSearchParams)
 const urlString = computed(() => {
@@ -35,6 +37,7 @@ function changeZoom(direction: boolean) {
 
 onBeforeMount(() => {
     window.addEventListener('message', onEmbedChange)
+    groupsStore.loadGroups()
 })
 
 function onEmbedChange(e: MessageEvent) {

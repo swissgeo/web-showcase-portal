@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useGroupsStore } from '@/store/groups'
-const groupsStore = useGroupsStore()
-groupsStore.loadGroups()
-
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import MapIcon from '@/assets/icons/map.svg?use'

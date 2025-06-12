@@ -5,13 +5,13 @@ import { computed, watch } from 'vue'
 import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import useGeocat from '@/search/geocat'
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useGroupsStore } from '@/store/groups'
 import { useSearchStore } from '@/store/search'
 
 const { t, locale } = useI18n()
+const { triggerGeocatSearch } = useTriggerSearch()
 const groupsStore = useGroupsStore()
-const geocatSearch = useGeocat()
 const searchStore = useSearchStore()
 
 const emit = defineEmits(['focus', 'blur'])
@@ -84,9 +84,9 @@ const selectedGroupIds = computed(() => [
     ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
 ])
 
-watch(selectedGroupIds, (ids) => {
+watch(selectedGroupIds, () => {
     if (searchStore.searchTerm) {
-        geocatSearch.searchGeocat(searchStore.searchTerm, ids.length ? ids : undefined)
+        triggerGeocatSearch()
     }
 })
 
@@ -97,23 +97,26 @@ function lastWord(label: string): string {
 }
 
 function changeFederal(event: MultiSelectChangeEvent) {
-    if (event.value.length > 0) {
+    if (event.value?.length > 0) {
         selectedCantonal.value = []
         selectedCommunal.value = []
+        searchStore.setGeocatSearchResults([])
     }
 }
 
 function changeCommunal(event: MultiSelectChangeEvent) {
-    if (event.value.length > 0) {
+    if (event.value?.length > 0) {
         selectedCantonal.value = []
         selectedFederal.value = []
+        searchStore.setGeocatSearchResults([])
     }
 }
 
 function changeCantonal(event: MultiSelectChangeEvent) {
-    if (event.value.length > 0) {
+    if (event.value?.length > 0) {
         selectedFederal.value = []
         selectedCommunal.value = []
+        searchStore.setGeocatSearchResults([])
     }
 }
 

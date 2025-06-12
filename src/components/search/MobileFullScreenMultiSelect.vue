@@ -77,7 +77,7 @@ const selectedLabels = computed<string[]>(() => {
 function applySelection() {
     showOverlay.value = false
     if (searchStore.searchTerm) {
-        triggerSearch(searchStore.searchTerm)
+        triggerSearch()
         searchStore.setIsOpenSearch(true)
     }
 }

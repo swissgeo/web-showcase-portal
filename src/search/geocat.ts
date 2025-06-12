@@ -36,7 +36,7 @@ export default function useGeocat() {
         // the promise is already underway to being resolved
 
         if (searchStore.searchTerm) {
-        searchStore.setGeocatSearchResults(records)
+            searchStore.appendGeocatSearchResults(records)
             searchStore.setSearchResultTotal(count)
         }
         searchStore.setIsSearchingGeocat(false)

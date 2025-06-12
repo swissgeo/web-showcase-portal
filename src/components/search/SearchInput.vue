@@ -2,11 +2,12 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import useGeocat from '@/search/geocat'
 import { useMapStore } from '@/store/map'
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useSearchStore } from '@/store/search'
 
 const emits = defineEmits(['focus', 'blur'])
@@ -15,6 +16,7 @@ const searchArea = ref<HTMLElement | null>(null)
 defineExpose({ searchArea })
 
 const { t } = useI18n()
+const { triggerSearch } = useTriggerSearch()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
 const mapStore = useMapStore()
@@ -35,10 +37,7 @@ const searchTerm = computed({
         }
         searchStore.setSearchTerm(value)
         if (value) {
-            geocatSearch.searchGeocat(
-                value,
-                selectedGroupIds.value.length ? selectedGroupIds.value : undefined
-            )
+            triggerSearch()
         }
     },
 })
@@ -57,30 +56,6 @@ const clearSearch = () => {
         crossHairPosition: undefined,
     })
 }
-
-const selectedFederal = computed({
-    get: () => searchStore.selectedFederal,
-    set: (val) => searchStore.setSelectedFederal(val),
-})
-const selectedCantonal = computed({
-    get: () => searchStore.selectedCantonal,
-    set: (val) => searchStore.setSelectedCantonal(val),
-})
-const selectedCommunal = computed({
-    get: () => searchStore.selectedCommunal,
-    set: (val) => searchStore.setSelectedCommunal(val),
-})
-
-const selectedGroupIds = computed(() => [
-    ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),
-    ...(Array.isArray(selectedCantonal.value) ? selectedCantonal.value : []),
-    ...(Array.isArray(selectedCommunal.value) ? selectedCommunal.value : []),
-])
-watch(selectedGroupIds, (ids) => {
-    if (searchTerm.value) {
-        geocatSearch.searchGeocat(searchTerm.value, ids.length ? ids : undefined)
-    }
-})
 </script>
 <template>
     <div>

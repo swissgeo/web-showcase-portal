@@ -7,7 +7,6 @@ import { useI18n } from 'vue-i18n'
 
 import useGeocat from '@/search/geocat'
 import { useMapStore } from '@/store/map'
-import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useSearchStore } from '@/store/search'
 
 const emits = defineEmits(['focus', 'blur'])
@@ -20,8 +19,6 @@ const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
 const mapStore = useMapStore()
 const isSearching = computed(() => !!searchStore.searchTerm)
-
-const { triggerSearch } = useTriggerSearch()
 
 const searchTerm = computed({
     get() {
@@ -38,7 +35,10 @@ const searchTerm = computed({
         }
         searchStore.setSearchTerm(value)
         if (value) {
-            triggerSearch(value)
+            geocatSearch.searchGeocat(
+                value,
+                selectedGroupIds.value.length ? selectedGroupIds.value : undefined
+            )
         }
     },
 })
@@ -58,9 +58,18 @@ const clearSearch = () => {
     })
 }
 
-const selectedFederal = ref<number[]>([])
-const selectedCantonal = ref<number[]>([])
-const selectedCommunal = ref<number[]>([])
+const selectedFederal = computed({
+    get: () => searchStore.selectedFederal,
+    set: (val) => searchStore.setSelectedFederal(val),
+})
+const selectedCantonal = computed({
+    get: () => searchStore.selectedCantonal,
+    set: (val) => searchStore.setSelectedCantonal(val),
+})
+const selectedCommunal = computed({
+    get: () => searchStore.selectedCommunal,
+    set: (val) => searchStore.setSelectedCommunal(val),
+})
 
 const selectedGroupIds = computed(() => [
     ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),

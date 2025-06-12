@@ -18,6 +18,9 @@ export interface SearchStoreState {
     dataSearchPanelWidth: number
     isOpenSearch: boolean
     readonly geocatPageSize: 20
+    selectedFederal: number[]
+    selectedCantonal: number[]
+    selectedCommunal: number[]
 }
 
 export const useSearchStore = defineStore('search', {
@@ -33,6 +36,9 @@ export const useSearchStore = defineStore('search', {
             geocatPage: 0,
             dataSearchPanelWidth: SEARCH_RESULTS_DESKTOP_COLUMN_DEFAULT_WIDTH,
             geocatPageSize: 20,
+            selectedFederal: [],
+            selectedCantonal: [],
+            selectedCommunal: [],
         }
     },
     actions: {
@@ -74,6 +80,15 @@ export const useSearchStore = defineStore('search', {
         },
         setGeocatSearchResults(results: GeonetworkRecord[]) {
             this.geocatSearchResults = results
+        },
+        setSelectedFederal(val: number[]) {
+            this.selectedFederal = val
+        },
+        setSelectedCantonal(val: number[]) {
+            this.selectedCantonal = val
+        },
+        setSelectedCommunal(val: number[]) {
+            this.selectedCommunal = val
         },
     },
 })

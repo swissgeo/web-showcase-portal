@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MultiSelect, { type MultiSelectChangeEvent } from 'primevue/multiselect'
 import Tag from 'primevue/tag'
-import { computed, ref, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -65,9 +65,18 @@ const communalGroups = computed(() =>
         .sort((a, b) => a.label.localeCompare(b.label))
 )
 
-const selectedFederal = ref<number[]>([])
-const selectedCantonal = ref<number[]>([])
-const selectedCommunal = ref<number[]>([])
+const selectedFederal = computed({
+    get: () => searchStore.selectedFederal,
+    set: (val) => searchStore.setSelectedFederal(val),
+})
+const selectedCantonal = computed({
+    get: () => searchStore.selectedCantonal,
+    set: (val) => searchStore.setSelectedCantonal(val),
+})
+const selectedCommunal = computed({
+    get: () => searchStore.selectedCommunal,
+    set: (val) => searchStore.setSelectedCommunal(val),
+})
 
 const selectedGroupIds = computed(() => [
     ...(Array.isArray(selectedFederal.value) ? selectedFederal.value : []),

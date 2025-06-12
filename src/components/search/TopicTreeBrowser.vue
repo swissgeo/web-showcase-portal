@@ -1,15 +1,11 @@
 <script lang="ts" setup>
 import type { TreeNode } from 'primevue/treenode'
 
-import Button from 'primevue/button'
 import Tree from 'primevue/tree'
 import { ref, watch, type PropType } from 'vue'
-import { useI18n } from 'vue-i18n'
 
-import { useMainStore } from '@/store/main'
+import AddToMapButton from '@/components/search/AddToMapButton.vue'
 import { type TopicTreeNode } from '@/types/geocatalog'
-
-const { t } = useI18n()
 
 const props = defineProps({
     root: {
@@ -19,7 +15,6 @@ const props = defineProps({
 })
 
 const treeNodes = ref<TreeNode[]>([])
-const mainStore = useMainStore()
 
 function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
     const isLayer = node.category === 'layer'
@@ -50,19 +45,6 @@ watch(
     { immediate: true }
 )
 
-function addLayerToMapFromNode(node: TreeNode) {
-    const data = node.data as TopicTreeNode
-    if (data.category === 'layer' && data.layerBodId) {
-        // Fix me, use the same logic as in AddToMapButton.vue
-        mainStore.addLayerToMap({
-            id: data.layerBodId,
-            name: String(data.label),
-            opacity: 1,
-            visible: true,
-            geonetworkRecord: null, // FIXME
-        })
-    }
-}
 </script>
 
 <template>
@@ -73,29 +55,18 @@ function addLayerToMapFromNode(node: TreeNode) {
                 :filter="true"
                 filter-placeholder="Filter..."
                 :expand-all="false"
-                selection-mode="single"
             >
                 <template #default="slotProps">
                     <span>{{ slotProps.node.label }}</span>
                     <template v-if="slotProps.node.data.category === 'layer'">
-                        <Button
+                        <AddToMapButton
                             class="ml-2"
-                            size="small"
-                            severity="secondary"
+                            :result="slotProps.node.data"
                             :data-cy="`add-layer-from-topic-tree-${slotProps.node.data.layerBodId}`"
-                            @click.stop="addLayerToMapFromNode(slotProps.node)"
-                        >
-                            {{ t('searchResult.addToMap') }}
-                        </Button>
+                        />
                     </template>
                 </template>
             </Tree>
         </div>
     </div>
 </template>
-
-<style scoped>
-button {
-    cursor: pointer;
-}
-</style>

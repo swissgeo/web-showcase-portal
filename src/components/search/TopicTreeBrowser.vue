@@ -2,9 +2,12 @@
 import type { TreeNode } from 'primevue/treenode'
 
 import Tree from 'primevue/tree'
-import { ref, watch, type PropType } from 'vue'
+import { computed, ref, watch, type PropType } from 'vue'
 
+import { useMainStore } from '@/store/main'
 import { type TopicTreeNode } from '@/types/geocatalog'
+
+const mainStore = useMainStore()
 
 const props = defineProps({
     root: {
@@ -14,7 +17,24 @@ const props = defineProps({
 })
 
 const treeNodes = ref<TreeNode[]>([])
-const selectedKey = ref(undefined);
+const selectedKeys = computed(() => {
+    // Helper to collect all tree node keys whose node's layerBodId is present in mainStore.layersOnMap
+    function collectSelectedKeys(nodes: TreeNode[]): Record<string, { checked: boolean; partialChecked: boolean }> {
+        const selected: Record<string, { checked: boolean; partialChecked: boolean }> = {};
+        const layerIdsOnMap = mainStore.layersOnMap.map(l => l.id);
+        function traverse(node: TreeNode) {
+            if (node.data && node.data.layerBodId && layerIdsOnMap.includes(node.data.layerBodId)) {
+                selected[node.key] = { checked: true, partialChecked: false };
+            }
+            if (node.children) {
+                node.children.forEach(traverse);
+            }
+        }
+        nodes.forEach(traverse);
+        return selected;
+    }
+    return collectSelectedKeys(treeNodes.value);
+});
 
 function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
     const isLayer = node.category === 'layer'
@@ -45,13 +65,39 @@ watch(
     { immediate: true }
 )
 
+function onNodeSelect(node: TreeNode) {
+    // eslint-disable-next-line no-console
+    console.log('Node selected:', node);
+    if (node.data.category !== 'layer') {
+        // If the node is not a layer, do not add it to the map
+        return;
+    }
+    mainStore.addLayerToMap({
+        id: node.data.layerBodId,
+        name: node.data.label,
+        opacity: 1,
+        visible: true,
+        geonetworkRecord: null
+    })
+}
+
+function onNodeUnselect(node: TreeNode) {
+    // eslint-disable-next-line no-console
+    console.log('Node unselected:', node);
+    if (node.data.category !== 'layer') {
+        // If the node is not a layer, do not add it to the map
+        return;
+    }
+    mainStore.deleteLayerById(node.data.layerBodId)
+}
+
 </script>
 
 <template>
     <div class="h-full overflow-hidden">
         <div class="h-full overflow-y-auto">
             <Tree
-                v-model:selection-keys="selectedKey"
+                :selection-keys="selectedKeys"
                 :value="treeNodes"
                 :filter="true"
                 filter-placeholder="Filter..."
@@ -64,6 +110,8 @@ watch(
                             : {};
                         }
                 }"
+                @node-select="onNodeSelect"
+                @node-unselect="onNodeUnselect"
             >
             </Tree>
         </div>

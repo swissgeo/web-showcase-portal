@@ -13,15 +13,7 @@ import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.v
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useSearchStore } from '@/store/search'
-
-interface TopicTreeNode {
-  id: number | string
-  label?: string
-  category: string
-  children?: TopicTreeNode[]
-  layerBodId?: string
-  [key: string]: unknown
-}
+import { type TopicTreeNode } from '@/types/geocatalog'
 
 const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
@@ -66,7 +58,6 @@ onMounted(async () => {
     // Defensive: check structure
     topicTreeRoot.value = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null
 })
-
 </script>
 
 <template>
@@ -132,9 +123,9 @@ onMounted(async () => {
             >
             </Button>
             <div
-                v-if=" topicTreeRoot && isCatalogShown"
-                class="my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 px-4 pt-4 pb-4 shadow bg-white absolute left-0 top-full z-20"
-                style="min-height: 200px;"
+                v-if="topicTreeRoot && isCatalogShown"
+                class="absolute top-full left-0 z-20 my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 bg-white px-4 pt-4 pb-4 shadow"
+                style="min-height: 200px"
             >
                 <TopicTreeBrowser :root="topicTreeRoot" />
             </div>

@@ -5,7 +5,7 @@ import Checkbox from 'primevue/checkbox'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
@@ -13,10 +13,10 @@ import { useSearchStore } from '@/store/search'
 
 // Types for option and value
 interface MultiSelectOption {
-    value: string | number
+    value: number
     [key: string]: unknown
 }
-type MultiSelectValue = Array<string | number>
+type MultiSelectValue = Array<number>
 
 // Props
 const props = defineProps<{
@@ -48,16 +48,16 @@ window.addEventListener('resize', () => {
 // Overlay
 const showOverlay = ref<boolean>(false)
 const search = ref<string>('')
-const tempValue = ref<MultiSelectValue>([...(props.modelValue || [])])
 
-watch(
-    () => props.modelValue,
-    (val) => {
-        if (JSON.stringify(tempValue.value) !== JSON.stringify(val)) {
-            tempValue.value = [...(val || [])]
-        }
-    }
-)
+const currentModelValue = computed({
+    get() {
+        return [...(props.modelValue || [])]
+    },
+    set(val: number[]) {
+        emit('update:modelValue', [...val])
+        emit('change', [...val])
+    },
+})
 
 const filteredOptions = computed<MultiSelectOption[]>(() => {
     if (!search.value) return props.options
@@ -75,8 +75,6 @@ const selectedLabels = computed<string[]>(() => {
 })
 
 function applySelection() {
-    emit('update:modelValue', [...tempValue.value])
-    emit('change', [...tempValue.value])
     showOverlay.value = false
     if (searchStore.searchTerm) {
         triggerSearch(searchStore.searchTerm)
@@ -85,9 +83,11 @@ function applySelection() {
 }
 
 function clearSelection() {
-    tempValue.value = []
-    emit('update:modelValue', [...tempValue.value])
-    emit('change', [...tempValue.value])
+    currentModelValue.value = []
+}
+
+function selectAll() {
+    currentModelValue.value = filteredOptions.value.map((opt) => opt.value)
 }
 
 function onBack() {
@@ -111,7 +111,7 @@ function onBack() {
             <template v-else>
                 <span class="mr-1 block font-bold"> {{ placeholder }}:</span>
                 <span class="block truncate">
-                    {{ selectedLabels.slice(0, 2).join(', ') }} +{{ selectedLabels.length - 2 }}
+                    {{ selectedLabels.slice(0, 2).join(', ') }}
                 </span>
             </template>
             <div class="flex items-center gap-1">
@@ -166,7 +166,7 @@ function onBack() {
                     <div class="-center mb-4 flex gap-2 border-b border-gray-200">
                         <Button
                             class="flex-1 border-none bg-white text-[#1C6B85]"
-                            @click="tempValue = filteredOptions.map((opt) => opt.value)"
+                            @click="selectAll"
                         >
                             {{ t('organisation.selectAll') }}
                         </Button>
@@ -176,7 +176,7 @@ function onBack() {
                         ></div>
                         <Button
                             class="flex-1 border-none bg-white text-[#1C6B85]"
-                            @click="tempValue = []"
+                            @click="currentModelValue = []"
                         >
                             {{ t('organisation.reset') }}
                         </Button>
@@ -187,17 +187,10 @@ function onBack() {
                         :key="option.value"
                         class="flex cursor-pointer gap-2 p-2"
                         :for="option.value.toString()"
-                        :class="{ 'bg-[#EBF1F3]': tempValue.includes(option.value) }"
-                        @click="
-                            (event) => {
-                                const idx = tempValue.indexOf(option.value)
-                                if (idx === -1) tempValue.push(option.value)
-                                else tempValue.splice(idx, 1)
-                            }
-                        "
+                        :class="{ 'bg-[#EBF1F3]': currentModelValue.includes(option.value) }"
                     >
                         <Checkbox
-                            v-model="tempValue"
+                            v-model="currentModelValue"
                             :value="option.value"
                             :input-id="option.value.toString()"
                             @click.stop

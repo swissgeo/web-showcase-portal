@@ -60,7 +60,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
             data-cy="div-search-desktop"
         >
             <Card
-                class="w-full"
+                class="4px w-full border-2 border-[#1F576B]"
                 :pt="{
                     body: 'p-0',
                 }"

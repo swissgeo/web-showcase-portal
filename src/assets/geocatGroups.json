@@ -89,7 +89,17 @@
   {
     "logo": "663e1a62-b61e-4fee-9854-ce7490af06ec.png",
     "website": "http://www.ne.ch/sitn",
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 7,
@@ -234,14 +244,14 @@
     "logo": "59c8de21-5b28-4cbf-85a3-f2dc569e5497.png",
     "website": "http://www.raumdatenpool.ch",
     "defaultCategory": {
-      "id": 42521578,
-      "name": "federal",
+      "id": 42521582,
+      "name": "other",
       "label": {
-        "ger": "federal",
-        "ita": "federal",
-        "fre": "federal",
-        "roh": "federal",
-        "eng": "federal"
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
       }
     },
     "allowedCategories": [],
@@ -775,14 +785,14 @@
     "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
     "website": "http://www.geo.admin.ch",
     "defaultCategory": {
-      "id": 42521578,
-      "name": "federal",
+      "id": 42521582,
+      "name": "other",
       "label": {
-        "ger": "federal",
-        "ita": "federal",
-        "fre": "federal",
-        "roh": "federal",
-        "eng": "federal"
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
       }
     },
     "allowedCategories": [],
@@ -1045,7 +1055,7 @@
     "name": "Kanton Schwyz",
     "label": {
       "ger": "Kanton Schwyz",
-      "ita": "Canton Svitto",
+      "ita": "Cantone di Svitto",
       "fre": "Canton de Schwyz",
       "roh": "Chantun Sviz",
       "eng": "Canton of Schwyz"
@@ -1105,7 +1115,7 @@
       "ger": "Kanton Uri",
       "ita": "Cantone di Uri",
       "fre": "Canton d'Uri",
-      "roh": "Kanton Uri",
+      "roh": "Chantun Uri",
       "eng": "Canton Uri"
     }
   },
@@ -1190,8 +1200,8 @@
     "name": "MGDI",
     "label": {
       "ger": "MGDI",
-      "ita": "MGDI",
-      "fre": "MGDI",
+      "ita": "IMDG",
+      "fre": "IMDG",
       "roh": "MGDI",
       "eng": "MGDI"
     }
@@ -1247,11 +1257,11 @@
     "description": "Document Management System for the BGDI",
     "name": "DMS-BGDI",
     "label": {
-      "ger": "Modelle und Modelldokumentationen Geobasisdaten Bund",
-      "ita": "Modelli e documentazione dei modelli geodati di base federali",
-      "fre": "Modèles et documentations de modèles géodonnées de base de la Confédération",
-      "roh": "Modelle und Modelldokumentationen Geobasisdaten Bund",
-      "eng": "Data models and model documentation federal geodata"
+      "ger": "Modelle und Modelldokumentationen Geobasisdaten Bund DMS-BGDI",
+      "ita": "Modelli e documentazione dei modelli geodati di base federali DMS-IFDG",
+      "fre": "Modèles et documentations de modèles géodonnées de base de la Confédération DMS-IFDG",
+      "roh": "Modelle und Modelldokumentationen Geobasisdaten Bund DMS-BGDI",
+      "eng": "Data models and model documentation federal geodata DMS-BGDI"
     }
   },
   {
@@ -1364,7 +1374,7 @@
     "name": "Canton du Jura",
     "label": {
       "ger": "Kanton Jura",
-      "ita": "Canton Giura",
+      "ita": "Cantone di Giura",
       "fre": "Canton du Jura",
       "roh": "Chantun Giura",
       "eng": "Canton of Jura"
@@ -1567,10 +1577,10 @@
     "name": "Stadt Uster",
     "label": {
       "ger": "Stadt Uster",
-      "ita": "Stadt Uster",
-      "fre": "Stadt Uster",
+      "ita": "Città di Uster",
+      "fre": "Ville d'Uster",
       "roh": "Stadt Uster",
-      "eng": "Stadt Uster"
+      "eng": "City of Uster"
     }
   },
   {
@@ -1886,7 +1896,7 @@
     "name": "SO",
     "label": {
       "ger": "Kanton Solothurn",
-      "ita": "Canton Soletta",
+      "ita": "Cantone di Soletta",
       "fre": "Canton de Soleure",
       "roh": "Chantun Soloturn",
       "eng": "Canton of Solothurn"
@@ -1963,7 +1973,7 @@
     "name": "Kanton Schaffhausen",
     "label": {
       "ger": "Kanton Schaffhausen",
-      "ita": "Canton Sciaffusa",
+      "ita": "Cantone di Sciaffusa",
       "fre": "Canton de Schaffhouse",
       "roh": "Chantun Schaffusa",
       "eng": "Canton of Schaffhausen"
@@ -1992,7 +2002,7 @@
     "name": "Kanton Zürich",
     "label": {
       "ger": "Kanton Zürich",
-      "ita": "Canton Zurigo",
+      "ita": "Cantone di Zurigo",
       "fre": "Canton de Zurich",
       "roh": "Chantun Turitg",
       "eng": "Canton of Zurich"
@@ -2110,7 +2120,7 @@
       "ger": "Stadt Freiburg",
       "ita": "Città di Friburgo",
       "fre": "Ville de Fribourg",
-      "roh": "Ville de Fribourg",
+      "roh": "Citad da Fribourg",
       "eng": "City of Fribourg"
     }
   },
@@ -2166,10 +2176,10 @@
     "name": "Stadt Winterthur",
     "label": {
       "ger": "Stadt Winterthur",
-      "ita": "Stadt Winterthur",
-      "fre": "Stadt Winterthur",
+      "ita": "Città di WinterthurStadt Winterthur",
+      "fre": "Ville de Winterthour",
       "roh": "Stadt Winterthur",
-      "eng": "Stadt Winterthur"
+      "eng": "City of Winterthur"
     }
   },
   {
@@ -2445,7 +2455,17 @@
   {
     "logo": "1292.png",
     "website": null,
-    "defaultCategory": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000024,
@@ -2871,14 +2891,14 @@
     "logo": "3116.png",
     "website": null,
     "defaultCategory": {
-      "id": 42521580,
-      "name": "communal",
+      "id": 42521582,
+      "name": "other",
       "label": {
-        "ger": "communal",
-        "ita": "communal",
-        "fre": "communal",
-        "roh": "communal",
-        "eng": "communal"
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
       }
     },
     "allowedCategories": [],
@@ -2918,8 +2938,8 @@
     "description": null,
     "name": "monthey",
     "label": {
-      "ger": "Ville de Monthey",
-      "ita": "Ville de Monthey",
+      "ger": "Stadt Monthey",
+      "ita": "Città di Monthey",
       "fre": "Ville de Monthey",
       "roh": "Ville de Monthey",
       "eng": "Ville de Monthey"
@@ -4321,14 +4341,14 @@
     "logo": "956.png",
     "website": null,
     "defaultCategory": {
-      "id": 42521578,
-      "name": "federal",
+      "id": 42521580,
+      "name": "communal",
       "label": {
-        "ger": "federal",
-        "ita": "federal",
-        "fre": "federal",
-        "roh": "federal",
-        "eng": "federal"
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
       }
     },
     "allowedCategories": [],
@@ -5451,17 +5471,7 @@
   {
     "logo": "1761.png",
     "website": "https://www.vd.ch/toutes-les-autorites/departements/departement-des-institutions-et-du-territoire-dit/direction-generale-du-territoire-et-du-logement-dgtl/direction-du-cadastre-et-de-la-geoinformation-dcg/",
-    "defaultCategory": {
-      "id": 42521579,
-      "name": "cantonal",
-      "label": {
-        "ger": "cantonal",
-        "ita": "cantonal",
-        "fre": "cantonal",
-        "roh": "cantonal",
-        "eng": "cantonal"
-      }
-    },
+    "defaultCategory": null,
     "allowedCategories": [],
     "enableAllowedCategories": false,
     "id": 50000128,
@@ -5504,6 +5514,489 @@
       "fre": "Aubonne",
       "roh": "Aubonne",
       "eng": "Aubonne"
+    }
+  },
+  {
+    "logo": "Prangins-coat_of_arms.svg.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000130,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "prangins",
+    "label": {
+      "ger": "Prangins",
+      "ita": "Prangins",
+      "fre": "Prangins",
+      "roh": "Prangins",
+      "eng": "Prangins"
+    }
+  },
+  {
+    "logo": "SIG.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000131,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "services-industriels-de-geneve",
+    "label": {
+      "ger": "Services industriels de Genève",
+      "ita": "Services industriels de Genève",
+      "fre": "Services industriels de Genève",
+      "roh": "Services industriels de Genève",
+      "eng": "Services industriels de Genève"
+    }
+  },
+  {
+    "logo": "sil.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000132,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "sil",
+    "label": {
+      "ger": "SiL - Services industriels de Lausanne",
+      "ita": "SiL - Services industriels de Lausanne",
+      "fre": "SiL - Services industriels de Lausanne",
+      "roh": "SiL - Services industriels de Lausanne",
+      "eng": "SiL - Services industriels de Lausanne"
+    }
+  },
+  {
+    "logo": "ormont-dessus.png",
+    "website": "https://www.ormont-dessus.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000133,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "ormont-dessus",
+    "label": {
+      "ger": "Ormont-Dessus",
+      "ita": "Ormont-Dessus",
+      "fre": "Ormont-Dessus",
+      "roh": "Ormont-Dessus",
+      "eng": "Ormont-Dessus"
+    }
+  },
+  {
+    "logo": "CHA.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000134,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "canton-de-geneve",
+    "label": {
+      "ger": "Kanton Genf",
+      "ita": "Canton Ginevra",
+      "fre": "Canton de Genève",
+      "roh": "Chantun Genevra",
+      "eng": "Canton of Geneva"
+    }
+  },
+  {
+    "logo": "VDG.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000135,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "ville-de-geneve",
+    "label": {
+      "ger": "Stadt Genf",
+      "ita": "Città di Ginevra",
+      "fre": "Ville de Genève",
+      "roh": "Citad da Genevra",
+      "eng": "City of Geneva"
+    }
+  },
+  {
+    "logo": "TPG.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000136,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "transports-public-genevois",
+    "label": {
+      "ger": "Transports public genevois",
+      "ita": "Transports public genevois",
+      "fre": "Transports public genevois",
+      "roh": "Transports public genevois",
+      "eng": "Transports public genevois"
+    }
+  },
+  {
+    "logo": "GVA.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000137,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "geneve-aeroport",
+    "label": {
+      "ger": "Genève Aéroport",
+      "ita": "Genève Aéroport",
+      "fre": "Genève Aéroport",
+      "roh": "Genève Aéroport",
+      "eng": "Genève Aéroport"
+    }
+  },
+  {
+    "logo": "Cheseaux-sur-Lausanne-coat_of_arms.svg.png",
+    "website": "https://www.cheseaux.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000138,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "cheseaux-sur-lausanne",
+    "label": {
+      "ger": "Cheseaux-sur-Lausanne",
+      "ita": "Cheseaux-sur-Lausanne",
+      "fre": "Cheseaux-sur-Lausanne",
+      "roh": "Cheseaux-sur-Lausanne",
+      "eng": "Cheseaux-sur-Lausanne"
+    }
+  },
+  {
+    "logo": "viageo/default_logo_viageo.png",
+    "website": "https://www.thermoreso-nyon.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000139,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "thermoreso-nyon",
+    "label": {
+      "ger": "ThermorésÔ Nyon SA",
+      "ita": "ThermorésÔ Nyon SA",
+      "fre": "ThermorésÔ Nyon SA",
+      "roh": "ThermorésÔ Nyon SA",
+      "eng": "ThermorésÔ Nyon SA"
+    }
+  },
+  {
+    "logo": "IMAD.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000140,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "institution-genevoise-de-mainti",
+    "label": {
+      "ger": "Institution genevoise de maintien à domicile",
+      "ita": "Institution genevoise de maintien à domicile",
+      "fre": "Institution genevoise de maintien à domicile",
+      "roh": "Institution genevoise de maintien à domicile",
+      "eng": "Institution genevoise de maintien à domicile"
+    }
+  },
+  {
+    "logo": "CERN.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000141,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "organisation-europeenne-pour-la",
+    "label": {
+      "ger": "Organisation européenne pour la recherche nucléaire",
+      "ita": "Organisation européenne pour la recherche nucléaire",
+      "fre": "Organisation européenne pour la recherche nucléaire",
+      "roh": "Organisation européenne pour la recherche nucléaire",
+      "eng": "Organisation européenne pour la recherche nucléaire"
+    }
+  },
+  {
+    "logo": "FP.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000142,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "fondation-des-parkings",
+    "label": {
+      "ger": "Fondation des parkings",
+      "ita": "Fondation des parkings",
+      "fre": "Fondation des parkings",
+      "roh": "Fondation des parkings",
+      "eng": "Fondation des parkings"
+    }
+  },
+  {
+    "logo": "viageo/default_logo_viageo.png",
+    "website": "https://www.energie360.ch/fr/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000144,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "energie-360",
+    "label": {
+      "ger": "Energie 360° SA",
+      "ita": "Energie 360° SA",
+      "fre": "Energie 360° SA",
+      "roh": "Energie 360° SA",
+      "eng": "Energie 360° SA"
+    }
+  },
+  {
+    "logo": "HES_SO.jpg",
+    "website": "",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000145,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "haute-ecole-specialisee-de-suis",
+    "label": {
+      "ger": "Haute école spécialisée de Suisse occidentale",
+      "ita": "Haute école spécialisée de Suisse occidentale",
+      "fre": "Haute école spécialisée de Suisse occidentale",
+      "roh": "Haute école spécialisée de Suisse occidentale",
+      "eng": "Haute école spécialisée de Suisse occidentale"
+    }
+  },
+  {
+    "logo": "FTI.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000146,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "fondation-pour-les-terrains-ind",
+    "label": {
+      "ger": "Fondation pour les terrains industriels de Genève",
+      "ita": "Fondation pour les terrains industriels de Genève",
+      "fre": "Fondation pour les terrains industriels de Genève",
+      "roh": "Fondation pour les terrains industriels de Genève",
+      "eng": "Fondation pour les terrains industriels de Genève"
+    }
+  },
+  {
+    "logo": "CHA.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000147,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "chancellerie-detat",
+    "label": {
+      "ger": "Chancellerie d'état",
+      "ita": "Chancellerie d'état",
+      "fre": "Chancellerie d'état",
+      "roh": "Chancellerie d'état",
+      "eng": "Chancellerie d'état"
     }
   }
 ]

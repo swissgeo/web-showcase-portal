@@ -4,10 +4,12 @@ import type { TreeNode } from 'primevue/treenode'
 import Tree from 'primevue/tree'
 import { computed, ref, watch, type PropType } from 'vue'
 
+import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore } from '@/store/main'
 import { type TopicTreeNode } from '@/types/geocatalog'
 
 const mainStore = useMainStore()
+const geocatalogStore = useGeocatalogStore()
 
 const props = defineProps({
     root: {
@@ -34,6 +36,16 @@ const selectedKeys = computed(() => {
         return selected;
     }
     return collectSelectedKeys(treeNodes.value);
+});
+
+const expandedKeysObj = computed(() => {
+    const obj: Record<string, boolean> = {};
+    if (Array.isArray(geocatalogStore.expandedKeys)) {
+        geocatalogStore.expandedKeys.forEach((key: string | number) => {
+            obj[String(key)] = true;
+        });
+    }
+    return obj;
 });
 
 function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
@@ -91,6 +103,14 @@ function onNodeUnselect(node: TreeNode) {
     mainStore.deleteLayerById(node.data.layerBodId)
 }
 
+function onExpand(node: TreeNode) {
+    geocatalogStore.addExpandedKey(node.key);
+}
+
+function onCollapse(node: TreeNode) {
+    geocatalogStore.removeExpandedKey(node.key);
+}
+
 </script>
 
 <template>
@@ -98,6 +118,7 @@ function onNodeUnselect(node: TreeNode) {
         <div class="h-full overflow-y-auto">
             <Tree
                 :selection-keys="selectedKeys"
+                :expanded-keys="expandedKeysObj"
                 :value="treeNodes"
                 :filter="true"
                 filter-placeholder="Filter..."
@@ -112,6 +133,8 @@ function onNodeUnselect(node: TreeNode) {
                 }"
                 @node-select="onNodeSelect"
                 @node-unselect="onNodeUnselect"
+                @node-expand="onExpand"
+                @node-collapse="onCollapse"
             >
             </Tree>
         </div>

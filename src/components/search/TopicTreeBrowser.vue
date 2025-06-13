@@ -13,7 +13,7 @@ const geocatalogStore = useGeocatalogStore()
 
 const props = defineProps({
     root: {
-        type: Object as PropType<TopicTreeNode>,
+        type: [Object, null] as PropType<TopicTreeNode | null>,
         required: true,
     },
 })

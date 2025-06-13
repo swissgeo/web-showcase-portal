@@ -1,16 +1,24 @@
 import { defineStore } from 'pinia'
 
+import { type TopicTreeNode } from '@/types/geocatalog'
+
 export interface GeocatalogStore {
-    expandedKeys: string[]
+    expandedKeys: string[];
+    topicTreeData: Record<string, Record<string, TopicTreeNode | null>>;
 }
 
 export const useGeocatalogStore = defineStore('geocatalog', {
     state: (): GeocatalogStore => {
         return {
             expandedKeys: [],
+            topicTreeData: {},
         }
     },
-    getters: {},
+    getters: {
+        getTopicTreeRoot: (state) => (topic: string, lang: string) => {
+            return state.topicTreeData[topic]?.[lang] || null;
+        }
+    },
     actions: {
         addExpandedKey(key: string) {
             if (!this.expandedKeys.includes(key)) {
@@ -22,6 +30,12 @@ export const useGeocatalogStore = defineStore('geocatalog', {
             if (idx !== -1) {
                 this.expandedKeys.splice(idx, 1);
             }
+        },
+        setTopicTreeRoot(topic: string, lang: string, root: TopicTreeNode | null) {
+            if (!this.topicTreeData[topic]) {
+                this.topicTreeData[topic] = {};
+            }
+            this.topicTreeData[topic][lang] = root;
         },
     },
 })

@@ -2,7 +2,7 @@
 import { onClickOutside } from '@vueuse/core'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
-import { computed, useTemplateRef, onMounted } from 'vue'
+import { computed, ref, useTemplateRef, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { fetchTopicCatalogJson } from '@/api/topics.api'
@@ -13,6 +13,7 @@ import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.v
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useGeocatalogStore } from '@/store/geocatalog'
+import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type TopicTreeNode } from '@/types/geocatalog'
 
@@ -20,6 +21,7 @@ const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
+const mainStore = useMainStore()
 
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const searchTerm = computed(() => searchStore.searchTerm)
@@ -53,15 +55,18 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
 
 onClickOutside(searchContainer, handleClickOutsideSearch)
 
-onMounted(async () => {
-    const topic = 'ech';
-    const lang = 'en';
-    let root = geocatalogStore.getTopicTreeRoot(topic, lang);
+const topic = 'ech'
+const topicTreeRoot = ref<TopicTreeNode | null>(null)
+
+watchEffect(async () => {
+    const lang = mainStore.language
+    let root = geocatalogStore.getTopicTreeRoot(topic, lang)
     if (!root) {
-        const data = await fetchTopicCatalogJson(topic, lang);
-        root = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null;
-        geocatalogStore.setTopicTreeRoot(topic, lang, root);
+        const data = await fetchTopicCatalogJson(topic, lang)
+        root = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null
+        geocatalogStore.setTopicTreeRoot(topic, lang, root)
     }
+    topicTreeRoot.value = root
 })
 </script>
 
@@ -128,11 +133,11 @@ onMounted(async () => {
             >
             </Button>
             <div
-                v-if="geocatalogStore.getTopicTreeRoot('ech', 'en') && isCatalogShown"
+                v-if="topicTreeRoot && isCatalogShown"
                 class="absolute top-full left-0 z-20 my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 bg-white px-4 pt-4 pb-4 shadow"
                 style="min-height: 200px"
             >
-                <TopicTreeBrowser :root="geocatalogStore.getTopicTreeRoot('ech', 'en')" />
+                <TopicTreeBrowser :root="topicTreeRoot" />
             </div>
         </div>
         <div class="pointer-events-auto absolute top-4 right-6">

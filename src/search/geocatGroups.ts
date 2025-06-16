@@ -20,6 +20,7 @@ export interface Group {
     defaultCategory: Category | null;
 }
 
+// TODO: Replace local JSON import with a call to the geocat API (currently a CORS problem)
 import geocatGroups from '@/assets/geocatGroups.json'
 
 interface RawGroup {

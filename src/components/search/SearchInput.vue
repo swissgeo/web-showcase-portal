@@ -6,8 +6,8 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import useGeocat from '@/search/geocat'
-import { useMapStore } from '@/store/map'
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
+import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 
 const emits = defineEmits(['focus', 'blur'])

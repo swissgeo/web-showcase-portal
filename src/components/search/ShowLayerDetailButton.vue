@@ -29,10 +29,6 @@ const currentlyDisplayed = computed(() => {
 const severity = computed(() => {
     return currentlyDisplayed.value ? 'primary' : 'secondary'
 })
-
-const variant = computed(() => {
-    return currentlyDisplayed.value ? '' : 'text'
-})
 </script>
 
 <template>
@@ -41,7 +37,7 @@ const variant = computed(() => {
         :severity="severity"
         class="mr-auto cursor-pointer"
         :title="t('searchResult.showInfo')"
-        :variant="variant"
+        :outlined="!currentlyDisplayed"
         @click="showLayerInfo(layerId)"
     >
         <template #icon>

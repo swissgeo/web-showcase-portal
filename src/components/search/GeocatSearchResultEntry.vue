@@ -33,7 +33,7 @@ const tooltipContent = computed(() => {
             {{ result.title }}
         </div>
         <ShowLayerDetailButton
-            class="h-4 w-4 shrink-0"
+            class="shrink-0"
             :layer-id="result.uniqueIdentifier"
         />
         <AddToMapButton

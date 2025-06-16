@@ -78,10 +78,7 @@ watch(
 )
 
 function onNodeSelect(node: TreeNode) {
-    // eslint-disable-next-line no-console
-    console.log('Node selected:', node);
     if (node.data.category !== 'layer') {
-        // If the node is not a layer, do not add it to the map
         return;
     }
     mainStore.addLayerToMap({
@@ -94,10 +91,7 @@ function onNodeSelect(node: TreeNode) {
 }
 
 function onNodeUnselect(node: TreeNode) {
-    // eslint-disable-next-line no-console
-    console.log('Node unselected:', node);
     if (node.data.category !== 'layer') {
-        // If the node is not a layer, do not add it to the map
         return;
     }
     mainStore.deleteLayerById(node.data.layerBodId)
@@ -127,7 +121,7 @@ function onCollapse(node: TreeNode) {
                 :pt="{
                     pcNodeCheckbox:  (options) => {
                         return options.context.node.data?.category !== 'layer'
-                            ? { root: 'hidden' } // hide the checkbox
+                            ? { root: 'hidden' } // hide the checkbox if not a layer
                             : {};
                         }
                 }"

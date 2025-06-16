@@ -1,8 +1,7 @@
 export interface TopicTreeNode {
     id: number | string
-    label: string
+    layerBodId: string
+    label: string  // Similar to name in Layer
     category: string
     children?: TopicTreeNode[]
-    layerBodId: string
-    [key: string]: unknown
 }

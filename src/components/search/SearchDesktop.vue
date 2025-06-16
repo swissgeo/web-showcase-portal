@@ -55,7 +55,7 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
 
 onClickOutside(searchContainer, handleClickOutsideSearch)
 
-const topic = 'ech'
+const topic = 'ech' // This is the topic we want to fetch the catalog for, can be dynamic based on user selection
 const topicTreeRoot = ref<TopicTreeNode | null>(null)
 
 watchEffect(async () => {
@@ -64,17 +64,17 @@ watchEffect(async () => {
     if (!root) {
         const data = await fetchTopicCatalogJson(topic, lang)
         root = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null
-        const layerConfigs = mainStore.getLayerConfigsByLang(lang)
-        if(!layerConfigs){
+        let layerConfigs = mainStore.getLayerConfigsByLang(lang)
+        if (!layerConfigs) {
             const layerConfigsData = await fetchLayerConfigJson(lang)
             // Parse the layer configs and set them in the main store
             mainStore.setLayerConfigs(lang, layerConfigsData as Record<string, LayerConfig>)
+            layerConfigs = mainStore.getLayerConfigsByLang(lang)
         }
-        const currentLayerConfigs = mainStore.getLayerConfigsByLang(lang)
         // Filter the root node to only include layers that are present in the layer configs
         function filterTree(node: TopicTreeNode): TopicTreeNode | null {
             if (node.category === 'layer') {
-                if (!currentLayerConfigs || !(node.layerBodId in currentLayerConfigs)) {
+                if (!layerConfigs || !(node.layerBodId in layerConfigs)) {
                     return null
                 }
             }

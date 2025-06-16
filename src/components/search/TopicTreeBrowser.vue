@@ -21,32 +21,34 @@ const props = defineProps({
 const treeNodes = ref<TreeNode[]>([])
 const selectedKeys = computed(() => {
     // Helper to collect all tree node keys whose node's layerBodId is present in mainStore.layersOnMap
-    function collectSelectedKeys(nodes: TreeNode[]): Record<string, { checked: boolean; partialChecked: boolean }> {
-        const selected: Record<string, { checked: boolean; partialChecked: boolean }> = {};
-        const layerIdsOnMap = mainStore.layersOnMap.map(l => l.id);
+    function collectSelectedKeys(
+        nodes: TreeNode[]
+    ): Record<string, { checked: boolean; partialChecked: boolean }> {
+        const selected: Record<string, { checked: boolean; partialChecked: boolean }> = {}
+        const layerIdsOnMap = mainStore.layersOnMap.map((l) => l.id)
         function traverse(node: TreeNode) {
             if (node.data && node.data.layerBodId && layerIdsOnMap.includes(node.data.layerBodId)) {
-                selected[node.key] = { checked: true, partialChecked: false };
+                selected[node.key] = { checked: true, partialChecked: false }
             }
             if (node.children) {
-                node.children.forEach(traverse);
+                node.children.forEach(traverse)
             }
         }
-        nodes.forEach(traverse);
-        return selected;
+        nodes.forEach(traverse)
+        return selected
     }
-    return collectSelectedKeys(treeNodes.value);
-});
+    return collectSelectedKeys(treeNodes.value)
+})
 
 const expandedKeysObj = computed(() => {
-    const obj: Record<string, boolean> = {};
+    const obj: Record<string, boolean> = {}
     if (Array.isArray(geocatalogStore.expandedKeys)) {
         geocatalogStore.expandedKeys.forEach((key: string | number) => {
-            obj[String(key)] = true;
-        });
+            obj[String(key)] = true
+        })
     }
-    return obj;
-});
+    return obj
+})
 
 function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
     const isLayer = node.category === 'layer'
@@ -79,32 +81,31 @@ watch(
 
 function onNodeSelect(node: TreeNode) {
     if (node.data.category !== 'layer') {
-        return;
+        return
     }
     mainStore.addLayerToMap({
         id: node.data.layerBodId,
         name: node.data.label,
         opacity: 1,
         visible: true,
-        geonetworkRecord: null
+        geonetworkRecord: null,
     })
 }
 
 function onNodeUnselect(node: TreeNode) {
     if (node.data.category !== 'layer') {
-        return;
+        return
     }
     mainStore.deleteLayerById(node.data.layerBodId)
 }
 
 function onExpand(node: TreeNode) {
-    geocatalogStore.addExpandedKey(node.key);
+    geocatalogStore.addExpandedKey(node.key)
 }
 
 function onCollapse(node: TreeNode) {
-    geocatalogStore.removeExpandedKey(node.key);
+    geocatalogStore.removeExpandedKey(node.key)
 }
-
 </script>
 
 <template>
@@ -119,11 +120,11 @@ function onCollapse(node: TreeNode) {
                 :expand-all="false"
                 selection-mode="checkbox"
                 :pt="{
-                    pcNodeCheckbox:  (options) => {
+                    pcNodeCheckbox: (options) => {
                         return options.context.node.data?.category !== 'layer'
                             ? { root: 'hidden' } // hide the checkbox if not a layer
-                            : {};
-                        }
+                            : {}
+                    },
                 }"
                 @node-select="onNodeSelect"
                 @node-unselect="onNodeUnselect"

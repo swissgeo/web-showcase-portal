@@ -78,7 +78,9 @@ watchEffect(async () => {
                     return null
                 }
             }
-            const children = node.children?.map(filterTree).filter(Boolean) as TopicTreeNode[] | undefined
+            const children = node.children?.map(filterTree).filter(Boolean) as
+                | TopicTreeNode[]
+                | undefined
             return { ...node, children }
         }
         if (root) {

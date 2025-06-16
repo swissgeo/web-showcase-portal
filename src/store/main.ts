@@ -3,8 +3,13 @@ import { defineStore } from 'pinia'
 import type { GeonetworkRecord } from '@/types/gnRecord'
 import type { Layer } from '@/types/Layer'
 
-import { i18n, getBrowserLanguage, type Language, langToLocal, SUPPORTED_LANG } from '@/types/language'
-
+import {
+    i18n,
+    getBrowserLanguage,
+    type Language,
+    langToLocal,
+    SUPPORTED_LANG,
+} from '@/types/language'
 
 export type LayerConfig = {
     id: string
@@ -20,7 +25,7 @@ export interface MainStoreState {
     bgLayerId: string | null
     bgLayers: Layer[]
     language: Language
-    layerConfigs: Record<string, Record<string, LayerConfig | null>>;  // lang: id: LayerConfig | null
+    layerConfigs: Record<string, Record<string, LayerConfig | null>> // lang: id: LayerConfig | null
 }
 
 export const useMainStore = defineStore('main', {
@@ -28,9 +33,10 @@ export const useMainStore = defineStore('main', {
         const storedLanguage = localStorage.getItem('selectedLanguage') as Language | null
         const browserLanguage = getBrowserLanguage()
 
-        const initialLanguage: Language = storedLanguage && SUPPORTED_LANG.includes(storedLanguage)
-            ? storedLanguage
-            : browserLanguage
+        const initialLanguage: Language =
+            storedLanguage && SUPPORTED_LANG.includes(storedLanguage)
+                ? storedLanguage
+                : browserLanguage
 
         i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
         return {
@@ -62,7 +68,7 @@ export const useMainStore = defineStore('main', {
                 },
             ],
             language: initialLanguage,
-            layerConfigs: {}
+            layerConfigs: {},
         }
     },
     getters: {
@@ -85,9 +91,9 @@ export const useMainStore = defineStore('main', {
         visibleLayers(state: MainStoreState) {
             return state.layersOnMap.filter((layer) => layer.visible)
         },
-        getLayerConfigsByLang: (state: MainStoreState) => (lang: string) =>  {
+        getLayerConfigsByLang: (state: MainStoreState) => (lang: string) => {
             return state.layerConfigs[lang] || null
-        }
+        },
     },
     actions: {
         addLayerToMap(layer: Layer) {
@@ -155,6 +161,6 @@ export const useMainStore = defineStore('main', {
         },
         setLayerConfigs(lang: string, configs: Record<string, LayerConfig | null>) {
             this.layerConfigs[lang] = configs
-        }
+        },
     },
 })

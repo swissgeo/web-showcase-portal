@@ -48,7 +48,7 @@ function handleWheel(event: WheelEvent): void {
 }
 function onClickKeyword(useCase: SearchKeywordUseCase) {
     searchStore.setSearchTerm(useCase.keyword?.[localeString.value])
-    geocatSearch.searchConfigGeocat(useCase.geocatIds)
+    geocatSearch.searchConfigGeocat(useCase.layers)
 }
 </script>
 <template>

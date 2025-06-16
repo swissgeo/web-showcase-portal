@@ -5,6 +5,14 @@ import type { Layer } from '@/types/Layer'
 
 import { i18n, getBrowserLanguage, type Language, langToLocal, SUPPORTED_LANG } from '@/types/language'
 
+
+export type LayerConfig = {
+    id: string
+    label: string
+    hasLegend: boolean
+    background: boolean
+}
+
 export interface MainStoreState {
     layersOnMap: Layer[]
     infoLayerId: string | null
@@ -12,6 +20,7 @@ export interface MainStoreState {
     bgLayerId: string | null
     bgLayers: Layer[]
     language: Language
+    layerConfigs: Record<string, Record<string, LayerConfig | null>>;  // lang: id: LayerConfig | null
 }
 
 export const useMainStore = defineStore('main', {
@@ -53,6 +62,7 @@ export const useMainStore = defineStore('main', {
                 },
             ],
             language: initialLanguage,
+            layerConfigs: {}
         }
     },
     getters: {
@@ -75,6 +85,9 @@ export const useMainStore = defineStore('main', {
         visibleLayers(state: MainStoreState) {
             return state.layersOnMap.filter((layer) => layer.visible)
         },
+        getLayerConfigsByLang: (state: MainStoreState) => (lang: string) =>  {
+            return state.layerConfigs[lang] || null
+        }
     },
     actions: {
         addLayerToMap(layer: Layer) {
@@ -140,5 +153,8 @@ export const useMainStore = defineStore('main', {
             this.layersOnMap.splice(oldIndex, 1)
             this.layersOnMap.splice(newIndex, 0, layer)
         },
+        setLayerConfigs(lang: string, configs: Record<string, LayerConfig | null>) {
+            this.layerConfigs[lang] = configs
+        }
     },
 })

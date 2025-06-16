@@ -5,7 +5,7 @@ import Card from 'primevue/card'
 import { computed, ref, useTemplateRef, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { fetchTopicCatalogJson } from '@/api/topics.api'
+import { fetchTopicCatalogJson, fetchLayerConfigJson } from '@/api/topics.api'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
@@ -13,7 +13,7 @@ import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.v
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useGeocatalogStore } from '@/store/geocatalog'
-import { useMainStore } from '@/store/main'
+import { useMainStore, type LayerConfig } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type TopicTreeNode } from '@/types/geocatalog'
 
@@ -64,6 +64,26 @@ watchEffect(async () => {
     if (!root) {
         const data = await fetchTopicCatalogJson(topic, lang)
         root = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null
+        const layerConfigs = mainStore.getLayerConfigsByLang(lang)
+        if(!layerConfigs){
+            const layerConfigsData = await fetchLayerConfigJson(lang)
+            // Parse the layer configs and set them in the main store
+            mainStore.setLayerConfigs(lang, layerConfigsData as Record<string, LayerConfig>)
+        }
+        const currentLayerConfigs = mainStore.getLayerConfigsByLang(lang)
+        // Filter the root node to only include layers that are present in the layer configs
+        function filterTree(node: TopicTreeNode): TopicTreeNode | null {
+            if (node.category === 'layer') {
+                if (!currentLayerConfigs || !(node.layerBodId in currentLayerConfigs)) {
+                    return null
+                }
+            }
+            const children = node.children?.map(filterTree).filter(Boolean) as TopicTreeNode[] | undefined
+            return { ...node, children }
+        }
+        if (root) {
+            root = filterTree(root)
+        }
         geocatalogStore.setTopicTreeRoot(topic, lang, root)
     }
     topicTreeRoot.value = root

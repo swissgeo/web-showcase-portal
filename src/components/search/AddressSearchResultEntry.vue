@@ -24,7 +24,6 @@ function selectAddress() {
         crossHairPosition: firstCoordinate,
         z: 10,
     })
-    searchStore.setSearchTerm('')
     searchStore.setIsOpenSearch(false)
 }
 </script>

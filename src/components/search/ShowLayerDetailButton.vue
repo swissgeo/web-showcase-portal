@@ -14,7 +14,12 @@ const { layerId } = defineProps<{
 }>()
 
 const showLayerInfo = (layerId: string) => {
-    mainStore.setInfoLayerId(layerId)
+    // If the layer is already displayed, hide it by setting infoLayerId to null
+    if (layerId === mainStore.infoLayerId) {
+        mainStore.resetInfoLayerId()
+    } else {
+        mainStore.setInfoLayerId(layerId)
+    }
 }
 
 const currentlyDisplayed = computed(() => {

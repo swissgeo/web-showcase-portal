@@ -3,7 +3,9 @@ import { ChevronsUpDown } from 'lucide-vue-next'
 import Select from 'primevue/select'
 import { computed } from 'vue'
 
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useMainStore } from '@/store/main'
+import { useSearchStore } from '@/store/search'
 import { SUPPORTED_LANG, type Language } from '@/types/language'
 
 const options = SUPPORTED_LANG.map((lang) => ({
@@ -12,6 +14,8 @@ const options = SUPPORTED_LANG.map((lang) => ({
 }))
 
 const mainStore = useMainStore()
+const searchStore = useSearchStore()
+const { triggerSearch } = useTriggerSearch()
 const currentLanguage = computed({
     get() {
         return {
@@ -22,6 +26,10 @@ const currentLanguage = computed({
     set(value: { label: string; value: Language }) {
         if (value.value !== mainStore.language) {
             mainStore.setLanguage(value.value)
+            const currentSearchTerm = searchStore.searchTerm?.valueOf
+            if (currentSearchTerm) {
+                triggerSearch() // Trigger a search with the new language
+            }
         }
     },
 })

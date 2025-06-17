@@ -14,7 +14,12 @@ const { layerId } = defineProps<{
 }>()
 
 const showLayerInfo = (layerId: string) => {
-    mainStore.setInfoLayerId(layerId)
+    // If the layer is already displayed, hide it by setting infoLayerId to null
+    if (layerId === mainStore.infoLayerId) {
+        mainStore.resetInfoLayerId()
+    } else {
+        mainStore.setInfoLayerId(layerId)
+    }
 }
 
 const currentlyDisplayed = computed(() => {
@@ -24,10 +29,6 @@ const currentlyDisplayed = computed(() => {
 const severity = computed(() => {
     return currentlyDisplayed.value ? 'primary' : 'secondary'
 })
-
-const variant = computed(() => {
-    return currentlyDisplayed.value ? '' : 'text'
-})
 </script>
 
 <template>
@@ -36,7 +37,7 @@ const variant = computed(() => {
         :severity="severity"
         class="mr-auto cursor-pointer"
         :title="t('searchResult.showInfo')"
-        :variant="variant"
+        :outlined="!currentlyDisplayed"
         @click="showLayerInfo(layerId)"
     >
         <template #icon>

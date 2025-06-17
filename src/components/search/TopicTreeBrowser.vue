@@ -19,25 +19,38 @@ const props = defineProps({
 })
 
 const treeNodes = ref<TreeNode[]>([])
-const selectedKeys = computed(() => {
-    // Helper to collect all tree node keys whose node's layerBodId is present in mainStore.layersOnMap
-    function collectSelectedKeys(
-        nodes: TreeNode[]
-    ): Record<string, { checked: boolean; partialChecked: boolean }> {
-        const selected: Record<string, { checked: boolean; partialChecked: boolean }> = {}
-        const layerIdsOnMap = mainStore.layersOnMap.map((l) => l.id)
-        function traverse(node: TreeNode) {
-            if (node.data && node.data.layerBodId && layerIdsOnMap.includes(node.data.layerBodId)) {
-                selected[node.key] = { checked: true, partialChecked: false }
-            }
-            if (node.children) {
-                node.children.forEach(traverse)
-            }
+
+// This function determines which nodes in the topic tree should appear as selected (checked) in the UI.
+function collectSelectedKeys(
+    nodes: TreeNode[],
+    layerIdsOnMap: string[]
+): Record<string, { checked: boolean; partialChecked: boolean }> {
+    // This object will store the selected state for each node key
+    const selected: Record<string, { checked: boolean; partialChecked: boolean }> = {}
+
+    // Recursively traverse the tree nodes
+    function traverse(node: TreeNode) {
+        // Check if the node represents a layer and is present on the map
+        const isNodeSelected = node.data && node.data.layerBodId && layerIdsOnMap.includes(node.data.layerBodId)
+
+        if (isNodeSelected) {
+            // Mark this node as checked (follow the PrimeVue TreeNode selection structure)
+            selected[node.key] = { checked: true, partialChecked: false }
         }
-        nodes.forEach(traverse)
-        return selected
+
+        // If the node has children, traverse them as well
+        node.children?.forEach(traverse)
     }
-    return collectSelectedKeys(treeNodes.value)
+
+    // Start the traversal from the root nodes
+    nodes.forEach(traverse)
+
+    return selected
+}
+
+const selectedKeys = computed(() => {
+    const layerIdsOnMap = mainStore.layersOnMap.map((l) => l.id)
+    return collectSelectedKeys(treeNodes.value, layerIdsOnMap)
 })
 
 const expandedKeysObj = computed(() => {
@@ -62,19 +75,25 @@ function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
     }
 }
 
+// Helper to set the treeNodes based on the root node structure
+function setTreeNodesFromRoot(root: TopicTreeNode | null) {
+    if (!root) {
+        return
+    }
+    // If root has only one child, show its children as the root nodes
+    if (root.children && root.children.length === 1) {
+        treeNodes.value = [toPrimeTreeNodes(root.children[0])]
+    } else if (root.children && root.children.length > 1) {
+        treeNodes.value = root.children.map(toPrimeTreeNodes)
+    } else {
+        treeNodes.value = [toPrimeTreeNodes(root)]
+    }
+}
+
 watch(
     () => props.root,
     (root) => {
-        if (root) {
-            // If root has only one child, show its children as the root nodes
-            if (root.children && root.children.length === 1) {
-                treeNodes.value = [toPrimeTreeNodes(root.children[0])]
-            } else if (root.children && root.children.length > 1) {
-                treeNodes.value = root.children.map(toPrimeTreeNodes)
-            } else {
-                treeNodes.value = [toPrimeTreeNodes(root)]
-            }
-        }
+        setTreeNodesFromRoot(root)
     },
     { immediate: true }
 )
@@ -109,29 +128,27 @@ function onCollapse(node: TreeNode) {
 </script>
 
 <template>
-    <div class="h-full overflow-hidden">
-        <div class="h-full overflow-y-auto">
-            <Tree
-                :selection-keys="selectedKeys"
-                :expanded-keys="expandedKeysObj"
-                :value="treeNodes"
-                :filter="true"
-                filter-placeholder="Filter..."
-                :expand-all="false"
-                selection-mode="checkbox"
-                :pt="{
-                    pcNodeCheckbox: (options) => {
-                        return options.context.node.data?.category !== 'layer'
-                            ? { root: 'hidden' } // hide the checkbox if not a layer
-                            : {}
-                    },
-                }"
-                @node-select="onNodeSelect"
-                @node-unselect="onNodeUnselect"
-                @node-expand="onExpand"
-                @node-collapse="onCollapse"
-            >
-            </Tree>
-        </div>
+    <div class="h-full overflow-hidden overflow-y-auto">
+        <Tree
+            :selection-keys="selectedKeys"
+            :expanded-keys="expandedKeysObj"
+            :value="treeNodes"
+            :filter="true"
+            filter-placeholder="Filter..."
+            :expand-all="false"
+            selection-mode="checkbox"
+            :pt="{
+                pcNodeCheckbox: (options) => {
+                    return options.context.node.data?.category !== 'layer'
+                        ? { root: 'hidden' } // hide the checkbox if not a layer
+                        : {}
+                },
+            }"
+            @node-select="onNodeSelect"
+            @node-unselect="onNodeUnselect"
+            @node-expand="onExpand"
+            @node-collapse="onCollapse"
+        >
+        </Tree>
     </div>
 </template>

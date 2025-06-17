@@ -58,8 +58,20 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
 const topic = 'ech' // This is the topic we want to fetch the catalog for, can be dynamic based on user selection
 const topicTreeRoot = ref<TopicTreeNode | null>(null)
 
-watchEffect(async () => {
-    const lang = mainStore.language
+// Filter the root node to only include layers that are present in the layer configs
+function filterTree(node: TopicTreeNode, layerConfigs: Record<string, LayerConfig | null>): TopicTreeNode | null {
+    if (node.category === 'layer') {
+        if (!layerConfigs || !(node.layerBodId in layerConfigs)) {
+            return null
+        }
+    }
+    const children = node.children?.map(child => filterTree(child, layerConfigs)).filter(Boolean) as TopicTreeNode[] | undefined
+    return { ...node, children }
+}
+
+// This function fetches the topic tree root and layer configs for the given topic and language if not already cached.
+// It ensures that only layers present in the configs are included in the tree, then updates the store and local ref.
+async function fetchAndPrepareTopicTreeRoot(topic: string, lang: string) {
     let root = geocatalogStore.getTopicTreeRoot(topic, lang)
     if (!root) {
         const data = await fetchTopicCatalogJson(topic, lang)
@@ -71,24 +83,17 @@ watchEffect(async () => {
             mainStore.setLayerConfigs(lang, layerConfigsData as Record<string, LayerConfig>)
             layerConfigs = mainStore.getLayerConfigsByLang(lang)
         }
-        // Filter the root node to only include layers that are present in the layer configs
-        function filterTree(node: TopicTreeNode): TopicTreeNode | null {
-            if (node.category === 'layer') {
-                if (!layerConfigs || !(node.layerBodId in layerConfigs)) {
-                    return null
-                }
-            }
-            const children = node.children?.map(filterTree).filter(Boolean) as
-                | TopicTreeNode[]
-                | undefined
-            return { ...node, children }
-        }
         if (root) {
-            root = filterTree(root)
+            root = filterTree(root, layerConfigs)
         }
         geocatalogStore.setTopicTreeRoot(topic, lang, root)
     }
     topicTreeRoot.value = root
+}
+
+watchEffect(() => {
+    const lang = mainStore.language
+    fetchAndPrepareTopicTreeRoot(topic, lang)
 })
 </script>
 

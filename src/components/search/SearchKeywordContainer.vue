@@ -194,7 +194,7 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
 
         <Button
             v-if="isDesktop && showRightGradient && showScrollArrow"
-            class="absolute right-1 bottom-5 z-10 rounded border border-white bg-white px-2 py-1 hover:bg-gray-100"
+            class="absolute right-1 bottom-35 z-10 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
             @click="scrollUntilEndOfList"
         >
             <template #icon>

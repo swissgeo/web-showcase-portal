@@ -73,7 +73,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                     <SearchKeywordContainer class="mb-5 px-4 pt-4" />
                     <SearchFilter
                         data-cy="search-filter"
-                        class="bg-swissgeo-lightblue p-4"
+                        class="bg-swissgeo-lightblue rounded-b-lg p-4"
                     />
                 </template>
             </Card>

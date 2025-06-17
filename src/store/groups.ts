@@ -1,51 +1,50 @@
 import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 
 import type { Group } from '@/search/geocatGroups'
 
 import { fetchGeocatGroups } from '@/search/geocatGroups'
 
-export interface GroupStoreState {
-    groups: Group[]
-    loading: boolean
-    error: string | null
-    rawResponse: unknown
-}
+export const useGroupsStore = defineStore('groups', () => {
+    const groups = ref<Group[]>([])
+    const loading = ref(false)
+    const error = ref<string | null>(null)
+    const rawResponse = ref<unknown>(null)
 
-export const useGroupsStore = defineStore('groups', {
-    state: (): GroupStoreState => ({
-        groups: [] as Group[],
-        loading: false as boolean,
-        error: null as string | null,
-        rawResponse: null as unknown,
-    }),
-    actions: {
-        async loadGroups() {
-            this.loading = true
-            this.error = null
-            try {
-                const response: Group[] = await fetchGeocatGroups()
-                this.groups = response
-                this.rawResponse = response
-            } catch (e) {
-                this.error = (e as Error).message
-            } finally {
-                this.loading = false
-            }
-        },
-    },
-    getters: {
-        groupIdsByCategory: (state) => {
-            const result: Record<string, number[]> = {}
-            for (const group of state.groups) {
-                const cat = group.defaultCategory?.name
-                if (cat) {
-                    if (!result[cat]) {
-                        result[cat] = []
-                    }
-                    result[cat].push(group.id)
+    async function loadGroups() {
+        loading.value = true
+        error.value = null
+        try {
+            const response: Group[] = await fetchGeocatGroups()
+            groups.value = response
+            rawResponse.value = response
+        } catch (e) {
+            error.value = (e as Error).message
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const groupIdsByCategory = computed(() => {
+        const result: Record<string, number[]> = {}
+        for (const group of groups.value) {
+            const cat = group.defaultCategory?.name
+            if (cat) {
+                if (!result[cat]) {
+                    result[cat] = []
                 }
+                result[cat].push(group.id)
             }
-            return result
-        },
-    },
+        }
+        return result
+    })
+
+    return {
+        groups,
+        loading,
+        error,
+        rawResponse,
+        loadGroups,
+        groupIdsByCategory,
+    }
 })

@@ -92,8 +92,7 @@ async function fetchAndPrepareTopicTreeRoot(topic: string, lang: string) {
 }
 
 watchEffect(() => {
-    const lang = mainStore.language
-    fetchAndPrepareTopicTreeRoot(topic, lang)
+    fetchAndPrepareTopicTreeRoot(topic, mainStore.language)
 })
 </script>
 

@@ -2,13 +2,13 @@ import { defineStore } from 'pinia'
 
 import { type TopicTreeNode } from '@/types/geocatalog'
 
-export interface GeocatalogStore {
+export interface GeocatalogStoreState {
     expandedKeys: string[]
     topicTreeData: Record<string, Record<string, TopicTreeNode | null>>
 }
 
 export const useGeocatalogStore = defineStore('geocatalog', {
-    state: (): GeocatalogStore => {
+    state: (): GeocatalogStoreState => {
         return {
             expandedKeys: [],
             topicTreeData: {},

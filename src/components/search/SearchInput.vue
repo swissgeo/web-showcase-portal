@@ -2,32 +2,25 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { SEARCH_DEBOUNCE_DELAY } from '@/search'
-import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
-import { useMainStore } from '@/store/main'
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
-import { debounce } from '@/utils/debounce'
 
 const emits = defineEmits(['focus', 'blur'])
 
+const searchArea = ref<HTMLElement | null>(null)
+defineExpose({ searchArea })
+
 const { t } = useI18n()
+const { triggerSearch } = useTriggerSearch()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
-const mainStore = useMainStore()
 const mapStore = useMapStore()
-const addressSearch = useAddressSearch()
 const isSearching = computed(() => !!searchStore.searchTerm)
-const language = computed(() => mainStore.language)
-
-const triggerSearch = debounce((value: string) => {
-    geocatSearch.searchGeocat(value)
-    addressSearch.searchAddress(value, '2056', language.value, 20)
-}, SEARCH_DEBOUNCE_DELAY)
 
 const searchTerm = computed({
     get() {
@@ -42,11 +35,10 @@ const searchTerm = computed({
             geocatSearch.cancelSearch()
             return
         }
-
         searchStore.setSearchTerm(value)
 
         if (value) {
-            triggerSearch(value)
+            triggerSearch()
         }
     },
 })

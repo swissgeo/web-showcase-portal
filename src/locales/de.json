@@ -12,7 +12,8 @@
         "showInfo": "Details anzeigen",
         "dataTitle": "Daten",
         "placesTitle": "Orte",
-        "addToMap": "Zur Karte hinzufügen"
+        "addToMap": "Zur Karte hinzufügen",
+        "buttonLabel": "Suchergebnisse"
     },
     "layerCart": {
         "showInfo": "Details",
@@ -41,6 +42,26 @@
         "geocatLink": "Weitere Informationen (geocat)",
         "legalConstraints": "Rechtliche Hinweise",
         "license": "Lizenz"
+    },
+    "organisation": {
+        "filter": "Filter nach",
+        "selectGroup": "Organisationen",
+        "category": {
+            "federal": "Bundesebene",
+            "federation": "Bund",
+            "cantonal": "Kantonsebene",
+            "canton": "Kanton",
+            "communal": "Gemeindeebene",
+            "commune": "Gemeinde",
+            "other": "Andere"
+        },
+        "selectAll": "Alle auswählen",
+        "reset": "Zurücksetzen",
+        "showResults": "Ergebnisse anzeigen",
+        "selectCategory": "Alles",
+        "selectFederal": "Bundesämter",
+        "selectCanton": "Kantone",
+        "selectCommune": "Gemeinden"
     },
     "keywords": {
         "title": "Beliebte Suchen",

@@ -12,7 +12,8 @@
         "showInfo": "Afficher les détails",
         "dataTitle": "Données",
         "placesTitle": "Lieux",
-        "addToMap": "Ajouter à la carte"
+        "addToMap": "Ajouter à la carte",
+        "buttonLabel": "Résultats de recherche"
     },
     "layerCart": {
         "showInfo": "Détails",
@@ -41,6 +42,27 @@
         "geocatLink": "Plus d'informations (geocat)",
         "legalConstraints": "Mentions légales",
         "license": "Licence"
+    },
+    "organisation": {
+        "filter": "Filtre par",
+        "selectGroup": "Organisations",
+        "category": {
+            "federal": "Fédéral",
+            "federation": "Fédération",
+            "cantonal": "Cantonal",
+            "canton": "Canton",
+            "communal": "Communal",
+            "commune": "Commune",
+            "other": "Autre"
+        },
+        "selectAll": "Tout sélectionner",
+        "reset": "Réinitialiser",
+        "showResults": "Afficher les résultats",
+        "selectCategory": "Tous",
+        "selectFederal": "Offices fédéraux",
+        "selectCanton": "Cantons",
+        "selectCommune": "Communes",
+        "selectedObject": "sélection"
     },
     "keywords": {
         "title": "Recherches populaires",

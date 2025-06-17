@@ -52,7 +52,7 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
 }
 </script>
 <template>
-    <div class="flex items-center gap-2 md:pt-4">
+    <div class="flex items-center gap-2">
         <span
             v-if="!isSearching"
             class="text-sm font-medium text-nowrap text-gray-600"

@@ -50,17 +50,23 @@ export default function useGeocat() {
         }
     }
 
-    const searchGeocat = (value: string) => {
-        // if there's a request ongoing, we cancel that
+    const searchGeocat = (value: string, groupIds?: number[] | null) => {
         cancelSearch()
         searchStore.setIsSearchingGeocat(true)
 
+        const filters: Record<string, unknown> = {
+            any: value,
+            linkProtocol: '/OGC:WMT?S.*/',
+        }
+        if (groupIds && groupIds.length) {
+            filters.groupOwner = '(' + groupIds.map(id => `groupOwner:"${id}"`).join(' OR ') + ')'
+        }
+
+        // logs...
+
         subscription = GNUI.recordsRepository
             .search({
-                filters: {
-                    any: value,
-                    linkProtocol: '/OGC:WMT?S.*/',
-                },
+                filters,
                 offset: searchStore.geocatPage * searchStore.geocatPageSize,
                 limit: searchStore.geocatPageSize,
                 sort: ['desc', '_score'],

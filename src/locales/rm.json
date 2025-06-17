@@ -12,7 +12,8 @@
         "showInfo": "Mussar detagls",
         "dataTitle": "Datas",
         "placesTitle": "Posts",
-        "addToMap": "Agiuntar a la charta"
+        "addToMap": "Agiuntar a la charta",
+        "buttonLabel": "Resultats da las retschertgas"
     },
     "layerCart": {
         "showInfo": "Detagls",
@@ -41,6 +42,26 @@
         "geocatLink": "Ulteriuras infurmaziuns (geocat)",
         "legalConstraints": "Cundiziuns legalas",
         "license": "Licenza"
+    },
+    "organisation": {
+        "filter": "Filtrar per",
+        "selectGroup": "Organisaziuns",
+        "category": {
+            "federal": "Federala",
+            "federation": "Federaziun",
+            "cantonal": "Cantonala",
+            "canton": "Canton",
+            "communal": "Communala",
+            "commune": "Communa",
+            "other": "Autra"
+        },
+        "selectAll": "Tscherni tut",
+        "reset": "Resetgar",
+        "showResults": "Mussar resultats",
+        "selectCategory": "Tscherni tut",
+        "selectFederal": "Offizi federals",
+        "selectCanton": "Canton",
+        "selectCommune": "Communas"
     },
     "keywords": {
         "title": "Tschertgas popularas",

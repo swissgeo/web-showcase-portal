@@ -1,0 +1,6002 @@
+[
+  {
+    "logo": "1f8a59ef-2bd9-4119-9b05-458df6deb6c7.png",
+    "website": "https://www.fr.ch/scg/territoire-amenagement-et-constructions/cartes/centre-de-competence-sit",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 3,
+    "email": "vincent.grandgirard@fr.ch",
+    "referrer": null,
+    "description": "Centre de compétence SIT\nVincent Grandgirard\n+ 41 26 305 31 77",
+    "name": "Fribourg",
+    "label": {
+      "ger": "Kanton Freiburg",
+      "ita": "Cantone di Friburgo",
+      "fre": "Canton de Fribourg",
+      "roh": "Chantun Friburg",
+      "eng": "Canton of Fribourg"
+    }
+  },
+  {
+    "logo": "b3302e3c-b6a7-4b71-aa10-1be70ddf742b.png",
+    "website": "http://geo.zg.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 5,
+    "email": "Geoportal.GIS@zg.ch",
+    "referrer": null,
+    "description": "Abteilung Geoinformation Kanton Zug\nGeoportal.GIS@zg.ch",
+    "name": "Zug",
+    "label": {
+      "ger": "Kanton Zug",
+      "ita": "Cantone di Zugo",
+      "fre": "Canton de Zoug",
+      "roh": "Kanton Zug",
+      "eng": "Canton of Zug"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.swisstopo.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 6,
+    "email": "geocat@swisstopo.ch",
+    "referrer": null,
+    "description": "Bundesamt fuer Landestopografie / Office federal de topographie",
+    "name": "swisstopo",
+    "label": {
+      "ger": "Bundesamt für Landestopografie swisstopo",
+      "ita": "Ufficio federale di topografia swisstopo",
+      "fre": "Office fédéral de topographie swisstopo",
+      "roh": "Uffizi federal da topografia swisstopo",
+      "eng": "Federal Office of Topography swisstopo"
+    }
+  },
+  {
+    "logo": "663e1a62-b61e-4fee-9854-ce7490af06ec.png",
+    "website": "http://www.ne.ch/sitn",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 7,
+    "email": "francois.voisard@ne.ch",
+    "referrer": null,
+    "description": "Systeme d Information du Territoire Neuchatelois\r\nFrancois Voisard\r\n+ 41 32 889 47 69",
+    "name": "Neuchatel",
+    "label": {
+      "ger": "SITN Kanton Neuenburg",
+      "ita": "SITN Cantone di Neuchâtel",
+      "fre": "SITN Canton de Neuchâtel",
+      "roh": "SITN Canton de Neuchâtel",
+      "eng": "SITN Canton of Neuchâtel"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.geostat.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 8,
+    "email": "romain.douard@bfs.admin.ch",
+    "referrer": null,
+    "description": "Bundesamt fuer Statistik / Office federal de la statistique\nRomain Douard\n+41 32 713 66 91",
+    "name": "BFS",
+    "label": {
+      "ger": "Bundesamt für Statistik BFS",
+      "ita": "Ufficio federale di statistica UST",
+      "fre": "Office fédéral de la statistique OFS",
+      "roh": "Bundesamt für Statistik",
+      "eng": "Federal Statistical Office FSO"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "https://www.agroscope.admin.ch/",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 10,
+    "email": "erich.szerencsits@agroscope.admin.ch",
+    "referrer": null,
+    "description": "Agroscope ist das Kompetenzzentrum des Bundes für landwirtschaftliche Forschung. Es leistet einen bedeutenden Beitrag für eine nachhaltige Land- und Ernährungswirtschaft sowie eine intakte Umwelt und trägt damit zur Verbesserung der Lebensqualität bei.",
+    "name": "Agroscope",
+    "label": {
+      "ger": "Agroscope",
+      "ita": "Agroscope",
+      "fre": "Agroscope",
+      "roh": "Agroscope",
+      "eng": "Agroscope"
+    }
+  },
+  {
+    "logo": "86514736-2be3-48d9-9d09-d415e9a3e90f.png",
+    "website": "http://www.tba.llv.li",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 13,
+    "email": "Peter.Jehle@llv.li",
+    "referrer": null,
+    "description": "Tiefbauamt (TBA) - Vermessung und Geoinformation\r\nPeter Jehle\r\n+423 236 6855",
+    "name": "Liechtenstein",
+    "label": {
+      "ger": "Fürstentum Liechtenstein",
+      "ita": "Principato del Liechtenstein",
+      "fre": "Principauté du Liechtenstein",
+      "roh": "Fürstentum Liechtenstein",
+      "eng": "Principality of Liechtenstein"
+    }
+  },
+  {
+    "logo": "e54da7a7-5060-497d-b5e1-ec82850fb7c3.png",
+    "website": "http://www.geoinformation.sg.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 16,
+    "email": "stefan.bruehlmann@sg.ch",
+    "referrer": null,
+    "description": "Amt für Raumentwicklung und Geoinformation\nStefan Brühlmann\n+41 58 229 60 03",
+    "name": "SanktGallen",
+    "label": {
+      "ger": "Kanton St. Gallen",
+      "ita": "Cantone di San Gallo",
+      "fre": "Canton de Saint-Gall",
+      "roh": "Chantun Son Gagl",
+      "eng": "Canton of St. Gallen"
+    }
+  },
+  {
+    "logo": "472a5b65-1421-4896-b539-9301dc54a305.png",
+    "website": "http://www.kogis.ch",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 17,
+    "email": "geocat@swisstopo.ch",
+    "referrer": null,
+    "description": "",
+    "name": "geocat.ch",
+    "label": {
+      "ger": "Zentraler Katalog",
+      "ita": "Catalogo centrale",
+      "fre": "Catalogue central",
+      "roh": "Zentraler Katalog",
+      "eng": "Central Catalog"
+    }
+  },
+  {
+    "logo": "59c8de21-5b28-4cbf-85a3-f2dc569e5497.png",
+    "website": "http://www.raumdatenpool.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 18,
+    "email": "raumdatenpool@lu.ch",
+    "referrer": null,
+    "description": "",
+    "name": "RDP_LU",
+    "label": {
+      "ger": "Raumdatenpool Kanton Luzern",
+      "ita": "Raumdatenpool Cantone di Lucerna",
+      "fre": "Raumdatenpool Canton de Lucerne",
+      "roh": "Raumdatenpool Kanton Luzern",
+      "eng": "Raumdatenpool Canton Lucerne"
+    }
+  },
+  {
+    "logo": "d8cc1db5-a95d-492c-8957-eb3ab5466a88.png",
+    "website": "http://www.geoinformation.tg.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 19,
+    "email": "agi@tg.ch",
+    "referrer": null,
+    "description": "Kantonalverwaltung Thurgau",
+    "name": "Thurgau",
+    "label": {
+      "ger": "Kanton Thurgau",
+      "ita": "Cantone di Turgovia",
+      "fre": "Canton de Thurgovie",
+      "roh": "Kanton Thurgau",
+      "eng": "Canton of Thurgau"
+    }
+  },
+  {
+    "logo": "3c656d53-970e-410b-b91a-712c953a08b5.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 20,
+    "email": "simon.heinzmann@admin.vs.ch",
+    "referrer": null,
+    "description": "Staat Wallis\r\nDienststelle fuer Grundbuchaemter \r\nund Geomatik (DGBG)\r\nGIS-Fachstelle (CC GEO)\r\nAvenue de la Gare 39\r\n1950 Sion\r\n027/606 28 23",
+    "name": "Valais",
+    "label": {
+      "ger": "Kanton Wallis",
+      "ita": "Cantone del Vallese",
+      "fre": "Canton du Valais",
+      "roh": "Kanton Wallis",
+      "eng": "Canton of Valais"
+    }
+  },
+  {
+    "logo": "geoProSuisse.png",
+    "website": "https://geoprosuisse.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 21,
+    "email": "webgis@geoprosuisse.ch",
+    "referrer": null,
+    "description": "Kompetenzzentrum für Geoinformation im Aargau und darüber hinaus\nMail: webgis@geoprosuisse.ch",
+    "name": "geoPro Suisse AG",
+    "label": {
+      "ger": "geoPro Suisse AG",
+      "ita": "geoPro Suisse AG",
+      "fre": "geoPro Suisse AG",
+      "roh": "geoPro Suisse AG",
+      "eng": "geoPro Suisse AG"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.are.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 22,
+    "email": "rolf.giezendanner@are.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "ARE",
+    "label": {
+      "ger": "Bundesamt für Raumentwicklung ARE",
+      "ita": "Ufficio federale dello sviluppo territoriale ARE",
+      "fre": "Office fédéral du développement territorial ARE",
+      "roh": "Bundesamt für Raumentwicklung ARE",
+      "eng": "Federal Office for Spatial Development ARE"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "https://www.astra.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 23,
+    "email": "gis@astra.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "ASTRA",
+    "label": {
+      "ger": "Bundesamt für Strassen ASTRA",
+      "ita": "Ufficio federale delle strade USTRA",
+      "fre": "Office fédéral des routes OFROU",
+      "roh": "Bundesamt für Strassen ASTRA",
+      "eng": "Federal Roads Office FEDRO"
+    }
+  },
+  {
+    "logo": "502d787f-5caf-4261-b800-39ba9c14869d.png",
+    "website": "http://www.geo.bs.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 24,
+    "email": "kira.stich@bs.ch",
+    "referrer": null,
+    "description": "Kanton Basel-Stadt\nBau- und Verkehrsdepartement\nGrundbuch- und Vermessungsamt, Geoinformation\nDufourstrasse 40/50\nCH-4001 Basel",
+    "name": "BaselStadt",
+    "label": {
+      "ger": "Kanton Basel-Stadt",
+      "ita": "Cantone di Basilea-Città",
+      "fre": "Canton de Bâle-Ville",
+      "roh": "Chantun Basilea-Città",
+      "eng": "Canton of Basel-Stadt"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.blw.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 25,
+    "email": "beat.tschumi@blw.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Bundesamt für Landwirtschaft BLW",
+    "label": {
+      "ger": "Bundesamt für Landwirtschaft BLW",
+      "ita": "Ufficio federale dell'agricoltura UFAG",
+      "fre": "Office fédéral de l'agriculture OFAG",
+      "roh": "Bundesamt für Landwirtschaft BLW",
+      "eng": "Federal Office for Agriculture FOAG"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bav.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 26,
+    "email": "fredi.daellenbach@bav.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BAV",
+    "label": {
+      "ger": "Bundesamt für Verkehr BAV",
+      "ita": "Ufficio federale dei trasporti UFT",
+      "fre": "Office fédéral des transports OFT",
+      "roh": "Bundesamt für Verkehr BAV",
+      "eng": "Federal Office of Transport FOT"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bakom.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 27,
+    "email": "christian.meier@bakom.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BAKOM",
+    "label": {
+      "ger": "Bundesamt für Kommunikation BAKOM",
+      "ita": "Ufficio federale delle comunicazioni UFCOM",
+      "fre": "Office fédéral de la communication OFCOM",
+      "roh": "Bundesamt für Kommunikation BAKOM",
+      "eng": "Federal Office of Communications OFCOM"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.meteoschweiz.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34,
+    "email": "gergely.rigo@meteoswiss.ch",
+    "referrer": null,
+    "description": "",
+    "name": "MeteoSchweiz",
+    "label": {
+      "ger": "Bundesamt für Meteorologie und Klimatologie MeteoSchweiz",
+      "ita": "Ufficio federale di meteorologia e climatologia MeteoSvizzera",
+      "fre": "Office fédéral de météorologie et climatologie MétéoSuisse",
+      "roh": "Bundesamt für Meteorologie und Klimatologie MeteoSchweiz",
+      "eng": "Federal Office of Meteorology and Climatology MeteoSwiss"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bvet.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 36,
+    "email": "heinzpeter.schwermer@bvet.admin.ch",
+    "referrer": null,
+    "description": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen",
+    "name": "BLV",
+    "label": {
+      "ger": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen BLV",
+      "ita": "Ufficio federale della sicurezza alimentare e di veterinaria USAV",
+      "fre": "Office fédéral de la sécurité alimentaire et des affaires vétérinaires OSAV",
+      "roh": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen BLV",
+      "eng": "Federal Food Safety and Veterinary Office FSVO"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bak.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 37,
+    "email": "marcia.haldemann@bak.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BAK",
+    "label": {
+      "ger": "Bundesamt für Kultur BAK",
+      "ita": "Ufficio federale della cultura UFC",
+      "fre": "Office fédéral de la culture OFC",
+      "roh": "Bundesamt für Kultur BAK",
+      "eng": "Federal Office of Culture FOC"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bag.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 38,
+    "email": "martha.palacios@bag.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BAG",
+    "label": {
+      "ger": "Bundesamt für Gesundheit BAG",
+      "ita": "Ufficio federale della sanità publica UFSP",
+      "fre": "Office fédéral de la santé publique OFSP",
+      "roh": "Bundesamt für Gesundheit BAG",
+      "eng": "Federal Office of Public Health FOPH"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.babs.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 39,
+    "email": "julian.miguez@babs.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BABS",
+    "label": {
+      "ger": "Bundesamt für Bevölkerungsschutz BABS",
+      "ita": "Ufficio federale della protezione della popolazione UFPP",
+      "fre": "Office fédéral de la protection de la population OFPP",
+      "roh": "Bundesamt für Bevölkerungsschutz BABS",
+      "eng": "Federal Office for Civil Protection FOCP"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bfe.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 40,
+    "email": "jessica.chaves@bfe.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BFE",
+    "label": {
+      "ger": "Bundesamt für Energie BFE",
+      "ita": "Ufficio federale dell'energia UFE",
+      "fre": "Office fédéral de l'énergie OFEN",
+      "roh": "Bundesamt für Energie BFE",
+      "eng": "Federal Office of Energy SFOE"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bazl.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 41,
+    "email": "pascal.imoberdorf@bazl.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BAZL",
+    "label": {
+      "ger": "Bundesamt für Zivilluftfahrt BAZL",
+      "ita": "Ufficio federale dell'aviazione civile UFAC",
+      "fre": "Office fédéral de l'aviation civile OFAC",
+      "roh": "Bundesamt für Zivilluftfahrt BAZL",
+      "eng": "Federal Office of Civil Aviation FOCA"
+    }
+  },
+  {
+    "logo": "45a561ff-92fe-4f91-818c-59f720bc66ab.png",
+    "website": "",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 42,
+    "email": "jesse.eichar@camptocamp.com",
+    "referrer": null,
+    "description": "Just for testing no real or published data should be in this group",
+    "name": "TestGroup",
+    "label": {
+      "ger": "TestGroup",
+      "ita": "TestGroup",
+      "fre": "TestGroup",
+      "roh": "TestGroup",
+      "eng": "TestGroup"
+    }
+  },
+  {
+    "logo": "a994bd21-54fe-4157-91ea-3b49a4600d84.png",
+    "website": "http://www.bern.ch/stadtverwaltung/tvs/vma",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 49,
+    "email": "Marcel.Beyeler@BERN.CH",
+    "referrer": null,
+    "description": "",
+    "name": "StadtBern",
+    "label": {
+      "ger": "Stadt Bern",
+      "ita": "Città di Berna",
+      "fre": "Ville de Berne",
+      "roh": "Stadt Bern",
+      "eng": "City of Bern"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.geo.admin.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50,
+    "email": "info@geo.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "geoadmin",
+    "label": {
+      "ger": "Geoportal des Bundes",
+      "ita": "Geoportale della Confederazione",
+      "fre": "Géoportail fédéral",
+      "roh": "Geoportal da la confederaziun",
+      "eng": "Geoportal of the Swiss Confederation"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.bafu.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 52,
+    "email": "nico.rohrbach@bafu.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BAFU",
+    "label": {
+      "ger": "Bundesamt für Umwelt BAFU",
+      "ita": "Ufficio federale dell'ambiente UFAM",
+      "fre": "Office fédéral de l'environnement OFEV",
+      "roh": "Bundesamt für Umwelt",
+      "eng": "Federal Office for the Environment FOEN"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.ensi.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 53,
+    "email": "ernst.blust@ensi.ch",
+    "referrer": null,
+    "description": "Eidgenoessisches Nuklearsicherheitsinspektorat",
+    "name": "ENSI",
+    "label": {
+      "ger": "Eidgenössisches Nuklearsicherheitsinspektorat ENSI",
+      "ita": "Ispettorato federale della sicurezza nucleare IFSN",
+      "fre": "Inspection fédérale de la sécurité nucléaire IFSN",
+      "roh": "Swiss Federal Nuclear Safety Inspectorate ENSI",
+      "eng": "Federal Nuclear Safety Inspectorate ENSI"
+    }
+  },
+  {
+    "logo": "0bfc9c85-c5ad-478f-9274-ca1870fb346e.png",
+    "website": "http://www.aew.ch/leitungsauskunft",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 54,
+    "email": "klemens.schilliger@aew.ch",
+    "referrer": null,
+    "description": "",
+    "name": "AEW_EnergieAG",
+    "label": {
+      "ger": "AEW Energie AG",
+      "ita": "AEW Energie AG",
+      "fre": "AEW Energie AG",
+      "roh": "AEW Energie AG",
+      "eng": "AEW Energie AG"
+    }
+  },
+  {
+    "logo": "f861b7b3-c8ef-471d-b0fd-d42467a857f9.png",
+    "website": "http://www.geocat.ch",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 55,
+    "email": "geocat@swisstopo.ch",
+    "referrer": null,
+    "description": "Test-Instanz, um den Partnern die Moeglichkeit zu geben, auf der produktiven Applikation Tests auszufuehren. VORSICHT: Daten koennen jederzeit ohne Vorwarnung geloescht werden!",
+    "name": "TestPartner",
+    "label": {
+      "ger": "TestPartner",
+      "ita": "TestPartner",
+      "fre": "TestPartner",
+      "roh": "TestPartner",
+      "eng": "TestPartner"
+    }
+  },
+  {
+    "logo": "ca8ce937-6c36-4cee-8b83-501f642f493a.png",
+    "website": "http://www.wsl.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 57,
+    "email": "christian.ginzler@wsl.ch",
+    "referrer": null,
+    "description": "",
+    "name": "WSL",
+    "label": {
+      "ger": "Eidg. Forschungsanstalt für Wald, Schnee und Landschaft WSL",
+      "ita": "Istituto federale di ricerca per la foresta, la neve e il paesaggio WSL",
+      "fre": "Institut fédéral de recherche sur la forêt, la neige et le paysage WSL",
+      "roh": "Eidg. Forschungsanstalt für Wald, Schnee und Landschaft WSL",
+      "eng": "Swiss Federal Institute for Forest, Snow and Landscape Research WSL"
+    }
+  },
+  {
+    "logo": "37fb15ea-583e-4797-8195-06800fe55433.png",
+    "website": "http://www.grande-caricaie.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 61,
+    "email": "info@grande-caricaie.ch",
+    "referrer": null,
+    "description": "L'association de la Grande Caricaie s'occupe de la gestion et de l'étude de la réserve naturelle située sur la rive sud du Lac de Neuchâtel en partenariat avec les états de Vaud et de Fribourg.",
+    "name": "Caricaie",
+    "label": {
+      "ger": "Caricaie",
+      "ita": "Caricaie",
+      "fre": "Caricaie",
+      "roh": "Caricaie",
+      "eng": "Caricaie"
+    }
+  },
+  {
+    "logo": "834f5472-3bb5-4a88-821a-a8fc16dcf76f.png",
+    "website": "http://www.naturmuseum.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 62,
+    "email": "benedict.hotz@lu.ch",
+    "referrer": null,
+    "description": "Natur-Museum Luzern\r\nKasernenplatz 6\r\n6003 Luzern",
+    "name": "Natur-Museum Luzern",
+    "label": {
+      "ger": "Natur-Museum Luzern",
+      "ita": "Natur-Museum Lucerna",
+      "fre": "Natur-Museum Lucerne",
+      "roh": "Natur-Museum Luzern",
+      "eng": "Natur-Museum Lucerne"
+    }
+  },
+  {
+    "logo": "f600199b-afd9-472d-9c42-6e41f72ea820.png",
+    "website": "http://www.anu.gr.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 63,
+    "email": "hanspeter.loetscher@anu.gr.ch",
+    "referrer": null,
+    "description": "Kanton Graubünden",
+    "name": "Graubünden",
+    "label": {
+      "ger": "ANU Kanton Graubünden",
+      "ita": "ANU Cantone dei Grigioni",
+      "fre": "ANU Canton des Grisons",
+      "roh": "ANU Chantun Grischun",
+      "eng": "ANU Canton of Graubünden"
+    }
+  },
+  {
+    "logo": "aba128b7-1fb2-4add-877b-9250cda3d9df.png",
+    "website": "http://www.sz.ch/geoinformation",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 68,
+    "email": "vera.diaz@sz.ch",
+    "referrer": null,
+    "description": "Kanton Schwyz",
+    "name": "Kanton Schwyz",
+    "label": {
+      "ger": "Kanton Schwyz",
+      "ita": "Cantone di Svitto",
+      "fre": "Canton de Schwyz",
+      "roh": "Chantun Sviz",
+      "eng": "Canton of Schwyz"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.vtg.admin.ch/",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 69,
+    "email": "Monika.Petersen@swisstopo.ch",
+    "referrer": null,
+    "description": "Gruppe Verteidigung",
+    "name": "Gruppe Verteidigung",
+    "label": {
+      "ger": "Gruppe Verteidigung",
+      "ita": "Aggruppamento Difesa",
+      "fre": "Groupement Défense",
+      "roh": "",
+      "eng": "Swiss Armed-Forces"
+    }
+  },
+  {
+    "logo": "95756d9c-fa07-4442-bb45-8963eb40057c.png",
+    "website": "http://www.lisag.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 70,
+    "email": "mail@lisag.ch",
+    "referrer": null,
+    "description": "Kanton Uri",
+    "name": "Uri",
+    "label": {
+      "ger": "Kanton Uri",
+      "ita": "Cantone di Uri",
+      "fre": "Canton d'Uri",
+      "roh": "Chantun Uri",
+      "eng": "Canton Uri"
+    }
+  },
+  {
+    "logo": "Logo_GRUT-distributeur d'energie romands.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 73,
+    "email": "Jean-Marc.Arzrouni@viteos.ch",
+    "referrer": null,
+    "description": "Groupement pour les entreprises de distribution d'énergie romands",
+    "name": "Distributeurs d'Energie Romands",
+    "label": {
+      "ger": "Distributeurs d'Energie Romands",
+      "ita": "Distributeurs d'Energie Romands",
+      "fre": "Distributeurs d'Energie Romands",
+      "roh": "Distributeurs d'Energie Romands",
+      "eng": "Distributeurs d'Energie Romands"
+    }
+  },
+  {
+    "logo": "5fc63ea8-cfbc-4326-abbe-ae0c8e0477a3.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 74,
+    "email": "andreas.neumann@ethz.ch",
+    "referrer": null,
+    "description": "Eidgenössische Technische Hochschule Zürich",
+    "name": "ETHZ",
+    "label": {
+      "ger": "Eidgenössische Technische Hochschule Zürich ETHZ",
+      "ita": "Scuola politecnica federale di Zurigo EPFZ",
+      "fre": "Ecole Polytechnique Fédérale de Zurich EPFZ",
+      "roh": "",
+      "eng": "Swiss Federal Institute of Technology Zurich ETHZ"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 6436437,
+    "email": "Remy.Baud@swisstopo.ch",
+    "referrer": null,
+    "description": "Groupe temporaire pour l'infrastructure militaire (R. Baud)",
+    "name": "MGDI",
+    "label": {
+      "ger": "MGDI",
+      "ita": "IMDG",
+      "fre": "IMDG",
+      "roh": "MGDI",
+      "eng": "MGDI"
+    }
+  },
+  {
+    "logo": "b55dff53-4faa-4a63-9b7a-cf01fb25bfd3.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 13572546,
+    "email": "roman.meyer@bl.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Kanton Basel-Landschaft",
+    "label": {
+      "ger": "Kanton Basel-Landschaft",
+      "ita": "Cantone di Basilea-Campagna",
+      "fre": "Canton de Bâle-Campagne",
+      "roh": "Chantun Basilea-Champagna",
+      "eng": "Canton of Basel-Landschaft"
+    }
+  },
+  {
+    "logo": "swissdoc.jpg",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 19444118,
+    "email": "Pasquale.DiDonato@swisstopo.ch",
+    "referrer": null,
+    "description": "Document Management System for the BGDI",
+    "name": "DMS-BGDI",
+    "label": {
+      "ger": "Modelle und Modelldokumentationen Geobasisdaten Bund DMS-BGDI",
+      "ita": "Modelli e documentazione dei modelli geodati di base federali DMS-IFDG",
+      "fre": "Modèles et documentations de modèles géodonnées de base de la Confédération DMS-IFDG",
+      "roh": "Modelle und Modelldokumentationen Geobasisdaten Bund DMS-BGDI",
+      "eng": "Data models and model documentation federal geodata DMS-BGDI"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 19647867,
+    "email": "info@eav.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Eidg. Alkoholverwaltung EAV",
+    "label": {
+      "ger": "Eidgenössische Alkoholverwaltung EAV",
+      "ita": "Eidgenössische Alkoholverwaltung EAV",
+      "fre": "Eidgenössische Alkoholverwaltung EAV",
+      "roh": "Eidgenössische Alkoholverwaltung EAV",
+      "eng": "Eidgenössische Alkoholverwaltung EAV"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 26805108,
+    "email": "katrin.graf@sem.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "SEM",
+    "label": {
+      "ger": "Staatssekretariat für Migration SEM",
+      "ita": "Segreteria di Stato della migrazione SEM",
+      "fre": "Secrétariat d’Etat aux migrations SEM",
+      "roh": "Staatssekretariat für Migration SEM",
+      "eng": "State Secretariat for Migration SEM"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "http://www.baspo.admin.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 29125806,
+    "email": "info@baspo.admin.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Bundesamt für Sport BASPO",
+    "label": {
+      "ger": "Bundesamt für Sport BASPO",
+      "ita": "Ufficio federale dello sport UFSPO",
+      "fre": "Office fédéral du sport OFSPO",
+      "roh": "Bundesamt für Sport BASPO",
+      "eng": "Bundesamt für Sport BASPO"
+    }
+  },
+  {
+    "logo": "logo_cantonJU.png",
+    "website": "https://www.jura.ch/",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 29404416,
+    "email": "marc.iskandar@jura.ch",
+    "referrer": null,
+    "description": "Groupe du canton du Jura",
+    "name": "Canton du Jura",
+    "label": {
+      "ger": "Kanton Jura",
+      "ita": "Cantone di Giura",
+      "fre": "Canton du Jura",
+      "roh": "Chantun Giura",
+      "eng": "Canton of Jura"
+    }
+  },
+  {
+    "logo": "KGK-CGC_Logo_72dpi.png",
+    "website": "https://kgk-cgc.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34799060,
+    "email": "info@kgk-cgc.ch",
+    "referrer": null,
+    "description": "Die KGK ist eine Fachämterkonferenz der BPUK. Sie fördert die Zusammenarbeit im Bereich der Geoinformation, stimmt die übergeordneten geoinformationsbezogenen Interessen der Kantone aufeinander ab und koordiniert die Aufgabenerfüllung der Kantone.",
+    "name": "KGK",
+    "label": {
+      "ger": "KGK-CGC",
+      "ita": "KGK-CGC",
+      "fre": "KGK-CGC",
+      "roh": "KGK-CGC",
+      "eng": "KGK-CGC"
+    }
+  },
+  {
+    "logo": "gemeinde_koeniz_weiss.png",
+    "website": "https://koeniz.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34838580,
+    "email": "geoportal@koeniz.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Gemeinde Köniz",
+    "label": {
+      "ger": "Gemeinde Köniz",
+      "ita": "Comune di Köniz",
+      "fre": "Municipalité de Köniz",
+      "roh": "Gemeinde Köniz",
+      "eng": "Municipality of Köniz"
+    }
+  },
+  {
+    "logo": "KantonGlarus_Logo.png",
+    "website": "www.geo.gl.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34839862,
+    "email": "marcel.kunz@gl.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Kanton Glarus",
+    "label": {
+      "ger": "Kanton Glarus",
+      "ita": "Canton Glarona",
+      "fre": "Canton de Glaris",
+      "roh": "Chantun Glaruna",
+      "eng": "Canton of Glarus"
+    }
+  },
+  {
+    "logo": "Geoinfo_logo.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34923929,
+    "email": "support@geoinfo.ch",
+    "referrer": null,
+    "description": "",
+    "name": "GEOINFO",
+    "label": {
+      "ger": "GEOINFO",
+      "ita": "GEOINFO",
+      "fre": "GEOINFO",
+      "roh": "GEOINFO",
+      "eng": "GEOINFO"
+    }
+  },
+  {
+    "logo": "logo_print_kanton-be.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34946859,
+    "email": "pascal.kuhn@be.ch",
+    "referrer": null,
+    "description": "Amt für Geoinformation des Kantons Bern",
+    "name": "Kanton Bern",
+    "label": {
+      "ger": "Kanton Bern",
+      "ita": "Canton Berna",
+      "fre": "Canton de Berne",
+      "roh": "Chantun Berna",
+      "eng": "Canton Bern"
+    }
+  },
+  {
+    "logo": "Kt Aargau klein.jpg",
+    "website": "www.ag.ch/geoportal",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 34965961,
+    "email": "christine.egli@ag.ch",
+    "referrer": null,
+    "description": "Kanton Aargau\nDepartement Finanzen und Ressourcen\nAGIS Service Center",
+    "name": "Kanton Aargau",
+    "label": {
+      "ger": "Kanton Aargau",
+      "ita": "Canton d'Argovia",
+      "fre": "Canton d'Argovie",
+      "roh": "Chantun Argovia",
+      "eng": "Canton of Aargau"
+    }
+  },
+  {
+    "logo": "uster_logo_farbig_klein.jpg",
+    "website": "www.uster.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 35747878,
+    "email": "gis@uster.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Stadt Uster",
+    "label": {
+      "ger": "Stadt Uster",
+      "ita": "Città di Uster",
+      "fre": "Ville d'Uster",
+      "roh": "Stadt Uster",
+      "eng": "City of Uster"
+    }
+  },
+  {
+    "logo": "WEB_LOGO_stlu_trasp.gif",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 35783993,
+    "email": "stephan.schmid@stadtluzern.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Stadt Luzern",
+    "label": {
+      "ger": "Stadt Luzern",
+      "ita": "Città di Lucerna",
+      "fre": "Ville de Lucerne",
+      "roh": "Stadt Luzern",
+      "eng": "City of Lucerne"
+    }
+  },
+  {
+    "logo": "nw_homepage_logo.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 36339858,
+    "email": "christian.amrhein@gis-daten.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Kanton Nidwalden",
+    "label": {
+      "ger": "Kanton Nidwalden",
+      "ita": "Cantone di Nidvaldo",
+      "fre": "Canton de Nidwald",
+      "roh": "Chantun Sutsilvania",
+      "eng": "Canton of Nidwalden"
+    }
+  },
+  {
+    "logo": "ow_homepage_logo_ohne_txt.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 36339859,
+    "email": "christian.amrhein@gis-daten.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Kanton Obwalden",
+    "label": {
+      "ger": "Kanton Obwalden",
+      "ita": "Cantone di Obvaldo",
+      "fre": "Canton d'Obwald",
+      "roh": "Chantun Sursilvania",
+      "eng": "Canton of Obwalden"
+    }
+  },
+  {
+    "logo": "Gemeinde_Horgen_klein.jpg",
+    "website": "www.horgen.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 38021751,
+    "email": "geomatik@horgen.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Gemeinde Horgen",
+    "label": {
+      "ger": "Gemeinde Horgen",
+      "ita": "Gemeinde Horgen",
+      "fre": "Gemeinde Horgen",
+      "roh": "Gemeinde Horgen",
+      "eng": "Gemeinde Horgen"
+    }
+  },
+  {
+    "logo": "bbp_geomatik_logo_weiss.png",
+    "website": "www.geozen.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 39285840,
+    "email": "mario.nowak@geozen.ch",
+    "referrer": null,
+    "description": "",
+    "name": "bbp geomatik ag",
+    "label": {
+      "ger": "bbp geomatik ag",
+      "ita": "bbp geomatik ag",
+      "fre": "bbp geomatik ag",
+      "roh": "bbp geomatik ag",
+      "eng": "bbp geomatik ag"
+    }
+  },
+  {
+    "logo": "viageo_logo_couleur.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 40514879,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": "viageo.ch est un portail de référence de données géographiques en Suisse romande",
+    "name": "viageo.ch",
+    "label": {
+      "ger": "viageo.ch",
+      "ita": "viageo.ch",
+      "fre": "viageo.ch",
+      "roh": "viageo.ch",
+      "eng": "viageo.ch"
+    }
+  },
+  {
+    "logo": "Logo_Gemeinde_EMMEN_jpg.jpg",
+    "website": "www.emmen.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 41625764,
+    "email": "sabine.bolfing@emmen.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Gemeinde Emmen",
+    "label": {
+      "ger": "Gemeinde Emmen",
+      "ita": "Gemeinde Emmen",
+      "fre": "Gemeinde Emmen",
+      "roh": "Gemeinde Emmen",
+      "eng": "Gemeinde Emmen"
+    }
+  },
+  {
+    "logo": "Meteodat.png",
+    "website": "https://www.meteodat.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 42675150,
+    "email": "schwarb@meteodat.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Meteodat",
+    "label": {
+      "ger": "Meteodat",
+      "ita": "Meteodat",
+      "fre": "Meteodat",
+      "roh": "Meteodat",
+      "eng": "Meteodat"
+    }
+  },
+  {
+    "logo": "ebs_klein.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 42934520,
+    "email": "pascal.bolzern@ebs.swiss",
+    "referrer": null,
+    "description": "",
+    "name": "ebs Energie AG",
+    "label": {
+      "ger": "ebs Energie AG",
+      "ita": "ebs Energie AG",
+      "fre": "ebs Energie AG",
+      "roh": "ebs Energie AG",
+      "eng": "ebs Energie AG"
+    }
+  },
+  {
+    "logo": "Stadt-Biel-Hauptlogo-borderless-Rot-RGB.jpg",
+    "website": "www.biel-bienne.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 43006540,
+    "email": "florian.broch@biel-bienne.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Stadt Biel",
+    "label": {
+      "ger": "Stadt Biel",
+      "ita": "Città di Bienne",
+      "fre": "Ville de Bienne",
+      "roh": "Stadt Biel",
+      "eng": "City of Biel"
+    }
+  },
+  {
+    "logo": "Logo_SO.png",
+    "website": "https://geo.so.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000001,
+    "email": "oliver.jeker@bd.so.ch",
+    "referrer": null,
+    "description": "Kanton Solothurn",
+    "name": "SO",
+    "label": {
+      "ger": "Kanton Solothurn",
+      "ita": "Cantone di Soletta",
+      "fre": "Canton de Soleure",
+      "roh": "Chantun Soloturn",
+      "eng": "Canton of Solothurn"
+    }
+  },
+  {
+    "logo": "georg_logo.gif",
+    "website": null,
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000002,
+    "email": "Horst.Dresmann@unibas.ch",
+    "referrer": null,
+    "description": "GeORG: Geopotenziale des tieferen Untergrundes im Oberrheingraben.",
+    "name": "GeORG",
+    "label": {
+      "ger": "GeORG",
+      "ita": "GeORG",
+      "fre": "GeORG",
+      "roh": "GeORG",
+      "eng": "GeORG"
+    }
+  },
+  {
+    "logo": "Genève-SITG-New.gif",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000003,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": "Genève SITG",
+    "name": "Genève SITG",
+    "label": {
+      "ger": "Genève SITG",
+      "ita": "Genève SITG",
+      "fre": "Genève SITG",
+      "roh": "Genève SITG",
+      "eng": "Genève SITG"
+    }
+  },
+  {
+    "logo": "sh_wappen.gif",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000004,
+    "email": "gis@sh.ch",
+    "referrer": null,
+    "description": "Kanton Schaffhausen",
+    "name": "Kanton Schaffhausen",
+    "label": {
+      "ger": "Kanton Schaffhausen",
+      "ita": "Cantone di Sciaffusa",
+      "fre": "Canton de Schaffhouse",
+      "roh": "Chantun Schaffusa",
+      "eng": "Canton of Schaffhausen"
+    }
+  },
+  {
+    "logo": "ZHkl.gif",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000005,
+    "email": "laurence.cuche@bd.zh.ch",
+    "referrer": null,
+    "description": "Kanton Zürich",
+    "name": "Kanton Zürich",
+    "label": {
+      "ger": "Kanton Zürich",
+      "ita": "Cantone di Zurigo",
+      "fre": "Canton de Zurich",
+      "roh": "Chantun Turitg",
+      "eng": "Canton of Zurich"
+    }
+  },
+  {
+    "logo": "logo_stzh_stzh_sw_pos_1.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000006,
+    "email": "gis-zentrum@zuerich.ch",
+    "referrer": null,
+    "description": "Stadt Zürich",
+    "name": "Stadt Zürich",
+    "label": {
+      "ger": "Stadt Zürich",
+      "ita": "Città di Zurigo",
+      "fre": "Ville de Zürich",
+      "roh": "Citad da Turitg",
+      "eng": "City of Zurich"
+    }
+  },
+  {
+    "logo": "kt_logo_default.png",
+    "website": "https://geoportal.lu.ch/",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000008,
+    "email": "adrian.kuhn@lu.ch",
+    "referrer": null,
+    "description": "Die Geoinformation des Kantons Luzern ist für die Erhebung, Verarbeitung und Verwaltung von raumbezogenen Daten zuständig. Sie leitet, koordiniert und überwacht die Arbeiten der Geoinformation und der amtlichen Vermessung.",
+    "name": "Kanton Luzern",
+    "label": {
+      "ger": "Kanton Luzern",
+      "ita": "Cantone di Lucerna",
+      "fre": "Canton de Lucerne",
+      "roh": "Chantun Lucerna",
+      "eng": "Canton of Lucerne"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "https://www.ar.admin.ch/",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000009,
+    "email": "esther.kaiser@swisstopo.ch",
+    "referrer": null,
+    "description": "armasuisse ist das Kompetenzzentrum für Beschaffung, Technologie sowie Immobilien und gehört zum Departement VBS.",
+    "name": "Bundesamt für Rüstung armasuisse",
+    "label": {
+      "ger": "Bundesamt für Rüstung armasuisse",
+      "ita": "Ufficio federale dell'armamento armasuisse",
+      "fre": "Office fédéral de l'armement armasuisse",
+      "roh": "Bundesamt für Rüstung armasuisse",
+      "eng": "Federal Office for Defence Procurement armasuisse"
+    }
+  },
+  {
+    "logo": "VilleFR_logo_sans_vague.jpg",
+    "website": "https://www.ville-fribourg.ch/genie-civil/cadastre-plan",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000010,
+    "email": "Audrey.Brunetti@ville-fr.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Ville de Fribourg",
+    "label": {
+      "ger": "Stadt Freiburg",
+      "ita": "Città di Friburgo",
+      "fre": "Ville de Fribourg",
+      "roh": "Citad da Fribourg",
+      "eng": "City of Fribourg"
+    }
+  },
+  {
+    "logo": "ibw_technik_mit_quadrat_claim_rot_rgb_adresse.jpg",
+    "website": "www.ibw.ag",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000011,
+    "email": "vonarx.sascha@ibw.ag",
+    "referrer": null,
+    "description": "Mittleres Versorgungsunternehmen (Elektro, Gas, Wasser)\nDienstleistungen für Dritte in den folgenden Bereichen:\n- Netzinformation / Einmessung (Geomatik)\n- Betriebsführung\n- Netzplanung und Anschlussgesuchsberechnung\n- Brunnenmeister\n- Pikettdienst",
+    "name": "IBW Technik AG",
+    "label": {
+      "ger": "IBW Technik AG",
+      "ita": "IBW Technik AG",
+      "fre": "IBW Technik AG",
+      "roh": "IBW Technik AG",
+      "eng": "IBW Technik AG"
+    }
+  },
+  {
+    "logo": "Stadt_Winterthur.jpg",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000012,
+    "email": "vermessungsamt@win.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Stadt Winterthur",
+    "label": {
+      "ger": "Stadt Winterthur",
+      "ita": "Città di WinterthurStadt Winterthur",
+      "fre": "Ville de Winterthour",
+      "roh": "Stadt Winterthur",
+      "eng": "City of Winterthur"
+    }
+  },
+  {
+    "logo": "BFH.png",
+    "website": "https://www.bfh.ch/de/forschung/forschungsbereiche/public-sector-transformation",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000014,
+    "email": "stephan.haller@bfh.ch",
+    "referrer": null,
+    "description": "",
+    "name": "BFH (IPST)",
+    "label": {
+      "ger": "Institut Public Sector Transformation der Berner Fachhochschule",
+      "ita": "",
+      "fre": "Institut Public Sector Transformation de la Haute école spécialisée bernoise",
+      "roh": "Institut Public Sector Transformation der Berner Fachhochschule",
+      "eng": "Institute Public Sector Transformation of the Bern University of Applied Sciences"
+    }
+  },
+  {
+    "logo": null,
+    "website": null,
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000015,
+    "email": "geocat@swisstopo.ch",
+    "referrer": null,
+    "description": "Dieser Katalog enthält Portale und Dienste, welche den Zugang zu Geodaten in der Schweiz ermöglichen.",
+    "name": "Portale und Dienste",
+    "label": {
+      "ger": "Portale und Dienste",
+      "ita": "Portali e servizi",
+      "fre": "Portails et services",
+      "roh": "",
+      "eng": "Portals and services"
+    }
+  },
+  {
+    "logo": "gr.png",
+    "website": "geo.gr.ch",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000016,
+    "email": "David.Caduff@alg.gr.ch",
+    "referrer": null,
+    "description": "",
+    "name": "Kanton Graubuenden",
+    "label": {
+      "ger": "Kanton Graubünden",
+      "ita": "Cantone dei Grigioni",
+      "fre": "Canton des Grisons",
+      "roh": "Cantun Grischun",
+      "eng": "Canton of Graubünden"
+    }
+  },
+  {
+    "logo": "GeoDataSolutions.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000017,
+    "email": "olivier@geodatasolutions.ch",
+    "referrer": null,
+    "description": "",
+    "name": "GeoDataSolutions",
+    "label": {
+      "ger": "GeoDataSolutions",
+      "ita": "GeoDataSolutions",
+      "fre": "GeoDataSolutions",
+      "roh": "GeoDataSolutions",
+      "eng": "GeoDataSolutions"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000018,
+    "email": "prisca.beutler@gs-vbs.admin.ch",
+    "referrer": null,
+    "description": "Generalsekretariat VBS",
+    "name": "GS-VBS",
+    "label": {
+      "ger": "GS-VBS",
+      "ita": "GS-DDPS",
+      "fre": "GS-DDPS",
+      "roh": "GS-VBS",
+      "eng": "GS-VBS"
+    }
+  },
+  {
+    "logo": "logo_geoRhena.png",
+    "website": "https://geoportal.georhena.eu/geonetwork/srv/ger/catalog.search#/home",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000019,
+    "email": "Lionel.Kinderstuth@alsace.eu",
+    "referrer": null,
+    "description": "",
+    "name": "GeoRhena",
+    "label": {
+      "ger": "GeoRhena",
+      "ita": "GeoRhena",
+      "fre": "GeoRhena",
+      "roh": "GeoRhena",
+      "eng": "GeoRhena"
+    }
+  },
+  {
+    "logo": "047a5cb4-b942-41dc-9ffa-ffd229da064d.png",
+    "website": "https://www.eawag.ch",
+    "defaultCategory": {
+      "id": 42521578,
+      "name": "federal",
+      "label": {
+        "ger": "federal",
+        "ita": "federal",
+        "fre": "federal",
+        "roh": "federal",
+        "eng": "federal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000020,
+    "email": "martin.lacayo-emery@eawag.ch",
+    "referrer": null,
+    "description": "Eidgenössische Anstalt für Wasserversorgung, Abwasserreinigung und Gewässerschutz",
+    "name": "EAWAG",
+    "label": {
+      "ger": "EAWAG",
+      "ita": "EAWAG",
+      "fre": "EAWAG",
+      "roh": "EAWAG",
+      "eng": "EAWAG"
+    }
+  },
+  {
+    "logo": "66275bd527140806480199.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000021,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "uzufly",
+    "label": {
+      "ger": "Uzufly",
+      "ita": "Uzufly",
+      "fre": "Uzufly",
+      "roh": "Uzufly",
+      "eng": "Uzufly"
+    }
+  },
+  {
+    "logo": "1028.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000022,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "rovray",
+    "label": {
+      "ger": "Rovray",
+      "ita": "Rovray",
+      "fre": "Rovray",
+      "roh": "Rovray",
+      "eng": "Rovray"
+    }
+  },
+  {
+    "logo": "1541.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000023,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "tevenon",
+    "label": {
+      "ger": "Tévenon",
+      "ita": "Tévenon",
+      "fre": "Tévenon",
+      "roh": "Tévenon",
+      "eng": "Tévenon"
+    }
+  },
+  {
+    "logo": "1292.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000024,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sitse",
+    "label": {
+      "ger": "SITSE - Services Industriels de Terre Sainte et Environs",
+      "ita": "SITSE - Services Industriels de Terre Sainte et Environs",
+      "fre": "SITSE - Services Industriels de Terre Sainte et Environs",
+      "roh": "SITSE - Services Industriels de Terre Sainte et Environs",
+      "eng": "SITSE - Services Industriels de Terre Sainte et Environs"
+    }
+  },
+  {
+    "logo": "784.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000025,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cuarnens",
+    "label": {
+      "ger": "Cuarnens",
+      "ita": "Cuarnens",
+      "fre": "Cuarnens",
+      "roh": "Cuarnens",
+      "eng": "Cuarnens"
+    }
+  },
+  {
+    "logo": "65bb6c3981add634731529.png",
+    "website": "https://www.ferreyres.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000026,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "ferreyres",
+    "label": {
+      "ger": "Commune de Ferreyres",
+      "ita": "Commune de Ferreyres",
+      "fre": "Commune de Ferreyres",
+      "roh": "Commune de Ferreyres",
+      "eng": "Commune de Ferreyres"
+    }
+  },
+  {
+    "logo": "67232feac64b0516328554.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000027,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "tolochenaz",
+    "label": {
+      "ger": "Tolochenaz",
+      "ita": "Tolochenaz",
+      "fre": "Tolochenaz",
+      "roh": "Tolochenaz",
+      "eng": "Tolochenaz"
+    }
+  },
+  {
+    "logo": "1054.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000028,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "treycovagnes",
+    "label": {
+      "ger": "Treycovagnes",
+      "ita": "Treycovagnes",
+      "fre": "Treycovagnes",
+      "roh": "Treycovagnes",
+      "eng": "Treycovagnes"
+    }
+  },
+  {
+    "logo": "1056.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000029,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "ursins",
+    "label": {
+      "ger": "Ursins",
+      "ita": "Ursins",
+      "fre": "Ursins",
+      "roh": "Ursins",
+      "eng": "Ursins"
+    }
+  },
+  {
+    "logo": "1057.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000030,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "valeyres-sous-montagny",
+    "label": {
+      "ger": "Valeyres-sous-Montagny",
+      "ita": "Valeyres-sous-Montagny",
+      "fre": "Valeyres-sous-Montagny",
+      "roh": "Valeyres-sous-Montagny",
+      "eng": "Valeyres-sous-Montagny"
+    }
+  },
+  {
+    "logo": "1058.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000031,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "valeyres-sous-ursins",
+    "label": {
+      "ger": "Valeyres-sous-Ursins",
+      "ita": "Valeyres-sous-Ursins",
+      "fre": "Valeyres-sous-Ursins",
+      "roh": "Valeyres-sous-Ursins",
+      "eng": "Valeyres-sous-Ursins"
+    }
+  },
+  {
+    "logo": "66aa39dca10e3673511453.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000032,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "geo-solutions-ingenieurs",
+    "label": {
+      "ger": "GÉO SOLUTIONS ingénieurs SA",
+      "ita": "GÉO SOLUTIONS ingénieurs SA",
+      "fre": "GÉO SOLUTIONS ingénieurs SA",
+      "roh": "GÉO SOLUTIONS ingénieurs SA",
+      "eng": "GÉO SOLUTIONS ingénieurs SA"
+    }
+  },
+  {
+    "logo": "6231b8c7db356720820358.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000033,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "l-abbaye",
+    "label": {
+      "ger": "L'Abbaye",
+      "ita": "L'Abbaye",
+      "fre": "L'Abbaye",
+      "roh": "L'Abbaye",
+      "eng": "L'Abbaye"
+    }
+  },
+  {
+    "logo": "62f4daa036143588983663.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000034,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "valregieaux",
+    "label": {
+      "ger": "ValRégiEaux",
+      "ita": "ValRégiEaux",
+      "fre": "ValRégiEaux",
+      "roh": "ValRégiEaux",
+      "eng": "ValRégiEaux"
+    }
+  },
+  {
+    "logo": "550.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000035,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "erm",
+    "label": {
+      "ger": "ERM - Association intercommunale pour l'épuration des eaux usées de la région morgienne",
+      "ita": "ERM - Association intercommunale pour l'épuration des eaux usées de la région morgienne",
+      "fre": "ERM - Association intercommunale pour l'épuration des eaux usées de la région morgienne",
+      "roh": "ERM - Association intercommunale pour l'épuration des eaux usées de la région morgienne",
+      "eng": "ERM - Association intercommunale pour l'épuration des eaux usées de la région morgienne"
+    }
+  },
+  {
+    "logo": "1062.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000036,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "vaulion",
+    "label": {
+      "ger": "Vaulion",
+      "ita": "Vaulion",
+      "fre": "Vaulion",
+      "roh": "Vaulion",
+      "eng": "Vaulion"
+    }
+  },
+  {
+    "logo": "65562684a4f10009497860.png",
+    "website": "https://lully.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000037,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "lully",
+    "label": {
+      "ger": "Lully",
+      "ita": "Lully",
+      "fre": "Lully",
+      "roh": "Lully",
+      "eng": "Lully"
+    }
+  },
+  {
+    "logo": "61d4487242193714125455.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000038,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "blonay-saint-legier",
+    "label": {
+      "ger": "Blonay – Saint-Légier",
+      "ita": "Blonay – Saint-Légier",
+      "fre": "Blonay – Saint-Légier",
+      "roh": "Blonay – Saint-Légier",
+      "eng": "Blonay – Saint-Légier"
+    }
+  },
+  {
+    "logo": "3116.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000039,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "aggloy",
+    "label": {
+      "ger": "AggloY",
+      "ita": "AggloY",
+      "fre": "AggloY",
+      "roh": "AggloY",
+      "eng": "AggloY"
+    }
+  },
+  {
+    "logo": "633c46a04ffd9540766924.png",
+    "website": "https://www.monthey.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000040,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "monthey",
+    "label": {
+      "ger": "Stadt Monthey",
+      "ita": "Città di Monthey",
+      "fre": "Ville de Monthey",
+      "roh": "Ville de Monthey",
+      "eng": "Ville de Monthey"
+    }
+  },
+  {
+    "logo": "3381.png",
+    "website": "https://www.police-el.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000041,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "police-est-lausannois",
+    "label": {
+      "ger": "Police Est Lausannois",
+      "ita": "Police Est Lausannois",
+      "fre": "Police Est Lausannois",
+      "roh": "Police Est Lausannois",
+      "eng": "Police Est Lausannois"
+    }
+  },
+  {
+    "logo": "832.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000042,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "valeyres-sous-rances",
+    "label": {
+      "ger": "Valeyres-sous-Rances",
+      "ita": "Valeyres-sous-Rances",
+      "fre": "Valeyres-sous-Rances",
+      "roh": "Valeyres-sous-Rances",
+      "eng": "Valeyres-sous-Rances"
+    }
+  },
+  {
+    "logo": "6283b941c1e5e075617278.png",
+    "website": "https://www.tvtservices.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000043,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "tvt-services",
+    "label": {
+      "ger": "TvT Services SA",
+      "ita": "TvT Services SA",
+      "fre": "TvT Services SA",
+      "roh": "TvT Services SA",
+      "eng": "TvT Services SA"
+    }
+  },
+  {
+    "logo": "673c4e1fa263c923817528.png",
+    "website": "http://www.bex.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000044,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "bex",
+    "label": {
+      "ger": "Bex",
+      "ita": "Bex",
+      "fre": "Bex",
+      "roh": "Bex",
+      "eng": "Bex"
+    }
+  },
+  {
+    "logo": "2123.png",
+    "website": "https://www.payerne.ch/guichet-cartographique/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000045,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "payerne",
+    "label": {
+      "ger": "Payerne",
+      "ita": "Payerne",
+      "fre": "Payerne",
+      "roh": "Payerne",
+      "eng": "Payerne"
+    }
+  },
+  {
+    "logo": "2124.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000046,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cossonay",
+    "label": {
+      "ger": "Cossonay",
+      "ita": "Cossonay",
+      "fre": "Cossonay",
+      "roh": "Cossonay",
+      "eng": "Cossonay"
+    }
+  },
+  {
+    "logo": "10576.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000047,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "viteos",
+    "label": {
+      "ger": "Viteos SA",
+      "ita": "Viteos SA",
+      "fre": "Viteos SA",
+      "roh": "Viteos SA",
+      "eng": "Viteos SA"
+    }
+  },
+  {
+    "logo": "856.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000048,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "ballaigues",
+    "label": {
+      "ger": "Ballaigues",
+      "ita": "Ballaigues",
+      "fre": "Ballaigues",
+      "roh": "Ballaigues",
+      "eng": "Ballaigues"
+    }
+  },
+  {
+    "logo": "3416.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000049,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "trn",
+    "label": {
+      "ger": "TRN SA - Téléréseau de la Région Nyonnaise",
+      "ita": "TRN SA - Téléréseau de la Région Nyonnaise",
+      "fre": "TRN SA - Téléréseau de la Région Nyonnaise",
+      "roh": "TRN SA - Téléréseau de la Région Nyonnaise",
+      "eng": "TRN SA - Téléréseau de la Région Nyonnaise"
+    }
+  },
+  {
+    "logo": "861.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000050,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "bercher",
+    "label": {
+      "ger": "Bercher",
+      "ita": "Bercher",
+      "fre": "Bercher",
+      "roh": "Bercher",
+      "eng": "Bercher"
+    }
+  },
+  {
+    "logo": "65c5d939b845b932935371.png",
+    "website": "https://www.thermoreso-gland.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000051,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "thermoreso",
+    "label": {
+      "ger": "ThermorésÔ SA",
+      "ita": "ThermorésÔ SA",
+      "fre": "ThermorésÔ SA",
+      "roh": "ThermorésÔ SA",
+      "eng": "ThermorésÔ SA"
+    }
+  },
+  {
+    "logo": "872.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000052,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "bullet",
+    "label": {
+      "ger": "Bullet",
+      "ita": "Bullet",
+      "fre": "Bullet",
+      "roh": "Bullet",
+      "eng": "Bullet"
+    }
+  },
+  {
+    "logo": "63495541849c1220126633.png",
+    "website": "https://cjl.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000053,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cjl",
+    "label": {
+      "ger": "CJL - CartoJuraLéman",
+      "ita": "CJL - CartoJuraLéman",
+      "fre": "CJL - CartoJuraLéman",
+      "roh": "CJL - CartoJuraLéman",
+      "eng": "CJL - CartoJuraLéman"
+    }
+  },
+  {
+    "logo": "880.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000054,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "chamblon",
+    "label": {
+      "ger": "Chamblon",
+      "ita": "Chamblon",
+      "fre": "Chamblon",
+      "roh": "Chamblon",
+      "eng": "Chamblon"
+    }
+  },
+  {
+    "logo": "1906.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000055,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "bussigny",
+    "label": {
+      "ger": "Bussigny",
+      "ita": "Bussigny",
+      "fre": "Bussigny",
+      "roh": "Bussigny",
+      "eng": "Bussigny"
+    }
+  },
+  {
+    "logo": "1909.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000056,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cgc-energie",
+    "label": {
+      "ger": "CGC Energie SA",
+      "ita": "CGC Energie SA",
+      "fre": "CGC Energie SA",
+      "roh": "CGC Energie SA",
+      "eng": "CGC Energie SA"
+    }
+  },
+  {
+    "logo": "1910.png",
+    "website": "https://www.belmont.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000057,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "belmont-sur-lausanne",
+    "label": {
+      "ger": "Belmont-sur-Lausanne",
+      "ita": "Belmont-sur-Lausanne",
+      "fre": "Belmont-sur-Lausanne",
+      "roh": "Belmont-sur-Lausanne",
+      "eng": "Belmont-sur-Lausanne"
+    }
+  },
+  {
+    "logo": "1912.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000058,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "lutry",
+    "label": {
+      "ger": "Lutry",
+      "ita": "Lutry",
+      "fre": "Lutry",
+      "roh": "Lutry",
+      "eng": "Lutry"
+    }
+  },
+  {
+    "logo": "1913.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000059,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sige",
+    "label": {
+      "ger": "SIGE - Service intercommunal de Gestion",
+      "ita": "SIGE - Service intercommunal de Gestion",
+      "fre": "SIGE - Service intercommunal de Gestion",
+      "roh": "SIGE - Service intercommunal de Gestion",
+      "eng": "SIGE - Service intercommunal de Gestion"
+    }
+  },
+  {
+    "logo": "891.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000060,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "chene-paquier",
+    "label": {
+      "ger": "Chêne-Pâquier",
+      "ita": "Chêne-Pâquier",
+      "fre": "Chêne-Pâquier",
+      "roh": "Chêne-Pâquier",
+      "eng": "Chêne-Pâquier"
+    }
+  },
+  {
+    "logo": "1916.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000061,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "aistbv",
+    "label": {
+      "ger": "AISTBV - Association Intercommunale Service Technique Broye Vaudoise",
+      "ita": "AISTBV - Association Intercommunale Service Technique Broye Vaudoise",
+      "fre": "AISTBV - Association Intercommunale Service Technique Broye Vaudoise",
+      "roh": "AISTBV - Association Intercommunale Service Technique Broye Vaudoise",
+      "eng": "AISTBV - Association Intercommunale Service Technique Broye Vaudoise"
+    }
+  },
+  {
+    "logo": "6630a6c09aa30231705364.png",
+    "website": "https://www.moudon.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000062,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "moudon",
+    "label": {
+      "ger": "Moudon",
+      "ita": "Moudon",
+      "fre": "Moudon",
+      "roh": "Moudon",
+      "eng": "Moudon"
+    }
+  },
+  {
+    "logo": "633ef02be493b275269922.png",
+    "website": "https://www.genedis.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000063,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "genedis",
+    "label": {
+      "ger": "Genedis SA",
+      "ita": "Genedis SA",
+      "fre": "Genedis SA",
+      "roh": "Genedis SA",
+      "eng": "Genedis SA"
+    }
+  },
+  {
+    "logo": "897.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000064,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "chevilly",
+    "label": {
+      "ger": "Chevilly",
+      "ita": "Chevilly",
+      "fre": "Chevilly",
+      "roh": "Chevilly",
+      "eng": "Chevilly"
+    }
+  },
+  {
+    "logo": "2184.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000065,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "groupe-e",
+    "label": {
+      "ger": "Groupe E SA",
+      "ita": "Groupe E SA",
+      "fre": "Groupe E SA",
+      "roh": "Groupe E SA",
+      "eng": "Groupe E SA"
+    }
+  },
+  {
+    "logo": "2443.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000066,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "saint-prex",
+    "label": {
+      "ger": "Saint-Prex",
+      "ita": "Saint-Prex",
+      "fre": "Saint-Prex",
+      "roh": "Saint-Prex",
+      "eng": "Saint-Prex"
+    }
+  },
+  {
+    "logo": "2444.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000067,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "prilly",
+    "label": {
+      "ger": "Prilly",
+      "ita": "Prilly",
+      "fre": "Prilly",
+      "roh": "Prilly",
+      "eng": "Prilly"
+    }
+  },
+  {
+    "logo": "909.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000068,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cronay",
+    "label": {
+      "ger": "Cronay",
+      "ita": "Cronay",
+      "fre": "Cronay",
+      "roh": "Cronay",
+      "eng": "Cronay"
+    }
+  },
+  {
+    "logo": "911.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000069,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cuarny",
+    "label": {
+      "ger": "Cuarny",
+      "ita": "Cuarny",
+      "fre": "Cuarny",
+      "roh": "Cuarny",
+      "eng": "Cuarny"
+    }
+  },
+  {
+    "logo": "2447.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000070,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "ecublens",
+    "label": {
+      "ger": "Ecublens",
+      "ita": "Ecublens",
+      "fre": "Ecublens",
+      "roh": "Ecublens",
+      "eng": "Ecublens"
+    }
+  },
+  {
+    "logo": "61e6dd1363f06843407980.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000071,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "echandens",
+    "label": {
+      "ger": "Echandens",
+      "ita": "Echandens",
+      "fre": "Echandens",
+      "roh": "Echandens",
+      "eng": "Echandens"
+    }
+  },
+  {
+    "logo": "60c8d59ca87bd861468924.jpg",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000072,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "region-morges",
+    "label": {
+      "ger": "Région Morges",
+      "ita": "Région Morges",
+      "fre": "Région Morges",
+      "roh": "Région Morges",
+      "eng": "Région Morges"
+    }
+  },
+  {
+    "logo": "64b6ae9a67411320834486.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000073,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "chauffage-a-distance-begnins",
+    "label": {
+      "ger": "Chauffage à distance Begnins SA",
+      "ita": "Chauffage à distance Begnins SA",
+      "fre": "Chauffage à distance Begnins SA",
+      "roh": "Chauffage à distance Begnins SA",
+      "eng": "Chauffage à distance Begnins SA"
+    }
+  },
+  {
+    "logo": "64b6ae34ce972067360092.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000074,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "thermoreseau-burtigny",
+    "label": {
+      "ger": "Thermoreseau Burtigny SA",
+      "ita": "Thermoreseau Burtigny SA",
+      "fre": "Thermoreseau Burtigny SA",
+      "roh": "Thermoreseau Burtigny SA",
+      "eng": "Thermoreseau Burtigny SA"
+    }
+  },
+  {
+    "logo": "917.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000075,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "demoret",
+    "label": {
+      "ger": "Démoret",
+      "ita": "Démoret",
+      "fre": "Démoret",
+      "roh": "Démoret",
+      "eng": "Démoret"
+    }
+  },
+  {
+    "logo": "7319.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000076,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "nestle-waters-suisse",
+    "label": {
+      "ger": "Nestlé Waters (Suisse) S.A.",
+      "ita": "Nestlé Waters (Suisse) S.A.",
+      "fre": "Nestlé Waters (Suisse) S.A.",
+      "roh": "Nestlé Waters (Suisse) S.A.",
+      "eng": "Nestlé Waters (Suisse) S.A."
+    }
+  },
+  {
+    "logo": "3031.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000077,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "tl",
+    "label": {
+      "ger": "TL - Transports publics de la région lausannoise sa",
+      "ita": "TL - Transports publics de la région lausannoise sa",
+      "fre": "TL - Transports publics de la région lausannoise sa",
+      "roh": "TL - Transports publics de la région lausannoise sa",
+      "eng": "TL - Transports publics de la région lausannoise sa"
+    }
+  },
+  {
+    "logo": "1945.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000078,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "holdigaz",
+    "label": {
+      "ger": "Holdigaz Prestations SA",
+      "ita": "Holdigaz Prestations SA",
+      "fre": "Holdigaz Prestations SA",
+      "roh": "Holdigaz Prestations SA",
+      "eng": "Holdigaz Prestations SA"
+    }
+  },
+  {
+    "logo": "923.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000079,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "donneloye",
+    "label": {
+      "ger": "Donneloye",
+      "ita": "Donneloye",
+      "fre": "Donneloye",
+      "roh": "Donneloye",
+      "eng": "Donneloye"
+    }
+  },
+  {
+    "logo": "61dd678d249c1944176369.png",
+    "website": "https://www.hautemorges.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000080,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "hautemorges",
+    "label": {
+      "ger": "Hautemorges",
+      "ita": "Hautemorges",
+      "fre": "Hautemorges",
+      "roh": "Hautemorges",
+      "eng": "Hautemorges"
+    }
+  },
+  {
+    "logo": "6316ecce16e0c026694900.jpg",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000081,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "le-chenit",
+    "label": {
+      "ger": "Le Chenit",
+      "ita": "Le Chenit",
+      "fre": "Le Chenit",
+      "roh": "Le Chenit",
+      "eng": "Le Chenit"
+    }
+  },
+  {
+    "logo": "1955.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000082,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "vevey",
+    "label": {
+      "ger": "Vevey",
+      "ita": "Vevey",
+      "fre": "Vevey",
+      "roh": "Vevey",
+      "eng": "Vevey"
+    }
+  },
+  {
+    "logo": "937.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000083,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "fiez",
+    "label": {
+      "ger": "Fiez",
+      "ita": "Fiez",
+      "fre": "Fiez",
+      "roh": "Fiez",
+      "eng": "Fiez"
+    }
+  },
+  {
+    "logo": "174.png",
+    "website": "https://www.lasarraz.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000084,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "la-sarraz",
+    "label": {
+      "ger": "La Sarraz",
+      "ita": "La Sarraz",
+      "fre": "La Sarraz",
+      "roh": "La Sarraz",
+      "eng": "La Sarraz"
+    }
+  },
+  {
+    "logo": "943.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000085,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "gilly",
+    "label": {
+      "ger": "Gilly",
+      "ita": "Gilly",
+      "fre": "Gilly",
+      "roh": "Gilly",
+      "eng": "Gilly"
+    }
+  },
+  {
+    "logo": "65a65287afd23721151053.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000086,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "vo-energies",
+    "label": {
+      "ger": "VOé distribution SA",
+      "ita": "VOé distribution SA",
+      "fre": "VOé distribution SA",
+      "roh": "VOé distribution SA",
+      "eng": "VOé distribution SA"
+    }
+  },
+  {
+    "logo": "1978.png",
+    "website": "https://www.sefa.ch/demande-de-raccordement/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000087,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sefa",
+    "label": {
+      "ger": "SEFA - Société Electrique des Forces de l'Aubonne",
+      "ita": "SEFA - Société Electrique des Forces de l'Aubonne",
+      "fre": "SEFA - Société Electrique des Forces de l'Aubonne",
+      "roh": "SEFA - Société Electrique des Forces de l'Aubonne",
+      "eng": "SEFA - Société Electrique des Forces de l'Aubonne"
+    }
+  },
+  {
+    "logo": "1979.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000088,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "bti",
+    "label": {
+      "ger": "BTI - Bureau Technique Intercommunal",
+      "ita": "BTI - Bureau Technique Intercommunal",
+      "fre": "BTI - Bureau Technique Intercommunal",
+      "roh": "BTI - Bureau Technique Intercommunal",
+      "eng": "BTI - Bureau Technique Intercommunal"
+    }
+  },
+  {
+    "logo": "956.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000089,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "juriens",
+    "label": {
+      "ger": "Juriens",
+      "ita": "Juriens",
+      "fre": "Juriens",
+      "roh": "Juriens",
+      "eng": "Juriens"
+    }
+  },
+  {
+    "logo": "959.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000090,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "lignerolle",
+    "label": {
+      "ger": "Lignerolle",
+      "ita": "Lignerolle",
+      "fre": "Lignerolle",
+      "roh": "Lignerolle",
+      "eng": "Lignerolle"
+    }
+  },
+  {
+    "logo": "1985.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000091,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "montreux",
+    "label": {
+      "ger": "Montreux",
+      "ita": "Montreux",
+      "fre": "Montreux",
+      "roh": "Montreux",
+      "eng": "Montreux"
+    }
+  },
+  {
+    "logo": "1986.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000092,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "fma-sa",
+    "label": {
+      "ger": "Forces Motrices de l'Avançon SA",
+      "ita": "Forces Motrices de l'Avançon SA",
+      "fre": "Forces Motrices de l'Avançon SA",
+      "roh": "Forces Motrices de l'Avançon SA",
+      "eng": "Forces Motrices de l'Avançon SA"
+    }
+  },
+  {
+    "logo": "611a1a5ec61be791227594.jpg",
+    "website": "https://www.groupe-e.ch/fr",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000093,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "groupe-e-celsius",
+    "label": {
+      "ger": "Groupe E Celsius SA",
+      "ita": "Groupe E Celsius SA",
+      "fre": "Groupe E Celsius SA",
+      "roh": "Groupe E Celsius SA",
+      "eng": "Groupe E Celsius SA"
+    }
+  },
+  {
+    "logo": "969.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000094,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "mathod",
+    "label": {
+      "ger": "Mathod",
+      "ita": "Mathod",
+      "fre": "Mathod",
+      "roh": "Mathod",
+      "eng": "Mathod"
+    }
+  },
+  {
+    "logo": "970.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000095,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "mauborget",
+    "label": {
+      "ger": "Mauborget",
+      "ita": "Mauborget",
+      "fre": "Mauborget",
+      "roh": "Mauborget",
+      "eng": "Mauborget"
+    }
+  },
+  {
+    "logo": "9676.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000096,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sdis-ouest-lavaux",
+    "label": {
+      "ger": "SDIS Ouest-Lavaux",
+      "ita": "SDIS Ouest-Lavaux",
+      "fre": "SDIS Ouest-Lavaux",
+      "roh": "SDIS Ouest-Lavaux",
+      "eng": "SDIS Ouest-Lavaux"
+    }
+  },
+  {
+    "logo": "1997.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000097,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "villeneuve",
+    "label": {
+      "ger": "Villeneuve",
+      "ita": "Villeneuve",
+      "fre": "Villeneuve",
+      "roh": "Villeneuve",
+      "eng": "Villeneuve"
+    }
+  },
+  {
+    "logo": "1998.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000098,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "la-tour-de-peilz",
+    "label": {
+      "ger": "La Tour-de-Peilz",
+      "ita": "La Tour-de-Peilz",
+      "fre": "La Tour-de-Peilz",
+      "roh": "La Tour-de-Peilz",
+      "eng": "La Tour-de-Peilz"
+    }
+  },
+  {
+    "logo": "6556244d8d244947585170.png",
+    "website": "https://moiry.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000099,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "moiry",
+    "label": {
+      "ger": "Moiry",
+      "ita": "Moiry",
+      "fre": "Moiry",
+      "roh": "Moiry",
+      "eng": "Moiry"
+    }
+  },
+  {
+    "logo": "721.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000100,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "rolle",
+    "label": {
+      "ger": "Rolle",
+      "ita": "Rolle",
+      "fre": "Rolle",
+      "roh": "Rolle",
+      "eng": "Rolle"
+    }
+  },
+  {
+    "logo": "63032f4f79c65501369976.png",
+    "website": "https://www.romanel-sur-lausanne.ch",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000101,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "romanel-sur-lausanne",
+    "label": {
+      "ger": "Romanel-sur-Lausanne",
+      "ita": "Romanel-sur-Lausanne",
+      "fre": "Romanel-sur-Lausanne",
+      "roh": "Romanel-sur-Lausanne",
+      "eng": "Romanel-sur-Lausanne"
+    }
+  },
+  {
+    "logo": "2003.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000102,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cartoriviera",
+    "label": {
+      "ger": "Cartoriviera",
+      "ita": "Cartoriviera",
+      "fre": "Cartoriviera",
+      "roh": "Cartoriviera",
+      "eng": "Cartoriviera"
+    }
+  },
+  {
+    "logo": "2773.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000103,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "eca-vaud",
+    "label": {
+      "ger": "ECA Vaud",
+      "ita": "ECA Vaud",
+      "fre": "ECA Vaud",
+      "roh": "ECA Vaud",
+      "eng": "ECA Vaud"
+    }
+  },
+  {
+    "logo": "1750.png",
+    "website": "https://www.pully.ch/fr/accueil/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000104,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "pully",
+    "label": {
+      "ger": "Pully",
+      "ita": "Pully",
+      "fre": "Pully",
+      "roh": "Pully",
+      "eng": "Pully"
+    }
+  },
+  {
+    "logo": "1751.png",
+    "website": "https://www.asit-asso.ch",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000105,
+    "email": "xavier.merour@asit-asso.ch",
+    "referrer": null,
+    "description": null,
+    "name": "asit",
+    "label": {
+      "ger": "ASIT - Association pour le système d'information du territoire",
+      "ita": "ASIT - Association pour le système d'information du territoire",
+      "fre": "ASIT - Association pour le système d'information du territoire",
+      "roh": "ASIT - Association pour le système d'information du territoire",
+      "eng": "ASIT - Association pour le système d'information du territoire"
+    }
+  },
+  {
+    "logo": "1752.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000106,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "romande-energie",
+    "label": {
+      "ger": "Romande Energie SA",
+      "ita": "Romande Energie SA",
+      "fre": "Romande Energie SA",
+      "roh": "Romande Energie SA",
+      "eng": "Romande Energie SA"
+    }
+  },
+  {
+    "logo": "1753.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000107,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "aigle",
+    "label": {
+      "ger": "Aigle",
+      "ita": "Aigle",
+      "fre": "Aigle",
+      "roh": "Aigle",
+      "eng": "Aigle"
+    }
+  },
+  {
+    "logo": "65bbccd93299e483413467.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000108,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "upc",
+    "label": {
+      "ger": "Sunrise Sàrl",
+      "ita": "Sunrise Sàrl",
+      "fre": "Sunrise Sàrl",
+      "roh": "Sunrise Sàrl",
+      "eng": "Sunrise Sàrl"
+    }
+  },
+  {
+    "logo": "1749.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000109,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "yverdon-les-bains",
+    "label": {
+      "ger": "Yverdon-les-Bains",
+      "ita": "Yverdon-les-Bains",
+      "fre": "Yverdon-les-Bains",
+      "roh": "Yverdon-les-Bains",
+      "eng": "Yverdon-les-Bains"
+    }
+  },
+  {
+    "logo": "1756.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000110,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cff",
+    "label": {
+      "ger": "CFF SA",
+      "ita": "CFF SA",
+      "fre": "CFF SA",
+      "roh": "CFF SA",
+      "eng": "CFF SA"
+    }
+  },
+  {
+    "logo": "1757.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000111,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "gaznat",
+    "label": {
+      "ger": "GAZNAT SA",
+      "ita": "GAZNAT SA",
+      "fre": "GAZNAT SA",
+      "roh": "GAZNAT SA",
+      "eng": "GAZNAT SA"
+    }
+  },
+  {
+    "logo": "6294a1f0955a0814691860.png",
+    "website": "https://www.sie.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000112,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sie",
+    "label": {
+      "ger": "SIE SA",
+      "ita": "SIE SA",
+      "fre": "SIE SA",
+      "roh": "SIE SA",
+      "eng": "SIE SA"
+    }
+  },
+  {
+    "logo": "641ae3b2803a0083289132.png",
+    "website": "https://mont-la-ville.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000113,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "mont-la-ville",
+    "label": {
+      "ger": "Mont-la-Ville",
+      "ita": "Mont-la-Ville",
+      "fre": "Mont-la-Ville",
+      "roh": "Mont-la-Ville",
+      "eng": "Mont-la-Ville"
+    }
+  },
+  {
+    "logo": "1760.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000114,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "swisscom-suisse",
+    "label": {
+      "ger": "Swisscom (Suisse) SA",
+      "ita": "Swisscom (Suisse) SA",
+      "fre": "Swisscom (Suisse) SA",
+      "roh": "Swisscom (Suisse) SA",
+      "eng": "Swisscom (Suisse) SA"
+    }
+  },
+  {
+    "logo": "1761.png",
+    "website": "https://www.vd.ch/toutes-les-autorites/departements/departement-des-institutions-et-du-territoire-dit/direction-generale-du-territoire-et-du-logement-dgtl/direction-du-cadastre-et-de-la-geoinformation-dcg/",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000115,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "administration-cantonale-vaudois",
+    "label": {
+      "ger": "Kanton Waadt",
+      "ita": "Cantone di Vaud",
+      "fre": "Canton de Vaud",
+      "roh": "Kanton Waadt",
+      "eng": "Canton of Vaud"
+    }
+  },
+  {
+    "logo": "637b54fc7c26d137999912.png",
+    "website": "https://www.noville.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000116,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "noville",
+    "label": {
+      "ger": "Noville",
+      "ita": "Noville",
+      "fre": "Noville",
+      "roh": "Noville",
+      "eng": "Noville"
+    }
+  },
+  {
+    "logo": "617815cd2789a143306513.png",
+    "website": "http://sagenord.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000117,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sagenord",
+    "label": {
+      "ger": "SAGENORD",
+      "ita": "SAGENORD",
+      "fre": "SAGENORD",
+      "roh": "SAGENORD",
+      "eng": "SAGENORD"
+    }
+  },
+  {
+    "logo": "1765.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000118,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "morges",
+    "label": {
+      "ger": "Morges",
+      "ita": "Morges",
+      "fre": "Morges",
+      "roh": "Morges",
+      "eng": "Morges"
+    }
+  },
+  {
+    "logo": "1766.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000119,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "nyon",
+    "label": {
+      "ger": "Nyon",
+      "ita": "Nyon",
+      "fre": "Nyon",
+      "roh": "Nyon",
+      "eng": "Nyon"
+    }
+  },
+  {
+    "logo": "1767.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000120,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "echallens",
+    "label": {
+      "ger": "Echallens",
+      "ita": "Echallens",
+      "fre": "Echallens",
+      "roh": "Echallens",
+      "eng": "Echallens"
+    }
+  },
+  {
+    "logo": "1768.png",
+    "website": "https://www.lausanne.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000121,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "lausanne",
+    "label": {
+      "ger": "Lausanne",
+      "ita": "Lausanne",
+      "fre": "Lausanne",
+      "roh": "Lausanne",
+      "eng": "Lausanne"
+    }
+  },
+  {
+    "logo": "6540baf7af2d6176207111.jfif",
+    "website": "https://seic.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000122,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "seic",
+    "label": {
+      "ger": "SEIC - Société électrique intercommunale de la Côte SA",
+      "ita": "SEIC - Société électrique intercommunale de la Côte SA",
+      "fre": "SEIC - Société électrique intercommunale de la Côte SA",
+      "roh": "SEIC - Société électrique intercommunale de la Côte SA",
+      "eng": "SEIC - Société électrique intercommunale de la Côte SA"
+    }
+  },
+  {
+    "logo": "9701.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000123,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sogebois",
+    "label": {
+      "ger": "SOGEBOIS SA",
+      "ita": "SOGEBOIS SA",
+      "fre": "SOGEBOIS SA",
+      "roh": "SOGEBOIS SA",
+      "eng": "SOGEBOIS SA"
+    }
+  },
+  {
+    "logo": "6384.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000124,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cadouest",
+    "label": {
+      "ger": "CADOUEST SA",
+      "ita": "CADOUEST SA",
+      "fre": "CADOUEST SA",
+      "roh": "CADOUEST SA",
+      "eng": "CADOUEST SA"
+    }
+  },
+  {
+    "logo": "1013.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000125,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "pomy",
+    "label": {
+      "ger": "Pomy",
+      "ita": "Pomy",
+      "fre": "Pomy",
+      "roh": "Pomy",
+      "eng": "Pomy"
+    }
+  },
+  {
+    "logo": "66f412fc4d110106473718.png",
+    "website": "https://sparrow.city",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000126,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sparrow-analytics",
+    "label": {
+      "ger": "Sparrow Analytics SA",
+      "ita": "Sparrow Analytics SA",
+      "fre": "Sparrow Analytics SA",
+      "roh": "Sparrow Analytics SA",
+      "eng": "Sparrow Analytics SA"
+    }
+  },
+  {
+    "logo": "64be22b3b04c8843903451.jpg",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000127,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "satom",
+    "label": {
+      "ger": "SATOM SA",
+      "ita": "SATOM SA",
+      "fre": "SATOM SA",
+      "roh": "SATOM SA",
+      "eng": "SATOM SA"
+    }
+  },
+  {
+    "logo": "1761.png",
+    "website": "https://www.vd.ch/toutes-les-autorites/departements/departement-des-institutions-et-du-territoire-dit/direction-generale-du-territoire-et-du-logement-dgtl/direction-du-cadastre-et-de-la-geoinformation-dcg/",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000128,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "Canton de Vaud",
+    "label": {
+      "ger": "Administration cantonale vaudoise",
+      "ita": "Administration cantonale vaudoise",
+      "fre": "Administration cantonale vaudoise",
+      "roh": "Administration cantonale vaudoise",
+      "eng": "Administration cantonale vaudoise"
+    }
+  },
+  {
+    "logo": "639995410a79e228694923.png",
+    "website": "https://www.aubonne.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000129,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "aubonne",
+    "label": {
+      "ger": "Aubonne",
+      "ita": "Aubonne",
+      "fre": "Aubonne",
+      "roh": "Aubonne",
+      "eng": "Aubonne"
+    }
+  },
+  {
+    "logo": "Prangins-coat_of_arms.svg.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000130,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "prangins",
+    "label": {
+      "ger": "Prangins",
+      "ita": "Prangins",
+      "fre": "Prangins",
+      "roh": "Prangins",
+      "eng": "Prangins"
+    }
+  },
+  {
+    "logo": "SIG.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000131,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "services-industriels-de-geneve",
+    "label": {
+      "ger": "Services industriels de Genève",
+      "ita": "Services industriels de Genève",
+      "fre": "Services industriels de Genève",
+      "roh": "Services industriels de Genève",
+      "eng": "Services industriels de Genève"
+    }
+  },
+  {
+    "logo": "sil.png",
+    "website": null,
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000132,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "sil",
+    "label": {
+      "ger": "SiL - Services industriels de Lausanne",
+      "ita": "SiL - Services industriels de Lausanne",
+      "fre": "SiL - Services industriels de Lausanne",
+      "roh": "SiL - Services industriels de Lausanne",
+      "eng": "SiL - Services industriels de Lausanne"
+    }
+  },
+  {
+    "logo": "ormont-dessus.png",
+    "website": "https://www.ormont-dessus.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000133,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "ormont-dessus",
+    "label": {
+      "ger": "Ormont-Dessus",
+      "ita": "Ormont-Dessus",
+      "fre": "Ormont-Dessus",
+      "roh": "Ormont-Dessus",
+      "eng": "Ormont-Dessus"
+    }
+  },
+  {
+    "logo": "CHA.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521579,
+      "name": "cantonal",
+      "label": {
+        "ger": "cantonal",
+        "ita": "cantonal",
+        "fre": "cantonal",
+        "roh": "cantonal",
+        "eng": "cantonal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000134,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "canton-de-geneve",
+    "label": {
+      "ger": "Kanton Genf",
+      "ita": "Canton Ginevra",
+      "fre": "Canton de Genève",
+      "roh": "Chantun Genevra",
+      "eng": "Canton of Geneva"
+    }
+  },
+  {
+    "logo": "VDG.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000135,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "ville-de-geneve",
+    "label": {
+      "ger": "Stadt Genf",
+      "ita": "Città di Ginevra",
+      "fre": "Ville de Genève",
+      "roh": "Citad da Genevra",
+      "eng": "City of Geneva"
+    }
+  },
+  {
+    "logo": "TPG.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000136,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "transports-public-genevois",
+    "label": {
+      "ger": "Transports public genevois",
+      "ita": "Transports public genevois",
+      "fre": "Transports public genevois",
+      "roh": "Transports public genevois",
+      "eng": "Transports public genevois"
+    }
+  },
+  {
+    "logo": "GVA.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000137,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "geneve-aeroport",
+    "label": {
+      "ger": "Genève Aéroport",
+      "ita": "Genève Aéroport",
+      "fre": "Genève Aéroport",
+      "roh": "Genève Aéroport",
+      "eng": "Genève Aéroport"
+    }
+  },
+  {
+    "logo": "Cheseaux-sur-Lausanne-coat_of_arms.svg.png",
+    "website": "https://www.cheseaux.ch/",
+    "defaultCategory": {
+      "id": 42521580,
+      "name": "communal",
+      "label": {
+        "ger": "communal",
+        "ita": "communal",
+        "fre": "communal",
+        "roh": "communal",
+        "eng": "communal"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000138,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "cheseaux-sur-lausanne",
+    "label": {
+      "ger": "Cheseaux-sur-Lausanne",
+      "ita": "Cheseaux-sur-Lausanne",
+      "fre": "Cheseaux-sur-Lausanne",
+      "roh": "Cheseaux-sur-Lausanne",
+      "eng": "Cheseaux-sur-Lausanne"
+    }
+  },
+  {
+    "logo": "viageo/default_logo_viageo.png",
+    "website": "https://www.thermoreso-nyon.ch/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000139,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "thermoreso-nyon",
+    "label": {
+      "ger": "ThermorésÔ Nyon SA",
+      "ita": "ThermorésÔ Nyon SA",
+      "fre": "ThermorésÔ Nyon SA",
+      "roh": "ThermorésÔ Nyon SA",
+      "eng": "ThermorésÔ Nyon SA"
+    }
+  },
+  {
+    "logo": "IMAD.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000140,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "institution-genevoise-de-mainti",
+    "label": {
+      "ger": "Institution genevoise de maintien à domicile",
+      "ita": "Institution genevoise de maintien à domicile",
+      "fre": "Institution genevoise de maintien à domicile",
+      "roh": "Institution genevoise de maintien à domicile",
+      "eng": "Institution genevoise de maintien à domicile"
+    }
+  },
+  {
+    "logo": "CERN.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000141,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "organisation-europeenne-pour-la",
+    "label": {
+      "ger": "Organisation européenne pour la recherche nucléaire",
+      "ita": "Organisation européenne pour la recherche nucléaire",
+      "fre": "Organisation européenne pour la recherche nucléaire",
+      "roh": "Organisation européenne pour la recherche nucléaire",
+      "eng": "Organisation européenne pour la recherche nucléaire"
+    }
+  },
+  {
+    "logo": "FP.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000142,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "fondation-des-parkings",
+    "label": {
+      "ger": "Fondation des parkings",
+      "ita": "Fondation des parkings",
+      "fre": "Fondation des parkings",
+      "roh": "Fondation des parkings",
+      "eng": "Fondation des parkings"
+    }
+  },
+  {
+    "logo": "viageo/default_logo_viageo.png",
+    "website": "https://www.energie360.ch/fr/",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000144,
+    "email": "",
+    "referrer": null,
+    "description": null,
+    "name": "energie-360",
+    "label": {
+      "ger": "Energie 360° SA",
+      "ita": "Energie 360° SA",
+      "fre": "Energie 360° SA",
+      "roh": "Energie 360° SA",
+      "eng": "Energie 360° SA"
+    }
+  },
+  {
+    "logo": "HES_SO.jpg",
+    "website": "",
+    "defaultCategory": null,
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000145,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "haute-ecole-specialisee-de-suis",
+    "label": {
+      "ger": "Haute école spécialisée de Suisse occidentale",
+      "ita": "Haute école spécialisée de Suisse occidentale",
+      "fre": "Haute école spécialisée de Suisse occidentale",
+      "roh": "Haute école spécialisée de Suisse occidentale",
+      "eng": "Haute école spécialisée de Suisse occidentale"
+    }
+  },
+  {
+    "logo": "FTI.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000146,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "fondation-pour-les-terrains-ind",
+    "label": {
+      "ger": "Fondation pour les terrains industriels de Genève",
+      "ita": "Fondation pour les terrains industriels de Genève",
+      "fre": "Fondation pour les terrains industriels de Genève",
+      "roh": "Fondation pour les terrains industriels de Genève",
+      "eng": "Fondation pour les terrains industriels de Genève"
+    }
+  },
+  {
+    "logo": "CHA.png",
+    "website": "",
+    "defaultCategory": {
+      "id": 42521582,
+      "name": "other",
+      "label": {
+        "ger": "other",
+        "ita": "other",
+        "fre": "other",
+        "roh": "other",
+        "eng": "other"
+      }
+    },
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "id": 50000147,
+    "email": "markus.kesseler@etat.ge.ch",
+    "referrer": null,
+    "description": null,
+    "name": "chancellerie-detat",
+    "label": {
+      "ger": "Chancellerie d'état",
+      "ita": "Chancellerie d'état",
+      "fre": "Chancellerie d'état",
+      "roh": "Chancellerie d'état",
+      "eng": "Chancellerie d'état"
+    }
+  }
+]

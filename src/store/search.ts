@@ -19,6 +19,7 @@ export interface SearchStoreState {
     geocatPage: number
     dataSearchPanelWidth: number
     isOpenSearch: boolean
+    forceScrollComponentUpdate: boolean
     readonly geocatPageSize: 20
     selectedFederalIds: number[]
     selectedCantonalIds: number[]
@@ -32,6 +33,7 @@ export const useSearchStore = defineStore('search', () => {
     const isSearchingAddresses = ref(false)
     const isSearchingGeocat = ref(false)
     const isOpenSearch = ref(false)
+    const forceScrollComponentUpdate = ref(false)
     const searchTerm = ref<string | null>(null)
     const geocatSearchResults = ref<GeonetworkRecord[]>([])
     const searchLocationResults = ref<GeocodingResult[]>([])
@@ -58,6 +60,9 @@ export const useSearchStore = defineStore('search', () => {
     }
     function setSearchTerm(term: string | null) {
         searchTerm.value = term
+    }
+    function setForceScrollComponentUpdate(value: boolean) {
+        forceScrollComponentUpdate.value = value
     }
     function setIsSearchingAddresses(value: boolean) {
         isSearchingAddresses.value = value
@@ -110,6 +115,7 @@ export const useSearchStore = defineStore('search', () => {
         isSearchingAddresses,
         isSearchingGeocat,
         isOpenSearch,
+        forceScrollComponentUpdate,
         searchTerm,
         geocatSearchResults,
         searchLocationResults,
@@ -126,6 +132,7 @@ export const useSearchStore = defineStore('search', () => {
         setSearchResultTotal,
         setDataSearchPanelWidth,
         setSearchTerm,
+        setForceScrollComponentUpdate,
         setIsSearchingAddresses,
         setIsSearchingGeocat,
         setIsOpenSearch,

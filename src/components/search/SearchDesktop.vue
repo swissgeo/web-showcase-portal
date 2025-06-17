@@ -60,7 +60,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
             data-cy="div-search-desktop"
         >
             <Card
-                class="w-full"
+                class="4px w-full border-2 border-[#1F576B]"
                 :pt="{
                     body: 'p-0',
                 }"
@@ -73,7 +73,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                     <SearchKeywordContainer class="mb-5 px-4 pt-4" />
                     <SearchFilter
                         data-cy="search-filter"
-                        class="bg-swissgeo-lightblue p-4"
+                        class="bg-swissgeo-lightblue rounded-b-lg p-4"
                     />
                 </template>
             </Card>

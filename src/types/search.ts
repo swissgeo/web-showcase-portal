@@ -1,3 +1,5 @@
+export const GEOCAT_SEARCH_URL = 'https://www.geocat.ch/geonetwork/srv/api'
+
 export interface SearchKeywordUseCaseConfig {
     useCases: SearchKeywordUseCase[]
 }

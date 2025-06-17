@@ -7,7 +7,7 @@ describe('Test the search on desktop', () => {
     it('Search yields a result', () => {
         cy.get('[data-cy="div-search-desktop"]').should('exist').should('be.visible')
         cy.get('[data-cy="comp-search-mobile"]').should('not.exist')
-        cy.get('[data-cy="input-search"]').type('wald')
+        cy.get('[data-cy="input-search"]').type('bern')
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
         cy.get('@searchResults').should('have.length', 20)
 
@@ -25,7 +25,7 @@ describe('Test the search on desktop', () => {
         cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 20 })
         cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 500 })
 
-        cy.get('@searchResults').should('have.length', 40)
+        cy.get('@searchResults').should('have.length', 28)
     })
 })
 
@@ -39,7 +39,7 @@ describe('Test the search on mobile', () => {
         cy.get('[data-cy="comp-search-mobile"]').should('exist').should('be.visible')
         cy.get('[data-cy="div-search-desktop"]').should('not.exist')
 
-        cy.get('[data-cy="input-search"]').type('wald')
+        cy.get('[data-cy="input-search"]').type('bern')
         // open accordion
         cy.get('[data-cy="comp-data-accordion"]').click()
 
@@ -72,7 +72,6 @@ describe('Test the search on mobile', () => {
         //now re-open data accordion to fully load the data
         cy.get('[data-cy="comp-search-results-mobile"]').scrollTo('top', { duration: 500 })
         cy.get('[data-cy="comp-data-accordion"]').click()
-        cy.get('@searchResults').should('have.length.greaterThan', 20)
-
+        cy.get('@searchResults').should('have.length', 28)
     })
 })

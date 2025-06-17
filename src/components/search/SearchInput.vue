@@ -2,7 +2,7 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import useGeocat from '@/search/geocat'
@@ -50,6 +50,10 @@ const onFocus = () => {
 const onBlur = () => {
     emits('blur')
 }
+
+onMounted(() => {
+    geocatSearch.initializeGNUI()
+})
 
 const clearSearch = () => {
     searchStore.resetSearch()

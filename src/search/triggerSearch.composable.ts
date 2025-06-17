@@ -1,5 +1,4 @@
 import { computed, type ComputedRef } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
@@ -7,15 +6,14 @@ import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
 import { DEFAULT_SEARCH_SR } from '@/types/projection'
 import { debounce } from '@/utils/debounce'
+import { useLanguage } from '@/utils/language.composable'
 
 export function useTriggerSearch() {
     const addressSearch = useAddressSearch()
     const geocatSearch = useGeocat()
     const searchStore = useSearchStore()
-    const { locale } = useI18n()
-    const localeString = computed(() => {
-        return locale.value.split('-')[0]
-    })
+    const { localeString } = useLanguage()
+
     const selectedGroupIds: ComputedRef<number[] | null> = computed(() => {
         const ids = [
             ...(Array.isArray(searchStore.selectedFederalIds)

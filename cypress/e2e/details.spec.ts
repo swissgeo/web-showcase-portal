@@ -4,11 +4,11 @@ function testDetails() {
     cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
     cy.get('[data-cy="div-dataset-details-title"]')
         .should('be.visible')
-        .should('contain', 'Radonkarte')
+        .should('contain', 'Radon map')
 
     cy.get('[data-cy="panel-dataset-details-info"]')
         .should('be.visible')
-        .should('contain', 'Die Radonkarte zeigt')
+        .should('contain', 'The radon map indicates')
 
     cy.get('[data-cy="panel-dataset-details-downloads"]').should('exist').scrollIntoView()
 

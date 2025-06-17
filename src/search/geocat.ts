@@ -1,11 +1,11 @@
 import { catchError, Subscription } from 'rxjs'
-import { onMounted } from 'vue'
-
-import type { SearchKeywordLayer } from '@/types/search'
 
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
+import { langToLabelKey } from '@/types/language'
+import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
+import { useLanguage } from '@/utils/language.composable'
 
 export default function useGeocat() {
     const GNUI = window.GNUI
@@ -13,15 +13,25 @@ export default function useGeocat() {
 
     const searchStore = useSearchStore()
     const mainStore = useMainStore()
-
-    onMounted(() => {
-        GNUI.init('https://www.geocat.ch/geonetwork/srv/api')
-    })
+    const { localeString } = useLanguage()
 
     const cancelSearch = () => {
         if (subscription) {
             subscription.unsubscribe()
         }
+    }
+
+    function initializeGNUI() {
+        GNUI.init({
+            apiUrl: GEOCAT_SEARCH_URL,
+            textLanguage: localeString.value,
+            metadataLanguage: langToLabelKey(localeString.value),
+        })
+    }
+
+    function setGNUILanguage() {
+        initializeGNUI()
+        searchStore.geocatSearchResults = []
     }
 
     const searchCallback = ({ records, count }: { records: GeonetworkRecord[]; count: number }) => {
@@ -133,5 +143,12 @@ export default function useGeocat() {
         GNUI.recordsRepository.getRecord(uuid).subscribe(recordCallback)
     }
 
-    return { searchGeocat, cancelSearch, getRecordDetails, searchConfigGeocat }
+    return {
+        setGNUILanguage,
+        initializeGNUI,
+        searchGeocat,
+        cancelSearch,
+        getRecordDetails,
+        searchConfigGeocat,
+    }
 }

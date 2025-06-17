@@ -1,19 +1,17 @@
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import type { FilterGroup } from '@/types/search'
 
 import { useGroupsStore } from '@/store/groups'
 import { useSearchStore } from '@/store/search'
+import { langToLabelKey } from '@/types/language'
+import { useLanguage } from '@/utils/language.composable'
 
 export function useSearchFilter() {
-    const { locale } = useI18n()
+    const { localeString } = useLanguage()
+
     const groupsStore = useGroupsStore()
     const searchStore = useSearchStore()
-
-    const localeString = computed(() => {
-        return locale.value.split('-')[0]
-    })
 
     const filterLabelKey = computed(() => langToLabelKey(localeString.value))
 
@@ -68,15 +66,6 @@ export function useSearchFilter() {
 
     function findGroupLabel(groups: FilterGroup[], id: number): string {
         return groups.find((group: FilterGroup) => group.value === id)?.label || ''
-    }
-
-    function langToLabelKey(lang: string): string {
-        if (lang === 'de') return 'ger'
-        if (lang === 'fr') return 'fre'
-        if (lang === 'it') return 'ita'
-        if (lang === 'rm') return 'roh'
-        if (lang === 'en') return 'eng'
-        return 'eng'
     }
 
     return {

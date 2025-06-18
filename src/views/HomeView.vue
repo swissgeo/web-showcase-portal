@@ -34,7 +34,7 @@ const showWelcomeOverlay = useStorage('showWelcomeOverlay', false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 
-const isDesktop = computed(() => windowWidth.value >= breakpoints.value.md)
+const isDesktop = computed(() => windowWidth.value >= breakpoints.value.xl)
 provide('isDesktop', readonly(isDesktop))
 
 const fontSettings = computed(() => {
@@ -118,6 +118,7 @@ onUnmounted(() => {
             ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
+            <!-- needs to be adjusted to fill remaining space on iPad-->
             <DatasetDetailPanel v-if="showLayerInfo" />
         </div>
         <WelcomeOverlay

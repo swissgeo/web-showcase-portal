@@ -22,10 +22,8 @@ import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
-import useBreakpoints from '@/utils/breakpoints'
 
 const mainStore = useMainStore()
-const { breakpoints } = useBreakpoints()
 
 const { showLayerInfo } = storeToRefs(mainStore)
 const uiStore = useUiStore()
@@ -33,8 +31,16 @@ const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const showWelcomeOverlay = useStorage('showWelcomeOverlay', false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
+const windowHeight = ref(0)
 
-const isDesktop = computed(() => windowWidth.value >= breakpoints.value.xl)
+const isDesktop = computed(() => {
+    if (windowHeight.value === 0) {
+        return false
+    }
+    const aspectRatio = windowWidth.value / windowHeight.value
+    return aspectRatio >= 1
+})
+
 provide('isDesktop', readonly(isDesktop))
 
 const fontSettings = computed(() => {
@@ -66,7 +72,9 @@ function closeOverlay() {
 function onResize(entries: ResizeObserverEntry[]) {
     if (entries && entries.length) {
         const entry = entries[0]
-        windowWidth.value = entry.contentRect.width
+        const rect = entry.contentRect
+        windowWidth.value = rect.width
+        windowHeight.value = rect.height
     }
 }
 
@@ -85,7 +93,9 @@ function removeResizeListener() {
 
 function initializeWindowWidth() {
     if (mainElem.value) {
-        windowWidth.value = mainElem.value.scrollWidth
+        const rect = mainElem.value.getBoundingClientRect()
+        windowWidth.value = rect.width
+        windowHeight.value = rect.height
     }
 }
 
@@ -104,11 +114,17 @@ onUnmounted(() => {
         :style="fontSettings"
         class="font-sans"
     >
-        <div class="relative h-screen md:flex md:flex-row md:justify-stretch">
+        <div
+            class="relative h-screen"
+            :class="{
+                'flex flex-row justify-stretch': !isDesktop,
+            }"
+        >
             <SideBar v-if="isDesktop" />
             <DisclaimerBanner />
             <SearchMobile
                 v-if="!isDesktop"
+                class="pointer-events-auto"
                 data-cy="comp-search-mobile"
             ></SearchMobile>
             <!-- This data-cy is not visible due to the overlay div inside -->
@@ -118,7 +134,6 @@ onUnmounted(() => {
             ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
-            <!-- needs to be adjusted to fill remaining space on iPad-->
             <DatasetDetailPanel v-if="showLayerInfo" />
         </div>
         <WelcomeOverlay

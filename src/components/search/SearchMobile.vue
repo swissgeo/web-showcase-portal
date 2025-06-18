@@ -46,7 +46,7 @@ const clearSearch = () => {
 <template>
     <div
         v-show="!mainStore.infoLayerId"
-        class="fixed right-0 bottom-0 left-0 flex flex-col place-content-between md:static md:p-8"
+        class="fixed right-0 bottom-0 flex w-full flex-col place-content-between"
         :class="{
             'top-0 bg-white': isSearching,
             'bottom-10': isFFMobile && isSearching,

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import ButtonGroup from 'primevue/buttongroup'
+import Toast from 'primevue/toast'
 import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
 
 import {
@@ -64,6 +65,10 @@ function onEmbedChange(e: MessageEvent) {
         class="h-full w-full"
         allow="geolocation"
     ></iframe>
+    <Toast
+        position="bottom-center"
+        group="bc"
+    />
     <ButtonGroup
         v-if="isDesktop"
         class="absolute right-2 bottom-38 md:right-6 md:bottom-8"

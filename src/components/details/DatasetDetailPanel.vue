@@ -2,10 +2,12 @@
 import { storeToRefs } from 'pinia'
 import Button from 'primevue/button'
 import Panel from 'primevue/panel'
-import { watch, onMounted, ref, inject, computed, type Ref } from 'vue'
+import { watch, onMounted, inject, computed, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { fetchLayerInfoHtml } from '@/api/topics.api'
 import DatasetDetails from '@/components/details/DatasetDetails.vue'
+import DatasetDetailsGeocatalog from '@/components/details/DatasetDetailsGeocatalog.vue'
 import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
 
@@ -16,12 +18,23 @@ const mainStore = useMainStore()
 const { infoLayerId } = storeToRefs(mainStore)
 const geocat = useGeocat()
 
-const layerInfo = ref('')
-
 const fetchInfo = async () => {
-    layerInfo.value = ''
     if (mainStore.infoLayerId) {
-        geocat.getRecordDetails(mainStore.infoLayerId)
+        const layer = mainStore.getLayerById(mainStore.infoLayerId)
+        if (layer && layer.type === 'Geocatalog') {
+            // eslint-disable-next-line no-console
+            console.log('Layer is in map and type is Geocatalog:', layer)
+            fetchLayerInfoHtml(mainStore.infoLayerId, mainStore.language)
+                .then((html) => {
+                    mainStore.setInfoLayerHtml(html)
+                })
+                .catch((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error('Error fetching layer info HTML:', error)
+                })
+        } else {
+            geocat.getRecordDetails(mainStore.infoLayerId)
+        }
     }
 }
 
@@ -37,6 +50,9 @@ const icon = computed(() => {
 
 const info = computed(() => {
     return mainStore.infoLayerRecord
+})
+const infoHtml = computed(() => {
+    return mainStore.infoLayerHtml
 })
 
 onMounted(async () => {
@@ -88,6 +104,10 @@ watch(infoLayerId, fetchInfo)
             <DatasetDetails
                 v-if="info"
                 :info="info"
+            />
+            <DatasetDetailsGeocatalog
+                v-else-if="infoHtml"
+                :content="infoHtml"
             />
         </Panel>
     </div>

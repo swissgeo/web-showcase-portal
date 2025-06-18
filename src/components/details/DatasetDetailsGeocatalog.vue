@@ -6,6 +6,7 @@ import { useI18n } from 'vue-i18n'
 
 import DetailLink from '@/components/details/DetailLink.vue'
 import { type OnlineResourceType } from '@/types/gnRecord'
+import { parseGeocatalogHtml } from '@/utils/parseGeocatalogHtml'
 
 const { t } = useI18n()
 
@@ -13,16 +14,12 @@ const { content } = defineProps<{
     content: string
 }>()
 
-const title = computed(() => {
-    return "Geocatalog Layer "
-})
-const lastUpdated = computed(() => {
-    return 'N/A'
-})
+const parsed = computed(() => parseGeocatalogHtml(content))
 
-const abstract = computed(() => {
-    return content || 'No abstract available for this geocatalog layer.'
-})
+const title = computed(() => parsed.value.title || 'Geocatalog Layer')
+const lastUpdated = computed(() => parsed.value.lastUpdated || 'N/A')
+
+const abstract = computed(() => parsed.value.abstract || 'No abstract available for this geocatalog layer.')
 
 const contact = computed(() => {
     return {
@@ -39,38 +36,20 @@ const logoUrl = computed(() => {
     return null
 })
 
-const downloads = computed(() => {
-    return [
-        {
-            name: 'Download Link 1',
-            url: new URL('https://example.com/download1'),
-            description: 'Description for download 1',
-            type: 'link' as OnlineResourceType,
-        },
-        {
-            name: 'Download Link 2',
-            url: new URL('https://example.com/download2'),
-            description: 'Description for download 2',
-            type: 'link' as OnlineResourceType,
-        },
-    ]
-})
+const downloads = computed(() => parsed.value.downloads.map(download => ({
+    name: download.text,
+    url: new URL(download.href, window.location.origin),
+    description: '',
+    type: 'link' as OnlineResourceType,
+})) )
 
 const links = computed(() => {
-    return [
-        {
-            name: 'Geocatalog Link 1',
-            url: new URL('https://example.com/1'),
-            description: 'Description for link 1',
-            type: 'link' as OnlineResourceType,
-        },
-        {
-            name: 'Geocatalog Link 2',
-            url: new URL('https://example.com/2'),
-            description: 'Description for link 2',
-            type: 'link' as OnlineResourceType,
-        },
-    ]
+    return parsed.value.links.map(link => ({
+        name: link.text,
+        url: new URL(link.href, window.location.origin),
+        description: '',
+        type: 'link' as OnlineResourceType,
+    }))
 })
 
 

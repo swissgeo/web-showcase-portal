@@ -109,6 +109,7 @@ function onNodeSelect(node: TreeNode) {
         opacity: 1,
         visible: true,
         geonetworkRecord: null,
+        type: 'Geocatalog',
     })
 }
 

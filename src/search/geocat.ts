@@ -133,6 +133,7 @@ export default function useGeocat() {
                                 layers.find((layer) => layer.geocatId === record.uniqueIdentifier)
                                     ?.opacity ?? 1,
                             visible: true,
+                            type: 'Geonetwork',
                         })
                     }
                 })

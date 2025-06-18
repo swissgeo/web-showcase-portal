@@ -64,6 +64,7 @@ const addToMap = (record: GeonetworkRecord) => {
         geonetworkRecord: record,
         opacity: 1,
         visible: true,
+        type: "Geonetwork"
     })
 }
 

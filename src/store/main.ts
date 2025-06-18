@@ -51,6 +51,7 @@ export const useMainStore = defineStore('main', {
                     visible: true,
                     opacity: 1,
                     geonetworkRecord: null,
+                    type: 'Geocatalog',
                 },
                 {
                     id: 'ch.swisstopo.pixelkarte-grau',
@@ -58,6 +59,7 @@ export const useMainStore = defineStore('main', {
                     visible: false,
                     opacity: 1,
                     geonetworkRecord: null,
+                    type: 'Geocatalog',
                 },
                 {
                     id: 'ch.swisstopo.swissimage',
@@ -65,6 +67,7 @@ export const useMainStore = defineStore('main', {
                     visible: false,
                     opacity: 1,
                     geonetworkRecord: null,
+                    type: 'Geocatalog',
                 },
             ],
             language: initialLanguage,

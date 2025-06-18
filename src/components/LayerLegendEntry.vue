@@ -7,51 +7,49 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/Layer'
 
+import { API3_BASE_URL } from '@/api/topics.api'
+import { useMainStore } from '@/store/main'
+
 const { t } = useI18n()
 
 const { layer } = defineProps<{
     layer: Layer
 }>()
 
+const mainStore = useMainStore()
+
 const legendUrls = computed(() => {
-    const onlineResources = layer.geonetworkRecord?.onlineResources || []
-    const serviceLinks = onlineResources
-        .filter((resource) => {
-            const protocol = resource.accessServiceProtocol?.toLowerCase()
-            return protocol === 'wms'
-        })
-        .map((resource) => {
-            try {
-                const baseUrl = resource.url
-                const serviceUrl = new URL(baseUrl)
-                const legendUrl = new URL(baseUrl)
-
-                // Set parameters for GetLegendGraphic
-                legendUrl.search = new URLSearchParams({
-                    SERVICE: resource.accessServiceProtocol?.toUpperCase() || 'WMS',
-                    REQUEST: 'GetLegendGraphic',
-                    VERSION: '1.3.0',
-                    FORMAT: 'image/png',
-                    LAYER: resource.name,
-                    // STYLE: 'default', commented out as not all services support this
-                    SLD_VERSION: '1.1.0',
-                }).toString()
-
-                return {
-                    url: serviceUrl.toString(),
-                    name: resource.name || 'No title',
-                    protocol: resource.accessServiceProtocol?.toUpperCase() || 'WMS',
-                    legendUrl: legendUrl.toString(),
+    if (layer.type === 'Geonetwork'){
+        const onlineResources = layer.geonetworkRecord?.onlineResources || []
+        return onlineResources
+            .filter((resource) => {
+                const protocol = resource.accessServiceProtocol?.toLowerCase()
+                return protocol === 'wms'
+            })
+            .map((resource) => {
+                try {
+                    const baseUrl = resource.url
+                    const legendUrl = new URL(baseUrl)
+                    legendUrl.search = new URLSearchParams({
+                        SERVICE: resource.accessServiceProtocol?.toUpperCase() || 'WMS',
+                        REQUEST: 'GetLegendGraphic',
+                        VERSION: '1.3.0',
+                        FORMAT: 'image/png',
+                        LAYER: resource.name,
+                        SLD_VERSION: '1.1.0',
+                    }).toString()
+                    return legendUrl.toString()
+                } catch (e) {
+                    // eslint-disable-next-line no-console
+                    console.error(`Error processing service ${resource.url}: ${e}`)
+                    return undefined
                 }
-            } catch (e) {
-                // eslint-disable-next-line no-console
-                console.error(`Error processing service ${resource.url}: ${e}`)
-                return null
-            }
-        })
-        .filter(Boolean)
-
-    return serviceLinks
+            })
+            .filter(Boolean)
+    } else {
+        const legendUrl = `${API3_BASE_URL}/static/images/legends/${layer.id}_${mainStore.language}.png`
+        return [legendUrl]
+    }
 })
 
 const brokenImages = ref<Set<number>>(new Set())
@@ -73,13 +71,13 @@ function handleImgError(index: number) {
         <AccordionContent>
             <template v-if="legendUrls.length > 0">
                 <template
-                    v-for="(service, index) in legendUrls"
+                    v-for="(legendUrl, index) in legendUrls"
                     :key="index"
                 >
                     <img
                         v-if="!brokenImages.has(index)"
                         class="h-auto w-fit"
-                        :src="service?.legendUrl"
+                        :src="legendUrl"
                         @error="handleImgError(index)"
                     />
                     <div

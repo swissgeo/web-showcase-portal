@@ -64,7 +64,8 @@ export function generateMapUrlParameters(params: Partial<MapUrlParameter>) {
 
 export const convertToMapParameter = (layer: Layer) => {
     if (!layer.geonetworkRecord) {
-        return
+        // From catalog
+        return `${layer.id},${layer.visible ? 't' : 'f'},${layer.opacity}`
     }
     return `${transformRecordIntoGeoadminLayerParam(layer.geonetworkRecord)},${layer.visible ? 't' : 'f'},${layer.opacity}`
 }

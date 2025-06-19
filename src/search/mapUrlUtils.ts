@@ -94,41 +94,34 @@ export function getFirstCoordinate(geometry: Geometry): [number, number] | undef
     }
 }
 
-
-export function getUrlParamsFromSource(embedUrlParams: string, currentStoreParams: Partial<MapUrlParameter>) {
-
+export function getUrlParamsFromSource(
+    embedUrlParams: string,
+    currentStoreParams: Partial<MapUrlParameter>
+) {
     const params = new URLSearchParams(embedUrlParams)
     const paramsToPush = {} as Partial<MapUrlParameter>
 
     // typescript will yell at us if we don't ensure each value is of the correct type :)
 
     params.forEach((value, key) => {
-
         if (key === 'z') {
             paramsToPush[key] = parseFloat(value as string)
-        }
-        else if (key === 'center' || key === 'crossHairPosition') {
-
+        } else if (key === 'center' || key === 'crossHairPosition') {
             const coordinates: string[] = value.split(',') as string[]
             paramsToPush[key] = [parseFloat(coordinates[0]), parseFloat(coordinates[1])]
-        }
-        else if (key === 'hideEmbedUI') {
+        } else if (key === 'hideEmbedUI') {
             paramsToPush[key] = true
-        }
-        else if (key === 'lang') {
+        } else if (key === 'lang') {
             if (isLanguageSupported(value as string)) {
                 paramsToPush[key] = value as Language
             }
-        }
-        else if (key === 'crosshair') {
+        } else if (key === 'crosshair') {
             if (isCrosshair(value as string)) {
                 paramsToPush[key] = value as Crosshair
             }
-        }
-        else if (key === 'layers' || key === 'bgLayer') {
+        } else if (key === 'layers' || key === 'bgLayer') {
             paramsToPush[key] = value as string
         }
-
     })
     return { ...currentStoreParams, ...paramsToPush }
 }
@@ -140,7 +133,9 @@ export function getUrlParamsFromSource(embedUrlParams: string, currentStoreParam
  */
 export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel: number): number {
     if (currentZoomLevel) {
-        return shouldZoomIn ? Math.min(Math.floor(currentZoomLevel + 1), 13) : Math.max(Math.ceil(currentZoomLevel - 1), 0)
+        return shouldZoomIn
+            ? Math.min(Math.floor(currentZoomLevel + 1), 13)
+            : Math.max(Math.ceil(currentZoomLevel - 1), 0)
     }
     return 1
 }

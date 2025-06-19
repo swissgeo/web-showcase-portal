@@ -59,7 +59,7 @@ export default function useGeocat() {
             linkProtocol: '/OGC:WMT?S.*/',
         }
         if (groupIds && groupIds.length) {
-            filters.groupOwner = '(' + groupIds.map(id => `groupOwner:"${id}"`).join(' OR ') + ')'
+            filters.groupOwner = '(' + groupIds.map((id) => `groupOwner:"${id}"`).join(' OR ') + ')'
         }
 
         // logs...
@@ -108,7 +108,9 @@ export default function useGeocat() {
             .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
                 // Sort records in the order of the provided layers
                 const sortedRecords = layers
-                    .map((layer) => records.find((record) => record.uniqueIdentifier === layer.geocatId))
+                    .map((layer) =>
+                        records.find((record) => record.uniqueIdentifier === layer.geocatId)
+                    )
                     .filter((record): record is GeonetworkRecord => !!record)
 
                 sortedRecords.forEach((record: GeonetworkRecord) => {
@@ -117,7 +119,9 @@ export default function useGeocat() {
                             id: record.uniqueIdentifier,
                             name: record.title,
                             geonetworkRecord: record,
-                            opacity: layers.find((layer) => layer.geocatId === record.uniqueIdentifier)?.opacity ?? 1,
+                            opacity:
+                                layers.find((layer) => layer.geocatId === record.uniqueIdentifier)
+                                    ?.opacity ?? 1,
                             visible: true,
                         })
                     }

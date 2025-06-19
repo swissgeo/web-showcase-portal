@@ -1,4 +1,4 @@
-import { createI18n } from "vue-i18n"
+import { createI18n } from 'vue-i18n'
 
 import deLocale from '@/locales/de.json'
 import enLocale from '@/locales/en.json'
@@ -9,7 +9,7 @@ import rmLocale from '@/locales/rm.json'
 const OFFICIAL_SWISS_LANG = ['de', 'fr', 'it', 'rm']
 export const SUPPORTED_LANG = ['en', ...OFFICIAL_SWISS_LANG]
 
-export type Language = typeof SUPPORTED_LANG[number]
+export type Language = (typeof SUPPORTED_LANG)[number]
 
 export const isLanguageSupported = (str: string): str is Language => {
     return SUPPORTED_LANG.includes(str as Language)

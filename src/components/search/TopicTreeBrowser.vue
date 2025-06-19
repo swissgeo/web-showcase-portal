@@ -31,7 +31,8 @@ function collectSelectedKeys(
     // Recursively traverse the tree nodes
     function traverse(node: TreeNode) {
         // Check if the node represents a layer and is present on the map
-        const isNodeSelected = node.data && node.data.layerBodId && layerIdsOnMap.includes(node.data.layerBodId)
+        const isNodeSelected =
+            node.data && node.data.layerBodId && layerIdsOnMap.includes(node.data.layerBodId)
 
         if (isNodeSelected) {
             // Mark this node as checked (follow the PrimeVue TreeNode selection structure)

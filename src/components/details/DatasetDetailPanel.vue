@@ -10,6 +10,7 @@ import DatasetDetails from '@/components/details/DatasetDetails.vue'
 import DatasetDetailsGeocatalog from '@/components/details/DatasetDetailsGeocatalog.vue'
 import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
+import { parseGeocatalogHtml } from '@/utils/parseGeocatalogHtml'
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
@@ -26,7 +27,10 @@ const fetchInfo = async () => {
             console.log('Layer is in map and type is Geocatalog:', layer)
             fetchLayerInfoHtml(mainStore.infoLayerId, mainStore.language)
                 .then((html) => {
-                    mainStore.setInfoLayerHtml(html)
+                    if (html) {
+                        const record = parseGeocatalogHtml(html)
+                        mainStore.setInfoLayerRecord(record)
+                    }
                 })
                 .catch((error) => {
                     // eslint-disable-next-line no-console

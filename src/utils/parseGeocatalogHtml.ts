@@ -1,6 +1,8 @@
 import * as cheerio from 'cheerio';
 
-export function parseGeocatalogHtml(content: string) {
+import type { GeonetworkRecord, OnlineResource } from '@/types/gnRecord';
+
+export function parseGeocatalogHtml(content: string): GeonetworkRecord {
   const $ = cheerio.load(content);
 
   // Extract title
@@ -33,5 +35,61 @@ export function parseGeocatalogHtml(content: string) {
     return text.includes('download') || href.includes('download') || href.includes('publicdata');
   });
 
-  return { title, abstract, links, lastUpdated, downloads };
+  // Map links to OnlineResource[]
+  const onlineResources: OnlineResource[] = links.map(link => {
+    let type: 'link' | 'download' | 'service' = 'link';
+    if (downloads.find(dl => dl.href === link.href)) type = 'download';
+    return {
+      name: link.text,
+      description: '',
+      type,
+      url: new URL(link.href, 'https://example.com'), // fallback base
+    };
+  });
+
+  // Build GeonetworkRecord
+  const record: GeonetworkRecord = {
+    kind: 'dataset',
+    status: '',
+    lineage: null,
+    recordUpdated: lastUpdated,
+    recordPublished: null,
+    ownerOrganization: {
+      logoUrl: '',
+      name: '',
+      recordCount: 0,
+    },
+    licenses: [],
+    legalConstraints: [],
+    securityConstraints: [],
+    otherConstraints: [],
+    contacts: [],
+    contactsForResource: [],
+    keywords: [],
+    topics: [],
+    spatialExtents: [],
+    temporalExtents: [],
+    overviews: [],
+    defaultLanguage: 'en',
+    otherLanguages: [],
+    updateFrequency: '',
+    title: title || '',
+    resourceCreated: '',
+    abstract: abstract || '',
+    extras: {
+      isOpenData: false,
+      ownerInfo: '',
+      isPublishedToAll: false,
+      id: '',
+      favoriteCount: 0,
+      catalogUuid: '',
+      edit: false,
+    },
+    onlineResources,
+    uniqueIdentifier: '',
+    landingPage: '',
+    recordCreated: '',
+  };
+
+  return record;
 }

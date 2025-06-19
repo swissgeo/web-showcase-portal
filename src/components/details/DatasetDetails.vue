@@ -20,7 +20,13 @@ const { info } = defineProps<{
 
 const lastUpdated = computed(() => {
     if (info.recordUpdated) {
-        return format(info?.recordUpdated, 'dd.MM.yyyy')
+        try {
+            return format(info?.recordUpdated, 'dd.MM.yyyy')
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.warn('Error formatting date:', error)
+            return info?.recordUpdated
+        }
     }
     return ''
 })

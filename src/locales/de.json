@@ -48,7 +48,7 @@
         "selectGroup": "Organisationen",
         "category": {
             "federal": "Bundesebene",
-            "federation": "Bund",
+            "federal_office": "Bundesamt",
             "cantonal": "Kantonsebene",
             "canton": "Kanton",
             "communal": "Gemeindeebene",

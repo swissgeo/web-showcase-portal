@@ -48,7 +48,7 @@
         "selectGroup": "Organisaziuns",
         "category": {
             "federal": "Federala",
-            "federation": "Federaziun",
+            "federal_office": "Uffizi federal",
             "cantonal": "Cantonala",
             "canton": "Canton",
             "communal": "Communala",

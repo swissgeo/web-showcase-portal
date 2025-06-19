@@ -48,7 +48,7 @@
         "selectGroup": "Organizzazione",
         "category": {
             "federal": "Federale",
-            "federation": "Federazione",
+            "federal_office": "Ufficio federale",
             "canton": "Cantone",
             "cantonal": "Cantonal",
             "communal": "Comune",

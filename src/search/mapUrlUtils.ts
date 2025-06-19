@@ -1,6 +1,6 @@
 import type { Geometry } from 'geojson'
 
-import type { Layer } from '@/types/Layer'
+import type { Layer } from '@/types/layer'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
 import { isCrosshair, type Crosshair } from '@/types/crosshair'

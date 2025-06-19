@@ -7,6 +7,7 @@ import { computed, ref, watch, type PropType } from 'vue'
 import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore } from '@/store/main'
 import { type TopicTreeNode } from '@/types/geocatalog'
+import { LayerType } from '@/types/layer'
 
 const mainStore = useMainStore()
 const geocatalogStore = useGeocatalogStore()
@@ -109,7 +110,7 @@ function onNodeSelect(node: TreeNode) {
         opacity: 1,
         visible: true,
         geonetworkRecord: null,
-        type: 'Geocatalog',
+        type: LayerType.Geocatalog,
     })
 }
 

@@ -4,6 +4,7 @@ import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
 import { langToLabelKey } from '@/types/language'
+import { LayerType } from '@/types/layer'
 import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
 import { useLanguage } from '@/utils/language.composable'
 
@@ -133,7 +134,7 @@ export default function useGeocat() {
                                 layers.find((layer) => layer.geocatId === record.uniqueIdentifier)
                                     ?.opacity ?? 1,
                             visible: true,
-                            type: 'Geonetwork',
+                            type: LayerType.Geonetwork,
                         })
                     }
                 })

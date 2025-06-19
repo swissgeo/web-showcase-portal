@@ -9,6 +9,7 @@ import { fetchGeocatalogLayerDescription } from '@/api/topics.api'
 import DatasetDetails from '@/components/details/DatasetDetails.vue'
 import useGeocat from '@/search/geocat'
 import { useMainStore } from '@/store/main'
+import { LayerType } from '@/types/layer'
 import { parseGeocatalogHtml } from '@/utils/parseGeocatalogHtml'
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
@@ -21,7 +22,7 @@ const geocat = useGeocat()
 const fetchInfo = async () => {
     if (mainStore.infoLayerId) {
         const layer = mainStore.getLayerById(mainStore.infoLayerId)
-        if (layer && layer.type === 'Geocatalog') {
+        if (layer && layer.type === LayerType.Geocatalog) {
             fetchGeocatalogLayerDescription(mainStore.infoLayerId, mainStore.language)
                 .then((html) => {
                     if (html) {

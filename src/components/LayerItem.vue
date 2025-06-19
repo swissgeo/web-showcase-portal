@@ -8,7 +8,7 @@ import Slider from 'primevue/slider'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { Layer } from '@/types/Layer'
+import type { Layer } from '@/types/layer'
 
 import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from

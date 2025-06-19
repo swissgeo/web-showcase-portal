@@ -5,10 +5,9 @@ import AccordionPanel from 'primevue/accordionpanel'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { Layer } from '@/types/Layer'
-
 import { API3_BASE_URL } from '@/api/topics.api'
 import { useMainStore } from '@/store/main'
+import { LayerType, type Layer } from '@/types/layer'
 
 const { t } = useI18n()
 
@@ -19,7 +18,7 @@ const { layer } = defineProps<{
 const mainStore = useMainStore()
 
 const legendUrls = computed(() => {
-    if (layer.type === 'Geonetwork'){
+    if (layer.type === LayerType.Geonetwork) {
         const onlineResources = layer.geonetworkRecord?.onlineResources || []
         return onlineResources
             .filter((resource) => {

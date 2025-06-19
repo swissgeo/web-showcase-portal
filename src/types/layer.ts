@@ -1,10 +1,13 @@
-// TODO define somethign that encapsulates the results from GeoNetwork
+// TODO define something that encapsulates the results from GeoNetwork
 // but also the addresses
 // which can then be used as the layers on the map I guess...
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
-export type LayerType = 'Geonetwork' | 'Geocatalog';
+export enum LayerType {
+    Geonetwork = 'Geonetwork',
+    Geocatalog = 'Geocatalog',
+}
 
 export type Layer = {
     id: string

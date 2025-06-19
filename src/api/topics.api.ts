@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 // For now, we use the dev API, but this should be configurable in the future
 export const API3_BASE_URL = 'https://sys-api3.dev.bgdi.ch'
 
@@ -18,7 +17,7 @@ export async function fetchLayerConfigJson(lang: string): Promise<unknown> {
 
 export async function fetchGeocatalogLayerDescription(
     layerId: string,
-    lang: string,
+    lang: string
 ): Promise<string | null> {
     const url = `${API3_BASE_URL}/rest/services/all/MapServer/${layerId}/legend?lang=${lang}`
     try {

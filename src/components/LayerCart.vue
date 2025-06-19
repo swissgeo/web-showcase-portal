@@ -6,7 +6,7 @@ import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { Layer } from '@/types/Layer'
+import type { Layer } from '@/types/layer'
 
 import LayerItem from '@/components/LayerItem.vue'
 import { useMainStore } from '@/store/main'

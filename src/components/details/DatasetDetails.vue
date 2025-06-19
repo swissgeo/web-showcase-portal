@@ -24,7 +24,7 @@ const lastUpdated = computed(() => {
             return format(info?.recordUpdated, 'dd.MM.yyyy')
         } catch (error) {
             // eslint-disable-next-line no-console
-            console.warn('Error formatting date:', error)
+            console.error('Error formatting date:', error)
             return info?.recordUpdated
         }
     }

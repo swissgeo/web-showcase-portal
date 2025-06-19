@@ -22,7 +22,6 @@ export interface MainStoreState {
     layersOnMap: Layer[]
     infoLayerId: string | null
     infoLayerRecord: GeonetworkRecord | null
-    infoLayerHtml: string | null // HTML to display in the geocatalog layer details
     bgLayerId: string | null
     bgLayers: Layer[]
     language: Language
@@ -44,7 +43,6 @@ export const useMainStore = defineStore('main', {
             layersOnMap: [],
             infoLayerId: null,
             infoLayerRecord: null,
-            infoLayerHtml: null,
             bgLayerId: 'ch.swisstopo.pixelkarte-farbe',
             bgLayers: [
                 {
@@ -109,15 +107,11 @@ export const useMainStore = defineStore('main', {
                 // layer id has changed, reset the info to trigger the
                 // watcher in the details
                 this.infoLayerRecord = null
-                this.infoLayerHtml = null
             }
             this.infoLayerId = layerId
         },
         setInfoLayerRecord(record: GeonetworkRecord) {
             this.infoLayerRecord = record
-        },
-        setInfoLayerHtml(html: string | null) {
-            this.infoLayerHtml = html
         },
         setLanguage(language: Language) {
             this.language = language
@@ -127,7 +121,6 @@ export const useMainStore = defineStore('main', {
         resetInfoLayerId() {
             this.infoLayerId = null
             this.infoLayerRecord = null
-            this.infoLayerHtml = null
         },
         deleteLayerById(layerId: string) {
             this.layersOnMap = this.layersOnMap.filter((layer) => layer.id !== layerId)

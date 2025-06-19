@@ -16,7 +16,7 @@ export async function fetchLayerConfigJson(lang: string): Promise<unknown> {
     return response.data
 }
 
-export async function fetchLayerInfoHtml(
+export async function fetchGeocatalogLayerDescription(
     layerId: string,
     lang: string,
 ): Promise<string | null> {

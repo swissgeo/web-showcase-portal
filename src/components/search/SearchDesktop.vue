@@ -55,7 +55,7 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
 
 onClickOutside(searchContainer, handleClickOutsideSearch)
 
-const topic = 'ech' // This is the topic we want to fetch the catalog for, can be dynamic based on user selection
+const topic = computed(() => geocatalogStore.currentTopic || 'ech')
 const topicTreeRoot = ref<TopicTreeNode | null>(null)
 
 // Filter the root node to only include layers that are present in the layer configs
@@ -97,7 +97,7 @@ async function fetchAndPrepareTopicTreeRoot(topic: string, lang: string) {
 }
 
 watchEffect(() => {
-    fetchAndPrepareTopicTreeRoot(topic, mainStore.language)
+    fetchAndPrepareTopicTreeRoot(topic.value, mainStore.language)
 })
 </script>
 

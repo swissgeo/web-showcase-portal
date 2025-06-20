@@ -1,23 +1,130 @@
 import { definePreset } from '@primeuix/themes'
 import Aura from '@primeuix/themes/aura'
 
-// Adding this here as an example for later
 export const SwissGeo = definePreset(Aura, {
+    // primitives are used to define the color palettes
+    primitive: {
+        blue: {
+            50: 'hsla(184, 79%, 96%, 1)',
+            100: 'hsla(186, 76%, 90%, 1)',
+            200: 'hsla(188, 74%, 82%, 1)',
+            300: 'hsla(189, 73%, 69%, 1)',
+            400: 'hsla(190, 68%, 53%, 1)',
+            500: 'hsla(191, 75%, 43%, 1)',
+            600: 'hsla(193, 72%, 36%, 1)',
+            700: 'hsla(195, 65%, 32%, 1)',
+            800: 'hsla(196, 55%, 27%, 1)',
+            900: 'hsla(199, 50%, 24%, 1)',
+            950: 'hsla(200, 63%, 15%, 1)',
+        },
+        gray: {
+            50: 'hsla(195, 5%, 96%, 1)',
+            100: 'hsla(195, 6%, 90%, 1)',
+            200: 'hsla(195, 3%, 82%, 1)',
+            300: 'hsla(195, 4%, 69%, 1)',
+            400: 'hsla(195, 3%, 53%, 1)',
+            500: 'hsla(195, 4%, 43%, 1)',
+            600: 'hsla(195, 4%, 36%, 1)',
+            700: 'hsla(195, 4%, 31%, 1)',
+            800: 'hsla(195, 3%, 27%, 1)',
+            900: 'hsla(195, 2%, 24%, 1)',
+            950: 'hsla(195, 3%, 6%, 1)',
+        },
+        lightblue: {
+            50: 'hsla(200, 20%, 97%, 1)',
+            100: 'hsla(195, 25%, 94%, 1)',
+            200: 'hsla(194, 24%, 86%, 1)',
+            300: 'hsla(191, 23%, 76%, 1)',
+            400: 'hsla(189, 22%, 60%, 1)',
+            500: 'hsla(189, 21%, 48%, 1)',
+            600: 'hsla(192, 24%, 39%, 1)',
+            700: 'hsla(193, 23%, 32%, 1)',
+            800: 'hsla(192, 21%, 27%, 1)',
+            900: 'hsla(195, 20%, 24%, 1)',
+            950: 'hsla(196, 19%, 16%, 1)',
+        },
+        red: {
+            50: 'hsla(5, 86%, 97%, 1)',
+            100: 'hsla(6, 93%, 94%, 1)',
+            200: 'hsla(6, 100%, 89%, 1)',
+            300: 'hsla(5, 96%, 82%, 1)',
+            400: 'hsla(6, 93%, 71%, 1)',
+            500: 'hsla(6, 87%, 60%, 1)',
+            600: 'hsla(6, 74%, 48%, 1)',
+            700: 'hsla(6, 76%, 42%, 1)',
+            800: 'hsla(6, 72%, 35%, 1)',
+            900: 'hsla(6, 65%, 31%, 1)',
+            950: 'hsla(6, 77%, 15%, 1)',
+        },
+        orange: {
+            50: 'hsla(26, 78%, 96%, 1)',
+            100: 'hsla(24, 76%, 92%, 1)',
+            200: 'hsla(23, 72%, 83%, 1)',
+            300: 'hsla(22, 73%, 72%, 1)',
+            400: 'hsla(18, 72%, 61%, 1)',
+            500: 'hsla(16, 71%, 53%, 1)',
+            600: 'hsla(12, 67%, 48%, 1)',
+            700: 'hsla(9, 66%, 40%, 1)',
+            800: 'hsla(6, 59%, 34%, 1)',
+            900: 'hsla(8, 56%, 28%, 1)',
+            950: 'hsla(4, 59%, 15%, 1)',
+        },
+        white: {
+            500: 'hsla(0, 0%, 100%, 1)',
+        },
+    },
+    // semantic are used to link primitives to classes
     semantic: {
-        // intermediary solution, I just took the base color
-        // and increased and decreased the lightness by 5%
         primary: {
-            50: 'hsl(199 46% 59%)',
-            100: 'hsl(199 46% 54%)',
-            200: 'hsl(199 46% 49%)',
-            300: 'hsl(199 46% 44%)',
-            400: 'hsl(199 46% 39%)',
-            500: 'hsl(199 46% 34%)', // base color
-            600: 'hsl(199 46% 29%)',
-            700: 'hsl(199 46% 24%)',
-            800: 'hsl(199 46% 19%)',
-            900: 'hsl(199 46% 14%)',
-            950: 'hsl(199 46% 9)',
+            50: '{blue.50}',
+            100: '{blue.100}',
+            200: '{blue.200}',
+            300: '{blue.300}',
+            400: '{blue.400}',
+            500: '{blue.500}',
+            600: '{blue.600}',
+            700: '{blue.700}',
+            800: '{blue.800}',
+            900: '{blue.900}',
+            950: '{blue.950}',
+        },
+        secondary: {
+            50: '{lightblue.50}',
+            100: '{lightblue.100}',
+            200: '{lightblue.200}',
+            300: '{lightblue.300}',
+            400: '{lightblue.400}',
+            500: '{lightblue.500}',
+            600: '{lightblue.600}',
+            700: '{lightblue.700}',
+            800: '{lightblue.800}',
+            900: '{lightblue.900}',
+            950: '{lightblue.950}',
+        },
+        // color schemes allow to override base values
+        colorScheme: {
+            light: {
+                primary: {
+                    color: '{blue.700}',
+                    inverseColor: '#ffffff',
+                    hoverColor: '{blue.800}',
+                    activeColor: '{blue.600}',
+                },
+                secondary: {
+                    color: '{red.500}',
+                    inverseColor: '#ffffff',
+                    hoverColor: '{red.600}',
+                    activeColor: '{red.400}',
+                },
+            },
+            dark: {
+                primary: {
+                    color: '{orange.700}',
+                    inverseColor: '#ffffff',
+                    hoverColor: '{orange.800}',
+                    activeColor: '{orange.600}',
+                },
+            },
         },
     },
 })

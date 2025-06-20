@@ -18,9 +18,15 @@ export function useTriggerSearch() {
     })
     const selectedGroupIds: ComputedRef<number[] | null> = computed(() => {
         const ids = [
-            ...(Array.isArray(searchStore.selectedFederalIds) ? searchStore.selectedFederalIds : []),
-            ...(Array.isArray(searchStore.selectedCantonalIds) ? searchStore.selectedCantonalIds : []),
-            ...(Array.isArray(searchStore.selectedCommunalIds) ? searchStore.selectedCommunalIds : []),
+            ...(Array.isArray(searchStore.selectedFederalIds)
+                ? searchStore.selectedFederalIds
+                : []),
+            ...(Array.isArray(searchStore.selectedCantonalIds)
+                ? searchStore.selectedCantonalIds
+                : []),
+            ...(Array.isArray(searchStore.selectedCommunalIds)
+                ? searchStore.selectedCommunalIds
+                : []),
         ]
         return ids.length ? ids : null
     })
@@ -38,6 +44,6 @@ export function useTriggerSearch() {
 
     return {
         triggerSearch,
-        triggerGeocatSearch
+        triggerGeocatSearch,
     }
 }

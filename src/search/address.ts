@@ -19,7 +19,12 @@ export default function useAddressSearch() {
     const searchAddress = (value: string, sr: SupportedSr, lang: Language, limit: number) => {
         searchStore.setIsSearchingAddresses(true)
         // 'address', 'zipcode', 'district', 'kantone', 'gazetteer', 'address', 'parcel'
-        queryGeoadmin(value, { sr, lang: lang as "en" | "de" | "fr" | "it" | "rm", limit, origins: LOCATION_SEARCH_ORIGINS })
+        queryGeoadmin(value, {
+            sr,
+            lang: lang as 'en' | 'de' | 'fr' | 'it' | 'rm',
+            limit,
+            origins: LOCATION_SEARCH_ORIGINS,
+        })
             .then((response: GeocodingResult[]) => {
                 callback(response)
             })

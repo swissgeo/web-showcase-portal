@@ -59,13 +59,18 @@ const topic = 'ech' // This is the topic we want to fetch the catalog for, can b
 const topicTreeRoot = ref<TopicTreeNode | null>(null)
 
 // Filter the root node to only include layers that are present in the layer configs
-function filterTree(node: TopicTreeNode, layerConfigs: Record<string, LayerConfig | null>): TopicTreeNode | null {
+function filterTree(
+    node: TopicTreeNode,
+    layerConfigs: Record<string, LayerConfig | null>
+): TopicTreeNode | null {
     if (node.category === 'layer') {
         if (!layerConfigs || !(node.layerBodId in layerConfigs)) {
             return null
         }
     }
-    const children = node.children?.map(child => filterTree(child, layerConfigs)).filter(Boolean) as TopicTreeNode[] | undefined
+    const children = node.children
+        ?.map((child) => filterTree(child, layerConfigs))
+        .filter(Boolean) as TopicTreeNode[] | undefined
     return { ...node, children }
 }
 

@@ -36,15 +36,15 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
 <template>
     <Accordion
         v-if="isSearching"
-        class="flex flex-col overflow-hidden"
+        class="overflow-hidden"
         @update:value="onUpdateAccordion"
     >
         <AccordionPanel
             v-if="geocatSearchResultCount || showGeocatSpinner"
             value="data"
-            class="overflow-hidden"
+            class=""
             data-cy="comp-data-accordion"
-            :class="{ 'h-full': openAccordionPanel === 'data' }"
+            :class="{ grow: openAccordionPanel === 'data' }"
         >
             <AccordionHeader class="!relative">
                 <SearchSpinner
@@ -81,7 +81,7 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
                     <Badge :value="showAddressSpinner ? 0 : addressSearchResultCount"></Badge>
                 </div>
             </AccordionHeader>
-            <AccordionContent class="overflow-y-scroll"> <AddressResultList /> </AccordionContent
+            <AccordionContent class=""> <AddressResultList /> </AccordionContent
         ></AccordionPanel>
     </Accordion>
 </template>

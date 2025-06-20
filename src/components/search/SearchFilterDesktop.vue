@@ -53,9 +53,12 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 class="mr-2 min-w-[100px] flex-1 text-xs"
                 :pt="{
                     overlay: { 'data-cy': 'multiselect-filter-list' },
+                    label: {
+                        class: 'block truncate max-w-[21ch]',
+                    },
                 }"
                 :selected-items-label="
-                    t('organisation.category.federation') +
+                    t('organisation.category.federal_office') +
                     ': ' +
                     multiSelectLabel(selectedFederal, federalGroups)
                 "

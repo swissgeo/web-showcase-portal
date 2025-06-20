@@ -20,7 +20,7 @@ const {
         <MobileFullScreenMultiSelect
             v-model="selectedFederal"
             :options="federalGroups"
-            :placeholder="t('organisation.category.federation')"
+            :placeholder="t('organisation.category.federal_office')"
             :label-key="'label'"
         />
         <MobileFullScreenMultiSelect

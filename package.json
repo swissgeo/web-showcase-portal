@@ -17,7 +17,8 @@
         "type-check": "vue-tsc --build",
         "lint": "eslint . --fix",
         "lint:no-fix": "eslint . ",
-        "format": "prettier --write src/"
+        "format": "prettier --write src/",
+        "format:no-fix": "prettier -c src/"
     },
     "dependencies": {
         "@fontsource/dm-sans": "^5.2.5",

@@ -4,12 +4,15 @@ import type { TreeNode } from 'primevue/treenode'
 import Select from 'primevue/select'
 import Tree from 'primevue/tree'
 import { computed, onMounted, ref, watch, type PropType } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { loadGeocatalogTopics } from '@/api/topics.api'
 import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore } from '@/store/main'
 import { type GeocatalogTopic, type TopicTreeNode } from '@/types/geocatalog'
 import { LayerType } from '@/types/layer'
+
+const { t } = useI18n()
 
 const mainStore = useMainStore()
 const geocatalogStore = useGeocatalogStore()
@@ -121,6 +124,12 @@ function onCollapse(node: TreeNode) {
     geocatalogStore.removeExpandedKey(node.key)
 }
 
+function getTopicLabel(topicId: string): string {
+    const translationKey = `geocatalog.topic.label.${topicId}`
+    const label = t(translationKey)
+    return label === translationKey || label === t(topicId) ? topicId.toUpperCase() : label
+}
+
 onMounted(async () => {
     if (geocatalogTopics.value.length === 0) {
         const topics = await loadGeocatalogTopics()
@@ -130,14 +139,14 @@ onMounted(async () => {
 </script>
 
 <template>
-    <h2 class="text-lg font-bold mb-4">Geocatalog</h2>
+    <h2 class="text-lg font-bold mb-4">{{ t('geocatalog.title') }}</h2>
     <div class="flex flex-row items-center gap-2">
         <label for="topic-select" class="block mb-1 font-medium">Select Topic:</label>
         <Select
             id="topic-select"
             v-model="selectedTopic"
             :options="geocatalogTopics"
-            option-label="id"
+            :option-label="(topic) => getTopicLabel(topic.id)"
             class="w-full md:w-1/2"
             :pt="{
                 overlay: { 'data-cy': 'select-topic' },
@@ -150,7 +159,7 @@ onMounted(async () => {
             :expanded-keys="expandedKeysObj"
             :value="treeNodes"
             :filter="true"
-            filter-placeholder="Filter..."
+            :filter-placeholder="t('geocatalog.filter')"
             :expand-all="false"
             selection-mode="checkbox"
             :pt="{

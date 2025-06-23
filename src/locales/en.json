@@ -76,5 +76,15 @@
             "air quality": "Air Quality",
             "noise": "Noise"
         }
+    },
+    "geocatalog": {
+        "topic": {
+            "label": {
+                "ech": "Geocatalog"
+            }
+        },
+        "title": "Geocatalog",
+        "filter": "Filter...",
+        "selectTopic": "Select topic"
     }
 }

@@ -10,6 +10,7 @@ import type { GeonetworkRecord } from '@/types/gnRecord'
 import DetailLink from '@/components/details/DetailLink.vue'
 import { useMainStore } from '@/store/main'
 import { getResources, getLegalConstraint, getLicense } from '@/utils/layerUtils'
+import { sanitize } from '@/utils/sanitizer'
 
 const { t } = useI18n()
 const mainStore = useMainStore()
@@ -112,7 +113,8 @@ const logoUrl = computed((): string | null => {
                     :header="t('details.info')"
                     data-cy="panel-dataset-details-info"
                 >
-                    {{ mainStore.infoLayerRecord?.abstract }}
+                    <!-- eslint-disable-next-line vue/no-v-html  vue/no-v-text-v-html-on-component-->
+                    <div v-html="sanitize(mainStore.infoLayerRecord?.abstract)"></div>
                 </Panel>
 
                 <Panel

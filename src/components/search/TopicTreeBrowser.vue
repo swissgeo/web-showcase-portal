@@ -139,6 +139,9 @@ onMounted(async () => {
             :options="geocatalogTopics"
             option-label="id"
             class="w-full md:w-1/2"
+            :pt="{
+                overlay: { 'data-cy': 'select-topic' },
+            }"
         />
     </div>
     <div class="h-full overflow-hidden overflow-y-auto">

@@ -44,11 +44,13 @@ const closeSearch = () => {
 // @click handler on the div to detect clicks on the iframe
 const handleClickOutsideSearch = (event: MouseEvent) => {
     // close the search results if the user clicks outside of the search input,
-    // outside of the info panel, and outside of the search filter (including its children)
+    // outside of the info panel, outside of the search filter (including its children),
+    // and outside of the topic selector
     const target = event.target as HTMLElement
     const clickedInsideInfoPanel = !!target.closest('[data-cy="div-dataset-detail-panel"]')
     const clickedInsideSearchFilter = !!target.closest('[data-cy="multiselect-filter-list"]')
-    if (searchStore.isOpenSearch && !clickedInsideInfoPanel && !clickedInsideSearchFilter) {
+    const clickedInsideTopicSelector = !!target.closest('[data-cy="select-topic"]')
+    if (searchStore.isOpenSearch && !clickedInsideInfoPanel && !clickedInsideSearchFilter && !clickedInsideTopicSelector) {
         searchStore.setIsOpenSearch(false)
     }
 }

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { TreeNode } from 'primevue/treenode'
 
+import Panel from 'primevue/panel'
 import Select from 'primevue/select'
 import Tree from 'primevue/tree'
 import { computed, onMounted, ref, watch, type PropType } from 'vue'
@@ -147,8 +148,10 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="flex h-full flex-col">
-        <h2 class="mb-4 text-lg font-bold">{{ t('geocatalog.title') }}</h2>
+    <Panel
+        class="flex h-full flex-col"
+        :header="t('geocatalog.title')"
+    >
         <div class="mb-4 flex flex-row items-center gap-2">
             <label
                 for="topic-select"
@@ -188,5 +191,5 @@ onMounted(async () => {
                 @node-collapse="onCollapse"
             />
         </div>
-    </div>
+    </Panel>
 </template>

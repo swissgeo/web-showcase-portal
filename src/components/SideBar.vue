@@ -37,7 +37,7 @@ initializeTopicTree()
         >
             <LogoPic
                 class="h-12"
-                :condensed="!uiStore.isLayerCartVisible"
+                :condensed="!uiStore.isSidebarOpen"
             />
         </div>
         <div class="flex min-h-0 w-full flex-1 flex-row p-0">

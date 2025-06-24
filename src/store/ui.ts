@@ -16,7 +16,11 @@ export const useUiStore = defineStore('ui', {
             isGeocatalogTreeVisible: false,
         }
     },
-    getters: {},
+    getters: {
+        isSidebarOpen: (state) => {
+            return state.isLayerCartVisible || state.isGeocatalogTreeVisible
+        },
+    },
     actions: {
         setLayerCartVisible(visible: boolean) {
             this.isLayerCartVisible = visible
@@ -40,6 +44,10 @@ export const useUiStore = defineStore('ui', {
         },
         toggleLayerLegend() {
             this.isLayerLegendVisible = !this.isLayerLegendVisible
+        },
+        closeSidebar() {
+            this.isLayerCartVisible = false
+            this.isGeocatalogTreeVisible = false
         },
     },
 })

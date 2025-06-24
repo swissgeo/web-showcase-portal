@@ -4,7 +4,6 @@ import ButtonGroup from 'primevue/buttongroup'
 import Toast from 'primevue/toast'
 import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
 
-import useGeocat from '@/search/geocat'
 import {
     changeZoomLevel,
     generateMapUrlParameters,
@@ -16,7 +15,6 @@ import { getEmbedViewerUrl } from '@/utils/environment.config'
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
-const { initializeGNUI } = useGeocat()
 const groupsStore = useGroupsStore()
 const mapStore = useMapStore()
 const mapUrlSearchParams = computed(() => mapStore.mapUrlSearchParams)
@@ -41,7 +39,6 @@ function changeZoom(direction: boolean) {
 onBeforeMount(() => {
     window.addEventListener('message', onEmbedChange)
     groupsStore.loadGroups()
-    initializeGNUI()
 })
 
 function onEmbedChange(e: MessageEvent) {

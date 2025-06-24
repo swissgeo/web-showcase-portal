@@ -9,11 +9,13 @@ export enum LayerType {
     Geocatalog = 'Geocatalog',
 }
 
-export type Layer = {
+export interface Layer {
     id: string
     name: string
     opacity: number
     visible: boolean
     geonetworkRecord: null | GeonetworkRecord
     type: LayerType
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any // Allow additional properties for geocatalog layers
 }

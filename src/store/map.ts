@@ -9,6 +9,7 @@ import { useGeocatalogStore } from './geocatalog'
 import { useMainStore } from './main'
 
 export const useMapStore = defineStore('map', () => {
+    // State
     const mainStore = useMainStore()
     const geocatalogStore = useGeocatalogStore()
 
@@ -24,7 +25,7 @@ export const useMapStore = defineStore('map', () => {
         hideEmbedUI: true,
         topic: geocatalogStore.currentTopic,
     })
-
+    // Actions
     function setMapUrlSearchParams(parameters: Partial<MapUrlParameter>) {
         mapUrlSearchParams.value = {
             ...mapUrlSearchParams.value,
@@ -33,7 +34,9 @@ export const useMapStore = defineStore('map', () => {
     }
 
     return {
+        // State
         mapUrlSearchParams,
+        // Actions
         setMapUrlSearchParams,
     }
 })

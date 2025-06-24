@@ -81,7 +81,10 @@ function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
 }
 
 function setTreeNodesFromRoot(root: TopicTreeNode | null) {
-    if (!root) return
+    if (!root) {
+        return
+    }
+
     if (root.children && root.children.length === 1) {
         treeNodes.value = [toPrimeTreeNodes(root.children[0])]
     } else if (root.children && root.children.length > 1) {
@@ -100,20 +103,22 @@ watch(
 )
 
 function onNodeSelect(node: TreeNode) {
-    if (node.data.category !== 'layer') return
-    mainStore.addLayerToMap({
-        id: node.data.layerBodId,
-        name: node.data.label,
-        opacity: 1,
-        visible: true,
-        geonetworkRecord: null,
-        type: LayerType.Geocatalog,
-    })
+    if (node.data.category === 'layer') {
+        mainStore.addLayerToMap({
+            id: node.data.layerBodId,
+            name: node.data.label,
+            opacity: 1,
+            visible: true,
+            geonetworkRecord: null,
+            type: LayerType.Geocatalog,
+        })
+    }
 }
 
 function onNodeUnselect(node: TreeNode) {
-    if (node.data.category !== 'layer') return
-    mainStore.deleteLayerById(node.data.layerBodId)
+    if (node.data.category === 'layer') {
+        mainStore.deleteLayerById(node.data.layerBodId)
+    }
 }
 
 function onExpand(node: TreeNode) {

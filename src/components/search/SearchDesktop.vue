@@ -10,8 +10,6 @@ import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
-import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
-import { useTopicTree } from '@/composables/useTopicTree'
 import { useSearchStore } from '@/store/search'
 
 const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
@@ -19,13 +17,10 @@ const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 const { t } = useI18n()
 const searchStore = useSearchStore()
 
-const { topicTreeRoot, initializeTopicTree } = useTopicTree()
-
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const searchTerm = computed(() => searchStore.searchTerm)
 
 const isSearching = computed(() => !!searchTerm.value && isOpenSearch.value)
-const isCatalogShown = computed(() => !searchTerm.value && isOpenSearch.value)
 
 const openSearch = () => {
     searchStore.setIsOpenSearch(true)
@@ -45,18 +40,13 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
     const target = event.target as HTMLElement
     const clickedInsideInfoPanel = !!target.closest('[data-cy="div-dataset-detail-panel"]')
     const clickedInsideSearchFilter = !!target.closest('[data-cy="multiselect-filter-list"]')
-    const clickedInsideTopicSelector = !!target.closest('[data-cy="select-topic"]')
-    const clickedOutsideAllPanels =
-        !clickedInsideInfoPanel && !clickedInsideSearchFilter && !clickedInsideTopicSelector
+    const clickedOutsideAllPanels = !clickedInsideInfoPanel && !clickedInsideSearchFilter
     if (searchStore.isOpenSearch && clickedOutsideAllPanels) {
         searchStore.setIsOpenSearch(false)
     }
 }
 
 onClickOutside(searchContainer, handleClickOutsideSearch)
-
-// Initialize topic tree with reactive updates
-initializeTopicTree()
 </script>
 
 <template>
@@ -121,13 +111,6 @@ initializeTopicTree()
                 @click="closeSearch"
             >
             </Button>
-            <div
-                v-if="topicTreeRoot && isCatalogShown"
-                class="absolute top-full left-0 z-20 my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 bg-white px-4 pt-4 pb-4 shadow"
-                style="min-height: 200px"
-            >
-                <TopicTreeBrowser :root="topicTreeRoot" />
-            </div>
         </div>
         <div class="pointer-events-auto absolute top-4 right-6">
             <LegendButton />

@@ -46,7 +46,7 @@ function onEmbedChange(e: MessageEvent) {
         const oldParams = mapUrlSearchParams.value
 
         const newParams = getUrlParamsFromSource(e.data.payload.newUrl.split('embed')[1], oldParams)
-        // Only update if values actually change
+        // only update if values actually change
         const hasChanged = JSON.stringify(newParams) !== JSON.stringify(oldParams)
         if (!hasChanged) {
             return

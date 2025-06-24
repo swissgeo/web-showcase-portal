@@ -3,6 +3,7 @@ import { ChevronsUpDown } from 'lucide-vue-next'
 import Select from 'primevue/select'
 import { computed } from 'vue'
 
+import useGeocat from '@/search/geocat'
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
@@ -16,6 +17,8 @@ const options = SUPPORTED_LANG.map((lang) => ({
 const mainStore = useMainStore()
 const searchStore = useSearchStore()
 const { triggerSearch } = useTriggerSearch()
+const { setGNUILanguage } = useGeocat()
+
 const currentLanguage = computed({
     get() {
         return {
@@ -28,6 +31,7 @@ const currentLanguage = computed({
             mainStore.setLanguage(value.value)
             const currentSearchTerm = searchStore.searchTerm?.valueOf
             if (currentSearchTerm) {
+                setGNUILanguage()
                 triggerSearch() // Trigger a search with the new language
             }
         }

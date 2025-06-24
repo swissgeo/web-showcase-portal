@@ -10,6 +10,7 @@ import type { SearchKeywordUseCase, SearchKeywordUseCaseConfig } from '@/types/s
 import data from '@/assets/searchKeywordUseCases.json' with { type: 'json' }
 import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
+import { useLanguage } from '@/utils/language.composable'
 
 const keywordConfig = data as SearchKeywordUseCaseConfig
 const scrollContainer = ref<HTMLElement | null>(null)
@@ -20,16 +21,13 @@ const showScrollArrow = ref(false)
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
+const { localeString } = useLanguage()
 const searchStore = useSearchStore()
 const geocatSearch = useGeocat()
 const searchTerm = computed(() => searchStore.searchTerm)
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const isSearching = computed(() => !!searchTerm.value && (!isDesktop?.value || isOpenSearch.value))
-
-const localeString = computed(() => {
-    return locale.value.split('-')[0]
-})
 
 const visibleKeywordUseCases: ComputedRef<SearchKeywordUseCase[]> = computed(() => {
     const term = searchTerm.value?.trim().toLowerCase()

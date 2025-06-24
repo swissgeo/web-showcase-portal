@@ -29,6 +29,15 @@ export function langToLocal(lang: Language): Language {
     return OFFICIAL_SWISS_LANG.includes(lang) ? `${lang}-CH` : lang
 }
 
+export function langToLabelKey(lang: string): string {
+    if (lang === 'de') return 'ger'
+    if (lang === 'fr') return 'fre'
+    if (lang === 'it') return 'ita'
+    if (lang === 'rm') return 'roh'
+    if (lang === 'en') return 'eng'
+    return 'eng'
+}
+
 const i18nMessages = {
     de: deLocale,
     fr: frLocale,

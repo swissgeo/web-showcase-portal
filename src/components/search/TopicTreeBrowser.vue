@@ -132,7 +132,10 @@ function onCollapse(node: TreeNode) {
 function getTopicLabel(topicId: string): string {
     const translationKey = `geocatalog.topic.label.${topicId}`
     const label = t(translationKey)
-    return label === translationKey || label === t(topicId) ? topicId.toUpperCase() : label
+    if (label === translationKey) {
+        return topicId.toUpperCase()
+    }
+    return label
 }
 
 onMounted(async () => {

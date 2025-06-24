@@ -50,12 +50,8 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
     const clickedInsideInfoPanel = !!target.closest('[data-cy="div-dataset-detail-panel"]')
     const clickedInsideSearchFilter = !!target.closest('[data-cy="multiselect-filter-list"]')
     const clickedInsideTopicSelector = !!target.closest('[data-cy="select-topic"]')
-    if (
-        searchStore.isOpenSearch &&
-        !clickedInsideInfoPanel &&
-        !clickedInsideSearchFilter &&
-        !clickedInsideTopicSelector
-    ) {
+    const clickedOutsideAllPanels = !clickedInsideInfoPanel && !clickedInsideSearchFilter && !clickedInsideTopicSelector
+    if (searchStore.isOpenSearch && clickedOutsideAllPanels) {
         searchStore.setIsOpenSearch(false)
     }
 }

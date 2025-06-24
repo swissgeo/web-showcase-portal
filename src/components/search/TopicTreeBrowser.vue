@@ -147,42 +147,44 @@ onMounted(async () => {
 </script>
 
 <template>
-    <h2 class="mb-4 text-lg font-bold">{{ t('geocatalog.title') }}</h2>
-    <div class="flex flex-row items-center gap-2">
-        <label
-            for="topic-select"
-            class="mb-1 block font-medium"
-            >{{ t('geocatalog.selectTopic') }}:</label
-        >
-        <Select
-            id="topic-select"
-            v-model="selectedTopic"
-            :options="geocatalogTopics"
-            :option-label="(topic) => getTopicLabel(topic.id)"
-            class="w-full md:w-1/2"
-            :pt="{
-                overlay: { 'data-cy': 'select-topic' },
-            }"
-        />
-    </div>
-    <div class="h-full overflow-hidden overflow-y-auto">
-        <Tree
-            :selection-keys="selectedKeys"
-            :expanded-keys="expandedKeysObj"
-            :value="treeNodes"
-            :filter="true"
-            :filter-placeholder="t('geocatalog.filter')"
-            :expand-all="false"
-            selection-mode="checkbox"
-            :pt="{
-                pcNodeCheckbox: (options) => {
-                    return options.context.node.data?.category !== 'layer' ? { root: 'hidden' } : {}
-                },
-            }"
-            @node-select="onNodeSelect"
-            @node-unselect="onNodeUnselect"
-            @node-expand="onExpand"
-            @node-collapse="onCollapse"
-        />
+    <div class="flex h-full flex-col">
+        <h2 class="mb-4 text-lg font-bold">{{ t('geocatalog.title') }}</h2>
+        <div class="mb-4 flex flex-row items-center gap-2">
+            <label
+                for="topic-select"
+                class="mb-1 block font-medium"
+                >{{ t('geocatalog.selectTopic') }}:</label
+            >
+            <Select
+                id="topic-select"
+                v-model="selectedTopic"
+                :options="geocatalogTopics"
+                :option-label="(topic) => getTopicLabel(topic.id)"
+                class="w-full md:w-1/2"
+                :pt="{
+                    overlay: { 'data-cy': 'select-topic' },
+                }"
+            />
+        </div>
+        <div class="flex-1 overflow-hidden overflow-y-auto">
+            <Tree
+                :selection-keys="selectedKeys"
+                :expanded-keys="expandedKeysObj"
+                :value="treeNodes"
+                :filter="true"
+                :filter-placeholder="t('geocatalog.filter')"
+                :expand-all="false"
+                selection-mode="checkbox"
+                :pt="{
+                    pcNodeCheckbox: (options) => {
+                        return options.context.node.data?.category !== 'layer' ? { root: 'hidden' } : {}
+                    },
+                }"
+                @node-select="onNodeSelect"
+                @node-unselect="onNodeUnselect"
+                @node-expand="onExpand"
+                @node-collapse="onCollapse"
+            />
+        </div>
     </div>
 </template>

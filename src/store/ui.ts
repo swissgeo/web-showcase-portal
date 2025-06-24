@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export interface UiStoreState {
     isLayerCartVisible: boolean
     isLayerLegendVisible: boolean
+    isGeocatalogTreeVisible: boolean
 }
 
 export const useUiStore = defineStore('ui', {
@@ -10,6 +11,7 @@ export const useUiStore = defineStore('ui', {
         return {
             isLayerCartVisible: false,
             isLayerLegendVisible: false,
+            isGeocatalogTreeVisible: false,
         }
     },
     getters: {},
@@ -19,6 +21,9 @@ export const useUiStore = defineStore('ui', {
         },
         toggleLayerCart() {
             this.isLayerCartVisible = !this.isLayerCartVisible
+        },
+        toggleGeocatalogTree() {
+            this.isGeocatalogTreeVisible = !this.isGeocatalogTreeVisible
         },
         setLayerLegendVisible(visible: boolean) {
             this.isLayerLegendVisible = visible

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import GeocatalogButton from '@/components/GeocatalogButton.vue'
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
@@ -37,6 +38,7 @@ function resetApp() {
             <div class="flex min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4">
                 <div class="flex flex-col items-center gap-2">
                     <LayerCartButton />
+                    <GeocatalogButton />
                 </div>
                 <LanguageSwitchButton class="w-19 py-5" />
             </div>

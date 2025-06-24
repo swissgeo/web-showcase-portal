@@ -141,7 +141,7 @@ onMounted(async () => {
 <template>
     <h2 class="text-lg font-bold mb-4">{{ t('geocatalog.title') }}</h2>
     <div class="flex flex-row items-center gap-2">
-        <label for="topic-select" class="block mb-1 font-medium">Select Topic:</label>
+        <label for="topic-select" class="block mb-1 font-medium">{{ t('geocatalog.selectTopic') }}:</label>
         <Select
             id="topic-select"
             v-model="selectedTopic"

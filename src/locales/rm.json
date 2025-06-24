@@ -76,5 +76,45 @@
             "air quality": "Qualitad da l’aria",
             "noise": "Canera"
         }
+    },
+    "geocatalog": {
+        "topic": {
+            "label": {
+                "are": "ARE",
+                "astra": "UVIAS",
+                "aviation": "Aviatica",
+                "bafu": "UFAM",
+                "bav": "UFT",
+                "bfs": "UST",
+                "blw": "UFAG",
+                "cadastre": "Inf. bains immobigliars",
+                "dev": "",
+                "ech": "Catalog da geodatas",
+                "energie": "Energia",
+                "funksender": "Emettur radiofonic ",
+                "geodesy": "Geodesia",
+                "geol": "Geologia",
+                "georessourcen": "Georessourcen",
+                "gewiss": "Aua",
+                "inspire": "INSPIRE",
+                "isos": "Lieus ISOS",
+                "ivs": "Vias da com. ist.",
+                "kgs": "Inventari PBC",
+                "luftbilder": "Fotografia ord l'aria",
+                "meteoschweiz": "MeteoSvizra",
+                "nga": "Atlas da spectrum lartg ",
+                "notruf": "Clom d'urgenza",
+                "sachplan": "Plans sect./concepts",
+                "schneesport": "Sport da naiv",
+                "schule": "Per la scola",
+                "swisstopo": "swisstopo",
+                "verteidigung": "Defensiun",
+                "vu": "Accidents da traffic",
+                "wildruhezonen": "Zonas da paus"
+            }
+        },
+        "title": "Catalog da geodatas",
+        "filter": "Filter...",
+        "selectTopic": "Tema"
     }
 }

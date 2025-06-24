@@ -76,5 +76,45 @@
             "air quality": "Qualità dell'aria",
             "noise": "Rumore"
         }
+    },
+    "geocatalog": {
+        "topic": {
+            "label": {
+                "are": "ARE",
+                "astra": "USTRA",
+                "aviation": "Aviazione",
+                "bafu": "UFAM",
+                "bav": "UFT",
+                "bfs": "UST",
+                "blw": "UFAG",
+                "cadastre": "Informazioni sui fondi",
+                "dev": "",
+                "ech": "Geocatalogo",
+                "energie": "Energia",
+                "funksender": "Trasmettitore radio",
+                "geodesy": "Geodesia",
+                "geol": "Geologia",
+                "georessourcen": "Georisorse",
+                "gewiss": "Acque",
+                "inspire": "INSPIRE",
+                "isos": "Insediamenti ISOS",
+                "ivs": "Vie com. storiche",
+                "kgs": "Inventario PBC",
+                "luftbilder": "Immagini aeree ",
+                "meteoschweiz": "MeteoSvizzera",
+                "nga": "Atlante banda larga",
+                "notruf": "Chiamata d'emergenza",
+                "sachplan": "Piani sett./concezioni",
+                "schneesport": "Sport sulla neve",
+                "schule": "Per la scuola",
+                "swisstopo": "swisstopo",
+                "verteidigung": "Difesa",
+                "vu": "Incidenti stradali",
+                "wildruhezonen": "Zone di tranquillità"
+            }
+        },
+        "title": "Geocatalogo",
+        "filter": "Filtro...",
+        "selectTopic": "Temi"
     }
 }

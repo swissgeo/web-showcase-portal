@@ -7,14 +7,26 @@ export const API3_BASE_URL = 'https://sys-api3.dev.bgdi.ch'
 
 export async function fetchTopicCatalogJson(topic: string, lang: string): Promise<unknown> {
     const url = `${API3_BASE_URL}/rest/services/${topic}/CatalogServer?lang=${lang}`
-    const response = await axios.get(url)
-    return response.data
+    try {
+        const response = await axios.get(url)
+        return response.data
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(`Error fetching topic catalog for ${topic} (${lang}):`, error)
+        return null
+    }
 }
 
 export async function fetchLayerConfigJson(lang: string): Promise<unknown> {
     const url = `${API3_BASE_URL}/rest/services/all/MapServer/layersConfig?lang=${lang}`
-    const response = await axios.get(url)
-    return response.data
+    try {
+        const response = await axios.get(url)
+        return response.data
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(`Error fetching layer config for language ${lang}:`, error)
+        return null
+    }
 }
 
 export async function fetchGeocatalogLayerDescription(

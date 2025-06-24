@@ -2,34 +2,30 @@
 import { onClickOutside } from '@vueuse/core'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
-import { computed, ref, useTemplateRef, watchEffect } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { fetchTopicCatalogJson, fetchLayerConfigJson } from '@/api/topics.api'
 import LegendButton from '@/components/LayerLegendButton.vue'
 import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
-import { useGeocatalogStore } from '@/store/geocatalog'
-import { useMainStore, type LayerConfig } from '@/store/main'
+import { useTopicTree } from '@/composables/useTopicTree'
 import { useSearchStore } from '@/store/search'
-import { type TopicTreeNode } from '@/types/geocatalog'
 
 const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
-const mainStore = useMainStore()
+
+const { topicTreeRoot, initializeTopicTree } = useTopicTree()
 
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const searchTerm = computed(() => searchStore.searchTerm)
 
 const isSearching = computed(() => !!searchTerm.value && isOpenSearch.value)
 const isCatalogShown = computed(() => !searchTerm.value && isOpenSearch.value)
-
-const geocatalogStore = useGeocatalogStore()
 
 const openSearch = () => {
     searchStore.setIsOpenSearch(true)
@@ -59,50 +55,8 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
 
 onClickOutside(searchContainer, handleClickOutsideSearch)
 
-const topic = computed(() => geocatalogStore.currentTopic || 'ech')
-const topicTreeRoot = ref<TopicTreeNode | null>(null)
-
-// Filter the root node to only include layers that are present in the layer configs
-function filterTree(
-    node: TopicTreeNode,
-    layerConfigs: Record<string, LayerConfig | null>
-): TopicTreeNode | null {
-    if (node.category === 'layer') {
-        if (!layerConfigs || !(node.layerBodId in layerConfigs)) {
-            return null
-        }
-    }
-    const children = node.children
-        ?.map((child) => filterTree(child, layerConfigs))
-        .filter(Boolean) as TopicTreeNode[] | undefined
-    return { ...node, children }
-}
-
-// This function fetches the topic tree root and layer configs for the given topic and language if not already cached.
-// It ensures that only layers present in the configs are included in the tree, then updates the store and local ref.
-async function fetchAndPrepareTopicTreeRoot(topic: string, lang: string) {
-    let root = geocatalogStore.getTopicTreeRoot(topic, lang)
-    if (!root) {
-        const data = await fetchTopicCatalogJson(topic, lang)
-        root = (data as { results?: { root?: TopicTreeNode } })?.results?.root || null
-        let layerConfigs = mainStore.getLayerConfigsByLang(lang)
-        if (!layerConfigs) {
-            const layerConfigsData = await fetchLayerConfigJson(lang)
-            // Parse the layer configs and set them in the main store
-            mainStore.setLayerConfigs(lang, layerConfigsData as Record<string, LayerConfig>)
-            layerConfigs = mainStore.getLayerConfigsByLang(lang)
-        }
-        if (root) {
-            root = filterTree(root, layerConfigs)
-        }
-        geocatalogStore.setTopicTreeRoot(topic, lang, root)
-    }
-    topicTreeRoot.value = root
-}
-
-watchEffect(() => {
-    fetchAndPrepareTopicTreeRoot(topic.value, mainStore.language)
-})
+// Initialize topic tree with reactive updates
+initializeTopicTree()
 </script>
 
 <template>

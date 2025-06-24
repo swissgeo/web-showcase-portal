@@ -13,7 +13,6 @@ const uiStore = useUiStore()
 const toggleGeocatalogTree = () => {
     uiStore.toggleGeocatalogTree()
 }
-
 </script>
 
 <template>

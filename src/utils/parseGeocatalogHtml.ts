@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio'
 
 import type { GeonetworkRecord, OnlineResource, OnlineResourceType } from '@/types/gnRecord'
 
-// For geocatalog layer, we have the descruption in HTML format.
+// For geocatalog layer, we have the description in HTML format.
 // This function parses the HTML content and extracts relevant information to create a GeonetworkRecord object
 // It extracts title, abstract, links, downloads, and other metadata from the HTML structure.
 export function parseGeocatalogHtml(content: string): GeonetworkRecord {

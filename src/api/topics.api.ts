@@ -32,7 +32,7 @@ export async function fetchGeocatalogLayerDescription(
     }
 }
 
-export async function loadGeocatalogTopics(): Promise<GeocatalogTopic[]>{
+export async function loadGeocatalogTopics(): Promise<GeocatalogTopic[]> {
     try {
         const response = await axios.get(`${API3_BASE_URL}/rest/services`)
         return response.data.topics as GeocatalogTopic[]

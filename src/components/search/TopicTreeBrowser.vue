@@ -42,12 +42,12 @@ const expandedKeysObj = computed(() => {
 })
 
 const selectedTopic = computed<GeocatalogTopic | undefined>({
-  get() {
-    return geocatalogStore.topics.find(t => t.id === geocatalogStore.currentTopic)
-  },
-  set(topic) {
-    geocatalogStore.setCurrentTopic(topic?.id ?? '')
-  }
+    get() {
+        return geocatalogStore.topics.find((t) => t.id === geocatalogStore.currentTopic)
+    },
+    set(topic) {
+        geocatalogStore.setCurrentTopic(topic?.id ?? '')
+    },
 })
 const geocatalogTopics = computed(() => geocatalogStore.topics)
 
@@ -139,9 +139,13 @@ onMounted(async () => {
 </script>
 
 <template>
-    <h2 class="text-lg font-bold mb-4">{{ t('geocatalog.title') }}</h2>
+    <h2 class="mb-4 text-lg font-bold">{{ t('geocatalog.title') }}</h2>
     <div class="flex flex-row items-center gap-2">
-        <label for="topic-select" class="block mb-1 font-medium">{{ t('geocatalog.selectTopic') }}:</label>
+        <label
+            for="topic-select"
+            class="mb-1 block font-medium"
+            >{{ t('geocatalog.selectTopic') }}:</label
+        >
         <Select
             id="topic-select"
             v-model="selectedTopic"
@@ -164,9 +168,7 @@ onMounted(async () => {
             selection-mode="checkbox"
             :pt="{
                 pcNodeCheckbox: (options) => {
-                    return options.context.node.data?.category !== 'layer'
-                        ? { root: 'hidden' }
-                        : {}
+                    return options.context.node.data?.category !== 'layer' ? { root: 'hidden' } : {}
                 },
             }"
             @node-select="onNodeSelect"

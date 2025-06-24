@@ -5,7 +5,7 @@ import { type GeocatalogTopic, type TopicTreeNode } from '@/types/geocatalog'
 export interface GeocatalogStoreState {
     expandedKeys: string[]
     topicTreeData: Record<string, Record<string, TopicTreeNode | null>>
-    currentTopic: string,
+    currentTopic: string
     topics: GeocatalogTopic[]
 }
 
@@ -15,7 +15,7 @@ export const useGeocatalogStore = defineStore('geocatalog', {
             expandedKeys: [],
             topicTreeData: {},
             currentTopic: 'ech',
-            topics: []
+            topics: [],
         }
     },
     getters: {
@@ -46,6 +46,6 @@ export const useGeocatalogStore = defineStore('geocatalog', {
         },
         setTopics(topics: GeocatalogTopic[]) {
             this.topics = topics
-        }
+        },
     },
 })

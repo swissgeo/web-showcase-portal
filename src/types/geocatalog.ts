@@ -7,6 +7,6 @@ export interface TopicTreeNode {
 }
 
 export interface GeocatalogTopic {
-    id: string,
-    defaultBackground: string,
+    id: string
+    defaultBackground: string
 }

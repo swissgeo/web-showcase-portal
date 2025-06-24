@@ -177,7 +177,9 @@ onMounted(async () => {
                 selection-mode="checkbox"
                 :pt="{
                     pcNodeCheckbox: (options) => {
-                        return options.context.node.data?.category !== 'layer' ? { root: 'hidden' } : {}
+                        return options.context.node.data?.category !== 'layer'
+                            ? { root: 'hidden' }
+                            : {}
                     },
                 }"
                 @node-select="onNodeSelect"

@@ -5,3 +5,8 @@ export interface TopicTreeNode {
     category: string
     children?: TopicTreeNode[]
 }
+
+export interface GeocatalogTopic {
+    id: string
+    defaultBackground: string
+}

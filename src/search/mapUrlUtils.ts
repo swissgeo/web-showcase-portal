@@ -1,6 +1,6 @@
 import type { Geometry } from 'geojson'
 
-import type { Layer } from '@/types/Layer'
+import type { Layer } from '@/types/layer'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
 import { isCrosshair, type Crosshair } from '@/types/crosshair'
@@ -120,6 +120,8 @@ export function getUrlParamsFromSource(
                 paramsToPush[key] = value as Crosshair
             }
         } else if (key === 'layers' || key === 'bgLayer') {
+            paramsToPush[key] = value as string
+        } else if (key === 'topic') {
             paramsToPush[key] = value as string
         }
     })

@@ -7,6 +7,7 @@ import { useI18n } from 'vue-i18n'
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import { useMainStore } from '@/store/main'
+import { LayerType } from '@/types/layer'
 import { getServiceResource } from '@/utils/layerUtils'
 
 const { result } = defineProps<{
@@ -64,6 +65,7 @@ const addToMap = (record: GeonetworkRecord) => {
         geonetworkRecord: record,
         opacity: 1,
         visible: true,
+        type: LayerType.Geonetwork,
     })
 }
 

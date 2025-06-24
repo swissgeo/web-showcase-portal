@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
-import type { Layer } from '@/types/Layer'
 
 import {
     i18n,
@@ -10,6 +9,7 @@ import {
     langToLocal,
     SUPPORTED_LANG,
 } from '@/types/language'
+import { LayerType, type Layer } from '@/types/layer'
 
 export type LayerConfig = {
     id: string
@@ -51,6 +51,7 @@ export const useMainStore = defineStore('main', {
                     visible: true,
                     opacity: 1,
                     geonetworkRecord: null,
+                    type: LayerType.Geocatalog,
                 },
                 {
                     id: 'ch.swisstopo.pixelkarte-grau',
@@ -58,6 +59,7 @@ export const useMainStore = defineStore('main', {
                     visible: false,
                     opacity: 1,
                     geonetworkRecord: null,
+                    type: LayerType.Geocatalog,
                 },
                 {
                     id: 'ch.swisstopo.swissimage',
@@ -65,6 +67,7 @@ export const useMainStore = defineStore('main', {
                     visible: false,
                     opacity: 1,
                     geonetworkRecord: null,
+                    type: LayerType.Geocatalog,
                 },
             ],
             language: initialLanguage,

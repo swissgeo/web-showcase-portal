@@ -4,6 +4,7 @@ import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
 import { convertToMapParameter } from '@/search/mapUrlUtils'
 
+import { useGeocatalogStore } from './geocatalog'
 import { useMainStore } from './main'
 
 export interface SearchStoreState {
@@ -13,6 +14,7 @@ export interface SearchStoreState {
 export const useMapStore = defineStore('map', {
     state: (): SearchStoreState => {
         const mainStore = useMainStore()
+        const geocatalogStore = useGeocatalogStore()
         return {
             mapUrlSearchParams: {
                 lang: 'de',
@@ -23,6 +25,7 @@ export const useMapStore = defineStore('map', {
                     .map((layer) => convertToMapParameter(layer))
                     .join(';'),
                 hideEmbedUI: true,
+                topic: geocatalogStore.currentTopic,
             } as Partial<MapUrlParameter>,
         }
     },

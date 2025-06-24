@@ -32,7 +32,6 @@ watch(layerCount, (newValue, oldValue) => {
     <div class="relative inline-block">
         <Button
             :severity="uiStore.isLayerCartVisible ? 'primary' : 'secondary'"
-            :text="isDesktop"
             :outlined="!isDesktop"
             class="h-10"
             :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"

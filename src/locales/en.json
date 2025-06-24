@@ -76,5 +76,45 @@
             "air quality": "Air Quality",
             "noise": "Noise"
         }
+    },
+    "geocatalog": {
+        "topic": {
+            "label": {
+                "are": "ARE",
+                "astra": "FEDRO",
+                "aviation": "Aviation",
+                "bafu": "FOEN",
+                "bav": "FOT",
+                "bfs": "FSO",
+                "blw": "FOAG",
+                "cadastre": "Land and property",
+                "dev": "",
+                "ech": "Geocatalog",
+                "energie": "Energy",
+                "funksender": "Radio transmitter",
+                "geodesy": "Geodesy",
+                "geol": "Geology",
+                "georessourcen": "Georesources",
+                "gewiss": "Waters",
+                "inspire": "INSPIRE",
+                "isos": "ISOS Heritage sites",
+                "ivs": "IHR Inventory",
+                "kgs": "KGS Inventory",
+                "luftbilder": "Aerial images",
+                "meteoschweiz": "MeteoSwiss",
+                "nga": "Broadband map",
+                "notruf": "Emergency call",
+                "sachplan": "Sectoral pl./concepts",
+                "schneesport": "Snowsport",
+                "schule": "For schools",
+                "swisstopo": "swisstopo",
+                "verteidigung": "Defence",
+                "vu": "Road accidents",
+                "wildruhezonen": "Des. Wildlife Areas"
+            }
+        },
+        "title": "Geocatalog",
+        "filter": "Filter...",
+        "selectTopic": "Topic"
     }
 }

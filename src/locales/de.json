@@ -76,5 +76,45 @@
             "air quality": "Luftqualität",
             "noise": "Lärm"
         }
+    },
+    "geocatalog": {
+        "topic": {
+            "label": {
+                "are": "ARE",
+                "astra": "ASTRA",
+                "aviation": "Luftfahrt",
+                "bafu": "BAFU",
+                "bav": "BAV",
+                "bfs": "BFS",
+                "blw": "BLW",
+                "cadastre": "Grundstückinformation",
+                "dev": "",
+                "ech": "Geokatalog",
+                "energie": "Energie",
+                "funksender": "Funksender",
+                "geodesy": "Geodäsie",
+                "geol": "Geologie",
+                "georessourcen": "Georessourcen",
+                "gewiss": "Wasser",
+                "inspire": "INSPIRE",
+                "isos": "ISOS-Ortsbilder",
+                "ivs": "Hist. Verkehrswege",
+                "kgs": "KGS Inventar",
+                "luftbilder": "Luftbilder",
+                "meteoschweiz": "MeteoSchweiz",
+                "nga": "Breitbandatlas",
+                "notruf": "Notruf",
+                "sachplan": "Sachpläne/Konzepte",
+                "schneesport": "Schneesport",
+                "schule": "Für die Schule",
+                "swisstopo": "swisstopo",
+                "verteidigung": "Verteidigung",
+                "vu": "Verkehrsunfälle",
+                "wildruhezonen": "Wildruhezonen"
+            }
+        },
+        "title": "Geokatalog",
+        "filter": "Abfrage...",
+        "selectTopic": "Thema"
     }
 }

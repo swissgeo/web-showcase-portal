@@ -20,12 +20,9 @@ const mainStore = useMainStore()
 const legendUrls = computed(() => {
     if (layer.type === LayerType.Geonetwork) {
         const onlineResources = layer.geonetworkRecord?.onlineResources || []
-        return onlineResources
-            .filter((resource) => {
-                const protocol = resource.accessServiceProtocol?.toLowerCase()
-                return protocol === 'wms'
-            })
-            .map((resource) => {
+        return onlineResources.reduce((legendUrls: string[], resource) => {
+            const protocol = resource.accessServiceProtocol?.toLowerCase()
+            if (protocol === 'wms') {
                 try {
                     const baseUrl = resource.url
                     const legendUrl = new URL(baseUrl)
@@ -37,14 +34,14 @@ const legendUrls = computed(() => {
                         LAYER: resource.name,
                         SLD_VERSION: '1.1.0',
                     }).toString()
-                    return legendUrl.toString()
+                    legendUrls.push(legendUrl.toString())
                 } catch (e) {
                     // eslint-disable-next-line no-console
                     console.error(`Error processing service ${resource.url}: ${e}`)
-                    return undefined
                 }
-            })
-            .filter(Boolean)
+            }
+            return legendUrls
+        }, [])
     } else {
         const legendUrl = `${API3_BASE_URL}/static/images/legends/${layer.id}_${mainStore.language}.png`
         return [legendUrl]

@@ -121,6 +121,8 @@ export function getUrlParamsFromSource(
             }
         } else if (key === 'layers' || key === 'bgLayer') {
             paramsToPush[key] = value as string
+        } else if (key === 'topic') {
+            paramsToPush[key] = value as string
         }
     })
     return { ...currentStoreParams, ...paramsToPush }

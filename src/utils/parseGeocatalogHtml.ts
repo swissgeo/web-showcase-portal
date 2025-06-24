@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'
 
-import type { GeonetworkRecord, OnlineResource } from '@/types/gnRecord'
+import type { GeonetworkRecord, OnlineResource, OnlineResourceType } from '@/types/gnRecord'
 
 export function parseGeocatalogHtml(content: string): GeonetworkRecord {
     const $ = cheerio.load(content)
@@ -37,7 +37,7 @@ export function parseGeocatalogHtml(content: string): GeonetworkRecord {
 
     // Map links to OnlineResource[]
     const onlineResources: OnlineResource[] = links.map((link) => {
-        let type: 'link' | 'download' | 'service' = 'link'
+        let type: OnlineResourceType = 'link'
         if (downloads.find((dl) => dl.href === link.href)) {
             type = 'download'
         }

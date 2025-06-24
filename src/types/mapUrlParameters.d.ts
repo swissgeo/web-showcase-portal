@@ -10,6 +10,7 @@ export interface MapUrlParameter {
     crosshair: Crosshair
     crossHairPosition: SingleCoordinate
     hideEmbedUI: boolean
+    topic: string
 }
 
 export type SingleCoordinate = [number, number]

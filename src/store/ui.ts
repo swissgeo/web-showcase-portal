@@ -1,5 +1,10 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+// Sidebar types enum
+export enum SidebarType {
+    LAYER_CART = 'layerCart',
+    GEOCATALOG_TREE = 'geocatalogTree',
+}
 
 // Sidebar width constants
 export const SIDEBAR_MIN_WIDTH = 300
@@ -8,18 +13,34 @@ export const SIDEBAR_DEFAULT_WIDTH = 400
 
 export const useUiStore = defineStore('ui', () => {
     // State
-    const isLayerCartVisible = ref(false)
+    const currentSidebar = ref<SidebarType | null>(null)
     const isLayerLegendVisible = ref(false)
-    const isGeocatalogTreeVisible = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
 
-    // Getter
-    const isSidebarOpen = computed(() => isLayerCartVisible.value || isGeocatalogTreeVisible.value)
+    // Computed getters
+    const isSidebarOpen = computed(() => currentSidebar.value !== null)
+    const isLayerCartVisible = computed(() => currentSidebar.value === SidebarType.LAYER_CART)
+    const isGeocatalogTreeVisible = computed(
+        () => currentSidebar.value === SidebarType.GEOCATALOG_TREE
+    )
 
     // Actions
-    function setLayerCartVisible(visible: boolean) {
-        isLayerCartVisible.value = visible
+    function setSidebar(sidebar: SidebarType | null) {
+        currentSidebar.value = sidebar
     }
+
+    function toggleSidebar(sidebar: SidebarType) {
+        if (currentSidebar.value === sidebar) {
+            currentSidebar.value = null
+        } else {
+            currentSidebar.value = sidebar
+        }
+    }
+
+    function setLayerCartVisible(visible: boolean) {
+        currentSidebar.value = visible ? SidebarType.LAYER_CART : null
+    }
+
     function setSidebarSecondColumnWidth(width: number) {
         if (width < SIDEBAR_MIN_WIDTH) {
             sidebarSecondColumnWidth.value = SIDEBAR_MIN_WIDTH
@@ -30,10 +51,6 @@ export const useUiStore = defineStore('ui', () => {
         }
     }
 
-    function toggleLayerCart() {
-        isLayerCartVisible.value = !isLayerCartVisible.value
-    }
-
     function setLayerLegendVisible(visible: boolean) {
         isLayerLegendVisible.value = visible
     }
@@ -41,35 +58,27 @@ export const useUiStore = defineStore('ui', () => {
     function toggleLayerLegend() {
         isLayerLegendVisible.value = !isLayerLegendVisible.value
     }
-    function toggleGeocatalogTree() {
-        isGeocatalogTreeVisible.value = !isGeocatalogTreeVisible.value
-        // Close layer cart if geocatalog tree is opened
-        if (isGeocatalogTreeVisible.value) {
-            isLayerCartVisible.value = false
-        }
-    }
+
     function closeSidebar() {
-        isLayerCartVisible.value = false
-        isGeocatalogTreeVisible.value = false
+        currentSidebar.value = null
     }
 
     return {
         // State
-        isLayerCartVisible,
+        currentSidebar,
         isLayerLegendVisible,
-        isGeocatalogTreeVisible,
         sidebarSecondColumnWidth,
-        // Getter
+        // Computed getters
         isSidebarOpen,
+        isLayerCartVisible,
+        isGeocatalogTreeVisible,
         // Actions
+        setSidebar,
+        toggleSidebar,
         setLayerCartVisible,
         setSidebarSecondColumnWidth,
-        toggleLayerCart,
         setLayerLegendVisible,
         toggleLayerLegend,
-        toggleGeocatalogTree,
         closeSidebar,
     }
-
-
 })

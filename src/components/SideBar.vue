@@ -2,7 +2,7 @@
 import { UnfoldHorizontal } from 'lucide-vue-next'
 import { computed, onBeforeUnmount } from 'vue'
 
-import GeocatalogButton from '@/components/GeocatalogButton.vue'
+import GeocatalogTreeButton from '@/components/GeocatalogTreeButton.vue'
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
@@ -60,10 +60,7 @@ function handleDragging(event: MouseEvent) {
     event.preventDefault()
     const deltaX = event.movementX || 0
     let newWidth = sidebarSecondColumnWidth.value + deltaX
-    newWidth = Math.max(
-        SIDEBAR_MIN_WIDTH,
-        Math.min(SIDEBAR_MAX_WIDTH, newWidth)
-    )
+    newWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, newWidth))
     sidebarSecondColumnWidth.value = newWidth
 }
 
@@ -121,7 +118,7 @@ onBeforeUnmount(() => {
             >
                 <div class="flex flex-col items-center gap-2">
                     <LayerCartButton />
-                    <GeocatalogButton />
+                    <GeocatalogTreeButton />
                 </div>
                 <LanguageSwitchButton class="w-19 py-5" />
             </div>
@@ -144,10 +141,10 @@ onBeforeUnmount(() => {
 
                 <!-- Draggable resize handle -->
                 <div
-                    class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white hover:bg-gray-400 select-none"
+                    class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
                     @mousedown="startDragging"
                 >
-                    <UnfoldHorizontal class="w-4 flex-shrink-0 bg-white pointer-events-none" />
+                    <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0 bg-white" />
                 </div>
             </div>
         </div>

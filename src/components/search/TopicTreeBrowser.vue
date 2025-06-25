@@ -163,9 +163,9 @@ onMounted(async () => {
                 v-model="selectedTopic"
                 :options="geocatalogTopics"
                 :option-label="(topic) => getTopicLabel(topic.id)"
-                class="w-full md:w-1/2"
                 :pt="{
                     overlay: { 'data-cy': 'select-topic' },
+                    root: 'w-full',
                 }"
             />
         </div>

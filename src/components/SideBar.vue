@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { UnfoldHorizontal } from 'lucide-vue-next'
+import { computed } from 'vue'
+
 import GeocatalogButton from '@/components/GeocatalogButton.vue'
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
@@ -9,7 +12,7 @@ import { useTopicTree } from '@/composables/useTopicTree'
 import { useMainStore } from '@/store/main'
 import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
-import { useUiStore } from '@/store/ui'
+import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
 
 const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 
@@ -17,6 +20,42 @@ const uiStore = useUiStore()
 const mapStore = useMapStore()
 const mainStore = useMainStore()
 const searchStore = useSearchStore()
+
+const sidebarSecondColumnWidth = computed({
+    get() {
+        return uiStore.sidebarSecondColumnWidth
+    },
+    set(value: number) {
+        uiStore.setSidebarSecondColumnWidth(value)
+    },
+})
+
+let isDragging = false
+
+function startDragging() {
+    isDragging = true
+    window.addEventListener('mousemove', handleDragging)
+    window.addEventListener('mouseup', stopDragging)
+}
+
+function handleDragging(event: MouseEvent) {
+    if (!isDragging) {
+        return
+    }
+    const deltaX = event.movementX || 0
+    let newWidth = sidebarSecondColumnWidth.value + deltaX
+    newWidth = Math.max(
+        SIDEBAR_MIN_WIDTH,
+        Math.min(SIDEBAR_MAX_WIDTH, newWidth)
+    )
+    sidebarSecondColumnWidth.value = newWidth
+}
+
+function stopDragging() {
+    isDragging = false
+    window.removeEventListener('mousemove', handleDragging)
+    window.removeEventListener('mouseup', stopDragging)
+}
 
 function resetApp() {
     uiStore.$reset()
@@ -51,15 +90,30 @@ updateGeocatalogLanguage()
                 <LanguageSwitchButton class="w-19 py-5" />
             </div>
             <!-- Second column -->
-            <LayerCart
-                v-show="uiStore.isLayerCartVisible"
-                class="h-full w-[400px] overflow-y-auto bg-white"
-            />
-            <TopicTreeBrowser
-                v-if="uiStore.isGeocatalogTreeVisible"
-                :root="topicTreeRoot"
-                class="h-full w-[400px] overflow-y-auto bg-white"
-            />
+            <div
+                v-show="uiStore.isLayerCartVisible || uiStore.isGeocatalogTreeVisible"
+                class="relative flex"
+            >
+                <LayerCart
+                    v-show="uiStore.isLayerCartVisible"
+                    :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                    class="h-full overflow-y-auto bg-white"
+                />
+                <TopicTreeBrowser
+                    v-if="uiStore.isGeocatalogTreeVisible"
+                    :root="topicTreeRoot"
+                    :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                    class="h-full overflow-y-auto bg-white"
+                />
+
+                <!-- Draggable resize handle -->
+                <div
+                    class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white hover:bg-gray-400"
+                    @mousedown="startDragging"
+                >
+                    <UnfoldHorizontal class="w-4 flex-shrink-0 bg-white" />
+                </div>
+            </div>
         </div>
     </div>
 </template>

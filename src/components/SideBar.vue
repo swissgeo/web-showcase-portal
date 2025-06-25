@@ -32,8 +32,11 @@ const sidebarSecondColumnWidth = computed({
 
 let isDragging = false
 
-function startDragging() {
+function startDragging(event: MouseEvent) {
+    event.preventDefault()
     isDragging = true
+    document.body.style.userSelect = 'none'
+    document.body.style.cursor = 'col-resize'
     window.addEventListener('mousemove', handleDragging)
     window.addEventListener('mouseup', stopDragging)
 }
@@ -42,6 +45,7 @@ function handleDragging(event: MouseEvent) {
     if (!isDragging) {
         return
     }
+    event.preventDefault()
     const deltaX = event.movementX || 0
     let newWidth = sidebarSecondColumnWidth.value + deltaX
     newWidth = Math.max(
@@ -53,6 +57,8 @@ function handleDragging(event: MouseEvent) {
 
 function stopDragging() {
     isDragging = false
+    document.body.style.userSelect = ''
+    document.body.style.cursor = ''
     window.removeEventListener('mousemove', handleDragging)
     window.removeEventListener('mouseup', stopDragging)
 }
@@ -108,10 +114,10 @@ updateGeocatalogLanguage()
 
                 <!-- Draggable resize handle -->
                 <div
-                    class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white hover:bg-gray-400"
+                    class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white hover:bg-gray-400 select-none"
                     @mousedown="startDragging"
                 >
-                    <UnfoldHorizontal class="w-4 flex-shrink-0 bg-white" />
+                    <UnfoldHorizontal class="w-4 flex-shrink-0 bg-white pointer-events-none" />
                 </div>
             </div>
         </div>

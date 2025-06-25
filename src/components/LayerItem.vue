@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GripVertical } from 'lucide-vue-next'
+import { Eye, EyeOff, GripVertical, Trash2 } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
 import InputNumber from 'primevue/inputnumber'
@@ -95,7 +95,6 @@ const menuItems = [
         icon: 'pi pi-clone',
         command: () => opacityMenuClicked(),
     },
-    { label: t('layerCart.delete'), icon: 'pi pi-trash', command: () => deleteMenuClicked() },
 ]
 
 // Menu items for context menu for background layers
@@ -140,20 +139,24 @@ const bgLayerThumbnail = computed(() => {
             <GripVertical />
         </div>
         <!-- <GripVertical class="absolute left-0 top-0 h-full hidden cursor-grab group-hover:flex" /> -->
-        <div class="flex items-center justify-between space-x-4">
-            <button
-                class="p-button-rounded p-button-outlined p-button-sm cursor-pointer"
+        <div class="flex items-center gap-x-1">
+            <Button
+                variant="outlined"
+                rounded
+                size="small"
+                class="flex items-center justify-center"
                 @click="toggleVisibility"
             >
-                <span
+                <Eye
                     v-if="layer.visible"
-                    class="pi pi-eye"
-                ></span>
-                <span
+                    class="h-4 w-4"
+                />
+                <EyeOff
                     v-else
-                    class="pi pi-eye-slash"
-                ></span>
-            </button>
+                    class="h-4 w-4"
+                />
+            </Button>
+
             <span
                 :class="{ 'text-gray-400 line-through': !layer.visible }"
                 class="layer-item-drag-handle flex-1 cursor-grab truncate text-sm font-medium"
@@ -166,6 +169,16 @@ const bgLayerThumbnail = computed(() => {
                 alt="Background Layer Thumbnail"
                 class="h-10 w-10 rounded-full object-cover"
             />
+            <Button
+                variant="outlined"
+                rounded
+                size="small"
+                class="flex items-center justify-center"
+                @click="deleteMenuClicked"
+            >
+                <Trash2 class="h-4 w-4" />
+            </Button>
+
             <Button
                 type="button"
                 icon="pi pi-ellipsis-v"

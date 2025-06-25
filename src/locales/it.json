@@ -63,6 +63,10 @@
         "selectCanton": "Cantoni",
         "selectCommune": "Comuni"
     },
+    "filter": {
+        "title": "Filtro",
+        "filterByProvider": "Filtrare per fornitore"
+    },
     "keywords": {
         "title": "Ricerche popolari",
         "categories": {

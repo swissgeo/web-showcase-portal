@@ -64,6 +64,10 @@
         "selectCommune": "Communes",
         "selectedObject": "sélection"
     },
+    "filter": {
+        "title": "Filtre",
+        "filterByProvider": "Filtrer par fournisseur"
+    },
     "keywords": {
         "title": "Recherches populaires",
         "categories": {

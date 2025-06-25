@@ -17,6 +17,7 @@ export const useUiStore = defineStore('ui', () => {
     const currentSidebar = ref<SidebarType | null>(null)
     const isLayerLegendVisible = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
+    const isFilterVisible = ref(false)
 
     // Computed getters
     const isSidebarOpen = computed(() => currentSidebar.value !== null)
@@ -38,6 +39,9 @@ export const useUiStore = defineStore('ui', () => {
         }
     }
 
+    function toggleFilterVisible() {
+        isFilterVisible.value = !isFilterVisible.value
+    }
     function setLayerCartVisible(visible: boolean) {
         currentSidebar.value = visible ? SidebarType.LAYER_CART : null
     }
@@ -73,6 +77,7 @@ export const useUiStore = defineStore('ui', () => {
     return {
         // State
         currentSidebar,
+        isFilterVisible,
         isLayerLegendVisible,
         sidebarSecondColumnWidth,
         // Computed getters
@@ -82,6 +87,7 @@ export const useUiStore = defineStore('ui', () => {
         // Actions
         setSidebar,
         toggleSidebar,
+        toggleFilterVisible,
         setLayerCartVisible,
         setSidebarSecondColumnWidth,
         setLayerLegendVisible,

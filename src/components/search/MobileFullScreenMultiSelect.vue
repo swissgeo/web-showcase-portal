@@ -101,13 +101,13 @@ function toggleOption(value: number) {
         >
             <span
                 v-if="!modelValue?.length"
-                class="block font-bold"
+                class="block font-bold text-nowrap"
             >
                 {{ placeholder }}
             </span>
             <template v-else>
                 <span class="mr-1 block font-bold">{{ placeholder }}:</span>
-                <span class="block truncate">
+                <span class="block truncate text-nowrap">
                     {{ selectedLabels.slice(0, 2).join(', ') }}
                 </span>
             </template>

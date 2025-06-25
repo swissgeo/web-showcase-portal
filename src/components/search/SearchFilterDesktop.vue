@@ -35,6 +35,7 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
 
 <template>
     <div class="bg-swissgeo-lightblue p-3">
+        <span class="text-sm">{{ t('filter.filterByProvider') }}</span>
         <div class="flex w-full items-center">
             <MultiSelect
                 v-model="selectedFederal"

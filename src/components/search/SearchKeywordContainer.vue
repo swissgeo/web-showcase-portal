@@ -147,7 +147,7 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
 <template>
     <div class="flex items-center gap-2">
         <span
-            v-if="!isSearching"
+            v-show="!isSearching && visibleKeywordUseCases.length"
             class="text-sm font-medium text-nowrap text-gray-600"
         >
             {{ t('keywords.title') }}:

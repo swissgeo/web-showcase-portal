@@ -63,6 +63,10 @@
         "selectCanton": "Canton",
         "selectCommune": "Communas"
     },
+    "filter": {
+        "title": "Filter",
+        "filterByProvider": "Filter tras purschider"
+    },
     "keywords": {
         "title": "Tschertgas popularas",
         "categories": {

@@ -144,7 +144,7 @@ const bgLayerThumbnail = computed(() => {
                 variant="outlined"
                 rounded
                 size="small"
-                class="flex items-center justify-center"
+                class="flex items-center justify-center border border-transparent"
                 @click="toggleVisibility"
             >
                 <Eye
@@ -173,7 +173,7 @@ const bgLayerThumbnail = computed(() => {
                 variant="outlined"
                 rounded
                 size="small"
-                class="flex items-center justify-center"
+                class="flex items-center justify-center border border-transparent"
                 @click="deleteMenuClicked"
             >
                 <Trash2 class="h-4 w-4" />

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { UnfoldHorizontal } from 'lucide-vue-next'
-import { computed } from 'vue'
+import { computed, onBeforeUnmount } from 'vue'
 
 import GeocatalogButton from '@/components/GeocatalogButton.vue'
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
@@ -39,12 +39,24 @@ function startDragging(event: MouseEvent) {
     document.body.style.cursor = 'col-resize'
     window.addEventListener('mousemove', handleDragging)
     window.addEventListener('mouseup', stopDragging)
+    // Add document event listeners as backup
+    document.addEventListener('mouseup', stopDragging)
+    document.addEventListener('mouseleave', stopDragging)
+    // Also listen for blur events in case user switches tabs/windows
+    window.addEventListener('blur', stopDragging)
 }
 
 function handleDragging(event: MouseEvent) {
     if (!isDragging) {
         return
     }
+
+    // Check if left mouse button is still pressed
+    if (event.buttons !== 1) {
+        stopDragging()
+        return
+    }
+
     event.preventDefault()
     const deltaX = event.movementX || 0
     let newWidth = sidebarSecondColumnWidth.value + deltaX
@@ -56,11 +68,20 @@ function handleDragging(event: MouseEvent) {
 }
 
 function stopDragging() {
+    if (!isDragging) {
+        return
+    }
+
     isDragging = false
     document.body.style.userSelect = ''
     document.body.style.cursor = ''
+
+    // Remove all event listeners
     window.removeEventListener('mousemove', handleDragging)
     window.removeEventListener('mouseup', stopDragging)
+    document.removeEventListener('mouseup', stopDragging)
+    document.removeEventListener('mouseleave', stopDragging)
+    window.removeEventListener('blur', stopDragging)
 }
 
 function resetApp() {
@@ -71,6 +92,15 @@ function resetApp() {
 }
 
 updateGeocatalogLanguage()
+// Initialize topic tree with reactive updates
+initializeTopicTree()
+
+// Cleanup function to ensure no hanging event listeners
+onBeforeUnmount(() => {
+    if (isDragging) {
+        stopDragging()
+    }
+})
 </script>
 
 <template>

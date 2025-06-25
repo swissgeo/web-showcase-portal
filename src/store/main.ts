@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import { convertToMapParameter } from '@/search/mapUrlUtils'
+import { useMapStore } from '@/store/map'
 import {
     i18n,
     getBrowserLanguage,
@@ -18,152 +21,163 @@ export type LayerConfig = {
     background: boolean
 }
 
-export interface MainStoreState {
-    layersOnMap: Layer[]
-    infoLayerId: string | null
-    infoLayerRecord: GeonetworkRecord | null
-    bgLayerId: string | null
-    bgLayers: Layer[]
-    language: Language
-    layerConfigs: Record<string, Record<string, LayerConfig | null>> // lang: id: LayerConfig | null
-}
+export const useMainStore = defineStore('main', () => {
+    // Language initialization
+    const storedLanguage = localStorage.getItem('selectedLanguage') as Language | null
+    const browserLanguage = getBrowserLanguage()
+    const initialLanguage: Language =
+        storedLanguage && SUPPORTED_LANG.includes(storedLanguage) ? storedLanguage : browserLanguage
 
-export const useMainStore = defineStore('main', {
-    state: (): MainStoreState => {
-        const storedLanguage = localStorage.getItem('selectedLanguage') as Language | null
-        const browserLanguage = getBrowserLanguage()
+    i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
+    const mapStore = useMapStore()
+    // State
+    const layersOnMap = ref<Layer[]>([])
+    const infoLayerId = ref<string | null>(null)
+    const infoLayerRecord = ref<GeonetworkRecord | null>(null)
+    const bgLayerId = ref<string | null>('ch.swisstopo.pixelkarte-farbe')
+    const bgLayers = ref<Layer[]>([
+        {
+            id: 'ch.swisstopo.pixelkarte-farbe',
+            name: 'layerCart.colorMap',
+            visible: true,
+            opacity: 1,
+            geonetworkRecord: null,
+            type: LayerType.Geocatalog,
+        },
+        {
+            id: 'ch.swisstopo.pixelkarte-grau',
+            name: 'layerCart.greyMap',
+            visible: false,
+            opacity: 1,
+            geonetworkRecord: null,
+            type: LayerType.Geocatalog,
+        },
+        {
+            id: 'ch.swisstopo.swissimage',
+            name: 'layerCart.aerialImagery',
+            visible: false,
+            opacity: 1,
+            geonetworkRecord: null,
+            type: LayerType.Geocatalog,
+        },
+    ])
+    const language = ref<Language>(initialLanguage)
+    const layerConfigs = ref<Record<string, Record<string, LayerConfig | null>>>({})
 
-        const initialLanguage: Language =
-            storedLanguage && SUPPORTED_LANG.includes(storedLanguage)
-                ? storedLanguage
-                : browserLanguage
+    // Getters
+    const layersOnMapCount = computed(() => layersOnMap.value.length)
+    const getLayerById = (layerId: string): Layer | null =>
+        layersOnMap.value.find((layer) => layer.id === layerId) ?? null
+    const isLayerOnMap = (layerId: string): boolean =>
+        layersOnMap.value.findIndex((layer) => layer.id === layerId) !== -1
+    const showLayerInfo = computed(() => infoLayerId.value !== null)
+    const visibleLayers = computed(() => layersOnMap.value.filter((layer) => layer.visible))
+    const getLayerConfigsByLang = (lang: string) => layerConfigs.value[lang] || null
+    i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
 
-        i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
-        return {
-            layersOnMap: [],
-            infoLayerId: null,
-            infoLayerRecord: null,
-            bgLayerId: 'ch.swisstopo.pixelkarte-farbe',
-            bgLayers: [
-                {
-                    id: 'ch.swisstopo.pixelkarte-farbe',
-                    name: 'layerCart.colorMap',
-                    visible: true,
-                    opacity: 1,
-                    geonetworkRecord: null,
-                    type: LayerType.Geocatalog,
-                },
-                {
-                    id: 'ch.swisstopo.pixelkarte-grau',
-                    name: 'layerCart.greyMap',
-                    visible: false,
-                    opacity: 1,
-                    geonetworkRecord: null,
-                    type: LayerType.Geocatalog,
-                },
-                {
-                    id: 'ch.swisstopo.swissimage',
-                    name: 'layerCart.aerialImagery',
-                    visible: false,
-                    opacity: 1,
-                    geonetworkRecord: null,
-                    type: LayerType.Geocatalog,
-                },
-            ],
-            language: initialLanguage,
-            layerConfigs: {},
+    // Actions
+    function addLayerToMap(layer: Layer) {
+        layersOnMap.value.push(layer)
+        updateMapUrlSearchParams()
+    }
+    function setInfoLayerId(layerId: string) {
+        if (infoLayerId.value !== layerId) {
+            infoLayerRecord.value = null
         }
-    },
-    getters: {
-        layersOnMapCount(state: MainStoreState) {
-            return state.layersOnMap.length
-        },
-        getLayerById(state: MainStoreState) {
-            return (layerId: string): Layer | null => {
-                return state.layersOnMap.find((layer) => layer.id === layerId) ?? null
-            }
-        },
-        isLayerOnMap(state: MainStoreState): (arg0: string) => boolean {
-            return (layerId: string): boolean => {
-                return state.layersOnMap.findIndex((layer) => layer.id === layerId) !== -1
-            }
-        },
-        showLayerInfo(state: MainStoreState) {
-            return state.infoLayerId !== null
-        },
-        visibleLayers(state: MainStoreState) {
-            return state.layersOnMap.filter((layer) => layer.visible)
-        },
-        getLayerConfigsByLang: (state: MainStoreState) => (lang: string) => {
-            return state.layerConfigs[lang] || null
-        },
-    },
-    actions: {
-        addLayerToMap(layer: Layer) {
-            this.layersOnMap.push(layer)
-        },
-        setInfoLayerId(layerId: string) {
-            if (this.infoLayerId !== layerId) {
-                // layer id has changed, reset the info to trigger the
-                // watcher in the details
-                this.infoLayerRecord = null
-            }
-            this.infoLayerId = layerId
-        },
-        setInfoLayerRecord(record: GeonetworkRecord) {
-            this.infoLayerRecord = record
-        },
-        setLanguage(language: Language) {
-            this.language = language
-            i18n.global.locale.value = langToLocal(language) as typeof i18n.global.locale.value
-            localStorage.setItem('selectedLanguage', language)
-        },
-        resetInfoLayerId() {
-            this.infoLayerId = null
-            this.infoLayerRecord = null
-        },
-        deleteLayerById(layerId: string) {
-            this.layersOnMap = this.layersOnMap.filter((layer) => layer.id !== layerId)
-        },
-        setLayerVisibility(layerId: string, visible: boolean) {
-            const layer = this.layersOnMap.find((layer) => layer.id === layerId)
-            if (layer) {
+        infoLayerId.value = layerId
+    }
+    function setInfoLayerRecord(record: GeonetworkRecord) {
+        infoLayerRecord.value = record
+    }
+    function setLanguage(lang: Language) {
+        language.value = lang
+        i18n.global.locale.value = langToLocal(lang) as typeof i18n.global.locale.value
+        localStorage.setItem('selectedLanguage', lang)
+    }
+    function resetInfoLayerId() {
+        infoLayerId.value = null
+        infoLayerRecord.value = null
+    }
+    function deleteLayerById(layerId: string) {
+        layersOnMap.value = layersOnMap.value.filter((layer) => layer.id !== layerId)
+        updateMapUrlSearchParams()
+    }
+    function setLayerVisibility(layerId: string, visible: boolean) {
+        const layer = layersOnMap.value.find((layer) => layer.id === layerId)
+        if (layer) {
+            layer.visible = visible
+        }
+        updateMapUrlSearchParams()
+    }
+    function setLayerOpacity(layerId: string, opacity: number) {
+        const layer = layersOnMap.value.find((layer) => layer.id === layerId)
+        if (layer) {
+            layer.opacity = opacity
+        }
+        updateMapUrlSearchParams()
+    }
+    function setBgLayerVisibility(layerId: string, visible: boolean) {
+        bgLayerId.value = 'void'
+        bgLayers.value.forEach((layer) => {
+            layer.visible = false
+            if (layer.id === layerId) {
                 layer.visible = visible
-            }
-        },
-        setLayerOpacity(layerId: string, opacity: number) {
-            const layer = this.layersOnMap.find((layer) => layer.id === layerId)
-            if (layer) {
-                layer.opacity = opacity
-            }
-        },
-        // Used to make the background layer exclusive
-        // if a new one is selected, the previous one is set to false
-        setBgLayerVisibility(layerId: string, visible: boolean) {
-            this.bgLayerId = 'void'
-            this.bgLayers.forEach((layer) => {
-                layer.visible = false
-                if (layer.id === layerId) {
-                    layer.visible = visible
-                    if (visible) {
-                        this.bgLayerId = layerId
-                    }
+                if (visible) {
+                    bgLayerId.value = layerId
                 }
-            })
-        },
-        moveLayerToIndex(oldIndex: number, newIndex: number) {
-            if (oldIndex < 0 || oldIndex >= this.layersOnMap.length) {
-                return
             }
-            if (newIndex < 0 || newIndex >= this.layersOnMap.length) {
-                return
-            }
-            const layer = this.layersOnMap[oldIndex]
-            this.layersOnMap.splice(oldIndex, 1)
-            this.layersOnMap.splice(newIndex, 0, layer)
-        },
-        setLayerConfigs(lang: string, configs: Record<string, LayerConfig | null>) {
-            this.layerConfigs[lang] = configs
-        },
-    },
+        })
+        updateMapUrlSearchParams()
+    }
+    function moveLayerToIndex(oldIndex: number, newIndex: number) {
+        if (oldIndex < 0 || oldIndex >= layersOnMap.value.length) return
+        if (newIndex < 0 || newIndex >= layersOnMap.value.length) return
+        const layer = layersOnMap.value[oldIndex]
+        layersOnMap.value.splice(oldIndex, 1)
+        layersOnMap.value.splice(newIndex, 0, layer)
+        updateMapUrlSearchParams()
+    }
+    function setLayerConfigs(lang: string, configs: Record<string, LayerConfig | null>) {
+        layerConfigs.value[lang] = configs
+    }
+
+    // Helper functions
+    function updateMapUrlSearchParams() {
+        mapStore.setMapUrlSearchParams({
+            layers: layersOnMap.value.map((layer) => convertToMapParameter(layer)).join(';'),
+            bgLayer: bgLayerId.value ?? 'void',
+            z: undefined,
+            center: undefined,
+        })
+    }
+
+    return {
+        // state
+        layersOnMap,
+        infoLayerId,
+        infoLayerRecord,
+        bgLayerId,
+        bgLayers,
+        language,
+        layerConfigs,
+        // getters
+        layersOnMapCount,
+        getLayerById,
+        isLayerOnMap,
+        showLayerInfo,
+        visibleLayers,
+        getLayerConfigsByLang,
+        // actions
+        addLayerToMap,
+        setInfoLayerId,
+        setInfoLayerRecord,
+        setLanguage,
+        resetInfoLayerId,
+        deleteLayerById,
+        setLayerVisibility,
+        setLayerOpacity,
+        setBgLayerVisibility,
+        moveLayerToIndex,
+        setLayerConfigs,
+    }
 })

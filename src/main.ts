@@ -3,7 +3,6 @@ import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
 
 import router from '@/router'
-import mapUrlPlugin from '@/store/plugins/map-url.plugin'
 
 import './assets/main.css'
 
@@ -19,8 +18,6 @@ import App from './App.vue'
 
 const app = createApp(App)
 const pinia = createPinia()
-
-pinia.use(mapUrlPlugin)
 
 app.use(pinia)
 app.use(router)

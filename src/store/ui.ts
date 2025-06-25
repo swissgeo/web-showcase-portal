@@ -1,53 +1,56 @@
 import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 
-export interface UiStoreState {
-    // TODO(IS): Make these UI exclusive open/close states
-    // e.g. if layer cart is open, geocatalog tree should be closed
-    isLayerCartVisible: boolean
-    isLayerLegendVisible: boolean
-    isGeocatalogTreeVisible: boolean
-}
+export const useUiStore = defineStore('ui', () => {
+    // State
+    const isLayerCartVisible = ref(false)
+    const isLayerLegendVisible = ref(false)
+    const isGeocatalogTreeVisible = ref(false)
 
-export const useUiStore = defineStore('ui', {
-    state: (): UiStoreState => {
-        return {
-            isLayerCartVisible: false,
-            isLayerLegendVisible: false,
-            isGeocatalogTreeVisible: false,
+    // Getter
+    const isSidebarOpen = computed(() => isLayerCartVisible.value || isGeocatalogTreeVisible.value)
+
+    // Actions
+    function setLayerCartVisible(visible: boolean) {
+        isLayerCartVisible.value = visible
+    }
+
+    function toggleLayerCart() {
+        isLayerCartVisible.value = !isLayerCartVisible.value
+    }
+
+    function setLayerLegendVisible(visible: boolean) {
+        isLayerLegendVisible.value = visible
+    }
+
+    function toggleLayerLegend() {
+        isLayerLegendVisible.value = !isLayerLegendVisible.value
+    }
+    function toggleGeocatalogTree() {
+        isGeocatalogTreeVisible.value = !isGeocatalogTreeVisible.value
+        // Close layer cart if geocatalog tree is opened
+        if (isGeocatalogTreeVisible.value) {
+            isLayerCartVisible.value = false
         }
-    },
-    getters: {
-        isSidebarOpen: (state) => {
-            return state.isLayerCartVisible || state.isGeocatalogTreeVisible
-        },
-    },
-    actions: {
-        setLayerCartVisible(visible: boolean) {
-            this.isLayerCartVisible = visible
-        },
-        toggleLayerCart() {
-            this.isLayerCartVisible = !this.isLayerCartVisible
-            // Close geocatalog tree if layer cart is opened
-            if (this.isLayerCartVisible) {
-                this.isGeocatalogTreeVisible = false
-            }
-        },
-        toggleGeocatalogTree() {
-            this.isGeocatalogTreeVisible = !this.isGeocatalogTreeVisible
-            // Close layer cart if geocatalog tree is opened
-            if (this.isGeocatalogTreeVisible) {
-                this.isLayerCartVisible = false
-            }
-        },
-        setLayerLegendVisible(visible: boolean) {
-            this.isLayerLegendVisible = visible
-        },
-        toggleLayerLegend() {
-            this.isLayerLegendVisible = !this.isLayerLegendVisible
-        },
-        closeSidebar() {
-            this.isLayerCartVisible = false
-            this.isGeocatalogTreeVisible = false
-        },
-    },
+    }
+    function closeSidebar() {
+        isLayerCartVisible.value = false
+        isGeocatalogTreeVisible.value = false
+    }
+
+    return {
+        // State
+        isLayerCartVisible,
+        isLayerLegendVisible,
+        isGeocatalogTreeVisible,
+        // Getter
+        isSidebarOpen,
+        // Actions
+        setLayerCartVisible,
+        toggleLayerCart,
+        setLayerLegendVisible,
+        toggleLayerLegend,
+        toggleGeocatalogTree,
+        closeSidebar,
+    }
 })

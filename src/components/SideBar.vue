@@ -101,52 +101,54 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="absolute top-0 left-0 z-10 flex h-screen w-auto flex-col bg-neutral-100 shadow-lg">
-        <div
-            class="flex-shrink-0 cursor-pointer bg-white"
-            @click="resetApp"
-        >
-            <LogoPic
-                class="h-12"
-                :condensed="!uiStore.isSidebarOpen"
-            />
-        </div>
-        <div class="flex min-h-0 w-full flex-1 flex-row p-0">
-            <!-- First column -->
+    <div class="absolute top-0 left-0 z-10 flex h-screen w-auto bg-neutral-100 shadow-lg">
+        <div class="flex flex-col">
             <div
-                class="flex h-full min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4"
+                class="flex-shrink-0 cursor-pointer bg-white"
+                @click="resetApp"
             >
-                <div class="flex flex-col items-center gap-2">
-                    <LayerCartButton />
-                    <GeocatalogTreeButton />
-                </div>
-                <LanguageSwitchButton class="w-19 py-5" />
+                <LogoPic
+                    class="h-12"
+                    :condensed="!uiStore.isSidebarOpen"
+                />
             </div>
-            <!-- Second column -->
-            <div
-                v-show="uiStore.isLayerCartVisible || uiStore.isGeocatalogTreeVisible"
-                class="relative flex"
-            >
-                <LayerCart
-                    v-show="uiStore.isLayerCartVisible"
-                    :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                    class="h-full overflow-y-auto bg-white"
-                />
-                <TopicTreeBrowser
-                    v-if="uiStore.isGeocatalogTreeVisible"
-                    :root="topicTreeRoot"
-                    :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                    class="h-full overflow-y-auto bg-white"
-                />
-
-                <!-- Draggable resize handle -->
+            <div class="flex min-h-0 w-full flex-1 flex-row p-0">
+                <!-- First column -->
                 <div
-                    class="flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
-                    @mousedown="startDragging"
+                    class="flex h-full min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4"
                 >
-                    <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0 bg-white" />
+                    <div class="flex flex-col items-center gap-2">
+                        <LayerCartButton />
+                        <GeocatalogTreeButton />
+                    </div>
+                    <LanguageSwitchButton class="w-19 py-5" />
+                </div>
+                <!-- Second column -->
+                <div
+                    v-show="uiStore.isLayerCartVisible || uiStore.isGeocatalogTreeVisible"
+                    class="relative flex"
+                >
+                    <LayerCart
+                        v-show="uiStore.isLayerCartVisible"
+                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                        class="h-full overflow-y-auto bg-white"
+                    />
+                    <TopicTreeBrowser
+                        v-if="uiStore.isGeocatalogTreeVisible"
+                        :root="topicTreeRoot"
+                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                        class="h-full overflow-y-auto bg-white"
+                    />
                 </div>
             </div>
+        </div>
+        <!-- Draggable resize handle -->
+        <div
+            v-if="uiStore.isSidebarOpen"
+            class="z-1 flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
+            @mousedown="startDragging"
+        >
+            <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0 bg-white" />
         </div>
     </div>
 </template>

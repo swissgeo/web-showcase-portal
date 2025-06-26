@@ -89,8 +89,6 @@ function resetApp() {
 }
 
 updateGeocatalogLanguage()
-// Initialize topic tree with reactive updates
-initializeTopicTree()
 
 // Cleanup function to ensure no hanging event listeners
 onBeforeUnmount(() => {

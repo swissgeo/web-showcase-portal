@@ -18,7 +18,8 @@
         "lint": "eslint . --fix",
         "lint:no-fix": "eslint . ",
         "format": "prettier --write src/",
-        "format:no-fix": "prettier -c src/"
+        "format:no-fix": "prettier -c src/",
+        "lf": "pnpm run lint && pnpm run format"
     },
     "dependencies": {
         "@fontsource/dm-sans": "^5.2.5",

@@ -1004,35 +1004,6 @@
         }
     },
     {
-        "logo": "f600199b-afd9-472d-9c42-6e41f72ea820.png",
-        "website": "http://www.anu.gr.ch",
-        "defaultCategory": {
-            "id": 42521579,
-            "name": "cantonal",
-            "label": {
-                "ger": "cantonal",
-                "ita": "cantonal",
-                "fre": "cantonal",
-                "roh": "cantonal",
-                "eng": "cantonal"
-            }
-        },
-        "allowedCategories": [],
-        "enableAllowedCategories": false,
-        "id": 63,
-        "email": "hanspeter.loetscher@anu.gr.ch",
-        "referrer": null,
-        "description": "Kanton Graubünden",
-        "name": "Graubünden",
-        "label": {
-            "ger": "ANU Kanton Graubünden",
-            "ita": "ANU Cantone dei Grigioni",
-            "fre": "ANU Canton des Grisons",
-            "roh": "ANU Chantun Grischun",
-            "eng": "ANU Canton of Graubünden"
-        }
-    },
-    {
         "logo": "aba128b7-1fb2-4add-877b-9250cda3d9df.png",
         "website": "http://www.sz.ch/geoinformation",
         "defaultCategory": {

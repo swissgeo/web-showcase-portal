@@ -11,11 +11,13 @@ import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsDesktop from '@/components/search/SearchResultsDesktop.vue'
 import { useSearchStore } from '@/store/search'
+import { useUiStore } from '@/store/ui'
 
 const searchContainer = useTemplateRef<HTMLElement>('searchContainer')
 
 const { t } = useI18n()
 const searchStore = useSearchStore()
+const uiStore = useUiStore()
 
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
 const searchTerm = computed(() => searchStore.searchTerm)
@@ -75,6 +77,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                     />
                     <SearchKeywordContainer class="mb-5 px-4 pt-4" />
                     <SearchFilter
+                        v-show="uiStore.isFilterVisible"
                         data-cy="search-filter"
                         class="bg-swissgeo-lightblue rounded-b-lg p-4"
                     />

@@ -63,6 +63,10 @@
         "selectCanton": "Kantone",
         "selectCommune": "Gemeinden"
     },
+    "filter": {
+        "title": "Filter",
+        "filterByProvider": "Filter nach Anbieter"
+    },
     "keywords": {
         "title": "Beliebte Suchen",
         "categories": {

@@ -107,7 +107,10 @@ const clearSearch = () => {
                     @focus="openSearch"
                 />
                 <SearchKeywordContainer class="px-4" />
-                <SearchFilterMobile class="bg-swissgeo-lightblue p-4" />
+                <SearchFilterMobile
+                    v-show="uiStore.isFilterVisible"
+                    class="bg-swissgeo-lightblue p-4"
+                />
             </template>
         </Card>
     </div>

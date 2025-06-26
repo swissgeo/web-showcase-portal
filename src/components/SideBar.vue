@@ -82,10 +82,10 @@ function stopDragging() {
 }
 
 function resetApp() {
-    uiStore.$reset()
-    searchStore.$reset()
-    mainStore.$reset()
-    mapStore.$reset()
+    uiStore.resetStore()
+    searchStore.resetStore()
+    mainStore.resetStore()
+    mapStore.resetStore()
 }
 
 updateGeocatalogLanguage()

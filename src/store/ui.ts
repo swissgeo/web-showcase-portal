@@ -63,6 +63,12 @@ export const useUiStore = defineStore('ui', () => {
         currentSidebar.value = null
     }
 
+    function resetStore() {
+        currentSidebar.value = null
+        isLayerLegendVisible.value = false
+        sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
+    }
+
     return {
         // State
         currentSidebar,
@@ -80,5 +86,6 @@ export const useUiStore = defineStore('ui', () => {
         setLayerLegendVisible,
         toggleLayerLegend,
         closeSidebar,
+        resetStore,
     }
 })

@@ -110,6 +110,16 @@ export const useSearchStore = defineStore('search', () => {
         triggerGeocatSearch()
     }
 
+    function resetStore() {
+        resetSearch()
+        dataSearchPanelWidth.value = SEARCH_RESULTS_DESKTOP_COLUMN_DEFAULT_WIDTH
+        isOpenSearch.value = false
+        forceScrollComponentUpdate.value = false
+        selectedFederalIds.value = []
+        selectedCantonalIds.value = []
+        selectedCommunalIds.value = []
+    }
+
     return {
         // state
         isSearchingAddresses,
@@ -142,5 +152,6 @@ export const useSearchStore = defineStore('search', () => {
         setSelectedFederalIds,
         setSelectedCantonalIds,
         setSelectedCommunalIds,
+        resetStore,
     }
 })

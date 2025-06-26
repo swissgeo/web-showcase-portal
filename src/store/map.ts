@@ -33,10 +33,23 @@ export const useMapStore = defineStore('map', () => {
         }
     }
 
+    function resetStore() {
+        mapUrlSearchParams.value = {
+            lang: 'de',
+            z: 1,
+            center: [2660000, 1190000],
+            bgLayer: 'ch.swisstopo.pixelkarte-farbe',
+            layers: layers.value,
+            hideEmbedUI: true,
+            topic: geocatalogStore.currentTopic,
+        }
+    }
+
     return {
         // State
         mapUrlSearchParams,
         // Actions
         setMapUrlSearchParams,
+        resetStore,
     }
 })

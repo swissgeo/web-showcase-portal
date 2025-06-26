@@ -1,15 +1,18 @@
-import { ref, watchEffect, computed } from 'vue'
+import { ref, computed } from 'vue'
 
 import { fetchTopicCatalogJson, fetchLayerConfigJson } from '@/api/topics.api'
 import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore, type LayerConfig } from '@/store/main'
 import { type TopicTreeNode } from '@/types/geocatalog'
+import { LayerType } from '@/types/layer'
+
+// This topicTreeRoot ref is outside of the composable function to have one single source of truth
+const topicTreeRoot = ref<TopicTreeNode | null>(null)
 
 export function useTopicTree() {
     const geocatalogStore = useGeocatalogStore()
     const mainStore = useMainStore()
-
-    const topicTreeRoot = ref<TopicTreeNode | null>(null)
+    const topic = computed(() => geocatalogStore.currentTopic || 'ech')
 
     // Filter the root node to only include layers that are present in the layer configs
     function filterTree(
@@ -49,18 +52,39 @@ export function useTopicTree() {
         topicTreeRoot.value = root
     }
 
-    // Initialize topic tree data with reactive updates
-    function initializeTopicTree() {
-        const topic = computed(() => geocatalogStore.currentTopic || 'ech')
+    async function updateGeocatalogLanguage() {
+        // We have to fetch the topic tree root again for the new language so we await for it before we can use it
+        await fetchAndPrepareTopicTreeRoot(topic.value, mainStore.language)
+        updateLayersLanguageChange()
+    }
 
-        watchEffect(() => {
-            fetchAndPrepareTopicTreeRoot(topic.value, mainStore.language)
+    function updateLayersLanguageChange() {
+        const layers = mainStore.layersOnMap
+        const geocatalogLayers = layers.filter((layer) => layer.type === LayerType.Geocatalog)
+        geocatalogLayers.forEach((layer) => {
+            const layerConfigLang = mainStore.getLayerConfigsByLang(mainStore.language)
+            if (!layerConfigLang) {
+                return
+            }
+            const layerConfig = layerConfigLang[layer.id]
+
+            if (!layerConfig) {
+                return
+            }
+            mainStore.replaceLayerOnMap({
+                id: layerConfig.id || layer.id,
+                name: layerConfig.label,
+                opacity: 1,
+                visible: true,
+                geonetworkRecord: null,
+                type: LayerType.Geocatalog,
+            })
         })
     }
 
     return {
         topicTreeRoot,
         fetchAndPrepareTopicTreeRoot,
-        initializeTopicTree,
+        updateGeocatalogLanguage,
     }
 }

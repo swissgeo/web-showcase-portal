@@ -91,8 +91,6 @@ export const useMainStore = defineStore('main', () => {
     }
     function setLanguage(lang: Language) {
         language.value = lang
-        i18n.global.locale.value = langToLocal(lang) as typeof i18n.global.locale.value
-        localStorage.setItem('selectedLanguage', lang)
     }
     function resetInfoLayerId() {
         infoLayerId.value = null
@@ -128,6 +126,13 @@ export const useMainStore = defineStore('main', () => {
             }
         })
         updateMapUrlSearchParams()
+    }
+    function replaceLayerOnMap(layer: Layer) {
+        layersOnMap.value.splice(
+            layersOnMap.value.findIndex((l) => l.id === layer.id),
+            1,
+            layer
+        )
     }
     function moveLayerToIndex(oldIndex: number, newIndex: number) {
         if (oldIndex < 0 || oldIndex >= layersOnMap.value.length) return
@@ -177,6 +182,7 @@ export const useMainStore = defineStore('main', () => {
         setLayerVisibility,
         setLayerOpacity,
         setBgLayerVisibility,
+        replaceLayerOnMap,
         moveLayerToIndex,
         setLayerConfigs,
     }

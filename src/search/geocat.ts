@@ -4,7 +4,7 @@ import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
 import { langToLabelKey } from '@/types/language'
-import { LayerType } from '@/types/layer'
+import { LayerType, type Layer } from '@/types/layer'
 import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
 import { useLanguage } from '@/utils/language.composable'
 
@@ -33,6 +33,8 @@ export default function useGeocat() {
     function setGNUILanguage() {
         initializeGNUI()
         searchStore.geocatSearchResults = []
+        // update the layers in the layer cart
+        searchGeocatLayers(mainStore.layersOnMap)
     }
 
     const searchCallback = ({ records, count }: { records: GeonetworkRecord[]; count: number }) => {
@@ -117,34 +119,76 @@ export default function useGeocat() {
                 })
             )
             .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
-                // Sort records in the order of the provided layers
-                const sortedRecords = layers
-                    .map((layer) =>
-                        records.find((record) => record.uniqueIdentifier === layer.geocatId)
-                    )
-                    .filter((record): record is GeonetworkRecord => !!record)
-
-                sortedRecords.forEach((record: GeonetworkRecord) => {
-                    if (!mainStore.getLayerById(record.uniqueIdentifier)) {
-                        mainStore.addLayerToMap({
-                            id: record.uniqueIdentifier,
-                            name: record.title,
-                            geonetworkRecord: record,
-                            opacity:
-                                layers.find((layer) => layer.geocatId === record.uniqueIdentifier)
-                                    ?.opacity ?? 1,
-                            visible: true,
-                            type: LayerType.Geonetwork,
-                        })
-                    }
-                })
+                addConfigLayers(records, layers)
             })
     }
 
+    const searchGeocatLayers = (layers: Layer[]) => {
+        const geocatLayers = layers.filter((layer) => layer.type === LayerType.Geonetwork)
+        // if there's a request ongoing, we cancel that
+        subscription = GNUI.recordsRepository
+            .search({
+                filters: {
+                    linkProtocol: '/OGC:WMT?S.*/',
+                },
+                offset: 0,
+                limit: 500,
+                filterIds: geocatLayers.map((layer) => layer.id),
+            })
+            .pipe(
+                catchError((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error('Error during GeoCat search:', error)
+                    return []
+                })
+            )
+            .subscribe(({ records }: { records: GeonetworkRecord[] }) => {
+                replaceGeocatLayers(records, layers)
+            })
+    }
+
+    // Helper functions
     const getRecordDetails = (uuid: string) => {
         GNUI.recordsRepository.getRecord(uuid).subscribe(recordCallback)
     }
 
+    function replaceGeocatLayers(records: GeonetworkRecord[], layers: Layer[]): void {
+        const sortedRecords = layers
+            .filter((layer) => layer.type === LayerType.Geonetwork)
+            .map((layer) => records.find((record) => record.uniqueIdentifier === layer.id))
+            .filter((record): record is GeonetworkRecord => !!record)
+
+        sortedRecords.forEach((record: GeonetworkRecord) => {
+            mainStore.replaceLayerOnMap({
+                id: record.uniqueIdentifier,
+                name: record.title,
+                geonetworkRecord: record,
+                opacity: layers.find((layer) => layer.id === record.uniqueIdentifier)?.opacity ?? 1,
+                visible: true,
+                type: LayerType.Geonetwork,
+            })
+        })
+    }
+
+    function addConfigLayers(records: GeonetworkRecord[], layers: SearchKeywordLayer[]): void {
+        const sortedRecords = layers
+            .map((layer) => records.find((record) => record.uniqueIdentifier === layer.geocatId))
+            .filter((record): record is GeonetworkRecord => !!record)
+        sortedRecords.forEach((record: GeonetworkRecord) => {
+            if (!mainStore.getLayerById(record.uniqueIdentifier)) {
+                mainStore.addLayerToMap({
+                    id: record.uniqueIdentifier,
+                    name: record.title,
+                    geonetworkRecord: record,
+                    opacity:
+                        layers.find((layer) => layer.geocatId === record.uniqueIdentifier)
+                            ?.opacity ?? 1,
+                    visible: true,
+                    type: LayerType.Geonetwork,
+                })
+            }
+        })
+    }
     return {
         setGNUILanguage,
         initializeGNUI,

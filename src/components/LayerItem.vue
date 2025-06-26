@@ -125,6 +125,16 @@ const bgLayerThumbnail = computed(() => {
     }
     return ''
 })
+
+const tooltipContent = computed(() => {
+    if (props.isBgLayer) {
+        return t(props.layer.name)
+    }
+    const fullTitle = props.layer.geonetworkRecord?.title || props.layer.name || ''
+    const owner =
+        props.layer.geonetworkRecord?.ownerOrganization?.name || props.layer.attribution || ''
+    return owner ? `${fullTitle}\n\n${owner}` : fullTitle
+})
 </script>
 
 <template>
@@ -139,7 +149,10 @@ const bgLayerThumbnail = computed(() => {
             <GripVertical />
         </div>
         <!-- <GripVertical class="absolute left-0 top-0 h-full hidden cursor-grab group-hover:flex" /> -->
-        <div class="flex items-center gap-x-1">
+        <div
+            class="flex items-center gap-x-1"
+            :title="tooltipContent"
+        >
             <Button
                 variant="outlined"
                 rounded

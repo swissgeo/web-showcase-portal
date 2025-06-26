@@ -1,51 +1,62 @@
 import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 
 import { type GeocatalogTopic, type TopicTreeNode } from '@/types/geocatalog'
 
-export interface GeocatalogStoreState {
-    expandedKeys: string[]
-    topicTreeData: Record<string, Record<string, TopicTreeNode | null>>
-    currentTopic: string
-    topics: GeocatalogTopic[]
-}
+export const useGeocatalogStore = defineStore('geocatalog', () => {
+    // State
+    const expandedKeys = ref<string[]>([])
+    const topicTreeData = ref<Record<string, Record<string, TopicTreeNode | null>>>({})
+    const currentTopic = ref('ech')
+    const topics = ref<GeocatalogTopic[]>([])
 
-export const useGeocatalogStore = defineStore('geocatalog', {
-    state: (): GeocatalogStoreState => {
-        return {
-            expandedKeys: [],
-            topicTreeData: {},
-            currentTopic: 'ech',
-            topics: [],
+    // Getter
+    const getTopicTreeRoot = computed(() => (topic: string, lang: string) => {
+        return topicTreeData.value[topic]?.[lang] || null
+    })
+
+    // Actions
+    function addExpandedKey(key: string) {
+        if (!expandedKeys.value.includes(key)) {
+            expandedKeys.value.push(key)
         }
-    },
-    getters: {
-        getTopicTreeRoot: (state) => (topic: string, lang: string) => {
-            return state.topicTreeData[topic]?.[lang] || null
-        },
-    },
-    actions: {
-        addExpandedKey(key: string) {
-            if (!this.expandedKeys.includes(key)) {
-                this.expandedKeys.push(key)
-            }
-        },
-        removeExpandedKey(key: string) {
-            const idx = this.expandedKeys.indexOf(key)
-            if (idx !== -1) {
-                this.expandedKeys.splice(idx, 1)
-            }
-        },
-        setTopicTreeRoot(topic: string, lang: string, root: TopicTreeNode | null) {
-            if (!this.topicTreeData[topic]) {
-                this.topicTreeData[topic] = {}
-            }
-            this.topicTreeData[topic][lang] = root
-        },
-        setCurrentTopic(topic: string) {
-            this.currentTopic = topic
-        },
-        setTopics(topics: GeocatalogTopic[]) {
-            this.topics = topics
-        },
-    },
+    }
+
+    function removeExpandedKey(key: string) {
+        const idx = expandedKeys.value.indexOf(key)
+        if (idx !== -1) {
+            expandedKeys.value.splice(idx, 1)
+        }
+    }
+
+    function setTopicTreeRoot(topic: string, lang: string, root: TopicTreeNode | null) {
+        if (!topicTreeData.value[topic]) {
+            topicTreeData.value[topic] = {}
+        }
+        topicTreeData.value[topic][lang] = root
+    }
+
+    function setCurrentTopic(topic: string) {
+        currentTopic.value = topic
+    }
+
+    function setTopics(newTopics: GeocatalogTopic[]) {
+        topics.value = newTopics
+    }
+
+    return {
+        // State
+        expandedKeys,
+        topicTreeData,
+        currentTopic,
+        topics,
+        // Getter
+        getTopicTreeRoot,
+        // Actions
+        addExpandedKey,
+        removeExpandedKey,
+        setTopicTreeRoot,
+        setCurrentTopic,
+        setTopics,
+    }
 })

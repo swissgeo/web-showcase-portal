@@ -11,7 +11,7 @@ import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
-const { topicTreeRoot, initializeTopicTree } = useTopicTree()
+const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 
 const uiStore = useUiStore()
 const mapStore = useMapStore()
@@ -25,8 +25,7 @@ function resetApp() {
     mapStore.$reset()
 }
 
-// Initialize topic tree with reactive updates
-initializeTopicTree()
+updateGeocatalogLanguage()
 </script>
 
 <template>

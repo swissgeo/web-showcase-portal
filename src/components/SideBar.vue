@@ -94,9 +94,7 @@ initializeTopicTree()
 
 // Cleanup function to ensure no hanging event listeners
 onBeforeUnmount(() => {
-    if (isDragging) {
-        stopDragging()
-    }
+    stopDragging()
 })
 </script>
 

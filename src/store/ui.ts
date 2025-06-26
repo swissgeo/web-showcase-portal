@@ -7,9 +7,10 @@ export enum SidebarType {
 }
 
 // Sidebar width constants
-export const SIDEBAR_MIN_WIDTH = 300
-export const SIDEBAR_MAX_WIDTH = 600
-export const SIDEBAR_DEFAULT_WIDTH = 400
+export const SIDEBAR_MIN_WIDTH = 400
+// Half the window width minus some padding from side bar
+export const SIDEBAR_MAX_WIDTH = window.innerWidth / 2 - 80
+export const SIDEBAR_DEFAULT_WIDTH = 500
 
 export const useUiStore = defineStore('ui', () => {
     // State

@@ -144,7 +144,7 @@ onBeforeUnmount(() => {
             class="z-1 flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
             @mousedown="startDragging"
         >
-            <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0 bg-white" />
+            <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0" />
         </div>
     </div>
 </template>

@@ -13,7 +13,6 @@ import { getServiceResource } from '@/utils/layerUtils'
 const { result } = defineProps<{
     result: GeonetworkRecord
 }>()
-
 const mainStore = useMainStore()
 const { t } = useI18n()
 

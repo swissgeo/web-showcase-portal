@@ -62,7 +62,7 @@ function onEmbedChange(e: MessageEvent) {
     <iframe
         data-cy="iframe-mapviewer"
         :src="urlString"
-        class="h-full w-full"
+        class="h-full w-full md:pl-20"
         allow="geolocation"
     ></iframe>
     <Toast

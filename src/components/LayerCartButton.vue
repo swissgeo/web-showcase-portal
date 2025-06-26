@@ -4,7 +4,7 @@ import { computed, inject, ref, watch } from 'vue'
 
 import LayerIcon from '@/assets/icons/layers.svg?use'
 import { useMainStore } from '@/store/main'
-import { useUiStore } from '@/store/ui'
+import { SidebarType, useUiStore } from '@/store/ui'
 
 const isDesktop = inject<boolean>('isDesktop')
 // Trigger animation when the layer count changes
@@ -18,7 +18,7 @@ const layerCount = computed(() => mainStore.layersOnMap.length)
 
 // Toggle visibility of the layer cart
 const toggleLayerCart = () => {
-    uiStore.toggleLayerCart()
+    uiStore.toggleSidebar(SidebarType.LAYER_CART)
 }
 
 watch(layerCount, (newValue, oldValue) => {

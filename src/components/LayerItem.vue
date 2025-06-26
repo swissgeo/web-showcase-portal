@@ -148,9 +148,8 @@ const tooltipContent = computed(() => {
         >
             <GripVertical />
         </div>
-        <!-- <GripVertical class="absolute left-0 top-0 h-full hidden cursor-grab group-hover:flex" /> -->
         <div
-            class="flex items-center gap-x-1"
+            class="flex items-center space-x-2"
             :title="tooltipContent"
         >
             <Button
@@ -173,7 +172,6 @@ const tooltipContent = computed(() => {
             <span
                 :class="{ 'text-gray-400 line-through': !layer.visible }"
                 class="layer-item-drag-handle flex-1 cursor-grab truncate text-sm font-medium"
-                style="max-width: 200px"
                 >{{ t(layer.name) }}</span
             >
             <img

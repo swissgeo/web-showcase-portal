@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { TreeNode } from 'primevue/treenode'
 
+import { ChevronLeft, PanelLeftClose } from 'lucide-vue-next'
+import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import Select from 'primevue/select'
 import Tree from 'primevue/tree'
@@ -10,6 +12,7 @@ import { useI18n } from 'vue-i18n'
 import { loadGeocatalogTopics } from '@/api/topics.api'
 import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore } from '@/store/main'
+import { SidebarType, useUiStore } from '@/store/ui'
 import { type GeocatalogTopic, type TopicTreeNode } from '@/types/geocatalog'
 import { LayerType } from '@/types/layer'
 
@@ -17,11 +20,16 @@ const { t } = useI18n()
 
 const mainStore = useMainStore()
 const geocatalogStore = useGeocatalogStore()
+const uiStore = useUiStore()
 
 const props = defineProps({
     root: {
         type: [Object, null] as PropType<TopicTreeNode | null>,
         required: true,
+    },
+    isDesktopView: {
+        type: Boolean,
+        default: true,
     },
 })
 
@@ -151,7 +159,37 @@ onMounted(async () => {
     <Panel
         class="flex h-full flex-col"
         :header="t('geocatalog.title')"
+        :pt="{
+            root: 'md:rounded-t-none md:shadow-none',
+            header: 'md:justify-between justify-center',
+            title: 'order-2 md:order-1 ',
+            headerActions: 'absolute left-4 md:static md:order-2',
+        }"
     >
+        <template #icons>
+            <Button
+                v-if="!props.isDesktopView"
+                severity="secondary"
+                outlined
+                class="order-1"
+                @click="uiStore.toggleSidebar(SidebarType.GEOCATALOG_TREE)"
+            >
+                <template #icon>
+                    <ChevronLeft />
+                </template>
+            </Button>
+            <Button
+                v-if="props.isDesktopView"
+                severity="secondary"
+                size="medium"
+                :text="true"
+                @click="uiStore.toggleSidebar(SidebarType.GEOCATALOG_TREE)"
+            >
+                <template #icon>
+                    <PanelLeftClose />
+                </template>
+            </Button>
+        </template>
         <div class="mb-4 flex flex-row items-center gap-2">
             <label
                 for="topic-select"
@@ -163,9 +201,9 @@ onMounted(async () => {
                 v-model="selectedTopic"
                 :options="geocatalogTopics"
                 :option-label="(topic) => getTopicLabel(topic.id)"
-                class="w-full md:w-1/2"
                 :pt="{
                     overlay: { 'data-cy': 'select-topic' },
+                    root: 'w-full',
                 }"
             />
         </div>

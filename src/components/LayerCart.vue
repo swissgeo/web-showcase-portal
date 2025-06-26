@@ -10,7 +10,7 @@ import type { Layer } from '@/types/layer'
 
 import LayerItem from '@/components/LayerItem.vue'
 import { useMainStore } from '@/store/main'
-import { useUiStore } from '@/store/ui'
+import { SidebarType, useUiStore } from '@/store/ui'
 
 const { t } = useI18n()
 
@@ -85,7 +85,7 @@ function destroySortable() {
                 severity="secondary"
                 outlined
                 class="order-1"
-                @click="uiStore.toggleLayerCart"
+                @click="uiStore.toggleSidebar(SidebarType.LAYER_CART)"
             >
                 <template #icon>
                     <ChevronLeft />
@@ -96,7 +96,7 @@ function destroySortable() {
                 severity="secondary"
                 size="medium"
                 :text="true"
-                @click="uiStore.toggleLayerCart"
+                @click="uiStore.toggleSidebar(SidebarType.LAYER_CART)"
             >
                 <template #icon>
                     <PanelLeftClose />

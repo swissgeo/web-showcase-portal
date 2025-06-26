@@ -25,7 +25,7 @@ const tooltipContent = computed(() => {
 
 <template>
     <SearchResultEntry class="flex justify-end gap-2">
-        <MapIcon class="h-4 w-4 overflow-hidden" />
+        <MapIcon class="h-4 w-4 overflow-hidden stroke-current" />
         <div
             class="mr-auto flex-1 truncate"
             :title="tooltipContent"

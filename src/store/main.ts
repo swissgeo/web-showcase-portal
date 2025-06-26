@@ -21,6 +21,34 @@ export type LayerConfig = {
     background: boolean
 }
 
+const defaultBgLayerId = 'ch.swisstopo.pixelkarte-farbe'
+const defaultBgLayers: Layer[] = [
+    {
+        id: 'ch.swisstopo.pixelkarte-farbe',
+        name: 'layerCart.colorMap',
+        visible: true,
+        opacity: 1,
+        geonetworkRecord: null,
+        type: LayerType.Geocatalog,
+    },
+    {
+        id: 'ch.swisstopo.pixelkarte-grau',
+        name: 'layerCart.greyMap',
+        visible: false,
+        opacity: 1,
+        geonetworkRecord: null,
+        type: LayerType.Geocatalog,
+    },
+    {
+        id: 'ch.swisstopo.swissimage',
+        name: 'layerCart.aerialImagery',
+        visible: false,
+        opacity: 1,
+        geonetworkRecord: null,
+        type: LayerType.Geocatalog,
+    },
+]
+
 export const useMainStore = defineStore('main', () => {
     // Language initialization
     const storedLanguage = localStorage.getItem('selectedLanguage') as Language | null
@@ -34,33 +62,8 @@ export const useMainStore = defineStore('main', () => {
     const layersOnMap = ref<Layer[]>([])
     const infoLayerId = ref<string | null>(null)
     const infoLayerRecord = ref<GeonetworkRecord | null>(null)
-    const bgLayerId = ref<string | null>('ch.swisstopo.pixelkarte-farbe')
-    const bgLayers = ref<Layer[]>([
-        {
-            id: 'ch.swisstopo.pixelkarte-farbe',
-            name: 'layerCart.colorMap',
-            visible: true,
-            opacity: 1,
-            geonetworkRecord: null,
-            type: LayerType.Geocatalog,
-        },
-        {
-            id: 'ch.swisstopo.pixelkarte-grau',
-            name: 'layerCart.greyMap',
-            visible: false,
-            opacity: 1,
-            geonetworkRecord: null,
-            type: LayerType.Geocatalog,
-        },
-        {
-            id: 'ch.swisstopo.swissimage',
-            name: 'layerCart.aerialImagery',
-            visible: false,
-            opacity: 1,
-            geonetworkRecord: null,
-            type: LayerType.Geocatalog,
-        },
-    ])
+    const bgLayerId = ref<string | null>(defaultBgLayerId)
+    const bgLayers = ref<Layer[]>(defaultBgLayers)
     const language = ref<Language>(initialLanguage)
     const layerConfigs = ref<Record<string, Record<string, LayerConfig | null>>>({})
 
@@ -156,6 +159,17 @@ export const useMainStore = defineStore('main', () => {
         })
     }
 
+    function resetStore() {
+        layersOnMap.value = []
+        infoLayerId.value = null
+        infoLayerRecord.value = null
+        bgLayerId.value = defaultBgLayerId
+        bgLayers.value = defaultBgLayers
+        language.value = initialLanguage
+        layerConfigs.value = {}
+        i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
+    }
+
     return {
         // state
         layersOnMap,
@@ -185,5 +199,6 @@ export const useMainStore = defineStore('main', () => {
         replaceLayerOnMap,
         moveLayerToIndex,
         setLayerConfigs,
+        resetStore,
     }
 })

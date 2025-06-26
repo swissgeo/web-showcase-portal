@@ -3,7 +3,7 @@ import Button from 'primevue/button'
 import { inject } from 'vue'
 
 import MapIcon from '@/assets/icons/map.svg?use'
-import { useUiStore } from '@/store/ui'
+import { SidebarType, useUiStore } from '@/store/ui'
 
 const isDesktop = inject<boolean>('isDesktop')
 // Access the store
@@ -11,7 +11,7 @@ const uiStore = useUiStore()
 
 // Toggle visibility of the geocatalog tree
 const toggleGeocatalogTree = () => {
-    uiStore.toggleGeocatalogTree()
+    uiStore.toggleSidebar(SidebarType.GEOCATALOG_TREE)
 }
 </script>
 

@@ -20,7 +20,7 @@
         "showInfo": "Details",
         "delete": "Remove",
         "transparency": "Transparency",
-        "noLayers": "No layers selected",
+        "noLayerSelected": "No map selected",
         "title": "Displayed maps",
         "backgroundMap": "Background Map",
         "colorMap": "Color Map",
@@ -31,7 +31,8 @@
         "brokenImage": "Failed to load legend",
         "header": "Legend",
         "noLayers": "No maps displayed",
-        "noLegend": "No legend available"
+        "noLegend": "No legend available",
+        "closeThisWindow": "Close this window"
     },
     "details": {
         "header": "Details",

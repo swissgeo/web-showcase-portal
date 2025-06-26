@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { Info as InfoIcon } from 'lucide-vue-next'
 import Button from 'primevue/button'
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useMainStore } from '@/store/main'
+import { useUiStore } from '@/store/ui'
+const uiStore = useUiStore()
 
 const mainStore = useMainStore()
 const { t } = useI18n()
@@ -19,6 +21,14 @@ const showLayerInfo = (layerId: string) => {
         mainStore.resetInfoLayerId()
     } else {
         mainStore.setInfoLayerId(layerId)
+
+        // Ensure watcher triggers by resetting then setting
+        uiStore.setOpenLayerWindowFromDetailButton(false)
+        nextTick(() => {
+            uiStore.setOpenLayerWindowFromDetailButton(true)
+        })
+
+        uiStore.setLayerWindowVisible(true)
     }
 }
 

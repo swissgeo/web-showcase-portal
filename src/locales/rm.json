@@ -20,7 +20,7 @@
         "showInfo": "Detagls",
         "delete": "Allontanar",
         "transparency": "Transparenza",
-        "noLayers": "Naginas datas tschernidas",
+        "noLayerSelected": "Naginas cartas selecziunadas",
         "title": "Chartas visualisadas",
         "backgroundMap": "Carta davos",
         "colorMap": "Charta en colur",
@@ -31,7 +31,8 @@
         "brokenImage": "Naśti te ćhivel pes i legenda",
         "header": "Legenda",
         "noLayers": "Naginas chartas visualisadas",
-        "noLegend": "Naj legenda disponibilo"
+        "noLegend": "Naj legenda disponibilo",
+        "closeThisWindow": "Serra questa fenscha"
     },
     "details": {
         "header": "Detagls",

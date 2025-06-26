@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
-import { storeToRefs } from 'pinia'
 import {
     computed,
     provide,
@@ -12,20 +11,15 @@ import {
     readonly,
 } from 'vue'
 
-import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
 import DisclaimerBanner from '@/components/DisclaimerBanner.vue'
-import LayerLegend from '@/components/LayerLegend.vue'
-import LegendButton from '@/components/LayerLegendButton.vue'
+import LayerWindow from '@/components/LayerWindow.vue'
+import LayerWindowButton from '@/components/LayerWindowButton.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
-import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
 
-const mainStore = useMainStore()
-
-const { showLayerInfo } = storeToRefs(mainStore)
 const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const showWelcomeOverlay = useStorage('showWelcomeOverlay', false)
@@ -126,11 +120,10 @@ onUnmounted(() => {
                 class="pointer-events-auto"
                 data-cy="comp-search-mobile"
             ></SearchMobile>
-            <LayerLegend v-if="uiStore.isLayerLegendVisible" />
+            <LayerWindow v-if="uiStore.isLayerWindowVisible" />
             <MapPart class="grow-1"></MapPart>
-            <DatasetDetailPanel v-if="showLayerInfo" />
-            <LegendButton
-                v-if="isDesktop && !uiStore.isLayerLegendVisible"
+            <LayerWindowButton
+                v-if="isDesktop && !uiStore.isLayerWindowVisible"
                 class="pointer-events-auto absolute top-4 right-6"
             />
         </div>

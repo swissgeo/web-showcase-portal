@@ -20,7 +20,7 @@
         "showInfo": "Details",
         "delete": "Entfernen",
         "transparency": "Transparenz",
-        "noLayers": "Keine Layers gewählt",
+        "noLayerSelected": "Keine Karte ausgewählt",
         "title": "Angezeigte Karten",
         "backgroundMap": "Hintergrundkarte",
         "colorMap": "Karte farbig",
@@ -31,7 +31,8 @@
         "brokenImage": "Legende konnte nicht geladen werden",
         "header": "Legende",
         "noLayers": "Keine Karten dargestellt",
-        "noLegend": "Keine Legende verfügbar"
+        "noLegend": "Keine Legende verfügbar",
+        "closeThisWindow": "Dieses Fenster schliessen"
     },
     "details": {
         "header": "Details",

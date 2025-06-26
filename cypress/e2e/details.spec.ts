@@ -1,14 +1,24 @@
 const RADON_UID = '54a8a239-ace3-4510-8fd4-7b4ddc370727'
 
 function testDetails() {
-    cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+    cy.get('[data-cy="comp-layer-window"]').should('be.visible')
+    cy.get('[data-cy="comp-layer-window-tabs"]').should('be.visible')
     cy.get('[data-cy="div-dataset-details-title"]')
         .should('be.visible')
         .should('contain', 'Radon map')
 
-    cy.get('[data-cy="panel-dataset-details-info"]')
-        .should('be.visible')
-        .should('contain', 'The radon map indicates')
+    cy.get('[data-cy="comp-layer-window-tabs"]')
+    .find('li')
+    .contains('Info')
+    .click()
+
+    cy.get('[data-cy="div-dataset-info-abstract"]').should('contain', 'The radon map indicates')
+
+
+   cy.get('[data-cy="comp-layer-window-tabs"]')
+    .find('li')
+    .contains('Details')
+    .click()
 
     cy.get('[data-cy="panel-dataset-details-downloads"]').should('exist').scrollIntoView()
 

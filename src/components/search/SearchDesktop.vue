@@ -5,7 +5,7 @@ import Card from 'primevue/card'
 import { computed, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import LegendButton from '@/components/LayerLegendButton.vue'
+import LegendButton from '@/components/LayerWindowButton.vue'
 import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
@@ -40,9 +40,9 @@ const handleClickOutsideSearch = (event: MouseEvent) => {
     // outside of the info panel, outside of the search filter (including its children),
     // and outside of the topic selector
     const target = event.target as HTMLElement
-    const clickedInsideInfoPanel = !!target.closest('[data-cy="div-dataset-detail-panel"]')
     const clickedInsideSearchFilter = !!target.closest('[data-cy="multiselect-filter-list"]')
-    const clickedOutsideAllPanels = !clickedInsideInfoPanel && !clickedInsideSearchFilter
+    const clickedInsideLayerLegendWindow = !!target.closest('[data-cy="comp-layer-window"]')
+    const clickedOutsideAllPanels = !clickedInsideSearchFilter && !clickedInsideLayerLegendWindow
     if (searchStore.isOpenSearch && clickedOutsideAllPanels) {
         searchStore.setIsOpenSearch(false)
     }

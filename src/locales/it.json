@@ -20,7 +20,7 @@
         "showInfo": "Dettagli",
         "delete": "Rimuovi",
         "transparency": "Trasparenza",
-        "noLayers": "Nessun layer selezionato",
+        "noLayerSelected": "Nessuna carta selezionata",
         "title": "Mappe visualizzate",
         "backgroundMap": "Mappa di sfondo",
         "colorMap": "Carta a colori",
@@ -31,7 +31,8 @@
         "brokenImage": "Impossibile caricare la legenda",
         "header": "Legenda",
         "noLayers": "Nessuna mappa visualizzata",
-        "noLegend": "Nessuna legenda disponibile"
+        "noLegend": "Nessuna legenda disponibile",
+        "closeThisWindow": "Chiudi questa finestra"
     },
     "details": {
         "header": "Dettagli",

@@ -20,7 +20,7 @@
         "showInfo": "Détails",
         "delete": "Supprimer",
         "transparency": "Transparence",
-        "noLayers": "Aucune couche sélectionnée",
+        "noLayerSelected": "Aucune carte selectionée",
         "title": "Cartes affichées",
         "backgroundMap": "Carte de base",
         "colorMap": "Cartes couleurs",
@@ -31,7 +31,8 @@
         "brokenImage": "Échec du chargement de la légende",
         "header": "Légende",
         "noLayers": "Aucune carte affichée",
-        "noLegend": "Aucune légende disponible"
+        "noLegend": "Aucune légende disponible",
+        "closeThisWindow": "Fermer cette fenêtre"
     },
     "details": {
         "header": "Détails",

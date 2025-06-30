@@ -8,6 +8,7 @@ import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
+import SearchPanelButton from '@/components/SearchPanelButton.vue'
 import { useTopicTree } from '@/composables/useTopicTree'
 import { useMainStore } from '@/store/main'
 import { useMapStore } from '@/store/map'
@@ -116,6 +117,7 @@ onBeforeUnmount(() => {
                     <div class="flex flex-col items-center gap-2">
                         <LayerCartButton />
                         <GeocatalogTreeButton />
+                        <SearchPanelButton />
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />
                 </div>

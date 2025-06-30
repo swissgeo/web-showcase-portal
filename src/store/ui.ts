@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 export enum SidebarType {
     LAYER_CART = 'layerCart',
     GEOCATALOG_TREE = 'geocatalogTree',
+    SEARCH = 'search',
 }
 
 // Sidebar width constants
@@ -14,11 +15,10 @@ export const SIDEBAR_DEFAULT_WIDTH = 500
 
 export const useUiStore = defineStore('ui', () => {
     // State
-    const currentSidebar = ref<SidebarType | null>(null)
+    const currentSidebar = ref<SidebarType | null>(SidebarType.SEARCH)
     const isLayerLegendVisible = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
-    const isSearchDesktopVisible = ref(true)
 
     // Computed getters
     const isSidebarOpen = computed(() => currentSidebar.value !== null)
@@ -26,6 +26,7 @@ export const useUiStore = defineStore('ui', () => {
     const isGeocatalogTreeVisible = computed(
         () => currentSidebar.value === SidebarType.GEOCATALOG_TREE
     )
+    const isSearchVisible = computed(() => currentSidebar.value === SidebarType.SEARCH)
 
     // Actions
     function setSidebar(sidebar: SidebarType | null) {
@@ -65,10 +66,6 @@ export const useUiStore = defineStore('ui', () => {
         isLayerLegendVisible.value = !isLayerLegendVisible.value
     }
 
-    function toggleSearchDesktop(){
-        isSearchDesktopVisible.value = !isSearchDesktopVisible.value
-    }
-
     function closeSidebar() {
         currentSidebar.value = null
     }
@@ -89,7 +86,7 @@ export const useUiStore = defineStore('ui', () => {
         isSidebarOpen,
         isLayerCartVisible,
         isGeocatalogTreeVisible,
-        isSearchDesktopVisible,
+        isSearchVisible,
         // Actions
         setSidebar,
         toggleSidebar,
@@ -98,7 +95,6 @@ export const useUiStore = defineStore('ui', () => {
         setSidebarSecondColumnWidth,
         setLayerLegendVisible,
         toggleLayerLegend,
-        toggleSearchDesktop,
         closeSidebar,
         resetStore,
     }

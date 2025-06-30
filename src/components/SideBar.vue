@@ -115,9 +115,9 @@ onBeforeUnmount(() => {
                     class="flex h-full min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4"
                 >
                     <div class="flex flex-col items-center gap-2">
+                        <SearchPanelButton />
                         <LayerCartButton />
                         <GeocatalogTreeButton />
-                        <SearchPanelButton />
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />
                 </div>

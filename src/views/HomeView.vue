@@ -128,7 +128,7 @@ onUnmounted(() => {
             ></SearchMobile>
             <!-- This data-cy is not visible due to the overlay div inside -->
             <SearchDesktop
-                v-if="isDesktop"
+                v-if="isDesktop && uiStore.isSearchDesktopVisible"
                 class="flex"
             ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />

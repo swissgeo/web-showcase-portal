@@ -54,8 +54,8 @@ const clearSearch = () => {
 <template>
     <div
         v-show="!mainStore.infoLayerId"
-        :class="props.isSidebar
-            ? 'flex h-full flex-col p-4'
+        :class="props.isSidebar 
+            ? 'flex h-full flex-col p-4' 
             : 'fixed right-0 bottom-0 left-0 flex flex-col place-content-between md:static md:p-8'"
         class="sidebar-mobile-search"
         :style="props.isSidebar ? {} : {
@@ -122,8 +122,8 @@ const clearSearch = () => {
         <!-- Search Results - different styling for sidebar vs mobile -->
         <SearchResultsMobile
             v-if="isSearching"
-            :class="props.isSidebar
-                ? 'h-full overflow-y-auto border border-neutral-300 rounded p-2 flex-1'
+            :class="props.isSidebar 
+                ? 'h-full overflow-y-auto border border-neutral-300 rounded p-2 flex-1' 
                 : 'min-h-0 flex-1 grow-1 overflow-y-scroll bg-white px-2 pt-4 md:overflow-visible'"
             data-cy="comp-search-results-mobile"
         >
@@ -164,8 +164,8 @@ const clearSearch = () => {
                 <SearchKeywordContainer :class="props.isSidebar ? '' : 'px-4'" />
                 <SearchFilterMobile
                     v-show="uiStore.isFilterVisible"
-                    :class="props.isSidebar
-                        ? 'bg-swissgeo-lightblue rounded-lg p-4'
+                    :class="props.isSidebar 
+                        ? 'bg-swissgeo-lightblue rounded-lg p-4' 
                         : 'bg-swissgeo-lightblue p-4'"
                 />
             </template>

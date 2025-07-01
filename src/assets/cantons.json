@@ -1,0 +1,288 @@
+[
+    {
+        "label": {
+            "ger": "Zürich",
+            "fre": "Zurich",
+            "ita": "Zurigo",
+            "roh": "Turitg",
+            "eng": "Zurich"
+        },
+        "abbreviation": "ZH",
+        "canton_id": 1
+    },
+    {
+        "label": {
+            "ger": "Bern",
+            "fre": "Berne",
+            "ita": "Berna",
+            "roh": "Berna",
+            "eng": "Bern"
+        },
+        "abbreviation": "BE",
+        "canton_id": 2
+    },
+    {
+        "label": {
+            "ger": "Luzern",
+            "fre": "Lucerne",
+            "ita": "Lucerna",
+            "roh": "Lucerna",
+            "eng": "Lucerne"
+        },
+        "abbreviation": "LU",
+        "canton_id": 3
+    },
+    {
+        "label": {
+            "ger": "Uri",
+            "fre": "Uri",
+            "ita": "Uri",
+            "roh": "Uri",
+            "eng": "Uri"
+        },
+        "abbreviation": "UR",
+        "canton_id": 4
+    },
+    {
+        "label": {
+            "ger": "Schwyz",
+            "fre": "Schwytz",
+            "ita": "Svitto",
+            "roh": "Sviz",
+            "eng": "Schwyz"
+        },
+        "abbreviation": "SZ",
+        "canton_id": 5
+    },
+    {
+        "label": {
+            "ger": "Obwalden",
+            "fre": "Obwald",
+            "ita": "Obvaldo",
+            "roh": "Sursilvania",
+            "eng": "Obwalden"
+        },
+        "abbreviation": "OW",
+        "canton_id": 6
+    },
+    {
+        "label": {
+            "ger": "Nidwalden",
+            "fre": "Nidwald",
+            "ita": "Nidvaldo",
+            "roh": "Sutsilvania",
+            "eng": "Nidwalden"
+        },
+        "abbreviation": "NW",
+        "canton_id": 7
+    },
+    {
+        "label": {
+            "ger": "Glarus",
+            "fre": "Glaris",
+            "ita": "Glarona",
+            "roh": "Glaruna",
+            "eng": "Glarus"
+        },
+        "abbreviation": "GL",
+        "canton_id": 8
+    },
+    {
+        "label": {
+            "ger": "Zug",
+            "fre": "Zoug",
+            "ita": "Zugo",
+            "roh": "Zug",
+            "eng": "Zug"
+        },
+        "abbreviation": "ZG",
+        "canton_id": 9
+    },
+    {
+        "label": {
+            "ger": "Freiburg",
+            "fre": "Fribourg",
+            "ita": "Friburgo",
+            "roh": "Friburg",
+            "eng": "Fribourg"
+        },
+        "abbreviation": "FR",
+        "canton_id": 10
+    },
+    {
+        "label": {
+            "ger": "Solothurn",
+            "fre": "Soleure",
+            "ita": "Soletta",
+            "roh": "Soloturn",
+            "eng": "Solothurn"
+        },
+        "abbreviation": "SO",
+        "canton_id": 11
+    },
+    {
+        "label": {
+            "ger": "Basel-Stadt",
+            "fre": "Bâle-Ville",
+            "ita": "Basilea Città",
+            "roh": "Basilea-Citad",
+            "eng": "Basel-City"
+        },
+        "abbreviation": "BS",
+        "canton_id": 12
+    },
+    {
+        "label": {
+            "ger": "Basel-Landschaft",
+            "fre": "Bâle-Campagne",
+            "ita": "Basilea Campagna",
+            "roh": "Basilea-Champagna",
+            "eng": "Basel-Country"
+        },
+        "abbreviation": "BL",
+        "canton_id": 13
+    },
+    {
+        "label": {
+            "ger": "Schaffhausen",
+            "fre": "Schaffhouse",
+            "ita": "Sciaffusa",
+            "roh": "Schaffusa",
+            "eng": "Schaffhausen"
+        },
+        "abbreviation": "SH",
+        "canton_id": 14
+    },
+    {
+        "label": {
+            "ger": "Appenzell Ausserrhoden",
+            "fre": "Appenzell Rhodes-Extérieures",
+            "ita": "Appenzello Esterno",
+            "roh": "Appenzell dadora",
+            "eng": "Appenzell Outer Rhodes"
+        },
+        "abbreviation": "AR",
+        "canton_id": 15
+    },
+    {
+        "label": {
+            "ger": "Appenzell Innerrhoden",
+            "fre": "Appenzell Rhodes-Intérieures",
+            "ita": "Appenzello Interno",
+            "roh": "Appenzell dadens",
+            "eng": "Appenzell Inner Rhodes"
+        },
+        "abbreviation": "AI",
+        "canton_id": 16
+    },
+    {
+        "label": {
+            "ger": "St. Gallen",
+            "fre": "Saint-Gall",
+            "ita": "San Gallo",
+            "roh": "Sogn Gagl",
+            "eng": "St. Gallen"
+        },
+        "abbreviation": "SG",
+        "canton_id": 17
+    },
+    {
+        "label": {
+            "ger": "Graubünden",
+            "fre": "Grisons",
+            "ita": "Grigioni",
+            "roh": "Grischun",
+            "eng": "Grisons"
+        },
+        "abbreviation": "GR",
+        "canton_id": 18
+    },
+    {
+        "label": {
+            "ger": "Aargau",
+            "fre": "Argovie",
+            "ita": "Argovia",
+            "roh": "Argovia",
+            "eng": "Aargau"
+        },
+        "abbreviation": "AG",
+        "canton_id": 19
+    },
+    {
+        "label": {
+            "ger": "Thurgau",
+            "fre": "Thurgovie",
+            "ita": "Turgovia",
+            "roh": "Thurgovia",
+            "eng": "Thurgau"
+        },
+        "abbreviation": "TG",
+        "canton_id": 20
+    },
+    {
+        "label": {
+            "ger": "Tessin",
+            "fre": "Tessin",
+            "ita": "Ticino",
+            "roh": "Tessin",
+            "eng": "Ticino"
+        },
+        "abbreviation": "TI",
+        "canton_id": 21
+    },
+    {
+        "label": {
+            "ger": "Waadt",
+            "fre": "Vaud",
+            "ita": "Vaud",
+            "roh": "Vad",
+            "eng": "Vaud"
+        },
+        "abbreviation": "VD",
+        "canton_id": 22
+    },
+    {
+        "label": {
+            "ger": "Wallis",
+            "fre": "Valais",
+            "ita": "Vallese",
+            "roh": "Vallais",
+            "eng": "Valais"
+        },
+        "abbreviation": "VS",
+        "canton_id": 23
+    },
+    {
+        "label": {
+            "ger": "Neuenburg",
+            "fre": "Neuchâtel",
+            "ita": "Neuchâtel",
+            "roh": "Neuchâtel",
+            "eng": "Neuchâtel"
+        },
+        "abbreviation": "NE",
+        "canton_id": 24
+    },
+    {
+        "label": {
+            "ger": "Genf",
+            "fre": "Genève",
+            "ita": "Ginevra",
+            "roh": "Genevra",
+            "eng": "Geneva"
+        },
+        "abbreviation": "GE",
+        "canton_id": 25
+    },
+    {
+        "label": {
+            "ger": "Jura",
+            "fre": "Jura",
+            "ita": "Giura",
+            "roh": "Jura",
+            "eng": "Jura"
+        },
+        "abbreviation": "JU",
+        "canton_id": 26
+    }
+]

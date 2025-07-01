@@ -10,7 +10,6 @@ import { useSearchFilter } from '@/search/searchFilter.composable'
 const { t } = useI18n()
 const {
     findGroupLabel,
-    filterLabelKey,
     federalGroups,
     cantonGroups,
     communalGroups,
@@ -44,8 +43,7 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 :checkbox-icon="'pi pi-check'"
                 :filter="true"
                 :filter-placeholder="t('organisation.selectFederal')"
-                :filter-by="filterLabelKey"
-                :show-select-all="false"
+                :virtual-scroller-options="{ itemSize: 40 }"
                 :options="federalGroups"
                 option-label="label"
                 option-value="value"
@@ -74,9 +72,9 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 :checkbox-icon="'pi pi-check'"
                 :filter="true"
                 :filter-placeholder="t('organisation.selectCanton')"
-                :filter-by="filterLabelKey"
-                :show-select-all="false"
                 :options="cantonGroups"
+                :option-disabled="(option) => !option.value"
+                :virtual-scroller-options="{ itemSize: 40 }"
                 option-label="label"
                 option-value="value"
                 :placeholder="t('organisation.selectCanton')"
@@ -101,9 +99,9 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 :checkbox-icon="'pi pi-check'"
                 :filter="true"
                 :filter-placeholder="t('organisation.selectCommune')"
-                :filter-by="filterLabelKey"
-                :show-select-all="false"
                 :options="communalGroups"
+                :option-disabled="(option) => !option.value"
+                :virtual-scroller-options="{ itemSize: 40 }"
                 option-label="label"
                 option-value="value"
                 :placeholder="t('organisation.selectCommune')"

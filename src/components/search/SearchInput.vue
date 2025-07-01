@@ -102,11 +102,11 @@ function toggleFilter() {
             :severity="uiStore.isFilterVisible ? 'primary' : 'secondary'"
             :size="'small'"
             :class="{ 'text-swissgeo-blue border-white bg-white': !uiStore.isFilterVisible }"
-            :label="t('filter.title')"
+            :label="isDesktop ? t('filter.title') : ''"
             @click="toggleFilter"
         >
             <template #icon>
-                <ListFilter class="stroke-current" />
+                <ListFilter class="shrink-0 stroke-current" />
             </template>
         </Button>
     </div>

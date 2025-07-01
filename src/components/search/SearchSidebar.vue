@@ -3,7 +3,7 @@ import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
+import SearchFilterDesktop from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
@@ -54,7 +54,7 @@ const openSearch = () => {
             v-show="uiStore.isFilterVisible"
             class="mb-4"
         >
-            <SearchFilterMobile
+            <SearchFilterDesktop
                 data-cy="search-filter"
                 class="bg-swissgeo-lightblue rounded-lg p-4"
             />

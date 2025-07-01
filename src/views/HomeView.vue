@@ -16,7 +16,7 @@ import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
 import DisclaimerBanner from '@/components/DisclaimerBanner.vue'
 import LayerLegend from '@/components/LayerLegend.vue'
 import MapPart from '@/components/MapPart.vue'
-import SearchResponsive from '@/components/search/SearchResponsive.vue'
+import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import { useMainStore } from '@/store/main'
@@ -120,11 +120,11 @@ onUnmounted(() => {
         >
             <SideBar v-if="isDesktop" />
             <DisclaimerBanner />
-            <SearchResponsive
+            <SearchMobile
                 v-if="!isDesktop"
                 class="pointer-events-auto"
                 data-cy="comp-search-mobile"
-            ></SearchResponsive>
+            ></SearchMobile>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
             <DatasetDetailPanel v-if="showLayerInfo" />

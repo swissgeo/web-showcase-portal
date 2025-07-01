@@ -7,7 +7,7 @@ import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
-import SearchResponsive from '@/components/search/SearchResponsive.vue'
+import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import SearchPanelButton from '@/components/SearchPanelButton.vue'
 import { useTopicTree } from '@/composables/useTopicTree'
@@ -138,9 +138,8 @@ onBeforeUnmount(() => {
                         :style="{ width: sidebarSecondColumnWidth + 'px' }"
                         class="h-full overflow-y-auto bg-white"
                     />
-                    <SearchResponsive
+                    <SearchSidebar
                         v-if="uiStore.isSearchVisible"
-                        :is-sidebar="true"
                         :style="{ width: sidebarSecondColumnWidth + 'px' }"
                         class="h-full overflow-y-auto bg-white"
                     />

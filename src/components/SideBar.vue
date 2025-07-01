@@ -124,11 +124,7 @@ onBeforeUnmount(() => {
                 </div>
                 <!-- Second column -->
                 <div
-                    v-show="
-                        uiStore.isLayerCartVisible ||
-                        uiStore.isGeocatalogTreeVisible ||
-                        uiStore.isSearchVisible
-                    "
+                    v-show="uiStore.isSidebarOpen"
                     class="relative flex"
                 >
                     <LayerCart
@@ -137,13 +133,13 @@ onBeforeUnmount(() => {
                         class="h-full overflow-y-auto bg-white"
                     />
                     <TopicTreeBrowser
-                        v-if="uiStore.isGeocatalogTreeVisible"
+                        v-show="uiStore.isGeocatalogTreeVisible"
                         :root="topicTreeRoot"
                         :style="{ width: sidebarSecondColumnWidth + 'px' }"
                         class="h-full overflow-y-auto bg-white"
                     />
                     <SearchSidebar
-                        v-if="uiStore.isSearchVisible"
+                        v-show="uiStore.isSearchVisible"
                         :style="{ width: sidebarSecondColumnWidth + 'px' }"
                         class="h-full overflow-y-auto bg-white"
                     />

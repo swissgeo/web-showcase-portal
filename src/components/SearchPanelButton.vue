@@ -6,7 +6,6 @@ import SearchIcon from '@/assets/icons/search.svg?use'
 import { SidebarType, useUiStore } from '@/store/ui'
 
 const isDesktop = inject<boolean>('isDesktop')
-// Access the store
 const uiStore = useUiStore()
 </script>
 

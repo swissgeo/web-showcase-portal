@@ -43,35 +43,38 @@ describe('Test the search on mobile', () => {
         // open accordion
         cy.get('[data-cy="comp-data-accordion"]').click()
 
-        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
 
         // we get the last element in the list, which initially isn't visible
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li:nth-child(10)')
             .as('tenthSearchResult')
 
-        cy.get('@searchResults').should('have.length', 20)
+        cy.get('@geocatSearchResults').should('have.length', 20)
 
         cy.log('Make sure the result list is scrollable')
         // the list is too long. the last result isn't visible
         cy.get('@tenthSearchResult').should('not.be.visible')
-        cy.get('[data-cy="comp-search-results-mobile"]').realMouseWheel({ deltaY: 300 })
+        cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 300 })
+        // cy.get('[data-cy="comp-search-results-mobile"]').realMouseWheel({ deltaY: 300 })
 
 
         // now after scrolling it is visible (beware: scrolling loads more items)
         cy.get('@tenthSearchResult').should('be.visible')
         // first one is scrolled out of view
-        cy.get('@searchResults').first().should('not.be.visible')
+        cy.get('@geocatSearchResults').first().should('not.be.visible')
 
-        cy.get('[data-cy="comp-search-results-mobile"]').scrollTo('bottom', { duration: 500 })
+        cy.get('[data-cy="div-geocat-search-results"]').scrollTo('bottom', { duration: 500 })
+        // cy.get('[data-cy="comp-search-results-mobile"]').scrollTo('bottom', { duration: 500 })
 
         //open address accordion and test if it works
         cy.get('[data-cy="comp-address-accordion"]').click()
-        cy.get('@searchResults').should('have.length', 20)
+
+
+        cy.get('[data-cy="ul-address-search-results"]').find('li').as('addressSearchResults').should('have.length', 20)
 
         //now re-open data accordion to fully load the data
-        cy.get('[data-cy="comp-search-results-mobile"]').scrollTo('top', { duration: 500 })
         cy.get('[data-cy="comp-data-accordion"]').click()
-        cy.get('@searchResults').should('have.length', 28)
+        cy.get('@geocatSearchResults').should('have.length', 28)
     })
 })

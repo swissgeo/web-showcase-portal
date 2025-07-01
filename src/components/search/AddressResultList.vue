@@ -9,6 +9,7 @@ const searchStore = useSearchStore()
     <ul
         v-if="searchStore.searchLocationResults.length"
         class="mt-5 w-full"
+        data-cy="ul-address-search-results"
     >
         <AddressSearchResultEntry
             v-for="result in searchStore.searchLocationResults"

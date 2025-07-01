@@ -102,7 +102,10 @@ const openSearch = () => {
             </div>
 
             <!-- Search Results Button (when not searching) -->
-            <div v-if="!isSearching" class="mb-4">
+            <div
+                v-if="!isSearching"
+                class="mb-4"
+            >
                 <Button
                     class="w-full"
                     :label="t('searchResult.buttonLabel')"
@@ -121,10 +124,10 @@ const openSearch = () => {
             <!-- Search Results (when searching) -->
             <div
                 v-if="isSearching"
-                class="flex-1 min-h-0"
+                class="min-h-0 flex-1"
             >
                 <SearchResultsMobile
-                    class="h-full overflow-y-auto border border-neutral-300 rounded p-2"
+                    class="h-full overflow-y-auto rounded border border-neutral-300 p-2"
                     data-cy="comp-search-results-sidebar"
                 />
             </div>

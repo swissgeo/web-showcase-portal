@@ -124,7 +124,11 @@ onBeforeUnmount(() => {
                 </div>
                 <!-- Second column -->
                 <div
-                    v-show="uiStore.isLayerCartVisible || uiStore.isGeocatalogTreeVisible || uiStore.isSearchVisible"
+                    v-show="
+                        uiStore.isLayerCartVisible ||
+                        uiStore.isGeocatalogTreeVisible ||
+                        uiStore.isSearchVisible
+                    "
                     class="relative flex"
                 >
                     <LayerCart

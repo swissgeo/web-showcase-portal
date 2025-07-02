@@ -62,7 +62,7 @@ function onEmbedChange(e: MessageEvent) {
     <iframe
         data-cy="iframe-mapviewer"
         :src="urlString"
-        class="h-full w-full md:pl-20"
+        class="h-full w-full lg:pl-20"
         allow="geolocation"
     ></iframe>
     <Toast
@@ -71,7 +71,7 @@ function onEmbedChange(e: MessageEvent) {
     />
     <ButtonGroup
         v-if="isDesktop"
-        class="absolute right-2 bottom-38 md:right-6 md:bottom-8"
+        class="absolute right-2 bottom-38 lg:right-6 lg:bottom-8"
         data-cy="zoom-button-group"
     >
         <Button

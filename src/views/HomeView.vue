@@ -34,11 +34,8 @@ const windowWidth = ref(0)
 const windowHeight = ref(0)
 
 const isDesktop = computed(() => {
-    if (windowHeight.value === 0) {
-        return false
-    }
-    const aspectRatio = windowWidth.value / windowHeight.value
-    return aspectRatio >= 1
+    // Consider desktop if width is over 1024px (typical breakpoint)
+    return windowWidth.value > 1024
 })
 
 provide('isDesktop', readonly(isDesktop))

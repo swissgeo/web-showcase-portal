@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "dev:public": "vite --host",
         "int": "vite --mode integration",
         "prod": "vite --mode production",
         "build": "run-p type-check \"build-only {@}\" --",

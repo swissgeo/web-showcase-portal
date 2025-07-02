@@ -11,7 +11,9 @@ import { useLanguage } from '@/utils/language.composable'
 
 import type { GroupLabel } from './geocatGroups'
 
-export function useSearchFilter() {
+let instance: ReturnType<typeof createSearchFilter> | null = null
+
+function createSearchFilter() {
     const { localeString } = useLanguage()
 
     const groupsStore = useGroupsStore()
@@ -145,4 +147,11 @@ export function useSearchFilter() {
         selectedCantonal,
         selectedCommunal,
     }
+}
+// make a singleton instance of the search filter
+export function useSearchFilter() {
+    if (!instance) {
+        instance = createSearchFilter()
+    }
+    return instance
 }

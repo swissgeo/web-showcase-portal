@@ -41,7 +41,7 @@ const openSearch = () => {
 <template>
     <Panel
         v-show="!mainStore.infoLayerId"
-        class="h-full overflow-y-auto"
+        class="h-full"
         :header="t('searchResult.mobileSearchTitle')"
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',
@@ -78,59 +78,41 @@ const openSearch = () => {
 
         <div class="flex h-full flex-col p-4">
             <!-- Search Input Section -->
-            <div class="mb-4">
-                <SearchInput
-                    class="w-full"
-                    @focus="openSearch"
-                />
-            </div>
+            <SearchInput
+                class="w-full mb-4"
+                @focus="openSearch"
+            />
 
-            <!-- Search Keywords -->
-            <div class="mb-4">
-                <SearchKeywordContainer />
-            </div>
+            <SearchKeywordContainer class="mb-4" />
 
-            <!-- Search Filter -->
-            <div
+            <SearchFilterDesktop
                 v-show="uiStore.isFilterVisible"
-                class="mb-4"
-            >
-                <SearchFilterDesktop
-                    data-cy="search-filter"
-                    class="bg-swissgeo-lightblue rounded-lg p-4"
-                />
-            </div>
+                data-cy="search-filter"
+                class="bg-swissgeo-lightblue rounded-lg p-4 mb-4"
+            />
 
             <!-- Search Results Button (when not searching) -->
-            <div
+            <Button
                 v-if="!isSearching"
-                class="mb-4"
-            >
-                <Button
-                    class="w-full"
-                    :label="t('searchResult.buttonLabel')"
-                    :badge="searchStore.searchResultTotal.toString()"
-                    :pt="{
-                        root: 'border-gray-300 bg-white shadow-md hover:bg-gray-100 hover:shadow-lg text-black font-semibold justify-center',
-                        label: 'text-bold text-swissgeo-blue font-semibold mr-2',
-                        pcBadge: {
-                            root: 'text-black font-semibold bg-swissgeo-lightblue',
-                        },
-                    }"
-                    @click="openSearch"
-                />
-            </div>
+                class="w-full mb-4"
+                :label="t('searchResult.buttonLabel')"
+                :badge="searchStore.searchResultTotal.toString()"
+                :pt="{
+                    root: 'border-gray-300 bg-white shadow-md hover:bg-gray-100 hover:shadow-lg text-black font-semibold justify-center',
+                    label: 'text-bold text-swissgeo-blue font-semibold mr-2',
+                    pcBadge: {
+                        root: 'text-black font-semibold bg-swissgeo-lightblue',
+                    },
+                }"
+                @click="openSearch"
+            />
 
             <!-- Search Results (when searching) -->
-            <div
+            <SearchResultsMobile
                 v-if="isSearching"
-                class="min-h-0 flex-1"
-            >
-                <SearchResultsMobile
-                    class="h-full overflow-y-auto rounded border border-neutral-300 p-2"
-                    data-cy="comp-search-results-sidebar"
-                />
-            </div>
+                class="min-h-0 flex-1 grow-1 overflow-y-scroll bg-white px-2 pt-4 md:overflow-visible"
+                data-cy="comp-search-results-sidebar"
+            />
         </div>
     </Panel>
 </template>

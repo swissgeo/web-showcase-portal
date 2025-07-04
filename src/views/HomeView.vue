@@ -97,6 +97,8 @@ function initializeWindowWidth() {
 }
 
 onMounted(() => {
+    // eslint-disable-next-line no-console
+    console.log('HOME')
     addResizeListener()
     initializeWindowWidth()
 })

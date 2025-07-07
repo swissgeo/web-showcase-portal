@@ -11,7 +11,7 @@ describe('Layer Legend on desktop', () => {
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
         cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
-        cy.get('[data-cy="comp-layer-legend-button"]').should('not.be.visible')
+        cy.get('[data-cy="comp-layer-legend-button"]').should('not.exist')
         cy.get('[data-cy="comp-layer-legend-close"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
     })
@@ -21,6 +21,8 @@ describe('Layer Legend on desktop', () => {
             'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
         ).as('legendGraphicRequest')
         cy.get('[data-cy="input-search"]').type(RADON_UID)
+        // open accordion
+        cy.get('[data-cy="comp-data-accordion"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()

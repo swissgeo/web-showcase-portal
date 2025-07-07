@@ -163,6 +163,22 @@ export default function useGeocat() {
         GNUI.recordsRepository.getRecord(uuid).subscribe(recordCallback)
     }
 
+    const getRecordDetailsAsync = (uuid: string): Promise<GeonetworkRecord | null> => {
+        return new Promise<GeonetworkRecord | null>((resolve) => {
+            GNUI.recordsRepository.getRecord(uuid).subscribe({
+                next: (record: GeonetworkRecord) => {
+                    recordCallback(record)
+                    resolve(record)
+                },
+                error: (error: Error) => {
+                    // eslint-disable-next-line no-console
+                    console.error('Error fetching record details:', error)
+                    resolve(null)
+                },
+            })
+        })
+    }
+
     function replaceGeocatLayers(records: GeonetworkRecord[], layers: Layer[]): void {
         const sortedRecords = layers
             .filter((layer) => layer.type === LayerType.Geonetwork)
@@ -206,6 +222,7 @@ export default function useGeocat() {
         searchGeocat,
         cancelSearch,
         getRecordDetails,
+        getRecordDetailsAsync,
         searchConfigGeocat,
     }
 }

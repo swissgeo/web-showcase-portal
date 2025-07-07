@@ -8,11 +8,31 @@ export interface CapabilitiesLayer {
     Abstract?: string
     Title?: string
     BoundingBox?: BoundingBox[]
+    EX_GeographicBoundingBox?: [number, number, number, number]
 }
 
-export interface LayerInformation {
-    abstract: string | null
-    title: string | null
-    extent: [number, number, number, number] | null
-    // hasError: boolean | null
+export interface GeocatLayerInformation {
+    id: string
+    href: string
+    name: string
+}
+export interface GeocatLayerData {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any
+    layers: {
+        attributes: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            [key: string]: any
+            abstract: string
+            wmsUrlResource: string
+            wmsContactName: string
+            urlDetails: string
+            dataOwner: string
+            dataStatus: string
+        }
+        name: string
+        idGeoCat: string
+        fullName: string
+        layerBodId: string
+    }[]
 }

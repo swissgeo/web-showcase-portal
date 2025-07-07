@@ -72,10 +72,7 @@ export const transformRecordIntoGetCapabilitiesUrl = (
     if (wmsResource) {
         return wmsResource
     }
-    if (wmtsResource) {
-        return wmtsResource
-    }
-    return null
+    return wmtsResource
 }
 
 export const transformRecordIntoGeoadminLayerParam = (record: GeonetworkRecord) => {

@@ -9,7 +9,9 @@ import AddToMapButton from '@/components/search/AddToMapButton.vue'
 import MapPreview from '@/components/search/MapPreview.vue'
 import SearchResultEntry from '@/components/search/SearchResultEntry.vue'
 import ShowLayerDetailButton from '@/components/search/ShowLayerDetailButton.vue'
-import { useMapPreview } from '@/composables/useMapPreview'
+import { LONG_PRESS_TIMEOUT_MS, useMapPreview } from '@/composables/useMapPreview'
+import { useMainStore } from '@/store/main'
+import { LayerType } from '@/types/layer'
 import { isAddableToMap, transformRecordIntoGetCapabilitiesUrl } from '@/utils/layerUtils'
 
 const isDesktop = inject<ComputedRef<boolean>>('isDesktop')
@@ -18,8 +20,10 @@ const { result, bgLayerName } = defineProps<{
     result: GeonetworkRecord
     bgLayerName: string // Optional background layer name
 }>()
-const op = ref()
-const selectedHref = ref()
+const mainStore = useMainStore()
+
+const popoverComponent = ref()
+const recordGetCapabilitiesUrl = ref()
 const { resetMap } = useMapPreview()
 const longPressTimeout = ref<NodeJS.Timeout | null>(null) // Timeout reference for long press
 const targetRef = ref<EventTarget | null>(null)
@@ -33,30 +37,44 @@ const tooltipContent = computed(() => {
 })
 
 const alignOverlay = () => {
-    if (op?.value) {
-        op.value.alignOverlay()
+    if (popoverComponent?.value) {
+        popoverComponent.value.alignOverlay()
     }
 }
 
-function initializeHref() {
-    const onlineResource = transformRecordIntoGetCapabilitiesUrl(result)
-    selectedHref.value = {
-        href: onlineResource?.url?.href,
-        name: onlineResource?.name,
+function initializeGetCapabilitiesUrl() {
+    const getCapabilities = transformRecordIntoGetCapabilitiesUrl(result)
+    recordGetCapabilitiesUrl.value = {
+        href: getCapabilities?.url?.href,
+        name: getCapabilities?.name,
     }
 }
+
+const addTempPreviewLayerToMap = (record: GeonetworkRecord) => {
+    mainStore.setTempPreviewLayer({
+        id: record.uniqueIdentifier,
+        name: record.title,
+        geonetworkRecord: record,
+        opacity: 1,
+        visible: true,
+        type: LayerType.Geonetwork,
+    })
+}
+
 const handleMouseEnter = (event: MouseEvent) => {
     if (!isAddableToMap(result) || !isDesktop?.value) {
         return
     }
-    initializeHref()
-    op.value.show(event) // Show the popover on hover
+    initializeGetCapabilitiesUrl()
+    popoverComponent.value.show(event) // Show the popover on hover
+    addTempPreviewLayerToMap(result) // Add the temporary preview layer to the map
 }
 
 const handleMouseLeave = () => {
-    if (op.value) {
-        op.value.hide() // Hide the popover on hover out
+    if (popoverComponent.value) {
+        popoverComponent.value.hide() // Hide the popover on hover out
         resetMap()
+        mainStore.resetTempPreviewLayer() // Reset the temporary preview layer
     }
 }
 
@@ -68,12 +86,12 @@ const handleTouchStart = async (event: TouchEvent) => {
     targetRef.value = event.currentTarget
     // Set a timeout to detect a long press (e.g., 500ms)
     longPressTimeout.value = setTimeout(async () => {
-        initializeHref()
-        if (op?.value) {
+        initializeGetCapabilitiesUrl()
+        if (popoverComponent?.value) {
             // because of the delay we need an extra reference to the current target
-            op.value.show(event, targetRef.value)
+            popoverComponent.value.show(event, targetRef.value)
         }
-    }, 500)
+    }, LONG_PRESS_TIMEOUT_MS)
 }
 
 // Function to clear the timeout if the touch ends before the long press threshold
@@ -119,15 +137,18 @@ const handleTouchEnd = () => {
             <!-- we need an empty element so the i button stays-->
         </div>
         <Popover
-            ref="op"
+            ref="popoverComponent"
             class="p-0"
             :pt="{
-                content: 'p-0',
+                content:
+                    'p-0 border-1 border-solid border-swissgeo-blue rounded-xl overflow-hidden',
+                root: 'rounded-xl before:content-none after:content-none',
             }"
         >
             <MapPreview
-                :wms-base-url="selectedHref?.href"
-                :selected-layer-name="selectedHref?.name"
+                :layer-id="result.uniqueIdentifier"
+                :wms-base-url="recordGetCapabilitiesUrl?.href"
+                :selected-layer-name="recordGetCapabilitiesUrl?.name"
                 :bg-layer-name="bgLayerName"
                 @align-overlay="alignOverlay"
             />

@@ -113,8 +113,7 @@ const logoUrl = computed((): string | null => {
                     :header="t('details.info')"
                     data-cy="panel-dataset-details-info"
                 >
-                    <!-- eslint-disable-next-line vue/no-v-html  vue/no-v-text-v-html-on-component-->
-                    <div v-html="sanitize(mainStore.infoLayerRecord?.abstract)"></div>
+                    <div :innerHTML="sanitize(mainStore.infoLayerRecord?.abstract)"></div>
                 </Panel>
 
                 <Panel

@@ -110,7 +110,7 @@ const openSearch = () => {
             <!-- Search Results (when searching) -->
             <SearchResultsMobile
                 v-if="isSearching"
-                class="min-h-0 flex-1 grow-1 overflow-y-scroll bg-white px-2 pt-4 md:overflow-visible"
+                class="min-h-0 flex-1 overflow-y-auto bg-white px-2 pt-4"
                 data-cy="comp-search-results-sidebar"
             />
         </div>

@@ -129,7 +129,10 @@ onUnmounted(() => {
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
             <DatasetDetailPanel v-if="showLayerInfo" />
-            <LegendButton v-if="isDesktop && !uiStore.isLayerLegendVisible" class="pointer-events-auto absolute top-4 right-6" />
+            <LegendButton
+                v-if="isDesktop && !uiStore.isLayerLegendVisible"
+                class="pointer-events-auto absolute top-4 right-6"
+            />
         </div>
         <WelcomeOverlay
             v-if="showWelcomeOverlay"

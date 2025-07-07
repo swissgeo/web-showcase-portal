@@ -79,7 +79,7 @@ const openSearch = () => {
         <div class="flex h-full flex-col p-4">
             <!-- Search Input Section -->
             <SearchInput
-                class="w-full mb-4"
+                class="mb-4 w-full"
                 @focus="openSearch"
             />
 
@@ -88,13 +88,13 @@ const openSearch = () => {
             <SearchFilterDesktop
                 v-show="uiStore.isFilterVisible"
                 data-cy="search-filter"
-                class="bg-swissgeo-lightblue rounded-lg p-4 mb-4"
+                class="bg-swissgeo-lightblue mb-4 rounded-lg p-4"
             />
 
             <!-- Search Results Button (when not searching) -->
             <Button
                 v-if="!isSearching"
-                class="w-full mb-4"
+                class="mb-4 w-full"
                 :label="t('searchResult.buttonLabel')"
                 :badge="searchStore.searchResultTotal.toString()"
                 :pt="{

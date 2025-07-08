@@ -12,42 +12,27 @@ describe('Test the search on desktop', () => {
 
         // Type search term in the sidebar search input
         cy.get('[data-cy="input-search"]').type('bern')
-        // open accordion
+
+        // open geocat accordion
         cy.get('[data-cy="comp-data-accordion"]').click()
 
-        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
+        // At first we only get 20 results
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
+        cy.get('@geocatSearchResults').should('have.length', 20)
 
-        cy.get('@searchResults').should('have.length', 20)
-
-        // we get the last element in the list, which initially isn't visible
-        cy.get('[data-cy="ul-geocat-search-results"]')
-            .find('li:nth-child(20)')
-            .as('twentiethSearchResult')
-
+        // Full load of the search results after scrolling
         cy.log('Make sure the result list is scrollable')
-        // the list is too long. the last result isn't visible
-        // TODO(IS): should be not visible, but it's visible in the test,
-        // so for the moment we skip this test below
-        // cy.get('@twentiethSearchResult').should('be.not.visible')
+        cy.get('[data-cy="div-geocat-search-results"]').scrollTo('bottom', { duration: 500 })
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
+        cy.get('@geocatSearchResults').should('have.length', 28)
 
-        // cy.get('[data-cy="comp-search-results-sidebar"]').realMouseWheel({ deltaY: 300 })
+        // Scroll to the bottom to find the address results accordion
+        cy.get('[data-cy="div-search-sidebar"]').scrollTo('bottom', { duration: 500 })
 
-
-        // // now after scrolling it is visible (beware: scrolling loads more items)
-        // cy.get('@tenthSearchResult').should('be.visible')
-        // // first one is scrolled out of view
-        // cy.get('@searchResults').first().should('not.be.visible')
-
-        // cy.get('[data-cy="comp-search-results-sidebar"]').scrollTo('bottom', { duration: 500 })
-
-        // //open address accordion and test if it works
-        // cy.get('[data-cy="comp-address-accordion"]').click()
-        // cy.get('@searchResults').should('have.length', 20)
-
-        // //now re-open data accordion to fully load the data
-        // cy.get('[data-cy="comp-search-results-sidebar"]').scrollTo('top', { duration: 500 })
-        // cy.get('[data-cy="comp-data-accordion"]').click()
-        // cy.get('@searchResults').should('have.length', 28)
+        // open address accordion and test if it works
+        cy.get('[data-cy="comp-address-accordion"]').click()
+        cy.get('[data-cy="ul-address-search-results"]').find('li').as('addressSearchResults')
+        cy.get("@addressSearchResults").should('have.length', 20)
     })
 })
 

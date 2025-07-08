@@ -188,17 +188,18 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
                 v-if="isDesktop && showLeftGradient"
                 class="pointer-events-none absolute top-0 left-0 z-10 h-full w-40 bg-gradient-to-r from-white to-transparent"
             ></div>
-        </div>
 
-        <Button
-            v-if="isDesktop && showRightGradient && showScrollArrow"
-            class="absolute right-1 bottom-35 z-10 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
-            @click="scrollUntilEndOfList"
-        >
-            <template #icon>
-                <ChevronRight class="h-5 w-5 text-[#1F576B]" />
-            </template>
-        </Button>
+            <!-- Scroll Arrow Button -->
+            <Button
+                v-if="isDesktop && showRightGradient && showScrollArrow"
+                class="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
+                @click="scrollUntilEndOfList"
+            >
+                <template #icon>
+                    <ChevronRight class="h-5 w-5 text-[#1F576B]" />
+                </template>
+            </Button>
+        </div>
     </div>
 </template>
 <style>

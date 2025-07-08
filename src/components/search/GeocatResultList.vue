@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useInfiniteScroll } from '@vueuse/core'
-import { inject, useTemplateRef } from 'vue'
+import { useTemplateRef } from 'vue'
 
 import SearchResultEntry from '@/components/search/GeocatSearchResultEntry.vue'
 import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
-
-const isDesktop = inject<boolean>('isDesktop')
 
 const el = useTemplateRef('resultList')
 const { searchGeocat } = useGeocat()
@@ -45,7 +43,6 @@ useInfiniteScroll(
         data-cy="div-geocat-search-results"
         :class="{
             'max-h-[60vh]':
-                !isDesktop &&
                 searchStore.geocatSearchResults.length &&
                 searchStore.geocatSearchResults.length < searchStore.searchResultTotal,
         }"

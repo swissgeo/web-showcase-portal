@@ -5,27 +5,34 @@ describe('Test the search on desktop', () => {
         // cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('Search yields a result', () => {
-        cy.get('[data-cy="div-search-desktop"]').should('exist').should('be.visible')
+        // Open the search sidebar
+        cy.get('[data-cy="button-search-panel"]').should('exist').should('be.visible')
+        cy.get('[data-cy="div-search-sidebar"]').should('exist').should('be.visible')
         cy.get('[data-cy="comp-search-mobile"]').should('not.exist')
+
+        // Type search term in the sidebar search input
         cy.get('[data-cy="input-search"]').type('bern')
-        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('searchResults')
-        cy.get('@searchResults').should('have.length', 20)
 
-        cy.get('[data-cy="ul-geocat-search-results"]')
-            .find('li:nth-child(10)')
-            .as('tenthSearchResult')
+        // open geocat accordion
+        cy.get('[data-cy="comp-data-accordion"]').click()
 
-        // on desktop we already see all 10 entries
-        cy.get('@tenthSearchResult').should('be.visible')
+        // At first we only get 20 results
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
+        cy.get('@geocatSearchResults').should('have.length', 20)
 
-        // we need to scroll in two steps: one that updates the "canLoadMore" of the infinite scroll
-        // then another one that gets to the bottom, which then triggers the loading
-        // probably this is needed because otherwise the cypress scroll isn't really mimicking
-        // a "real" scrolling
-        cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 20 })
-        cy.get('[data-cy="div-geocat-search-results"]').realMouseWheel({ deltaY: 500 })
+        // Full load of the search results after scrolling
+        cy.log('Make sure the result list is scrollable')
+        cy.get('[data-cy="div-geocat-search-results"]').scrollTo('bottom', { duration: 500 })
+        cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
+        cy.get('@geocatSearchResults').should('have.length', 28)
 
-        cy.get('@searchResults').should('have.length', 28)
+        // Scroll to the bottom to find the address results accordion
+        cy.get('[data-cy="div-search-sidebar"]').scrollTo('bottom', { duration: 500 })
+
+        // open address accordion and test if it works
+        cy.get('[data-cy="comp-address-accordion"]').click()
+        cy.get('[data-cy="ul-address-search-results"]').find('li').as('addressSearchResults')
+        cy.get("@addressSearchResults").should('have.length', 20)
     })
 })
 

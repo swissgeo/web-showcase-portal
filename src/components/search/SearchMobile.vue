@@ -46,7 +46,7 @@ const clearSearch = () => {
 <template>
     <div
         v-show="!mainStore.infoLayerId"
-        class="fixed right-0 bottom-0 left-0 flex flex-col place-content-between lg:static lg:p-8"
+        class="fixed right-0 bottom-0 left-0 flex flex-col place-content-between md:static md:p-8"
         :class="{
             'top-0 bg-white': isSearching,
             'bottom-10': isFFMobile && isSearching,
@@ -90,7 +90,7 @@ const clearSearch = () => {
         </div>
         <SearchResultsMobile
             v-if="isSearching"
-            class="min-h-0 flex-1 grow-1 overflow-y-scroll bg-white px-2 pt-4 lg:overflow-visible"
+            class="min-h-0 flex-1 grow-1 overflow-y-scroll bg-white px-2 pt-4 md:overflow-visible"
             data-cy="comp-search-results-mobile"
         >
         </SearchResultsMobile>
@@ -106,7 +106,7 @@ const clearSearch = () => {
                     class="px-4 pt-4"
                     @focus="openSearch"
                 />
-                <SearchKeywordContainer class="px-4 py-2" />
+                <SearchKeywordContainer class="px-4" />
                 <SearchFilterMobile
                     v-show="uiStore.isFilterVisible"
                     class="bg-swissgeo-lightblue p-4"

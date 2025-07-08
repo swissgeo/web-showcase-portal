@@ -15,8 +15,8 @@ import {
 import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
 import DisclaimerBanner from '@/components/DisclaimerBanner.vue'
 import LayerLegend from '@/components/LayerLegend.vue'
+import LegendButton from '@/components/LayerLegendButton.vue'
 import MapPart from '@/components/MapPart.vue'
-import SearchDesktop from '@/components/search/SearchDesktop.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
@@ -126,14 +126,13 @@ onUnmounted(() => {
                 class="pointer-events-auto"
                 data-cy="comp-search-mobile"
             ></SearchMobile>
-            <!-- This data-cy is not visible due to the overlay div inside -->
-            <SearchDesktop
-                v-if="isDesktop"
-                class="flex"
-            ></SearchDesktop>
             <LayerLegend v-if="uiStore.isLayerLegendVisible" />
             <MapPart class="grow-1"></MapPart>
             <DatasetDetailPanel v-if="showLayerInfo" />
+            <LegendButton
+                v-if="isDesktop && !uiStore.isLayerLegendVisible"
+                class="pointer-events-auto absolute top-4 right-6"
+            />
         </div>
         <WelcomeOverlay
             v-if="showWelcomeOverlay"

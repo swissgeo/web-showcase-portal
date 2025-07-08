@@ -7,7 +7,9 @@ import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
+import SearchPanelButton from '@/components/SearchPanelButton.vue'
 import { useTopicTree } from '@/composables/useTopicTree'
 import { useMainStore } from '@/store/main'
 import { useMapStore } from '@/store/map'
@@ -114,6 +116,7 @@ onBeforeUnmount(() => {
                     class="flex h-full min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4"
                 >
                     <div class="flex flex-col items-center gap-2">
+                        <SearchPanelButton />
                         <LayerCartButton />
                         <GeocatalogTreeButton />
                     </div>
@@ -121,7 +124,7 @@ onBeforeUnmount(() => {
                 </div>
                 <!-- Second column -->
                 <div
-                    v-show="uiStore.isLayerCartVisible || uiStore.isGeocatalogTreeVisible"
+                    v-show="uiStore.isSidebarOpen"
                     class="relative flex"
                 >
                     <LayerCart
@@ -130,8 +133,13 @@ onBeforeUnmount(() => {
                         class="h-full overflow-y-auto bg-white"
                     />
                     <TopicTreeBrowser
-                        v-if="uiStore.isGeocatalogTreeVisible"
+                        v-show="uiStore.isGeocatalogTreeVisible"
                         :root="topicTreeRoot"
+                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                        class="h-full overflow-y-auto bg-white"
+                    />
+                    <SearchSidebar
+                        v-show="uiStore.isSearchVisible"
                         :style="{ width: sidebarSecondColumnWidth + 'px' }"
                         class="h-full overflow-y-auto bg-white"
                     />

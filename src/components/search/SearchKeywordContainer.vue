@@ -10,6 +10,7 @@ import type { SearchKeywordUseCase, SearchKeywordUseCaseConfig } from '@/types/s
 import data from '@/assets/searchKeywordUseCases.json' with { type: 'json' }
 import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
+import { useUiStore } from '@/store/ui'
 import { useLanguage } from '@/utils/language.composable'
 
 const keywordConfig = data as SearchKeywordUseCaseConfig
@@ -24,6 +25,7 @@ const isDesktop = inject<Ref<boolean>>('isDesktop')
 const { t } = useI18n()
 const { localeString } = useLanguage()
 const searchStore = useSearchStore()
+const uiStore = useUiStore()
 const geocatSearch = useGeocat()
 const searchTerm = computed(() => searchStore.searchTerm)
 const isOpenSearch = computed(() => searchStore.isOpenSearch)
@@ -160,7 +162,9 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
             <div
                 ref="scrollContainer"
                 class="no-scrollbar w-max overflow-x-auto bg-white py-2 whitespace-nowrap md:py-0"
-                style="max-width: 100%"
+                :class="{
+                    'min-h-12': !isDesktop && !uiStore.isFilterVisible,
+                }"
             >
                 <!-- Inner content container that expands with tags -->
                 <div class="flex w-max gap-2">

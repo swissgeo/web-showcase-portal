@@ -14,9 +14,10 @@ import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
 const isDesktop = inject<boolean>('isDesktop')
-
 const emits = defineEmits(['focus', 'blur'])
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const inputRef = ref<any | null>(null)
 const searchArea = ref<HTMLElement | null>(null)
 defineExpose({ searchArea })
 
@@ -72,6 +73,12 @@ const clearSearch = () => {
 function toggleFilter() {
     uiStore.toggleFilterVisible()
 }
+function onEnter() {
+    // When the user presses enter, we want to blur the input field (close the keyboard on mobile)
+    if (isDesktop) {
+        inputRef.value?.$el.blur()
+    }
+}
 </script>
 
 <template>
@@ -80,12 +87,14 @@ function toggleFilter() {
             <InputIcon class="pi pi-search"></InputIcon>
             <InputText
                 id="search"
+                ref="inputRef"
                 v-model="searchTerm"
                 data-cy="input-search"
                 class="w-full border-none shadow-none"
                 :placeholder="t('searchPlaceholder')"
                 @focus="onFocus"
                 @blur="onBlur"
+                @keydown.enter="onEnter"
             ></InputText>
             <InputIcon
                 v-if="isSearching"

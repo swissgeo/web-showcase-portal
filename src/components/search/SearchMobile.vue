@@ -16,11 +16,8 @@ import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
-import { isFirefoxMobile } from '@/utils/browser'
 
 const { t } = useI18n()
-
-const isFFMobile = isFirefoxMobile()
 
 const searchStore = useSearchStore()
 const uiStore = useUiStore()
@@ -49,7 +46,6 @@ const clearSearch = () => {
         class="fixed right-0 bottom-0 left-0 flex flex-col place-content-between md:static md:p-8"
         :class="{
             'top-0 bg-white': isSearching,
-            'bottom-10': isFFMobile && isSearching,
             'justify-end': !isSearching,
         }"
     >

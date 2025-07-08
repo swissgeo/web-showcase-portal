@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+
+import OverlayRoot from '@/components/OverlayRoot.vue'
 </script>
 
 <template>
@@ -10,6 +12,7 @@ import { RouterView } from 'vue-router'
     </header>
 
     <RouterView />
+    <OverlayRoot />
 </template>
 
 <style scoped></style>

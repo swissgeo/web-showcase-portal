@@ -1,0 +1,180 @@
+<script setup lang="ts">
+import { ArrowLeft } from 'lucide-vue-next'
+import Button from 'primevue/button'
+import Checkbox from 'primevue/checkbox'
+import IconField from 'primevue/iconfield'
+import InputIcon from 'primevue/inputicon'
+import InputText from 'primevue/inputtext'
+import VirtualScroller from 'primevue/virtualscroller'
+import { ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import type { FilterGroup } from '@/types/search'
+
+import { useOverlay } from '@/composables/useOverlay'
+import { useTriggerSearch } from '@/search/triggerSearch.composable'
+import { useSearchStore } from '@/store/search'
+
+type MultiSelectValue = number[]
+
+const {
+    modelValue,
+    options,
+    placeholder = '',
+    onUpdateModelValue,
+} = defineProps<{
+    modelValue: MultiSelectValue
+    options: FilterGroup[]
+    onUpdateModelValue: (_value: MultiSelectValue) => void
+    placeholder?: string
+}>()
+
+const { t } = useI18n()
+const { triggerSearch } = useTriggerSearch()
+const searchStore = useSearchStore()
+const { hideOverlay } = useOverlay()
+
+const search = ref('')
+const currentModelValue = ref([...(modelValue || [])])
+
+watch(
+    currentModelValue,
+    (newValue) => {
+        onUpdateModelValue([...newValue])
+    },
+    { deep: true }
+)
+
+const filteredOptions = computed(() =>
+    search.value
+        ? options.filter((opt) => opt.label.toLowerCase().includes(search.value.toLowerCase()))
+        : options
+)
+
+function applySelection() {
+    if (searchStore.searchTerm) {
+        triggerSearch()
+        searchStore.setIsOpenSearch(true)
+    }
+    hideOverlay()
+}
+
+function clearSelection() {
+    currentModelValue.value = []
+}
+
+function selectAll() {
+    currentModelValue.value = filteredOptions.value
+        .map((opt) => opt.value)
+        .filter((v) => v !== undefined)
+}
+
+function onBack() {
+    hideOverlay()
+}
+
+function toggleOption(value: number | undefined) {
+    if (value === undefined) {
+        return
+    }
+    const idx = currentModelValue.value.indexOf(value)
+    if (idx === -1) {
+        currentModelValue.value = [...currentModelValue.value, value]
+    } else {
+        currentModelValue.value = [
+            ...currentModelValue.value.slice(0, idx),
+            ...currentModelValue.value.slice(idx + 1),
+        ]
+    }
+}
+</script>
+
+<template>
+    <div class="flex h-screen w-screen flex-col bg-white">
+        <div class="relative flex h-[50px] items-center border-b border-gray-200 p-4">
+            <Button
+                class="absolute left-4 !rounded-full !p-2"
+                aria-label="Back"
+                text
+                @click="onBack"
+            >
+                <template #icon>
+                    <ArrowLeft />
+                </template>
+            </Button>
+            <div class="flex-1 text-center text-base font-semibold text-black">
+                {{ placeholder }}
+            </div>
+        </div>
+        <div class="flex-1 p-4">
+            <div class="h-[115px] overflow-hidden">
+                <IconField class="mb-4 w-full">
+                    <InputIcon class="pi pi-search"></InputIcon>
+                    <InputText
+                        v-model="search"
+                        data-cy="input-search"
+                        class="w-full"
+                        :placeholder="t('searchPlaceholder')"
+                    />
+                </IconField>
+                <div class="mb-4 flex gap-2 border-b border-gray-200">
+                    <Button
+                        class="text-swissgeo-blue flex-1 border-none bg-white"
+                        @click="selectAll"
+                    >
+                        {{ t('organisation.selectAll') }}
+                    </Button>
+                    <div
+                        class="mx-2 w-px self-center bg-gray-300"
+                        style="height: 12px"
+                    ></div>
+                    <Button
+                        class="text-swissgeo-blue flex-1 border-none bg-white"
+                        @click="clearSelection"
+                    >
+                        {{ t('organisation.reset') }}
+                    </Button>
+                </div>
+            </div>
+            <VirtualScroller
+                :items="filteredOptions"
+                :item-size="40"
+                :scroll-height="'calc(100vh - (90px + 131px + 50px + 10px))'"
+            >
+                <template #item="{ item }">
+                    <div
+                        :key="item.value"
+                        class="flex cursor-pointer gap-2 p-2"
+                        :class="{
+                            'bg-swissgeo-lightblue':
+                                item.value && currentModelValue.includes(item.value),
+                            'cursor-not-allowed opacity-50': !item.value,
+                        }"
+                        @click="item.value ? toggleOption(item.value) : null"
+                    >
+                        <Checkbox
+                            v-model="currentModelValue"
+                            :value="item.value"
+                            :input-id="item.value?.toString()"
+                            :disabled="!item.value"
+                            @click.stop
+                        />
+                        <label
+                            :for="item.value?.toString()"
+                            @click.stop
+                            >{{ item.label }}</label
+                        >
+                    </div>
+                </template>
+            </VirtualScroller>
+        </div>
+        <div class="flex flex-1 gap-2 border-t border-gray-200 p-4">
+            <Button
+                class="bg-swissgeo-blue max-h-[50px] flex-1 rounded p-3 text-white"
+                @click="applySelection"
+            >
+                {{ t('organisation.showResults') }}
+            </Button>
+        </div>
+    </div>
+</template>

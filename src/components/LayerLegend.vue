@@ -22,7 +22,7 @@ const { t } = useI18n()
     <div data-cy="div-layer-legend">
         <Panel
             :header="t('legend.header')"
-            class="absolute right-0 bottom-0 left-0 z-10 h-1/2 md:top-4 md:right-4 md:bottom-auto md:left-auto md:h-[380px]"
+            class="fixed right-0 bottom-0 left-0 z-10 h-1/2 md:top-4 md:right-4 md:bottom-auto md:left-auto md:h-[380px]"
             :pt="{
                 content: 'md:px-2',
                 title: 'md:order-2',

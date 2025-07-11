@@ -10,11 +10,14 @@ import LogoPic from '@/components/LogoPic.vue'
 import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import SearchPanelButton from '@/components/SearchPanelButton.vue'
+import WelcomeOverlayButton from '@/components/WelcomeOverlayButton.vue'
 import { useTopicTree } from '@/composables/useTopicTree'
 import { useMainStore } from '@/store/main'
 import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
+
+const emits = defineEmits(['showWelcomeOverlay'])
 
 const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 
@@ -90,6 +93,10 @@ function resetApp() {
     mapStore.resetStore()
 }
 
+function showWelcomeOverlay() {
+    emits('showWelcomeOverlay')
+}
+
 updateGeocatalogLanguage()
 
 // Cleanup function to ensure no hanging event listeners
@@ -119,6 +126,7 @@ onBeforeUnmount(() => {
                         <SearchPanelButton />
                         <LayerCartButton />
                         <GeocatalogTreeButton />
+                        <WelcomeOverlayButton @show-welcome-overlay="showWelcomeOverlay" />
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />
                 </div>

@@ -60,6 +60,10 @@ function dontShowAgain() {
     hideWelcomeOverlay.value = true
 }
 
+function showWelcomeOverlayManually() {
+    hideWelcomeOverlay.value = false
+}
+
 // provide a way to programmatically enable/disable the mobile and desktop
 // versions of the search. Of course we could probably just have one component
 // and do it all with CSS, but I'm sure this'll make things much more complicated
@@ -118,7 +122,10 @@ onUnmounted(() => {
                 'flex flex-row justify-stretch': !isDesktop,
             }"
         >
-            <SideBar v-if="isDesktop" />
+            <SideBar
+                v-if="isDesktop"
+                @show-welcome-overlay="showWelcomeOverlayManually"
+            />
             <DisclaimerBanner />
             <SearchMobile
                 v-if="!isDesktop"

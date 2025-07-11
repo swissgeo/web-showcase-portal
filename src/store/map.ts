@@ -9,7 +9,7 @@ import { useGeocatalogStore } from './geocatalog'
 import { useMainStore } from './main'
 
 const defaultZoomLevel = 2
-const defaultCenter: SingleCoordinate = [2650500,1182500]
+const defaultCenter: SingleCoordinate = [2650500, 1182500]
 const defaultLang = 'de'
 const defaultBgLayer = 'ch.swisstopo.pixelkarte-farbe'
 

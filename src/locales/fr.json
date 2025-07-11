@@ -3,9 +3,17 @@
     "searchPlaceholder": "Rechercher ici...",
     "disclaimer": "Site de test, pour démonstration",
     "welcomeOverlay": {
-        "title": "Bienvenue sur...",
-        "intro": "Vous êtes sur... ceci est un prototype",
-        "confirm": "Je veux jeter un œil !"
+        "title": "Bienvenue sur SWISSGEO",
+        "swissgeoOverview": "SWISSGEO – La plateforme géographique suisse donne accès aux géodonnées et géoinformations officielles de la Suisse. Découvrez les cartes, données et services des autorités fédérales, cantonales et communales.",
+        "swissgeoLink": "Visiter SWISSGEO – La plateforme géographique suisse",
+        "previousVersionTitle": "Version précédente",
+        "previousVersionInfo": "Ceci est une version de test de la plateforme. Vous pouvez toujours accéder à la version stable précédente si nécessaire.",
+        "previousVersionLink": "Accéder à la version précédente",
+        "feedbackTitle": "Votre avis compte",
+        "feedbackInfo": "Aidez-nous à nous améliorer en partageant votre expérience et vos suggestions.",
+        "feedbackLink": "Donner un avis",
+        "confirm": "Commencer l'exploration",
+        "dontShowAgain": "Ne plus afficher"
     },
     "searchResult": {
         "mobileSearchTitle": "Recherche",

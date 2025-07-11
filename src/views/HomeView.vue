@@ -22,7 +22,8 @@ import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const showWelcomeOverlay = useStorage('showWelcomeOverlay', false)
+const showWelcomeOverlay = useStorage('hideWelcomeOverlay', false)
+const shouldShowWelcomeOverlay = computed(() => !showWelcomeOverlay.value)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 const windowHeight = ref(0)
@@ -53,6 +54,10 @@ const fontSettings = computed(() => {
 
 function closeOverlay() {
     showWelcomeOverlay.value = false
+}
+
+function dontShowAgain() {
+    showWelcomeOverlay.value = true
 }
 
 // provide a way to programmatically enable/disable the mobile and desktop
@@ -128,9 +133,10 @@ onUnmounted(() => {
             />
         </div>
         <WelcomeOverlay
-            v-if="showWelcomeOverlay"
+            v-if="shouldShowWelcomeOverlay"
             class="z-100"
             @close="closeOverlay"
-        ></WelcomeOverlay>
+            @dont-show-again="dontShowAgain"
+        />
     </main>
 </template>

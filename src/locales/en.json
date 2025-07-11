@@ -3,9 +3,17 @@
     "searchPlaceholder": "Search here...",
     "disclaimer": "Testsite not for operational use",
     "welcomeOverlay": {
-        "title": "Welcome to...",
-        "intro": "You are on... this is a prototype",
-        "confirm": "I want to take a look!"
+        "title": "Welcome to SWISSGEO",
+        "swissgeoOverview": "SWISSGEO – The Swiss Geo Platform provides access to official geodata and geoinformation from Switzerland. Discover maps, data and services from federal, cantonal and municipal authorities.",
+        "swissgeoLink": "Visit SWISSGEO – The Swiss Geo Platform",
+        "previousVersionTitle": "Previous Version",
+        "previousVersionInfo": "This is a test version of the platform. You can still access the previous stable version if needed.",
+        "previousVersionLink": "Access Previous Version",
+        "feedbackTitle": "Your Feedback Matters",
+        "feedbackInfo": "Help us improve by sharing your experience and suggestions.",
+        "feedbackLink": "Provide Feedback",
+        "confirm": "Start Exploring",
+        "dontShowAgain": "Don't show this again"
     },
     "searchResult": {
         "mobileSearchTitle": "Search",

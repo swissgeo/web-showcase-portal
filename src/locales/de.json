@@ -3,9 +3,17 @@
     "searchPlaceholder": "Hier suchen...",
     "disclaimer": "Testseite nur für Demozwecke",
     "welcomeOverlay": {
-        "title": "Willkommen auf...",
-        "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
-        "confirm": "Ich möchte es anschauen!"
+        "title": "Willkommen bei SWISSGEO",
+        "swissgeoOverview": "SWISSGEO – Die Schweizer Geo-Plattform bietet Zugang zu offiziellen Geodaten und Geoinformationen der Schweiz. Entdecken Sie Karten, Daten und Dienste von Bundes-, Kantons- und Gemeindebehörden.",
+        "swissgeoLink": "SWISSGEO – Die Schweizer Geo-Plattform besuchen",
+        "previousVersionTitle": "Vorherige Version",
+        "previousVersionInfo": "Dies ist eine Testversion der Plattform. Sie können bei Bedarf weiterhin auf die vorherige stabile Version zugreifen.",
+        "previousVersionLink": "Vorherige Version aufrufen",
+        "feedbackTitle": "Ihr Feedback ist wichtig",
+        "feedbackInfo": "Helfen Sie uns bei der Verbesserung, indem Sie Ihre Erfahrungen und Vorschläge mit uns teilen.",
+        "feedbackLink": "Feedback geben",
+        "confirm": "Entdeckung starten",
+        "dontShowAgain": "Nicht mehr anzeigen"
     },
     "searchResult": {
         "mobileSearchTitle": "Suche",

@@ -3,9 +3,17 @@
     "searchPlaceholder": "Tschertga qua...",
     "disclaimer": "Pagina da test – betg per diever operativ",
     "welcomeOverlay": {
-        "title": "Bainvegni sin...",
-        "intro": "Ti es sin... quai è in prototip",
-        "confirm": "Vuless guardar!"
+        "title": "Bainvegni sin SWISSGEO",
+        "swissgeoOverview": "SWISSGEO – La plattafurma geografica svizra dat access a geodatas e geoinformaziuns uffizialas da la Svizra. Scuvri chartas, datas e servetschs da las autoritads federalas, chantunalas e communalas.",
+        "swissgeoLink": "Visitar SWISSGEO – La plattafurma geografica svizra",
+        "previousVersionTitle": "Versiun precedenta",
+        "previousVersionInfo": "Quai è ina versiun da test da la plattafurma. Ti pos ancamò acceder a la versiun stabla precedenta sche necessari.",
+        "previousVersionLink": "Acceder a la versiun precedenta",
+        "feedbackTitle": "Tes feedback è impurtant",
+        "feedbackInfo": "Gida a nus da meglierar cun cundivider tia experienza e tias propostas.",
+        "feedbackLink": "Dar feedback",
+        "confirm": "Cumenzar l'exploraziun",
+        "dontShowAgain": "Betg pli mussar"
     },
     "searchResult": {
         "mobileSearchTitle": "Tschertga",

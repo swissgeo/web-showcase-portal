@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-import type { MapUrlParameter } from '@/types/mapUrlParameters'
+import type { MapUrlParameter, SingleCoordinate } from '@/types/mapUrlParameters'
 
 import { convertToMapParameter } from '@/search/mapUrlUtils'
 
 import { useGeocatalogStore } from './geocatalog'
 import { useMainStore } from './main'
+
+const defaultZoomLevel = 2
+const defaultCenter: SingleCoordinate = [2650500,1182500]
+const defaultLang = 'de'
+const defaultBgLayer = 'ch.swisstopo.pixelkarte-farbe'
 
 export const useMapStore = defineStore('map', () => {
     // State
@@ -17,10 +22,10 @@ export const useMapStore = defineStore('map', () => {
         mainStore.layersOnMap?.map((layer) => convertToMapParameter(layer)).join(';')
     )
     const mapUrlSearchParams = ref<Partial<MapUrlParameter>>({
-        lang: 'de',
-        z: 1,
-        center: [2660000, 1190000],
-        bgLayer: 'ch.swisstopo.pixelkarte-farbe',
+        lang: defaultLang,
+        z: defaultZoomLevel,
+        center: defaultCenter,
+        bgLayer: defaultBgLayer,
         layers: layers.value,
         hideEmbedUI: true,
         topic: geocatalogStore.currentTopic,
@@ -35,10 +40,10 @@ export const useMapStore = defineStore('map', () => {
 
     function resetStore() {
         mapUrlSearchParams.value = {
-            lang: 'de',
-            z: 1,
-            center: [2660000, 1190000],
-            bgLayer: 'ch.swisstopo.pixelkarte-farbe',
+            lang: defaultLang,
+            z: defaultZoomLevel,
+            center: defaultCenter,
+            bgLayer: defaultBgLayer,
             layers: layers.value,
             hideEmbedUI: true,
             topic: geocatalogStore.currentTopic,

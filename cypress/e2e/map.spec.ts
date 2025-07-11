@@ -18,23 +18,24 @@ describe('Test the map on desktop', () => {
         cy.get('[data-cy="iframe-mapviewer"]').should('exist')
         cy.get('[data-cy="zoom-button-group"]').should('exist')
         cy.get('[data-cy="zoom-out"]').should('exist')
-        cy.get('[data-cy="zoom-out"]').should('be.disabled')
+        // the zoom out button is enabled because the default zoom level is 2
+        cy.get('[data-cy="zoom-out"]').should('be.enabled')
 
         cy.get('[data-cy="zoom-in"]').should('exist')
         cy.get('[data-cy="zoom-in"]').click()
         getIframeDocument()
             .its('location.href')
-            .should('match', /(?:\?|&)z=2/)
+            .should('match', /(?:\?|&)z=3/)
         cy.get('[data-cy="zoom-in"]').click()
 
         getIframeDocument()
             .its('location.href')
-            .should('match', /(?:\?|&)z=3/)
+            .should('match', /(?:\?|&)z=4/)
 
         cy.get('[data-cy="zoom-out"]').click()
         getIframeDocument()
             .its('location.href')
-            .should('match', /(?:\?|&)z=2/)
+            .should('match', /(?:\?|&)z=3/)
     })
     it('loads a search result on the map', () => {
         cy.get('[data-cy="input-search"]').type('wald')

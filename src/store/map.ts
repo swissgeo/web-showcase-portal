@@ -1,17 +1,13 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-import type { MapUrlParameter, SingleCoordinate } from '@/types/mapUrlParameters'
+import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
+import { defaultBgLayer, defaultCenter, defaultLang, defaultZoomLevel } from '@/config/map.config'
 import { convertToMapParameter } from '@/search/mapUrlUtils'
 
 import { useGeocatalogStore } from './geocatalog'
 import { useMainStore } from './main'
-
-const defaultZoomLevel = 2
-const defaultCenter: SingleCoordinate = [2650500, 1182500]
-const defaultLang = 'de'
-const defaultBgLayer = 'ch.swisstopo.pixelkarte-farbe'
 
 export const useMapStore = defineStore('map', () => {
     // State

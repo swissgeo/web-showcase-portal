@@ -11,7 +11,7 @@ describe('Test the map on desktop', () => {
         cy.viewport('macbook-15')
         cy.visit('/')
         cy.wait(['@layersConfig', '@services', '@catalogServer'])
-        // cy.get('[data-cy="button-overlay-confirm"]').click()
+        cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('renders the map', () => {
         cy.log('Test if the map renders and can be zoomed in and out')
@@ -71,7 +71,7 @@ describe('Test the map on mobile', () => {
     beforeEach(() => {
         cy.viewport('iphone-se2')
         cy.visit('/')
-        // cy.get('[data-cy="button-overlay-confirm"]').click()
+        cy.get('[data-cy="button-overlay-confirm"]').click()
     })
     it('renders the map', () => {
         cy.log('Test if the map zoom buttons are not present')

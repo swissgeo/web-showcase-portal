@@ -39,7 +39,7 @@ function openExternalLink(url: string) {
             <div class="flex-1 space-y-6 px-6 py-4">
                 <!-- SWISSGEO Overview Section -->
                 <section>
-                    <p class="mb-4 text-gray-700 leading-relaxed">
+                    <p class="mb-4 leading-relaxed text-gray-700">
                         {{ t('welcomeOverlay.swissgeoOverview') }}
                     </p>
                     <Button
@@ -78,7 +78,9 @@ function openExternalLink(url: string) {
                         :label="t('welcomeOverlay.feedbackLink')"
                         class="p-button-outlined p-button-success"
                         icon="pi pi-comment"
-                        @click="openExternalLink('mailto:webgis@swisstopo.ch?subject=PWIP Feedback')"
+                        @click="
+                            openExternalLink('mailto:webgis@swisstopo.ch?subject=PWIP Feedback')
+                        "
                     />
                 </section>
             </div>
@@ -94,7 +96,7 @@ function openExternalLink(url: string) {
                         />
                         <label
                             for="dontShowAgain"
-                            class="text-sm text-gray-600 cursor-pointer"
+                            class="cursor-pointer text-sm text-gray-600"
                         >
                             {{ t('welcomeOverlay.dontShowAgain') }}
                         </label>

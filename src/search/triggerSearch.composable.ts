@@ -3,6 +3,7 @@ import { computed, type ComputedRef } from 'vue'
 import { SEARCH_DEBOUNCE_DELAY } from '@/search'
 import useAddressSearch from '@/search/address'
 import useGeocat from '@/search/geocat'
+import useParcelSearch from '@/search/parcels'
 import { useSearchStore } from '@/store/search'
 import { DEFAULT_SEARCH_SR } from '@/types/projection'
 import { debounce } from '@/utils/debounce'
@@ -10,6 +11,7 @@ import { useLanguage } from '@/utils/language.composable'
 
 export function useTriggerSearch() {
     const addressSearch = useAddressSearch()
+    const parcelSearch = useParcelSearch()
     const geocatSearch = useGeocat()
     const searchStore = useSearchStore()
     const { localeString } = useLanguage()
@@ -33,6 +35,7 @@ export function useTriggerSearch() {
         const searchValue = searchStore.searchTerm?.trim() || ''
         geocatSearch.searchGeocat(searchValue, selectedGroupIds.value)
         addressSearch.searchAddress(searchValue, DEFAULT_SEARCH_SR, localeString.value, 20)
+        parcelSearch.searchParcels(searchValue, DEFAULT_SEARCH_SR, localeString.value, 20)
     }, SEARCH_DEBOUNCE_DELAY)
 
     const triggerGeocatSearch = debounce(() => {

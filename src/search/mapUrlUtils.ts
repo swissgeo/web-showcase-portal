@@ -27,8 +27,8 @@ export const LOCATION_SEARCH_ORIGINS: OriginType[] = [
     'kantone',
     'gazetteer',
     'address',
-    'parcel',
 ]
+export const PARCEL_SEARCH_ORIGINS: OriginType[] = ['parcel']
 
 export const TRANSPARENCY_DEBOUNCE_DELAY = 500
 export const ZOOM_DEBOUNCE_DELAY = 200

@@ -17,11 +17,11 @@ import { useSearchStore } from '@/store/search'
 const { t } = useI18n()
 
 const {
-    showGeocatSpinner,
     showAddressSpinner,
+    isSearching,
+    showGeocatSpinner,
     addressSearchResultCount,
     geocatSearchResultCount,
-    isSearching,
 } = useSearchResults()
 
 const searchStore = useSearchStore()

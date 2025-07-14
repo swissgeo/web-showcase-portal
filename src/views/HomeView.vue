@@ -59,7 +59,7 @@ function closeOverlay() {
 }
 
 function dontShowAgain() {
-    dontShowWelcomeOverlayAgain.value = true
+    // dontShowWelcomeOverlayAgain is now directly managed by the WelcomeOverlay component
     uiStore.hideWelcomeOverlay()
 }
 

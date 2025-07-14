@@ -1,16 +1,18 @@
 <script setup lang="ts">
+import { useStorage } from '@vueuse/core'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
-import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
 const emits = defineEmits(['close', 'dontShowAgain'])
 
-const dontShowAgain = ref(false)
+const dontShowAgain = useStorage('dontShowWelcomeOverlayAgain', false)
 
 function handleClose() {
+    // dontShowAgain is already directly connected to localStorage
+    // through useStorage, so we just need to emit the right event
     if (dontShowAgain.value) {
         emits('dontShowAgain')
     } else {

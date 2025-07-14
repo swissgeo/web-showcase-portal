@@ -6,7 +6,7 @@ import LayerIcon from '@/assets/icons/layers.svg?use'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
 
-const isDesktop = inject<boolean>('isDesktop')
+const isDesktop = inject<boolean>('isDesktop', true)
 // Trigger animation when the layer count changes
 const badgeKey = ref(0)
 // Access the store

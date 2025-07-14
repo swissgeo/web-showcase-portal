@@ -4,7 +4,7 @@ import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-const isDesktop = inject<boolean>('isDesktop')
+const isDesktop = inject<boolean>('isDesktop', true)
 
 const emits = defineEmits(['showWelcomeOverlay'])
 

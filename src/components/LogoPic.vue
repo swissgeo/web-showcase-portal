@@ -7,7 +7,7 @@ const { condensed = false } = defineProps<{
     condensed?: boolean
 }>()
 
-const isDesktop = inject<boolean>('isDesktop')
+const isDesktop = inject<boolean>('isDesktop', true)
 </script>
 
 <template>

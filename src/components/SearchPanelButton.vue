@@ -5,7 +5,7 @@ import { inject } from 'vue'
 import SearchIcon from '@/assets/icons/search.svg?use'
 import { SidebarType, useUiStore } from '@/store/ui'
 
-const isDesktop = inject<boolean>('isDesktop')
+const isDesktop = inject<boolean>('isDesktop', true)
 const uiStore = useUiStore()
 </script>
 

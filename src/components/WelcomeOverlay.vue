@@ -40,10 +40,19 @@ function openExternalLink(url: string) {
                 <!-- SWISSGEO Overview Section -->
                 <section class="space-y-4">
                     <p class="leading-relaxed text-gray-700">
-                        <button
-                            class="inline-block text-blue-600 underline hover:text-blue-800 focus:outline-none"
-                            @click="openExternalLink('https://sys-pwip.dev.bgdi.ch/')">{{ t('welcomeOverlay.hereLabel') }}</button>
-                        {{ t('welcomeOverlay.swissgeoOverview').replace(t('welcomeOverlay.hereLabel'), '') }}
+                        <a
+                            href="https://sys-pwip.dev.bgdi.ch/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-blue-600 underline hover:text-blue-800 focus:outline-none"
+                            >{{ t('welcomeOverlay.hereLabel') }}</a
+                        >
+                        {{
+                            t('welcomeOverlay.swissgeoOverview').replace(
+                                t('welcomeOverlay.hereLabel'),
+                                ''
+                            )
+                        }}
                     </p>
                     <p class="leading-relaxed text-gray-700">
                         {{ t('welcomeOverlay.additionalInfo') }}
@@ -57,15 +66,19 @@ function openExternalLink(url: string) {
                 <section class="space-y-3">
                     <Button
                         :label="t('welcomeOverlay.prototypeLink')"
-                        class="w-full p-button-outlined"
+                        class="p-button-outlined w-full"
                         icon="pi pi-external-link"
                         @click="openExternalLink('https://sys-pwip.dev.bgdi.ch/')"
                     />
                     <Button
                         :label="t('welcomeOverlay.projectInfoLink')"
-                        class="w-full p-button-outlined p-button-secondary"
+                        class="p-button-outlined w-full"
                         icon="pi pi-info-circle"
-                        @click="openExternalLink('https://www.geoinformation.ch/de/swissgeo-geoplattform')"
+                        @click="
+                            openExternalLink(
+                                'https://www.geoinformation.ch/de/swissgeo-geoplattform'
+                            )
+                        "
                     />
                 </section>
             </div>

@@ -21,6 +21,7 @@ export const useUiStore = defineStore('ui', () => {
     const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
+    const isWelcomeOverlayVisible = ref(false)
 
     // Computed getters
     const isSidebarOpen = computed(() => currentSidebar.value !== null)
@@ -46,8 +47,17 @@ export const useUiStore = defineStore('ui', () => {
     function toggleFilterVisible() {
         isFilterVisible.value = !isFilterVisible.value
     }
+
     function setLayerCartVisible(visible: boolean) {
         currentSidebar.value = visible ? SidebarType.LAYER_CART : null
+    }
+
+    function showWelcomeOverlay() {
+        isWelcomeOverlayVisible.value = true
+    }
+
+    function hideWelcomeOverlay() {
+        isWelcomeOverlayVisible.value = false
     }
 
     function setSidebarSecondColumnWidth(width: number) {
@@ -94,6 +104,7 @@ export const useUiStore = defineStore('ui', () => {
         isLayerWindowMaximized,
         openLayerWindowFromDetailButton,
         sidebarSecondColumnWidth,
+        isWelcomeOverlayVisible,
         // Computed getters
         isSidebarOpen,
         isLayerCartVisible,
@@ -111,5 +122,8 @@ export const useUiStore = defineStore('ui', () => {
         toggleLayerWindow,
         closeSidebar,
         resetStore,
+        // Welcome overlay actions
+        showWelcomeOverlay,
+        hideWelcomeOverlay,
     }
 })

@@ -17,5 +17,8 @@
 import './commands'
 import 'cypress-real-events'
 
+// Load type definitions for custom commands
+import './commands.d'
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

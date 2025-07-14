@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
 import {
     computed,
     provide,
@@ -21,9 +22,10 @@ import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
+
+const { isWelcomeOverlayVisible } = storeToRefs(uiStore)
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const hideWelcomeOverlay = useStorage('hideWelcomeOverlay', false)
-const shouldShowWelcomeOverlay = computed(() => !hideWelcomeOverlay.value)
+const dontShowWelcomeOverlayAgain = useStorage('dontShowWelcomeOverlayAgain', false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 const windowHeight = ref(0)
@@ -53,15 +55,16 @@ const fontSettings = computed(() => {
 })
 
 function closeOverlay() {
-    hideWelcomeOverlay.value = true
+    uiStore.hideWelcomeOverlay()
 }
 
 function dontShowAgain() {
-    hideWelcomeOverlay.value = true
+    dontShowWelcomeOverlayAgain.value = true
+    uiStore.hideWelcomeOverlay()
 }
 
 function showWelcomeOverlayManually() {
-    hideWelcomeOverlay.value = false
+    uiStore.showWelcomeOverlay()
 }
 
 // provide a way to programmatically enable/disable the mobile and desktop
@@ -104,6 +107,15 @@ onMounted(() => {
     console.log('HOME')
     addResizeListener()
     initializeWindowWidth()
+
+    // Only check dontShowWelcomeOverlayAgain on first startup
+    // If the user has opted out, don't show the overlay
+    // Otherwise, show it
+    if (dontShowWelcomeOverlayAgain.value) {
+        uiStore.hideWelcomeOverlay()
+    } else {
+        uiStore.showWelcomeOverlay()
+    }
 })
 onUnmounted(() => {
     removeResizeListener()
@@ -140,7 +152,7 @@ onUnmounted(() => {
             />
         </div>
         <WelcomeOverlay
-            v-if="shouldShowWelcomeOverlay"
+            v-if="isWelcomeOverlayVisible"
             class="z-100"
             @close="closeOverlay"
             @dont-show-again="dontShowAgain"

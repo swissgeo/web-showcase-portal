@@ -15,7 +15,13 @@ useInfiniteScroll(
     () => {
         if (searchStore.searchTerm && !searchStore.isSearchingGeocat) {
             searchStore.incGeocatPage()
-            searchGeocat(searchStore.searchTerm)
+            const activeFilters = searchStore.getActiveFilters()
+            const groupIds = [
+                ...activeFilters.federal,
+                ...activeFilters.cantonal,
+                ...activeFilters.communal,
+            ]
+            searchGeocat(searchStore.searchTerm, groupIds)
         }
     },
     {

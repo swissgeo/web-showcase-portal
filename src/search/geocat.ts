@@ -72,7 +72,7 @@ export default function useGeocat() {
             linkProtocol: '/OGC:WMT?S.*/',
         }
         if (groupIds && groupIds.length) {
-            filters.groupOwner = '(' + groupIds.map((id) => `groupOwner:"${id}"`).join(' OR ') + ')'
+            filters.groupOwner = '(' + groupIds.join(' OR ') + ')'
         }
 
         // logs...

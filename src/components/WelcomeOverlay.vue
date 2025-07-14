@@ -38,49 +38,34 @@ function openExternalLink(url: string) {
             <!-- Content -->
             <div class="flex-1 space-y-6 px-6 py-4">
                 <!-- SWISSGEO Overview Section -->
-                <section>
-                    <p class="mb-4 leading-relaxed text-gray-700">
-                        {{ t('welcomeOverlay.swissgeoOverview') }}
+                <section class="space-y-4">
+                    <p class="leading-relaxed text-gray-700">
+                        <button
+                            class="inline-block text-blue-600 underline hover:text-blue-800 focus:outline-none"
+                            @click="openExternalLink('https://sys-pwip.dev.bgdi.ch/')">{{ t('welcomeOverlay.hereLabel') }}</button>
+                        {{ t('welcomeOverlay.swissgeoOverview').replace(t('welcomeOverlay.hereLabel'), '') }}
                     </p>
-                    <Button
-                        :label="t('welcomeOverlay.swissgeoLink')"
-                        class="p-button-outlined"
-                        icon="pi pi-external-link"
-                        @click="openExternalLink('https://www.geo.admin.ch/')"
-                    />
-                </section>
-
-                <!-- Previous Version Section -->
-                <section class="rounded-lg bg-blue-50 p-4">
-                    <h3 class="mb-2 text-lg font-semibold text-blue-900">
-                        {{ t('welcomeOverlay.previousVersionTitle') }}
-                    </h3>
-                    <p class="mb-3 text-blue-800">
-                        {{ t('welcomeOverlay.previousVersionInfo') }}
+                    <p class="leading-relaxed text-gray-700">
+                        {{ t('welcomeOverlay.additionalInfo') }}
                     </p>
-                    <Button
-                        :label="t('welcomeOverlay.previousVersionLink')"
-                        class="p-button-outlined p-button-info"
-                        icon="pi pi-history"
-                        @click="openExternalLink('https://map.geo.admin.ch/')"
-                    />
-                </section>
-
-                <!-- Feedback Section -->
-                <section class="rounded-lg bg-green-50 p-4">
-                    <h3 class="mb-2 text-lg font-semibold text-green-900">
-                        {{ t('welcomeOverlay.feedbackTitle') }}
-                    </h3>
-                    <p class="mb-3 text-green-800">
+                    <p class="leading-relaxed text-gray-700">
                         {{ t('welcomeOverlay.feedbackInfo') }}
                     </p>
+                </section>
+
+                <!-- Action Buttons Section -->
+                <section class="space-y-3">
                     <Button
-                        :label="t('welcomeOverlay.feedbackLink')"
-                        class="p-button-outlined p-button-success"
-                        icon="pi pi-comment"
-                        @click="
-                            openExternalLink('mailto:webgis@swisstopo.ch?subject=PWIP Feedback')
-                        "
+                        :label="t('welcomeOverlay.prototypeLink')"
+                        class="w-full p-button-outlined"
+                        icon="pi pi-external-link"
+                        @click="openExternalLink('https://sys-pwip.dev.bgdi.ch/')"
+                    />
+                    <Button
+                        :label="t('welcomeOverlay.projectInfoLink')"
+                        class="w-full p-button-outlined p-button-secondary"
+                        icon="pi pi-info-circle"
+                        @click="openExternalLink('https://www.geoinformation.ch/de/swissgeo-geoplattform')"
                     />
                 </section>
             </div>

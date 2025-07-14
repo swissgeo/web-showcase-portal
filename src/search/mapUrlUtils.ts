@@ -31,7 +31,7 @@ export const LOCATION_SEARCH_ORIGINS: OriginType[] = [
 ]
 
 export const TRANSPARENCY_DEBOUNCE_DELAY = 500
-
+export const ZOOM_DEBOUNCE_DELAY = 200
 export function generateMapUrlParameters(params: Partial<MapUrlParameter>) {
     const searchParams = new URLSearchParams()
     // if the layers parameter is not provided, the layers will not get updated / removed

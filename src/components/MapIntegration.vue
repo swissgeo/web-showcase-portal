@@ -8,9 +8,11 @@ import {
     changeZoomLevel,
     generateMapUrlParameters,
     getUrlParamsFromSource,
+    ZOOM_DEBOUNCE_DELAY,
 } from '@/search/mapUrlUtils'
 import { useGroupsStore } from '@/store/groups'
 import { useMapStore } from '@/store/map'
+import { debounce } from '@/utils/debounce'
 import { getEmbedViewerUrl } from '@/utils/environment.config'
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
@@ -30,11 +32,11 @@ watch(urlString, (value) => {
     console.debug(value)
 })
 
-function changeZoom(direction: boolean) {
+const debounceChangeZoom = debounce((direction: boolean) => {
     const params = mapStore.mapUrlSearchParams
     params.z = changeZoomLevel(direction, params.z as number)
     mapStore.setMapUrlSearchParams(params)
-}
+}, ZOOM_DEBOUNCE_DELAY)
 
 onBeforeMount(() => {
     window.addEventListener('message', onEmbedChange)
@@ -79,14 +81,14 @@ function onEmbedChange(e: MessageEvent) {
             data-cy="zoom-out"
             icon="pi pi-minus"
             severity="secondary"
-            @click="changeZoom(false)"
+            @click="debounceChangeZoom(false)"
         />
         <Button
             :disabled="currentZoomLevel === 15"
             data-cy="zoom-in"
             icon="pi pi-plus"
             severity="secondary"
-            @click="changeZoom(true)"
+            @click="debounceChangeZoom(true)"
         />
     </ButtonGroup>
 </template>

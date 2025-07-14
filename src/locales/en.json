@@ -23,7 +23,7 @@
         "title": "Displayed maps",
         "backgroundMap": "Background Map",
         "colorMap": "Color Map",
-        "greyMap": "Color Map",
+        "greyMap": "Grey Map",
         "aerialImagery": "Aerial Imagery"
     },
     "legend": {

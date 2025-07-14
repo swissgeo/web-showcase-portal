@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
+import { defaultBgLayer, defaultCenter, defaultLang, defaultZoomLevel } from '@/config/map.config'
 import { convertToMapParameter } from '@/search/mapUrlUtils'
 
 import { useGeocatalogStore } from './geocatalog'
@@ -17,10 +18,10 @@ export const useMapStore = defineStore('map', () => {
         mainStore.layersOnMap?.map((layer) => convertToMapParameter(layer)).join(';')
     )
     const mapUrlSearchParams = ref<Partial<MapUrlParameter>>({
-        lang: 'de',
-        z: 1,
-        center: [2660000, 1190000],
-        bgLayer: 'ch.swisstopo.pixelkarte-farbe',
+        lang: defaultLang,
+        z: defaultZoomLevel,
+        center: defaultCenter,
+        bgLayer: defaultBgLayer,
         layers: layers.value,
         hideEmbedUI: true,
         topic: geocatalogStore.currentTopic,
@@ -35,10 +36,10 @@ export const useMapStore = defineStore('map', () => {
 
     function resetStore() {
         mapUrlSearchParams.value = {
-            lang: 'de',
-            z: 1,
-            center: [2660000, 1190000],
-            bgLayer: 'ch.swisstopo.pixelkarte-farbe',
+            lang: defaultLang,
+            z: defaultZoomLevel,
+            center: defaultCenter,
+            bgLayer: defaultBgLayer,
             layers: layers.value,
             hideEmbedUI: true,
             topic: geocatalogStore.currentTopic,

@@ -8,6 +8,8 @@ import { LayerType, type Layer } from '@/types/layer'
 import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
 import { useLanguage } from '@/utils/language.composable'
 
+import { includeKGKGroup } from './geocatGroups'
+
 export default function useGeocat() {
     const GNUI = window.GNUI
     let subscription: Subscription | null = null
@@ -72,7 +74,8 @@ export default function useGeocat() {
             linkProtocol: '/OGC:WMT?S.*/',
         }
         if (groupIds && groupIds.length) {
-            filters.groupOwner = '(' + groupIds.join(' OR ') + ')'
+            const uniqueGroupIds = includeKGKGroup(groupIds)
+            filters.groupOwner = '(' + uniqueGroupIds.join(' OR ') + ')'
         }
 
         // logs...

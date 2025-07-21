@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
-import { storeToRefs } from 'pinia'
 import {
     computed,
     provide,
@@ -23,9 +22,9 @@ import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
 
-const { isWelcomeOverlayVisible } = storeToRefs(uiStore)
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const dontShowWelcomeOverlayAgain = useStorage('dontShowWelcomeOverlayAgain', false)
+const isWelcomeOverlayVisible = ref(false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 const windowHeight = ref(0)
@@ -56,17 +55,13 @@ const fontSettings = computed(() => {
 
 function closeOverlay() {
     // User closed without checking "don't show again" - just hide for now
-    uiStore.hideWelcomeOverlay()
+    isWelcomeOverlayVisible.value = false
 }
 
 function dontShowAgain() {
     // User checked "don't show again" - permanently disable
     dontShowWelcomeOverlayAgain.value = true
-    uiStore.hideWelcomeOverlay()
-}
-
-function showWelcomeOverlayManually() {
-    uiStore.showWelcomeOverlay()
+    isWelcomeOverlayVisible.value = false
 }
 
 // provide a way to programmatically enable/disable the mobile and desktop
@@ -116,7 +111,7 @@ onMounted(() => {
     // - On subsequent visits if user closed without checking "don't show again"
     // It will NOT show if user has checked "don't show again"
     if (!dontShowWelcomeOverlayAgain.value) {
-        uiStore.showWelcomeOverlay()
+        isWelcomeOverlayVisible.value = true
     }
 })
 onUnmounted(() => {
@@ -136,10 +131,7 @@ onUnmounted(() => {
                 'flex flex-row justify-stretch': !isDesktop,
             }"
         >
-            <SideBar
-                v-if="isDesktop"
-                @show-welcome-overlay="showWelcomeOverlayManually"
-            />
+            <SideBar v-if="isDesktop" />
             <DisclaimerBanner />
             <SearchMobile
                 v-if="!isDesktop"

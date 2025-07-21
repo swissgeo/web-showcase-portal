@@ -19,6 +19,7 @@ function handleClose() {
         dontShowAgainStorage.value = true
         emits('dontShowAgain')
     } else {
+        dontShowAgainStorage.value = false
         emits('close')
     }
 }

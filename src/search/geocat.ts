@@ -51,7 +51,13 @@ export default function useGeocat() {
         // the promise is already underway to being resolved
 
         if (searchStore.searchTerm) {
-            searchStore.appendGeocatSearchResults(records)
+            const sortedRecords = records.sort((a, b) => {
+                const isKGKRecordA = a.ownerOrganization.name === "KGK-CGC"
+                const isKGKRecordB = b.ownerOrganization.name === "KGK-CGC"
+                return Number(isKGKRecordB) - Number(isKGKRecordA)
+            })
+
+            searchStore.appendGeocatSearchResults(sortedRecords)
             searchStore.setSearchResultTotal(count)
         }
         searchStore.setIsSearchingGeocat(false)

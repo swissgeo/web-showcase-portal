@@ -263,7 +263,7 @@
         "name": "RDP_LU",
         "label": {
             "ger": "Raumdatenpool Kanton Luzern",
-            "ita": "Raumdatenpool Canton  Lucerna",
+            "ita": "Raumdatenpool Canton Lucerna",
             "fre": "Raumdatenpool Canton de Lucerne",
             "roh": "Raumdatenpool Kanton Luzern",
             "eng": "Raumdatenpool Canton Lucerne"
@@ -775,7 +775,7 @@
         "name": "StadtBern",
         "label": {
             "ger": "Stadt Bern",
-            "ita": "Città  Berna",
+            "ita": "Città di Berna",
             "fre": "Ville de Berne",
             "roh": "Stadt Bern",
             "eng": "City of Bern"

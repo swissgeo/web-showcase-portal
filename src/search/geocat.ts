@@ -81,7 +81,7 @@ export default function useGeocat() {
         }
         if (groupIds && groupIds.length) {
             const uniqueGroupIds = includeKGKGroup(groupIds)
-            filters.groupOwner = '(' + uniqueGroupIds.join(' OR ') + ')'
+            filters.groupOwner = '(' + uniqueGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ') + ')'
         }
 
         // logs...

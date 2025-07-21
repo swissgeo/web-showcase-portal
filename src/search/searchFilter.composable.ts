@@ -11,6 +11,8 @@ import { useLanguage } from '@/utils/language.composable'
 
 import type { GroupLabel } from './geocatGroups'
 
+import { getKGKGroup } from './geocatGroups'
+
 let instance: ReturnType<typeof createSearchFilter> | null = null
 
 function createSearchFilter() {
@@ -35,6 +37,7 @@ function createSearchFilter() {
         if (!groups?.length) {
             return []
         }
+
         const langKey = filterLanguageLabelKey.value
         const labelToGroup = new Map<string, { id: number; label: string }>()
 
@@ -43,17 +46,27 @@ function createSearchFilter() {
                 continue
             }
             const fallbackLabel = group.label.eng || group.name
-            const mainLabel = lastWord(group.label[langKey] || fallbackLabel)
-            const alternativeLabels = Object.values(group.label).filter(Boolean).map(lastWord)
+            const mainLabel = normalizeLabel(group.label[langKey] || fallbackLabel)
+            const alternativeLabels = Object.values(group.label).filter(Boolean).map(normalizeLabel)
 
             for (const altLabel of alternativeLabels) {
                 // taking only the first occurrence of each label
-                // FIXME: In the geocatGroups.json Graubünden is listed twice
                 if (altLabel && !labelToGroup.has(altLabel)) {
                     labelToGroup.set(altLabel, { id: group.id, label: mainLabel })
                 }
             }
         }
+
+        const kgkGroup = getKGKGroup()
+        if (kgkGroup) {
+            cantons.forEach((canton) => {
+                const cantonLabel = canton.label[langKey as keyof typeof canton.label] || ''
+                if (!labelToGroup.has(cantonLabel)) {
+                    labelToGroup.set(cantonLabel, { id: kgkGroup.id, label: cantonLabel })
+                }
+            })
+        }
+
         return cantons
             .map(mapCantonToFilterGroup(labelToGroup, langKey))
             .sort((a, b) => a.label.localeCompare(b.label))
@@ -91,7 +104,7 @@ function createSearchFilter() {
         langKey: string
     ): (canton: { label: GroupLabel }) => FilterGroup {
         return (canton) => {
-            const localizedLabel = (canton.label as GroupLabel)[langKey] || ''
+            const localizedLabel = normalizeLabel(canton.label[langKey] || '')
             const match = labelMap.get(localizedLabel)
 
             return {
@@ -135,6 +148,16 @@ function createSearchFilter() {
 
     function findGroupLabel(groups: FilterGroup[], id: number): string {
         return groups.find((group: FilterGroup) => group.value === id)?.label || ''
+    }
+
+    function normalizeLabel(label: string | undefined): string {
+        if (!label) {
+            return ''
+        }
+        return label
+            .replace(/^(Canton (de|du|des|of)?|Chantun|Kanton)\s*/i, '')
+            .replace(/^d'/i, '')
+            .trim()
     }
 
     return {

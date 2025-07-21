@@ -8,6 +8,10 @@ import { LayerType, type Layer } from '@/types/layer'
 import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
 import { useLanguage } from '@/utils/language.composable'
 
+import { includeKGKGroup } from './geocatGroups'
+
+const KGK_ORGANIZATION_NAME = 'KGK-CGC'
+
 export default function useGeocat() {
     const GNUI = window.GNUI
     let subscription: Subscription | null = null
@@ -49,7 +53,13 @@ export default function useGeocat() {
         // the promise is already underway to being resolved
 
         if (searchStore.searchTerm) {
-            searchStore.appendGeocatSearchResults(records)
+            const sortedRecords = records.sort((a, b) => {
+                const isKGKRecordA = a.ownerOrganization.name === KGK_ORGANIZATION_NAME
+                const isKGKRecordB = b.ownerOrganization.name === KGK_ORGANIZATION_NAME
+                return Number(isKGKRecordB) - Number(isKGKRecordA)
+            })
+
+            searchStore.appendGeocatSearchResults(sortedRecords)
             searchStore.setSearchResultTotal(count)
         }
         searchStore.setIsSearchingGeocat(false)
@@ -72,7 +82,8 @@ export default function useGeocat() {
             linkProtocol: '/OGC:WMT?S.*/',
         }
         if (groupIds && groupIds.length) {
-            filters.groupOwner = '(' + groupIds.map((id) => `groupOwner:"${id}"`).join(' OR ') + ')'
+            const uniqueGroupIds = includeKGKGroup(groupIds)
+            filters.groupOwner = `(${uniqueGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ')})`
         }
 
         // logs...

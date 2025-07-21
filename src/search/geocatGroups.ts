@@ -23,6 +23,16 @@ export interface Group {
 // TODO: Replace local JSON import with a call to the geocat API (currently a CORS problem)
 import geocatGroups from '@/assets/geocatGroups.json'
 
+export const KGK_GROUP_ID = 34799060
+
+export function includeKGKGroup(groupIds: number[]): number[] {
+    return Array.from(new Set([...groupIds, KGK_GROUP_ID]))
+}
+
+export function getKGKGroup() {
+    return geocatGroups.find((group) => group.id === KGK_GROUP_ID)
+}
+
 interface RawGroup {
     id: number
     website: string

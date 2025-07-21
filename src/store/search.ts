@@ -120,6 +120,14 @@ export const useSearchStore = defineStore('search', () => {
         selectedCommunalIds.value = []
     }
 
+    function getActiveFilters() {
+        return {
+            federal: selectedFederalIds.value,
+            cantonal: selectedCantonalIds.value,
+            communal: selectedCommunalIds.value,
+        }
+    }
+
     return {
         // state
         isSearchingAddresses,
@@ -153,5 +161,6 @@ export const useSearchStore = defineStore('search', () => {
         setSelectedCantonalIds,
         setSelectedCommunalIds,
         resetStore,
+        getActiveFilters,
     }
 })

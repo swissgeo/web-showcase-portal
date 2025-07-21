@@ -42,19 +42,7 @@ function openExternalLink(url: string) {
                 <!-- SWISSGEO Overview Section -->
                 <section class="space-y-4">
                     <p class="leading-relaxed text-gray-700">
-                        <a
-                            href="https://sys-pwip.dev.bgdi.ch/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-blue-600 underline hover:text-blue-800 focus:outline-none"
-                            >{{ t('welcomeOverlay.hereLabel') }}</a
-                        >
-                        {{
-                            t('welcomeOverlay.swissgeoOverview').replace(
-                                t('welcomeOverlay.hereLabel'),
-                                ''
-                            )
-                        }}
+                        {{ t('welcomeOverlay.swissgeoOverview') }}
                     </p>
                     <p class="leading-relaxed text-gray-700">
                         {{ t('welcomeOverlay.additionalInfo') }}
@@ -62,16 +50,6 @@ function openExternalLink(url: string) {
                     <p class="leading-relaxed text-gray-700">
                         {{ t('welcomeOverlay.feedbackInfo') }}
                     </p>
-                </section>
-
-                <!-- Action Buttons Section -->
-                <section class="space-y-3">
-                    <Button
-                        :label="t('welcomeOverlay.prototypeLink')"
-                        class="p-button-outlined w-full"
-                        icon="pi pi-external-link"
-                        @click="openExternalLink('https://sys-pwip.dev.bgdi.ch/')"
-                    />
                 </section>
             </div>
 

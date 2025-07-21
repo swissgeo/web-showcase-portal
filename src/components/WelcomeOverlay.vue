@@ -1,27 +1,22 @@
 <script setup lang="ts">
-import { useStorage } from '@vueuse/core'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
-import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { useWelcomeOverlay } from '@/composables/useWelcomeOverlay'
 import { PROJECT_INFO_URL } from '@/utils/constants'
 
 const { t } = useI18n()
 
-const emits = defineEmits(['close', 'dontShowAgain'])
-
-// Separate the temporary checkbox state from the persistent storage
-const dontShowAgainCheckbox = ref(false)
-const dontShowAgainStorage = useStorage('dontShowWelcomeOverlayAgain', false)
+const { dontShowAgainCheckbox, hideWelcomeOverlay, hideWelcomeOverlayPermanently } =
+    useWelcomeOverlay()
 
 function handleClose() {
-    // Only update localStorage if the user checked the box
+    // Handle the close action internally using the composable
     if (dontShowAgainCheckbox.value) {
-        dontShowAgainStorage.value = true
-        emits('dontShowAgain')
+        hideWelcomeOverlayPermanently()
     } else {
-        emits('close')
+        hideWelcomeOverlay()
     }
 }
 

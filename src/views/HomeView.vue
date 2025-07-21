@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useStorage } from '@vueuse/core'
 import {
     computed,
     provide,
@@ -18,13 +17,13 @@ import MapPart from '@/components/MapPart.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
+import { useWelcomeOverlay } from '@/composables/useWelcomeOverlay'
 import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
 
+const { isWelcomeOverlayVisible, initializeOverlay } = useWelcomeOverlay()
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const dontShowWelcomeOverlayAgain = useStorage('dontShowWelcomeOverlayAgain', false)
-const isWelcomeOverlayVisible = ref(false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 const windowHeight = ref(0)
@@ -52,17 +51,6 @@ const fontSettings = computed(() => {
 
     return { '--font-sans': font }
 })
-
-function closeOverlay() {
-    // User closed without checking "don't show again" - just hide for now
-    isWelcomeOverlayVisible.value = false
-}
-
-function dontShowAgain() {
-    // User checked "don't show again" - permanently disable
-    dontShowWelcomeOverlayAgain.value = true
-    isWelcomeOverlayVisible.value = false
-}
 
 // provide a way to programmatically enable/disable the mobile and desktop
 // versions of the search. Of course we could probably just have one component
@@ -105,14 +93,8 @@ onMounted(() => {
     addResizeListener()
     initializeWindowWidth()
 
-    // Show welcome overlay unless user has explicitly opted out
-    // This means it will show:
-    // - On first visit (when localStorage is not set)
-    // - On subsequent visits if user closed without checking "don't show again"
-    // It will NOT show if user has checked "don't show again"
-    if (!dontShowWelcomeOverlayAgain.value) {
-        isWelcomeOverlayVisible.value = true
-    }
+    // Initialize welcome overlay based on user preference
+    initializeOverlay()
 })
 onUnmounted(() => {
     removeResizeListener()
@@ -148,8 +130,6 @@ onUnmounted(() => {
         <WelcomeOverlay
             v-if="isWelcomeOverlayVisible"
             class="z-100"
-            @close="closeOverlay"
-            @dont-show-again="dontShowAgain"
         />
     </main>
 </template>

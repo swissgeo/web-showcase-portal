@@ -55,11 +55,13 @@ const fontSettings = computed(() => {
 })
 
 function closeOverlay() {
+    // User closed without checking "don't show again" - just hide for now
     uiStore.hideWelcomeOverlay()
 }
 
 function dontShowAgain() {
-    // dontShowWelcomeOverlayAgain is now directly managed by the WelcomeOverlay component
+    // User checked "don't show again" - permanently disable
+    dontShowWelcomeOverlayAgain.value = true
     uiStore.hideWelcomeOverlay()
 }
 
@@ -108,12 +110,12 @@ onMounted(() => {
     addResizeListener()
     initializeWindowWidth()
 
-    // Only check dontShowWelcomeOverlayAgain on first startup
-    // If the user has opted out, don't show the overlay
-    // Otherwise, show it
-    if (dontShowWelcomeOverlayAgain.value) {
-        uiStore.hideWelcomeOverlay()
-    } else {
+    // Show welcome overlay unless user has explicitly opted out
+    // This means it will show:
+    // - On first visit (when localStorage is not set)
+    // - On subsequent visits if user closed without checking "don't show again"
+    // It will NOT show if user has checked "don't show again"
+    if (!dontShowWelcomeOverlayAgain.value) {
         uiStore.showWelcomeOverlay()
     }
 })

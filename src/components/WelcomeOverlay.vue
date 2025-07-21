@@ -2,18 +2,21 @@
 import { useStorage } from '@vueuse/core'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
 const emits = defineEmits(['close', 'dontShowAgain'])
 
-const dontShowAgain = useStorage('dontShowWelcomeOverlayAgain', false)
+// Separate the temporary checkbox state from the persistent storage
+const dontShowAgainCheckbox = ref(false)
+const dontShowAgainStorage = useStorage('dontShowWelcomeOverlayAgain', false)
 
 function handleClose() {
-    // dontShowAgain is already directly connected to localStorage
-    // through useStorage, so we just need to emit the right event
-    if (dontShowAgain.value) {
+    // Only update localStorage if the user checked the box
+    if (dontShowAgainCheckbox.value) {
+        dontShowAgainStorage.value = true
         emits('dontShowAgain')
     } else {
         emits('close')
@@ -58,7 +61,7 @@ function openExternalLink(url: string) {
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-2">
                         <Checkbox
-                            v-model="dontShowAgain"
+                            v-model="dontShowAgainCheckbox"
                             input-id="dontShowAgain"
                             binary
                         />

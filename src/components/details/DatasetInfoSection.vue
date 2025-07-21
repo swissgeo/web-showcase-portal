@@ -19,7 +19,6 @@ const infoAbstract = computed(() => {
 
 <template>
     <div data-cy="div-dataset-info-abstract">
-        <!-- eslint-disable-next-line vue/no-v-html  vue/no-v-text-v-html-on-component-->
-        <div v-html="sanitize(infoAbstract)"></div>
+        <div :innerHTML="sanitize(infoAbstract)"></div>
     </div>
 </template>

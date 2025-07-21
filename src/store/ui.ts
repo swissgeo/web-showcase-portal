@@ -17,6 +17,7 @@ export const useUiStore = defineStore('ui', () => {
     // State
     const currentSidebar = ref<SidebarType | null>(SidebarType.SEARCH)
     const isLayerWindowVisible = ref(false)
+    const isLayerWindowMaximized = ref(false)
     const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
@@ -63,6 +64,10 @@ export const useUiStore = defineStore('ui', () => {
         isLayerWindowVisible.value = visible
     }
 
+    function setMaximizedLayerWindow(visible: boolean) {
+        isLayerWindowMaximized.value = visible
+    }
+
     function setOpenLayerWindowFromDetailButton(triggered: boolean) {
         openLayerWindowFromDetailButton.value = triggered
     }
@@ -86,6 +91,7 @@ export const useUiStore = defineStore('ui', () => {
         currentSidebar,
         isFilterVisible,
         isLayerWindowVisible,
+        isLayerWindowMaximized,
         openLayerWindowFromDetailButton,
         sidebarSecondColumnWidth,
         // Computed getters
@@ -100,6 +106,7 @@ export const useUiStore = defineStore('ui', () => {
         setLayerCartVisible,
         setSidebarSecondColumnWidth,
         setLayerWindowVisible,
+        setMaximizedLayerWindow,
         setOpenLayerWindowFromDetailButton,
         toggleLayerWindow,
         closeSidebar,

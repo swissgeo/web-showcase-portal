@@ -43,6 +43,7 @@ watch(infoLayerId, fetchInfo)
 <template>
     <DatasetDetails
         v-if="info"
+        class="scrollbar-none overflow-hidden"
         :info="info"
     />
 </template>

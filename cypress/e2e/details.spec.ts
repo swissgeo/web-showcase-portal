@@ -71,21 +71,21 @@ describe('Test the layer details on desktop', () => {
 
         // Verify both search panel and detail panel are visible
         cy.get('[data-cy="div-search-sidebar"]').should('be.visible')
-        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+        cy.get('[data-cy="div-layer-detail"]').should('be.visible')
 
         // Click the magnifying glass button to toggle search
         cy.get('[data-cy="button-search-panel"]').click()
 
         // Verify search panel is hidden but detail panel remains
         cy.get('[data-cy="div-search-sidebar"]').should('not.be.visible')
-        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+        cy.get('[data-cy="div-layer-detail"]').should('be.visible')
 
         // Click the magnifying glass button again to show search
         cy.get('[data-cy="button-search-panel"]').click()
 
         // Verify both panels are visible again
         cy.get('[data-cy="div-search-sidebar"]').should('be.visible')
-        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+        cy.get('[data-cy="div-layer-detail"]').should('be.visible')
     })
 
     it('Shows the layer details from the layer cart', () => {
@@ -155,10 +155,10 @@ describe('Test the layer details on mobile', () => {
             .click()
 
         // Verify detail panel is visible
-        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+        cy.get('[data-cy="div-layer-detail"]').should('be.visible')
 
         // Verify search results are still available by clicking back from detail panel
-        cy.get('[data-cy="div-dataset-detail-panel"]').find('button').first().click()
+        cy.get('[data-cy="comp-layer-window-close"]').click()
 
         // After closing detail panel, search should still be accessible
         cy.get('[data-cy="comp-search-results-mobile"]').should('be.visible')

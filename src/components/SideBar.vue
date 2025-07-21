@@ -7,6 +7,7 @@ import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import ProjectInfoButton from '@/components/ProjectInfoButton.vue'
 import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import SearchPanelButton from '@/components/SearchPanelButton.vue'
@@ -127,6 +128,7 @@ onBeforeUnmount(() => {
                         <LayerCartButton />
                         <GeocatalogTreeButton />
                         <WelcomeOverlayButton @show-welcome-overlay="showWelcomeOverlay" />
+                        <ProjectInfoButton />
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />
                 </div>

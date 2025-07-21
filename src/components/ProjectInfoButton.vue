@@ -3,15 +3,13 @@ import Button from 'primevue/button'
 import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { PROJECT_INFO_URL } from '@/utils/constants'
+
 const { t } = useI18n()
 const isDesktop = inject<boolean>('isDesktop', true)
 
 function openProjectInfo() {
-    window.open(
-        'https://www.geoinformation.ch/de/swissgeo-geoplattform',
-        '_blank',
-        'noopener,noreferrer'
-    )
+    window.open(PROJECT_INFO_URL, '_blank', 'noopener,noreferrer')
 }
 </script>
 

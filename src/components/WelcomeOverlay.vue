@@ -5,6 +5,8 @@ import Checkbox from 'primevue/checkbox'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { PROJECT_INFO_URL } from '@/utils/constants'
+
 const { t } = useI18n()
 
 const emits = defineEmits(['close', 'dontShowAgain'])
@@ -19,7 +21,6 @@ function handleClose() {
         dontShowAgainStorage.value = true
         emits('dontShowAgain')
     } else {
-        dontShowAgainStorage.value = false
         emits('close')
     }
 }
@@ -78,11 +79,7 @@ function openExternalLink(url: string) {
                             :label="t('welcomeOverlay.projectInfoLink')"
                             class="p-button-outlined"
                             icon="pi pi-info-circle"
-                            @click="
-                                openExternalLink(
-                                    'https://www.geoinformation.ch/de/swissgeo-geoplattform'
-                                )
-                            "
+                            @click="openExternalLink(PROJECT_INFO_URL)"
                         />
                         <Button
                             data-cy="button-overlay-confirm"

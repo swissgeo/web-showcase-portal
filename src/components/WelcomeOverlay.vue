@@ -72,16 +72,6 @@ function openExternalLink(url: string) {
                         icon="pi pi-external-link"
                         @click="openExternalLink('https://sys-pwip.dev.bgdi.ch/')"
                     />
-                    <Button
-                        :label="t('welcomeOverlay.projectInfoLink')"
-                        class="p-button-outlined w-full"
-                        icon="pi pi-info-circle"
-                        @click="
-                            openExternalLink(
-                                'https://www.geoinformation.ch/de/swissgeo-geoplattform'
-                            )
-                        "
-                    />
                 </section>
             </div>
 
@@ -101,12 +91,24 @@ function openExternalLink(url: string) {
                             {{ t('welcomeOverlay.dontShowAgain') }}
                         </label>
                     </div>
-                    <Button
-                        data-cy="button-overlay-confirm"
-                        :label="t('welcomeOverlay.confirm')"
-                        icon="pi pi-arrow-right"
-                        @click="handleClose"
-                    />
+                    <div class="flex items-center space-x-3">
+                        <Button
+                            :label="t('welcomeOverlay.projectInfoLink')"
+                            class="p-button-outlined"
+                            icon="pi pi-info-circle"
+                            @click="
+                                openExternalLink(
+                                    'https://www.geoinformation.ch/de/swissgeo-geoplattform'
+                                )
+                            "
+                        />
+                        <Button
+                            data-cy="button-overlay-confirm"
+                            :label="t('welcomeOverlay.confirm')"
+                            icon="pi pi-arrow-right"
+                            @click="handleClose"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

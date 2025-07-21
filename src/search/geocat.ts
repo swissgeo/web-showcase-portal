@@ -10,6 +10,8 @@ import { useLanguage } from '@/utils/language.composable'
 
 import { includeKGKGroup } from './geocatGroups'
 
+const KGK_ORGANIZATION_NAME = 'KGK-CGC'
+
 export default function useGeocat() {
     const GNUI = window.GNUI
     let subscription: Subscription | null = null
@@ -52,8 +54,8 @@ export default function useGeocat() {
 
         if (searchStore.searchTerm) {
             const sortedRecords = records.sort((a, b) => {
-                const isKGKRecordA = a.ownerOrganization.name === "KGK-CGC"
-                const isKGKRecordB = b.ownerOrganization.name === "KGK-CGC"
+                const isKGKRecordA = a.ownerOrganization.name === KGK_ORGANIZATION_NAME
+                const isKGKRecordB = b.ownerOrganization.name === KGK_ORGANIZATION_NAME
                 return Number(isKGKRecordB) - Number(isKGKRecordA)
             })
 
@@ -81,7 +83,7 @@ export default function useGeocat() {
         }
         if (groupIds && groupIds.length) {
             const uniqueGroupIds = includeKGKGroup(groupIds)
-            filters.groupOwner = '(' + uniqueGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ') + ')'
+            filters.groupOwner = `(${uniqueGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ')})`
         }
 
         // logs...

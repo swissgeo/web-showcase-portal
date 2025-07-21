@@ -5970,92 +5970,91 @@
             "eng": "Chancellerie d'état"
         }
     },
-  {
-    "logo": "ai.jpeg",
-    "website": "https://www.ai.ch/",
-    "defaultCategory": {
-      "id": 42521579,
-      "name": "cantonal",
-      "label": {
-        "ger": "cantonal",
-        "ita": "cantonal",
-        "fre": "cantonal",
-        "roh": "cantonal",
-        "eng": "cantonal"
-      }
+    {
+        "logo": "ai.jpeg",
+        "website": "https://www.ai.ch/",
+        "defaultCategory": {
+            "id": 42521579,
+            "name": "cantonal",
+            "label": {
+                "ger": "cantonal",
+                "ita": "cantonal",
+                "fre": "cantonal",
+                "roh": "cantonal",
+                "eng": "cantonal"
+            }
+        },
+        "allowedCategories": [],
+        "enableAllowedCategories": false,
+        "id": 50000147,
+        "email": "geoinformation@ai.ch",
+        "referrer": null,
+        "description": "",
+        "name": "appenzell-innerrhoden",
+        "label": {
+            "ger": "Kanton Appenzell Innerrhoden",
+            "ita": "Canton Appenzello Interno",
+            "fre": "Canton d'Appenzell Rhodes-Intérieures",
+            "roh": "Chantun Appenzell Dadens",
+            "eng": "Canton Appenzell Inner Rhodes"
+        }
     },
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000147,
-    "email": "geoinformation@ai.ch",
-    "referrer": null,
-    "description": "",
-    "name": "appenzell-innerrhoden",
-    "label": {
-      "ger": "Kanton Appenzell Innerrhoden",
-      "ita": "Canton Appenzello Interno",
-      "fre": "Canton d'Appenzell Rhodes-Intérieures",
-      "roh": "Chantun Appenzell Dadens",
-      "eng": "Canton Appenzell Inner Rhodes"
-    }
-  },
-  {
-    "logo": "AR.png",
-    "website": "https://ar.ch/",
-    "defaultCategory": {
-      "id": 42521579,
-      "name": "cantonal",
-      "label": {
-        "ger": "cantonal",
-        "ita": "cantonal",
-        "fre": "cantonal",
-        "roh": "cantonal",
-        "eng": "cantonal"
-      }
+    {
+        "logo": "AR.png",
+        "website": "https://ar.ch/",
+        "defaultCategory": {
+            "id": 42521579,
+            "name": "cantonal",
+            "label": {
+                "ger": "cantonal",
+                "ita": "cantonal",
+                "fre": "cantonal",
+                "roh": "cantonal",
+                "eng": "cantonal"
+            }
+        },
+        "allowedCategories": [],
+        "enableAllowedCategories": false,
+        "id": 50000148,
+        "email": "kantonskanzlei@ar.ch",
+        "referrer": null,
+        "description": "",
+        "name": "appenzell-ausserrhoden",
+        "label": {
+            "ger": "Kanton Appenzell Ausserrhoden",
+            "ita": "Canton Appenzello Esterno",
+            "fre": "Canton d'Appenzell Rhodes-Extérieures",
+            "roh": "Chantun Appenzell Dadora",
+            "eng": "Canton Appenzell Outer Rhodes"
+        }
     },
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000148,
-    "email": "kantonskanzlei@ar.ch",
-    "referrer": null,
-    "description": "",
-    "name": "appenzell-ausserrhoden",
-    "label": {
-      "ger": "Kanton Appenzell Ausserrhoden",
-      "ita": "Canton Appenzello Esterno",
-      "fre": "Canton d'Appenzell Rhodes-Extérieures",
-      "roh": "Chantun Appenzell Dadora",
-      "eng": "Canton Appenzell Outer Rhodes"
+    {
+        "logo": "TI.png",
+        "website": "https://ticino.ch/",
+        "defaultCategory": {
+            "id": 42521579,
+            "name": "cantonal",
+            "label": {
+                "ger": "cantonal",
+                "ita": "cantonal",
+                "fre": "cantonal",
+                "roh": "cantonal",
+                "eng": "cantonal"
+            }
+        },
+        "allowedCategories": [],
+        "enableAllowedCategories": false,
+        "id": 50000149,
+        "email": "info@ticino.ch",
+        "referrer": null,
+        "description": "",
+        "name": "ticino",
+        "label": {
+            "ger": "Kanton Tessin",
+            "ita": "Canton Ticino",
+            "fre": "Canton du Tessin",
+            "roh": "Chantun Tessin",
+            "eng": "Canton Ticino"
+        }
     }
-  },
-  {
-    "logo": "TI.png",
-    "website": "https://ticino.ch/",
-    "defaultCategory": {
-      "id": 42521579,
-      "name": "cantonal",
-      "label": {
-        "ger": "cantonal",
-        "ita": "cantonal",
-        "fre": "cantonal",
-        "roh": "cantonal",
-        "eng": "cantonal"
-      }
-    },
-    "allowedCategories": [],
-    "enableAllowedCategories": false,
-    "id": 50000149,
-    "email": "info@ticino.ch",
-    "referrer": null,
-    "description": "",
-    "name": "ticino",
-    "label": {
-      "ger": "Kanton Tessin",
-      "ita": "Canton Ticino",
-      "fre": "Canton du Tessin",
-      "roh": "Chantun Tessin",
-      "eng": "Canton Ticino"
-    }
-  }
 ]
-

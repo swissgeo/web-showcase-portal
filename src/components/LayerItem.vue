@@ -181,6 +181,7 @@ const tooltipContent = computed(() => {
                 class="h-10 w-10 rounded-full object-cover"
             />
             <Button
+                v-if="!props.isBgLayer"
                 variant="outlined"
                 rounded
                 size="small"

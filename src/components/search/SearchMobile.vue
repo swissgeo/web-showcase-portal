@@ -13,7 +13,6 @@ import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
-import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
@@ -21,7 +20,6 @@ const { t } = useI18n()
 
 const searchStore = useSearchStore()
 const uiStore = useUiStore()
-const mainStore = useMainStore()
 
 const isInputFocused = ref(false)
 
@@ -42,7 +40,6 @@ const clearSearch = () => {
 
 <template>
     <div
-        v-show="!mainStore.infoLayerId"
         class="fixed right-0 bottom-0 left-0 flex flex-col place-content-between md:static md:p-8"
         :class="{
             'top-0 bg-white': isSearching,

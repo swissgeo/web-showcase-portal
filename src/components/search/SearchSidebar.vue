@@ -9,7 +9,6 @@ import SearchFilterDesktop from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
-import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { SidebarType, useUiStore } from '@/store/ui'
 
@@ -24,7 +23,6 @@ const props = defineProps({
 
 const searchStore = useSearchStore()
 const uiStore = useUiStore()
-const mainStore = useMainStore()
 
 const isInputFocused = ref(false)
 
@@ -40,7 +38,6 @@ const openSearch = () => {
 
 <template>
     <Panel
-        v-show="!mainStore.infoLayerId"
         class="h-full"
         :header="t('searchResult.mobileSearchTitle')"
         :pt="{

@@ -181,6 +181,7 @@ const tooltipContent = computed(() => {
                 class="h-10 w-10 rounded-full object-cover"
             />
             <Button
+                v-if="!props.isBgLayer"
                 variant="outlined"
                 rounded
                 size="small"
@@ -196,6 +197,7 @@ const tooltipContent = computed(() => {
                 aria-haspopup="true"
                 aria-controls="overlay_menu"
                 size="small"
+                :class="{ 'ml-2': isBgLayer }"
                 :severity="menuShown ? 'primary' : 'secondary'"
                 :data-cy="`button-layer-item-${layer.id}`"
                 @click="toggleLayerMenu"

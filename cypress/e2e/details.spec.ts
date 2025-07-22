@@ -44,6 +44,40 @@ describe('Test the layer details on desktop', () => {
         testDetails()
     })
 
+    it('Search panel remains open when clicking detail button', () => {
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
+        // open accordion
+        cy.get('[data-cy="comp-data-accordion"]').click()
+
+        // Verify search panel is visible
+        cy.get('[data-cy="div-search-sidebar"]').should('be.visible')
+
+        // Click detail button
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li')
+            .first()
+            .find(`[data-cy="button-show-layer-details-${RADON_UID}"`)
+            .click()
+
+        // Verify both search panel and detail panel are visible
+        cy.get('[data-cy="div-search-sidebar"]').should('be.visible')
+        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+
+        // Click the magnifying glass button to toggle search
+        cy.get('[data-cy="button-search-panel"]').click()
+
+        // Verify search panel is hidden but detail panel remains
+        cy.get('[data-cy="div-search-sidebar"]').should('not.be.visible')
+        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+
+        // Click the magnifying glass button again to show search
+        cy.get('[data-cy="button-search-panel"]').click()
+
+        // Verify both panels are visible again
+        cy.get('[data-cy="div-search-sidebar"]').should('be.visible')
+        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+    })
+
     it('Shows the layer details from the layer cart', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
         // open accordion
@@ -94,5 +128,29 @@ describe('Test the layer details on mobile', () => {
         cy.get(`#overlay_menu_list`).find('span').contains('Details').click()
 
         testDetails()
+    })
+
+    it('Search panel remains accessible when clicking detail button on mobile', () => {
+        cy.get('[data-cy="input-search"]').type(RADON_UID)
+        cy.get('[data-cy="comp-data-accordion"]').click()
+
+        // Verify search results are visible
+        cy.get('[data-cy="comp-search-results-mobile"]').should('be.visible')
+
+        // Click detail button
+        cy.get('[data-cy="ul-geocat-search-results"]')
+            .find('li')
+            .first()
+            .find(`[data-cy="button-show-layer-details-${RADON_UID}"`)
+            .click()
+
+        // Verify detail panel is visible
+        cy.get('[data-cy="div-dataset-detail-panel"]').should('be.visible')
+
+        // Verify search results are still available by clicking back from detail panel
+        cy.get('[data-cy="div-dataset-detail-panel"]').find('button').first().click()
+
+        // After closing detail panel, search should still be accessible
+        cy.get('[data-cy="comp-search-results-mobile"]').should('be.visible')
     })
 })

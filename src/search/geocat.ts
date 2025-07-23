@@ -3,7 +3,6 @@ import { catchError, Subscription } from 'rxjs'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
-import { langToLabelKey } from '@/types/language'
 import { LayerType, type Layer } from '@/types/layer'
 import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
 import { useLanguage } from '@/utils/language.composable'
@@ -30,7 +29,8 @@ export default function useGeocat() {
         GNUI.init({
             apiUrl: GEOCAT_SEARCH_URL,
             textLanguage: localeString.value,
-            metadataLanguage: langToLabelKey(localeString.value),
+            // TODO DEV NOTE: There seems to be a bug in GNUI that impacts the search results after changing the language but only when metadataLanguage is set. see GPS-205
+            // metadataLanguage: langToLabelKey(localeString.value),
         })
     }
 

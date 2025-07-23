@@ -24,7 +24,7 @@ describe('Test the search on desktop', () => {
         cy.log('Make sure the result list is scrollable')
         cy.get('[data-cy="div-geocat-search-results"]').scrollTo('bottom', { duration: 500 })
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
-        cy.get('@geocatSearchResults').should('have.length', 28)
+        cy.get('@geocatSearchResults').should('have.length', 40)
 
         // Scroll to the bottom to find the address results accordion
         cy.get('[data-cy="div-search-sidebar"]').scrollTo('bottom', { duration: 500 })
@@ -82,6 +82,6 @@ describe('Test the search on mobile', () => {
 
         //now re-open data accordion to fully load the data
         cy.get('[data-cy="comp-data-accordion"]').click()
-        cy.get('@geocatSearchResults').should('have.length', 28)
+        cy.get('@geocatSearchResults').should('have.length', 40)
     })
 })

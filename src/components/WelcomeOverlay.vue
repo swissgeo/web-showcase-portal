@@ -26,12 +26,12 @@ function openExternalLink(url: string) {
 <template>
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
         <div
-            class="relative mx-4 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-y-auto rounded-lg bg-white shadow-2xl"
+            class="relative mx-4 flex max-h-[50vh] w-full max-w-4xl flex-col overflow-y-auto rounded-lg bg-white shadow-2xl"
         >
             <!-- Header -->
             <div class="border-b border-gray-200 px-6 py-4">
                 <div class="flex items-center justify-between">
-                    <h1 class="text-2xl font-bold text-gray-900">
+                    <h1 class="text-2xl font-bold text-slate-950">
                         {{ t('welcomeOverlay.title') }}
                     </h1>
                     <!-- SWISSGEO Logo -->
@@ -49,13 +49,13 @@ function openExternalLink(url: string) {
             <div class="flex-1 space-y-6 px-6 py-4">
                 <!-- SWISSGEO Overview Section -->
                 <section class="space-y-4">
-                    <p class="leading-relaxed text-gray-700">
+                    <p class="leading-relaxed text-slate-800">
                         {{ t('welcomeOverlay.swissgeoOverview') }}
                     </p>
-                    <p class="leading-relaxed text-gray-700">
+                    <p class="leading-relaxed text-slate-800">
                         {{ t('welcomeOverlay.additionalInfo') }}
                     </p>
-                    <p class="leading-relaxed text-gray-700">
+                    <p class="leading-relaxed text-slate-800">
                         {{ t('welcomeOverlay.feedbackInfo') }}
                     </p>
                 </section>

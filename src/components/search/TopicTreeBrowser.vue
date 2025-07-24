@@ -63,10 +63,13 @@ const expandedKeysObj = computed(() => {
 
 const selectedTopic = computed<GeocatalogTopic | undefined>({
     get() {
-        return geocatalogStore.topics.find((t) => t.id === geocatalogStore.currentTopic)
+        return geocatalogStore.topics.find((t) => t.id === geocatalogStore.currentTopic?.id)
     },
-    set(topic) {
-        geocatalogStore.setCurrentTopic(topic?.id ?? '')
+    set(topic: GeocatalogTopic | undefined) {
+        if (!topic) {
+            return
+        }
+        geocatalogStore.setCurrentTopic(topic)
     },
 })
 const geocatalogTopics = computed(() => geocatalogStore.topics)

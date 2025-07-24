@@ -9,4 +9,7 @@ export interface TopicTreeNode {
 export interface GeocatalogTopic {
     id: string
     defaultBackground: string
+    groupId: number
+    selectedLayers: string[]
+    plConfig: string | null
 }

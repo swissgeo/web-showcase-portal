@@ -33,7 +33,7 @@ export const useMapStore = defineStore('map', () => {
         bgLayer: defaultBgLayer,
         layers: layers.value,
         hideEmbedUI: true,
-        topic: geocatalogStore.currentTopic,
+        topic: geocatalogStore.currentTopic?.id,
     })
     // Actions
     function setMapUrlSearchParams(parameters: Partial<MapUrlParameter>) {
@@ -51,7 +51,7 @@ export const useMapStore = defineStore('map', () => {
             bgLayer: defaultBgLayer,
             layers: layers.value,
             hideEmbedUI: true,
-            topic: geocatalogStore.currentTopic,
+            topic: geocatalogStore.currentTopic?.id,
         }
     }
 

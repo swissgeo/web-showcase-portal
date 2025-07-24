@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Info as InfoIcon } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -23,7 +24,7 @@ function openProjectInfo() {
         @click="openProjectInfo"
     >
         <template #icon>
-            <i class="pi pi-info-circle text-xl"></i>
+            <InfoIcon class="h-6 w-6 stroke-current" />
         </template>
     </Button>
 </template>

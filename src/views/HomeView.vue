@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import {
     computed,
     provide,
@@ -17,12 +18,11 @@ import MapPart from '@/components/MapPart.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
 import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
-import { useWelcomeOverlay } from '@/composables/useWelcomeOverlay'
 import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
 
-const { isWelcomeOverlayVisible, initializeOverlay } = useWelcomeOverlay()
+const { isWelcomeOverlayVisible } = storeToRefs(uiStore)
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
@@ -94,7 +94,7 @@ onMounted(() => {
     initializeWindowWidth()
 
     // Initialize welcome overlay based on user preference
-    initializeOverlay()
+    uiStore.initializeWelcomeOverlay()
 })
 onUnmounted(() => {
     removeResizeListener()

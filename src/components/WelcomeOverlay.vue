@@ -3,20 +3,18 @@ import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import { useI18n } from 'vue-i18n'
 
-import { useWelcomeOverlay } from '@/composables/useWelcomeOverlay'
+import { useUiStore } from '@/store/ui'
 import { PROJECT_INFO_URL } from '@/utils/constants'
 
 const { t } = useI18n()
-
-const { dontShowAgainCheckbox, hideWelcomeOverlay, hideWelcomeOverlayPermanently } =
-    useWelcomeOverlay()
+const uiStore = useUiStore()
 
 function handleClose() {
-    // Handle the close action internally using the composable
-    if (dontShowAgainCheckbox.value) {
-        hideWelcomeOverlayPermanently()
+    // Handle the close action using the store
+    if (uiStore.dontShowAgainCheckbox) {
+        uiStore.hideWelcomeOverlayPermanently()
     } else {
-        hideWelcomeOverlay()
+        uiStore.hideWelcomeOverlay()
     }
 }
 
@@ -68,7 +66,7 @@ function openExternalLink(url: string) {
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-2">
                         <Checkbox
-                            v-model="dontShowAgainCheckbox"
+                            v-model="uiStore.dontShowAgainCheckbox"
                             input-id="dontShowAgain"
                             binary
                         />

@@ -1,3 +1,4 @@
+import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 // Sidebar types enum
@@ -21,6 +22,11 @@ export const useUiStore = defineStore('ui', () => {
     const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
+
+    // Welcome overlay state
+    const isWelcomeOverlayVisible = ref(false)
+    const dontShowWelcomeOverlayAgain = useStorage('dontShowWelcomeOverlayAgain', false)
+    const dontShowAgainCheckbox = ref(false)
 
     // Computed getters
     const isSidebarOpen = computed(() => currentSidebar.value !== null)
@@ -85,6 +91,34 @@ export const useUiStore = defineStore('ui', () => {
         currentSidebar.value = null
         isLayerWindowVisible.value = false
         sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
+        isWelcomeOverlayVisible.value = false
+        dontShowAgainCheckbox.value = false
+    }
+
+    // Welcome overlay actions
+    function showWelcomeOverlay() {
+        isWelcomeOverlayVisible.value = true
+    }
+
+    function hideWelcomeOverlay() {
+        isWelcomeOverlayVisible.value = false
+        dontShowAgainCheckbox.value = false
+    }
+
+    function hideWelcomeOverlayPermanently() {
+        dontShowWelcomeOverlayAgain.value = true
+        isWelcomeOverlayVisible.value = false
+        dontShowAgainCheckbox.value = false
+    }
+
+    function shouldShowOverlayOnInit(): boolean {
+        return !dontShowWelcomeOverlayAgain.value
+    }
+
+    function initializeWelcomeOverlay() {
+        if (shouldShowOverlayOnInit()) {
+            showWelcomeOverlay()
+        }
     }
 
     return {
@@ -95,6 +129,9 @@ export const useUiStore = defineStore('ui', () => {
         isLayerWindowMaximized,
         openLayerWindowFromDetailButton,
         sidebarSecondColumnWidth,
+        isWelcomeOverlayVisible,
+        dontShowAgainCheckbox,
+        dontShowWelcomeOverlayAgain,
         // Computed getters
         isSidebarOpen,
         isLayerCartVisible,
@@ -112,5 +149,11 @@ export const useUiStore = defineStore('ui', () => {
         toggleLayerWindow,
         closeSidebar,
         resetStore,
+        // Welcome overlay actions
+        showWelcomeOverlay,
+        hideWelcomeOverlay,
+        hideWelcomeOverlayPermanently,
+        shouldShowOverlayOnInit,
+        initializeWelcomeOverlay,
     }
 })

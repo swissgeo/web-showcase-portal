@@ -32,9 +32,19 @@ function openExternalLink(url: string) {
         >
             <!-- Header -->
             <div class="border-b border-gray-200 px-6 py-4">
-                <h1 class="text-2xl font-bold text-gray-900">
-                    {{ t('welcomeOverlay.title') }}
-                </h1>
+                <div class="flex items-center justify-between">
+                    <h1 class="text-2xl font-bold text-gray-900">
+                        {{ t('welcomeOverlay.title') }}
+                    </h1>
+                    <!-- SWISSGEO Logo -->
+                    <div class="flex items-center">
+                        <img
+                            src="@/assets/images/swissgeo_rgb_icon.svg"
+                            alt="SWISSGEO"
+                            class="h-8 w-auto"
+                        />
+                    </div>
+                </div>
             </div>
 
             <!-- Content -->
@@ -71,15 +81,17 @@ function openExternalLink(url: string) {
                     </div>
                     <div class="flex items-center space-x-3">
                         <Button
-                            :label="t('welcomeOverlay.projectInfoLink')"
+                            :label="t('welcomeOverlay.moreInfos')"
                             class="p-button-outlined"
-                            icon="pi pi-info-circle"
+                            icon="pi pi-external-link"
+                            icon-pos="right"
                             @click="openExternalLink(PROJECT_INFO_URL)"
                         />
                         <Button
                             data-cy="button-overlay-confirm"
-                            :label="t('welcomeOverlay.confirm')"
+                            :label="t('welcomeOverlay.startPrototype')"
                             icon="pi pi-arrow-right"
+                            icon-pos="right"
                             @click="handleClose"
                         />
                     </div>

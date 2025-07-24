@@ -13,7 +13,8 @@
         "dataTitle": "Données",
         "placesTitle": "Lieux",
         "addToMap": "Ajouter à la carte",
-        "buttonLabel": "Résultats de recherche"
+        "buttonLabel": "Résultats de recherche",
+        "noPreviewAvailable": "Aucune prévisualisation disponible"
     },
     "layerCart": {
         "showInfo": "Détails",

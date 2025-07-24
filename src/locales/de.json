@@ -13,7 +13,8 @@
         "dataTitle": "Daten",
         "placesTitle": "Orte",
         "addToMap": "Zur Karte hinzufügen",
-        "buttonLabel": "Suchergebnisse"
+        "buttonLabel": "Suchergebnisse",
+        "noPreviewAvailable": "Keine Vorschau verfügbar"
     },
     "layerCart": {
         "showInfo": "Details",

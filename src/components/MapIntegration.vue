@@ -51,7 +51,8 @@ function onEmbedChange(e: MessageEvent) {
         const newParams = getUrlParamsFromSource(e.data.payload.newUrl.split('embed')[1], oldParams)
         // only update if values actually change
         const hasChanged = JSON.stringify(newParams) !== JSON.stringify(oldParams)
-        if (!hasChanged) {
+        // we don't care about changes to the center parameter, as it is set by the map viewer
+        if (!hasChanged || (newParams.center && !oldParams.center)) {
             return
         }
         mapStore.setMapUrlSearchParams(newParams)

@@ -60,6 +60,7 @@ export const useMainStore = defineStore('main', () => {
     const mapStore = useMapStore()
     // State
     const layersOnMap = ref<Layer[]>([])
+    const tempPreviewLayer = ref<Layer | null>(null)
     const infoLayerId = ref<string | null>(null)
     const infoLayerRecord = ref<GeonetworkRecord | null>(null)
     const bgLayerId = ref<string | null>(defaultBgLayerId)
@@ -88,6 +89,14 @@ export const useMainStore = defineStore('main', () => {
             infoLayerRecord.value = null
         }
         infoLayerId.value = layerId
+    }
+    function setTempPreviewLayer(layer: Layer) {
+        tempPreviewLayer.value = layer
+        updateMapUrlSearchParams()
+    }
+    function resetTempPreviewLayer() {
+        tempPreviewLayer.value = null
+        updateMapUrlSearchParams()
     }
     function setInfoLayerRecord(record: GeonetworkRecord) {
         infoLayerRecord.value = record
@@ -152,7 +161,12 @@ export const useMainStore = defineStore('main', () => {
     // Helper functions
     function updateMapUrlSearchParams() {
         mapStore.setMapUrlSearchParams({
-            layers: layersOnMap.value.map((layer) => convertToMapParameter(layer)).join(';'),
+            layers: [
+                ...(layersOnMap.value ?? []),
+                ...(tempPreviewLayer.value ? [tempPreviewLayer.value] : []),
+            ]
+                .map((layer) => convertToMapParameter(layer))
+                .join(';'),
             bgLayer: bgLayerId.value ?? 'void',
             z: undefined,
             center: undefined,
@@ -172,6 +186,7 @@ export const useMainStore = defineStore('main', () => {
 
     return {
         // state
+        tempPreviewLayer,
         layersOnMap,
         infoLayerId,
         infoLayerRecord,
@@ -200,5 +215,7 @@ export const useMainStore = defineStore('main', () => {
         moveLayerToIndex,
         setLayerConfigs,
         resetStore,
+        setTempPreviewLayer,
+        resetTempPreviewLayer,
     }
 })

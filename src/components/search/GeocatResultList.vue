@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { useInfiniteScroll } from '@vueuse/core'
-import { useTemplateRef } from 'vue'
+import { onMounted, useTemplateRef } from 'vue'
 
 import SearchResultEntry from '@/components/search/GeocatSearchResultEntry.vue'
+import { useMapPreview } from '@/composables/useMapPreview'
 import useGeocat from '@/search/geocat'
+import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 
 const el = useTemplateRef('resultList')
 const { searchGeocat } = useGeocat()
 const searchStore = useSearchStore()
-
+const mainStore = useMainStore()
+const { initializeMap } = useMapPreview()
 useInfiniteScroll(
     el,
     () => {
@@ -34,6 +37,11 @@ useInfiniteScroll(
         },
     }
 )
+
+onMounted(() => {
+    // Initialize the map when the component is mounted
+    initializeMap()
+})
 </script>
 
 <template>
@@ -61,6 +69,7 @@ useInfiniteScroll(
                 v-for="result in searchStore.geocatSearchResults"
                 :key="result.uniqueIdentifier"
                 :result="result"
+                :bg-layer-name="mainStore.bgLayerId!"
             ></SearchResultEntry>
         </ul>
     </div>

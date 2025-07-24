@@ -4,12 +4,17 @@ import type { TreeNode } from 'primevue/treenode'
 import { ChevronLeft, PanelLeftClose } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Panel from 'primevue/panel'
+import Popover from 'primevue/popover'
 import Select from 'primevue/select'
 import Tree from 'primevue/tree'
-import { computed, onMounted, ref, watch, type PropType } from 'vue'
+import { computed, onMounted, ref, watch, type PropType, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { GeocatLayerInformation } from '@/types/mapPreview'
+
 import { loadGeocatalogTopics } from '@/api/topics.api'
+import MapPreview from '@/components/search/MapPreview.vue'
+import { LONG_PRESS_TIMEOUT_MS, useMapPreview } from '@/composables/useMapPreview'
 import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
@@ -21,6 +26,12 @@ const { t } = useI18n()
 const mainStore = useMainStore()
 const geocatalogStore = useGeocatalogStore()
 const uiStore = useUiStore()
+const popoverComponent = ref()
+const recordGetCapabilitiesUrl: Ref<GeocatLayerInformation | null> = ref(null)
+const longPressTimeout = ref<NodeJS.Timeout | null>(null) // Timeout reference for long press
+const targetRef = ref<EventTarget | null>(null)
+
+const { initializeMap, resetMap, getGeocatalogLayerInformation } = useMapPreview()
 
 const props = defineProps({
     root: {
@@ -148,11 +159,67 @@ function getTopicLabel(topicId: string): string {
 }
 
 onMounted(async () => {
+    initializeMap()
     if (geocatalogTopics.value.length === 0) {
         const topics = await loadGeocatalogTopics()
         geocatalogStore.setTopics(topics)
     }
 })
+
+async function onNodeHover(node: TreeNode, event: MouseEvent) {
+    if (node.data.category === 'layer' && props.isDesktopView) {
+        popoverComponent.value.show(event)
+        mainStore.setTempPreviewLayer({
+            id: node.data.layerBodId,
+            name: node.data.label,
+            geonetworkRecord: null,
+            opacity: 1,
+            visible: true,
+            type: LayerType.Geocatalog,
+        })
+        recordGetCapabilitiesUrl.value = await getGeocatalogLayerInformation(
+            node.data.layerBodId,
+            mainStore.language
+        )
+    }
+}
+function onNodeLeave(node: TreeNode) {
+    popoverComponent.value.hide()
+    resetMap()
+    recordGetCapabilitiesUrl.value = null
+    if (node.data.category === 'layer' && props.isDesktopView) {
+        mainStore.resetTempPreviewLayer()
+    }
+}
+const alignOverlay = () => {
+    if (popoverComponent?.value) {
+        popoverComponent.value.alignOverlay()
+    }
+}
+// TODO DEV INFO: The Geocatalog is currently not available on mobile devices. Therefore this function was not tested on mobile.
+// Function to handle long press on mobile
+const handleTouchStart = async (node: TreeNode, event: TouchEvent) => {
+    targetRef.value = event.currentTarget
+    // Set a timeout to detect a long press (e.g., 500ms)
+    longPressTimeout.value = setTimeout(async () => {
+        recordGetCapabilitiesUrl.value = await getGeocatalogLayerInformation(
+            node.data.layerBodId,
+            mainStore.language
+        )
+        if (popoverComponent?.value) {
+            // because of the delay we need an extra reference to the current target
+            popoverComponent.value.show(event, targetRef.value)
+        }
+    }, LONG_PRESS_TIMEOUT_MS)
+}
+
+// Function to clear the timeout if the touch ends before the long press threshold
+const handleTouchEnd = () => {
+    if (longPressTimeout.value) {
+        clearTimeout(longPressTimeout.value) // Clear the timeout
+        longPressTimeout.value = null
+    }
+}
 </script>
 
 <template>
@@ -227,7 +294,38 @@ onMounted(async () => {
                 @node-unselect="onNodeUnselect"
                 @node-expand="onExpand"
                 @node-collapse="onCollapse"
-            />
+            >
+                <template #default="{ node }">
+                    <div
+                        class="w-full flex-1"
+                        @mouseover="onNodeHover(node, $event)"
+                        @mouseleave="onNodeLeave(node)"
+                        @touchstart="handleTouchStart(node, $event)"
+                        @touchend="handleTouchEnd"
+                    >
+                        {{ node.label }}
+                    </div>
+                    <Popover
+                        ref="popoverComponent"
+                        class="p-0"
+                        :pt="{
+                            content:
+                                'p-0 border-1 border-solid border-swissgeo-blue rounded-xl overflow-hidden',
+                            root: 'rounded-xl before:content-none after:content-none',
+                        }"
+                    >
+                        <MapPreview
+                            v-if="recordGetCapabilitiesUrl"
+                            :key="recordGetCapabilitiesUrl.id"
+                            :layer-id="recordGetCapabilitiesUrl.id"
+                            :wms-base-url="recordGetCapabilitiesUrl?.href"
+                            :selected-layer-name="recordGetCapabilitiesUrl?.name"
+                            :bg-layer-name="mainStore.bgLayerId!"
+                            @align-overlay="alignOverlay"
+                        />
+                    </Popover>
+                </template>
+            </Tree>
         </div>
     </Panel>
 </template>

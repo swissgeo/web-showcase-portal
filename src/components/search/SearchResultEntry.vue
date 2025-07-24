@@ -8,7 +8,7 @@ const emit = defineEmits(['click'])
    -->
     <li
         class="flex h-13 cursor-pointer items-center gap-3 border-t-1 border-gray-200 text-sm md:px-4"
-        @click="emit('click')"
+        @click="emit('click', $event)"
     >
         <slot></slot>
     </li>

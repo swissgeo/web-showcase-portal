@@ -13,7 +13,8 @@
         "dataTitle": "Datas",
         "placesTitle": "Posts",
         "addToMap": "Agiuntar a la charta",
-        "buttonLabel": "Resultats da las retschertgas"
+        "buttonLabel": "Resultats da las retschertgas",
+        "noPreviewAvailable": "Naginas previsualisaziuns disponiblas"
     },
     "layerCart": {
         "showInfo": "Detagls",

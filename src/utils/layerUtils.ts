@@ -1,4 +1,4 @@
-import type { GeonetworkRecord, OnlineResourceType } from '@/types/gnRecord'
+import type { GeonetworkRecord, OnlineResource, OnlineResourceType } from '@/types/gnRecord'
 
 export const getResources = (type: OnlineResourceType, record: GeonetworkRecord) => {
     const onlineResources = record.onlineResources
@@ -54,6 +54,25 @@ export const isAddableToMap = (record: GeonetworkRecord) => {
         return !!wmsResource?.name && !!wmsResource?.url
     }
     return !!wmtsResource?.name && !!wmtsResource?.url
+}
+
+export const transformRecordIntoGetCapabilitiesUrl = (
+    record: GeonetworkRecord
+): OnlineResource | null => {
+    const wmsResource = getServiceResource('wms', record)
+    const wmtsResource = getServiceResource('wmts', record)
+    if (!wmsResource && !wmtsResource) {
+        throw new Error("Can't find the WM(T)S data")
+    }
+
+    if (!isAddableToMap(record)) {
+        throw new Error("Can't add this layer to the map")
+    }
+
+    if (wmsResource) {
+        return wmsResource
+    }
+    return wmtsResource
 }
 
 export const transformRecordIntoGeoadminLayerParam = (record: GeonetworkRecord) => {

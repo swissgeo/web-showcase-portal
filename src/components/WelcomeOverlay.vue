@@ -31,7 +31,7 @@ function openExternalLink(url: string) {
             <!-- Header -->
             <div class="border-b border-gray-200 px-6 py-4">
                 <div class="flex items-center justify-between">
-                    <h1 class="text-lg sm:text-2xl font-bold text-slate-950">
+                    <h1 class="text-lg font-bold text-slate-950 sm:text-2xl">
                         {{ t('welcomeOverlay.title') }}
                     </h1>
                     <!-- SWISSGEO Logo -->
@@ -63,7 +63,9 @@ function openExternalLink(url: string) {
 
             <!-- Footer -->
             <div class="border-t border-gray-200 px-6 py-4">
-                <div class="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <div
+                    class="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0"
+                >
                     <!-- Buttons -->
                     <div class="flex items-center space-x-3 sm:order-2">
                         <Button

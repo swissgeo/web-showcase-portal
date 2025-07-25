@@ -186,12 +186,13 @@ export default function useGeocat() {
             .filter((record): record is GeonetworkRecord => !!record)
 
         sortedRecords.forEach((record: GeonetworkRecord) => {
+            const existingLayer = mainStore.getLayerById(record.uniqueIdentifier)
             mainStore.replaceLayerOnMap({
                 id: record.uniqueIdentifier,
                 name: record.title,
                 geonetworkRecord: record,
-                opacity: layers.find((layer) => layer.id === record.uniqueIdentifier)?.opacity ?? 1,
-                visible: true,
+                opacity: existingLayer?.opacity ?? 1,
+                visible: existingLayer?.visible ?? true,
                 type: LayerType.Geonetwork,
             })
         })

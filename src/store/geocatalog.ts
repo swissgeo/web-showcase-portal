@@ -1,13 +1,29 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, type Ref } from 'vue'
 
+import { useTopicTree } from '@/composables/useTopicTree'
+import { useMainStore } from '@/store/main'
 import { type GeocatalogTopic, type TopicTreeNode } from '@/types/geocatalog'
 
+const TARGET_GROUP_ID = 2 // This is the only group ID for the Geocatalog topics we want to show
+
+const DEFAULT_GEOCATALOG_TOPIC: GeocatalogTopic = {
+    id: 'ech',
+    defaultBackground: 'ch.swisstopo.pixelkarte-farbe',
+    groupId: 3,
+    selectedLayers: [],
+    plConfig: null,
+}
+
 export const useGeocatalogStore = defineStore('geocatalog', () => {
+    const mainStore = useMainStore()
+    const { fetchAndPrepareTopicTreeRoot, activateLayersOfSelectedTopic } = useTopicTree()
     // State
     const expandedKeys = ref<string[]>([])
     const topicTreeData = ref<Record<string, Record<string, TopicTreeNode | null>>>({})
-    const currentTopic = ref('ech')
+
+    const currentTopic: Ref<GeocatalogTopic> = ref(DEFAULT_GEOCATALOG_TOPIC)
+    const geocatalogTopicRoot: Ref<TopicTreeNode | null> = ref(null)
     const topics = ref<GeocatalogTopic[]>([])
 
     // Getter
@@ -29,6 +45,10 @@ export const useGeocatalogStore = defineStore('geocatalog', () => {
         }
     }
 
+    function setGeocatalogTopicRoot(topic: TopicTreeNode) {
+        geocatalogTopicRoot.value = topic
+    }
+
     function setTopicTreeRoot(topic: string, lang: string, root: TopicTreeNode | null) {
         if (!topicTreeData.value[topic]) {
             topicTreeData.value[topic] = {}
@@ -36,12 +56,17 @@ export const useGeocatalogStore = defineStore('geocatalog', () => {
         topicTreeData.value[topic][lang] = root
     }
 
-    function setCurrentTopic(topic: string) {
+    function setCurrentTopic(topic: GeocatalogTopic) {
         currentTopic.value = topic
+        fetchAndPrepareTopicTreeRoot(topic.id, mainStore.language).then(
+            activateLayersOfSelectedTopic
+        )
     }
 
     function setTopics(newTopics: GeocatalogTopic[]) {
-        topics.value = newTopics
+        topics.value = newTopics.filter(
+            (t) => t.groupId === TARGET_GROUP_ID || t.id === DEFAULT_GEOCATALOG_TOPIC.id
+        )
     }
 
     return {
@@ -50,12 +75,14 @@ export const useGeocatalogStore = defineStore('geocatalog', () => {
         topicTreeData,
         currentTopic,
         topics,
+        geocatalogTopicRoot,
         // Getter
         getTopicTreeRoot,
         // Actions
         addExpandedKey,
         removeExpandedKey,
         setTopicTreeRoot,
+        setGeocatalogTopicRoot,
         setCurrentTopic,
         setTopics,
     }

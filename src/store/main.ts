@@ -84,6 +84,12 @@ export const useMainStore = defineStore('main', () => {
         layersOnMap.value.push(layer)
         updateMapUrlSearchParams()
     }
+
+    function setMapLayers(layers: Layer[]) {
+        layersOnMap.value = layers
+        updateMapUrlSearchParams()
+    }
+
     function setInfoLayerId(layerId: string) {
         if (infoLayerId.value !== layerId) {
             infoLayerRecord.value = null
@@ -168,7 +174,6 @@ export const useMainStore = defineStore('main', () => {
                 .map((layer) => convertToMapParameter(layer))
                 .join(';'),
             bgLayer: bgLayerId.value ?? 'void',
-            z: undefined,
             center: undefined,
         })
     }
@@ -203,6 +208,7 @@ export const useMainStore = defineStore('main', () => {
         getLayerConfigsByLang,
         // actions
         addLayerToMap,
+        setMapLayers,
         setInfoLayerId,
         setInfoLayerRecord,
         setLanguage,

@@ -167,7 +167,6 @@ export default function useGeocat() {
         return new Promise<GeonetworkRecord | null>((resolve) => {
             GNUI.recordsRepository.getRecord(uuid).subscribe({
                 next: (record: GeonetworkRecord) => {
-                    recordCallback(record)
                     resolve(record)
                 },
                 error: (error: Error) => {

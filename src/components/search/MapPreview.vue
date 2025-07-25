@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import 'ol/ol.css'
 import ProgressSpinner from 'primevue/progressspinner'
-import { ref, onMounted, nextTick, onBeforeUnmount, computed, watch } from 'vue'
+import { ref, onMounted, nextTick, onBeforeUnmount, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import { useMapPreview } from '@/composables/useMapPreview'
 import useGeocat from '@/search/geocat'
-import { useMainStore } from '@/store/main'
 import { sanitize } from '@/utils/sanitizer'
 
 const emit = defineEmits(['alignOverlay'])
@@ -31,12 +32,12 @@ const {
     createWMSLayer,
     addLayer,
 } = useMapPreview()
-const mainStore = useMainStore()
 const geocat = useGeocat()
+
 // Reference for the map container
 const mapContainer = ref<HTMLDivElement | null>(null)
 
-const infoLayerRecord = computed(() => mainStore.infoLayerRecord)
+const infoLayerRecord = ref<GeonetworkRecord | null>(null)
 let destroyed = false
 
 onBeforeUnmount(() => {
@@ -44,7 +45,7 @@ onBeforeUnmount(() => {
 })
 
 async function initializePreview(): Promise<void> {
-    await geocat.getRecordDetailsAsync(props.layerId)
+    infoLayerRecord.value = await geocat.getRecordDetailsAsync(props.layerId)
     await nextTick()
 
     resetErrorState()

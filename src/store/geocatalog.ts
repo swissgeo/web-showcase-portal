@@ -5,7 +5,7 @@ import { useTopicTree } from '@/composables/useTopicTree'
 import { useMainStore } from '@/store/main'
 import { type GeocatalogTopic, type TopicTreeNode } from '@/types/geocatalog'
 
-const TARGET_GROUP_ID = 2 // This is the only group ID for the Geocatalog topics we want to show
+const TARGET_GROUP_IDS = [2, 3] // This is the only group IDs for the Geocatalog topics we want to show
 
 const DEFAULT_GEOCATALOG_TOPIC: GeocatalogTopic = {
     id: 'ech',
@@ -64,9 +64,7 @@ export const useGeocatalogStore = defineStore('geocatalog', () => {
     }
 
     function setTopics(newTopics: GeocatalogTopic[]) {
-        topics.value = newTopics.filter(
-            (t) => t.groupId === TARGET_GROUP_ID || t.id === DEFAULT_GEOCATALOG_TOPIC.id
-        )
+        topics.value = newTopics.filter((t) => TARGET_GROUP_IDS.includes(t.groupId))
     }
 
     return {

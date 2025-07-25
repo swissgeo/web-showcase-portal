@@ -16,7 +16,9 @@ export const SIDEBAR_DEFAULT_WIDTH = 500
 export const useUiStore = defineStore('ui', () => {
     // State
     const currentSidebar = ref<SidebarType | null>(SidebarType.SEARCH)
-    const isLayerLegendVisible = ref(false)
+    const isLayerWindowVisible = ref(false)
+    const isLayerWindowMaximized = ref(false)
+    const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
 
@@ -58,12 +60,20 @@ export const useUiStore = defineStore('ui', () => {
         }
     }
 
-    function setLayerLegendVisible(visible: boolean) {
-        isLayerLegendVisible.value = visible
+    function setLayerWindowVisible(visible: boolean) {
+        isLayerWindowVisible.value = visible
     }
 
-    function toggleLayerLegend() {
-        isLayerLegendVisible.value = !isLayerLegendVisible.value
+    function setMaximizedLayerWindow(visible: boolean) {
+        isLayerWindowMaximized.value = visible
+    }
+
+    function setOpenLayerWindowFromDetailButton(triggered: boolean) {
+        openLayerWindowFromDetailButton.value = triggered
+    }
+
+    function toggleLayerWindow() {
+        isLayerWindowVisible.value = !isLayerWindowVisible.value
     }
 
     function closeSidebar() {
@@ -72,7 +82,7 @@ export const useUiStore = defineStore('ui', () => {
 
     function resetStore() {
         currentSidebar.value = null
-        isLayerLegendVisible.value = false
+        isLayerWindowVisible.value = false
         sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
     }
 
@@ -80,7 +90,9 @@ export const useUiStore = defineStore('ui', () => {
         // State
         currentSidebar,
         isFilterVisible,
-        isLayerLegendVisible,
+        isLayerWindowVisible,
+        isLayerWindowMaximized,
+        openLayerWindowFromDetailButton,
         sidebarSecondColumnWidth,
         // Computed getters
         isSidebarOpen,
@@ -93,8 +105,10 @@ export const useUiStore = defineStore('ui', () => {
         toggleFilterVisible,
         setLayerCartVisible,
         setSidebarSecondColumnWidth,
-        setLayerLegendVisible,
-        toggleLayerLegend,
+        setLayerWindowVisible,
+        setMaximizedLayerWindow,
+        setOpenLayerWindowFromDetailButton,
+        toggleLayerWindow,
         closeSidebar,
         resetStore,
     }

@@ -5,13 +5,14 @@ import Divider from 'primevue/divider'
 import InputNumber from 'primevue/inputnumber'
 import Menu from 'primevue/menu'
 import Slider from 'primevue/slider'
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/layer'
 
 import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
+import { useUiStore } from '@/store/ui'
 import { debounce } from '@/utils/debounce'
 const { t } = useI18n()
 
@@ -28,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 // Define emits for the LayerItem component
 const emit = defineEmits(['delete-layer'])
 const mainStore = useMainStore()
+const uiStore = useUiStore()
 
 // State to toggle the visibility of the opacity slider
 const showOpacitySlider = ref(false)
@@ -72,6 +74,12 @@ const debouncedChangeOpacity = debounce((layerId: string, value: number) => {
 const metadataMenuClicked = () => {
     menuShown.value = false
     mainStore.setInfoLayerId(props.layer.id)
+    uiStore.setOpenLayerWindowFromDetailButton(false)
+    nextTick(() => {
+        uiStore.setOpenLayerWindowFromDetailButton(true)
+    })
+
+    uiStore.setLayerWindowVisible(true)
 }
 
 const opacityMenuClicked = () => {

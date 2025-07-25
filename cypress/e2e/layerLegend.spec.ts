@@ -9,10 +9,9 @@ describe('Layer Legend on desktop', () => {
 
     it('Can open and close the layer legend on Desktop', () => {
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
-        cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
-        cy.get('[data-cy="comp-layer-legend-button"]').should('not.exist')
-        cy.get('[data-cy="comp-layer-legend-close"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-close"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
     })
 
@@ -29,7 +28,7 @@ describe('Layer Legend on desktop', () => {
             .find(`[data-cy="add-result-${RADON_UID}"`)
             .click()
 
-        cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
         cy.get(`[data-cy="accordion-layer-legend-${RADON_UID}"]`).click()
         cy.wait('@legendGraphicRequest')
@@ -45,9 +44,9 @@ describe('Layer Legend on mobile', () => {
 
     it('Can open and close the layer legend on Mobile', () => {
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
-        cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
-        cy.get('[data-cy="comp-layer-legend-close"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-close"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('not.exist')
     })
     it('Shows the legend of Radon', () => {
@@ -65,7 +64,7 @@ describe('Layer Legend on mobile', () => {
 
         cy.get('[data-cy="button-close-search"]').click()
 
-        cy.get('[data-cy="comp-layer-legend-button"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
         cy.get(`[data-cy="accordion-layer-legend-${RADON_UID}"]`).click()
         cy.wait('@legendGraphicRequest')

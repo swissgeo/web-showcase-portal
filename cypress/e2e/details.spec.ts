@@ -39,6 +39,7 @@ describe('Test the layer details on desktop', () => {
     beforeEach(() => {
         cy.viewport('macbook-15')
         cy.visit('/')
+        cy.dismissWelcomeOverlay()
     })
 
     it('Shows the layer details from the search', () => {
@@ -110,6 +111,7 @@ describe('Test the layer details on mobile', () => {
     beforeEach(() => {
         cy.viewport('iphone-se2')
         cy.visit('/')
+        cy.dismissWelcomeOverlay()
     })
 
     it('Shows the layer details from the search', () => {

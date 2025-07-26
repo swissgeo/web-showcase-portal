@@ -5,7 +5,7 @@ import { inject } from 'vue'
 import MapIcon from '@/assets/icons/map.svg?use'
 import { SidebarType, useUiStore } from '@/store/ui'
 
-const isDesktop = inject<boolean>('isDesktop')
+const isDesktop = inject<boolean>('isDesktop', true)
 // Access the store
 const uiStore = useUiStore()
 

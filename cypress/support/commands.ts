@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Custom command to dismiss the welcome overlay
+Cypress.Commands.add('dismissWelcomeOverlay', () => {
+  // Only set localStorage on the first visit
+  cy.window().then((win) => {
+    // Set localStorage to not show overlay again
+    win.localStorage.setItem('dontShowWelcomeOverlayAgain', 'true')
+  })
+
+  // Still check if overlay is visible and dismiss it if needed
+  cy.get('body').then(($body) => {
+    if ($body.find('[data-cy="button-overlay-confirm"]').length > 0) {
+      cy.get('[data-cy="button-overlay-confirm"]').click()
+    }
+  })
+})

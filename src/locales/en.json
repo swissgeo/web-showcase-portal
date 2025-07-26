@@ -3,9 +3,17 @@
     "searchPlaceholder": "Search here...",
     "disclaimer": "Testsite not for operational use",
     "welcomeOverlay": {
-        "title": "Welcome to...",
-        "intro": "You are on... this is a prototype",
-        "confirm": "I want to take a look!"
+        "title": "Welcome to the SWISSGEO Test Environment",
+        "swissgeoOverview": "With the next click you will get to the prototype of Switzerland's Geo Platform.",
+        "additionalInfo": "You will already find many geodata and maps in one central location – and you can directly explore and try them out.",
+        "feedbackInfo": "Your opinion matters to us. In the prototype, you will find a link through which you can give us direct feedback.",
+        "prototypeLink": "Prototype",
+        "projectInfoLink": "Project Information",
+        "moreInfos": "More Info",
+        "startPrototype": "Start Prototype",
+        "hereLabel": "Here",
+        "confirm": "Start Exploring",
+        "dontShowAgain": "Don't show this again"
     },
     "searchResult": {
         "mobileSearchTitle": "Search",

@@ -13,7 +13,7 @@ import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
-const isDesktop = inject<boolean>('isDesktop')
+const isDesktop = inject<boolean>('isDesktop', true)
 const emits = defineEmits(['focus', 'blur'])
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

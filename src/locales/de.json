@@ -3,9 +3,17 @@
     "searchPlaceholder": "Hier suchen...",
     "disclaimer": "Testseite nur für Demozwecke",
     "welcomeOverlay": {
-        "title": "Willkommen auf...",
-        "intro": "Sie befinden sich auf der ... dies ist ein Prototyp",
-        "confirm": "Ich möchte es anschauen!"
+        "title": "Willkommen in der Testumgebung von SWISSGEO",
+        "swissgeoOverview": "Mit dem nächsten Klick gelangst du zum Prototypen der Geoplattform Schweiz.",
+        "additionalInfo": "Du findest dort bereits jetzt viele Geodaten und Karten an einem zentralen Ort – und kannst sie direkt erkunden und ausprobieren.",
+        "feedbackInfo": "Deine Meinung interessiert uns. Im Prototypen findest Du einen Link, über den Du uns direkt Feedback geben kannst.",
+        "prototypeLink": "Prototyp",
+        "projectInfoLink": "Informationen zum Projekt",
+        "moreInfos": "Mehr Infos",
+        "startPrototype": "Prototyp starten",
+        "hereLabel": "Hier",
+        "confirm": "Entdeckung starten",
+        "dontShowAgain": "Nicht mehr anzeigen"
     },
     "searchResult": {
         "mobileSearchTitle": "Suche",

@@ -3,9 +3,17 @@
     "searchPlaceholder": "Rechercher ici...",
     "disclaimer": "Site de test, pour démonstration",
     "welcomeOverlay": {
-        "title": "Bienvenue sur...",
-        "intro": "Vous êtes sur... ceci est un prototype",
-        "confirm": "Je veux jeter un œil !"
+        "title": "Bienvenue dans l'environnement de test de SWISSGEO",
+        "swissgeoOverview": "Avec le prochain clic, vous accédez au prototype de la plateforme géographique suisse.",
+        "additionalInfo": "Vous y trouverez déjà de nombreuses géodonnées et cartes en un lieu central – et vous pouvez directement les explorer et les essayer.",
+        "feedbackInfo": "Votre avis nous intéresse. Dans le prototype, vous trouverez un lien par lequel vous pouvez nous donner directement votre avis.",
+        "prototypeLink": "Prototype",
+        "projectInfoLink": "Informations sur le projet",
+        "moreInfos": "Plus d'infos",
+        "startPrototype": "Démarrer le prototype",
+        "hereLabel": "Ici",
+        "confirm": "Commencer l'exploration",
+        "dontShowAgain": "Ne plus afficher"
     },
     "searchResult": {
         "mobileSearchTitle": "Recherche",

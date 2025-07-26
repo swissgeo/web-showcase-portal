@@ -2,7 +2,7 @@ describe('Test the search on desktop', () => {
     beforeEach(() => {
         cy.viewport('macbook-15')
         cy.visit('/')
-        // cy.get('[data-cy="button-overlay-confirm"]').click()
+        cy.dismissWelcomeOverlay()
     })
     it('Search yields a result', () => {
         // Open the search sidebar
@@ -40,7 +40,7 @@ describe('Test the search on mobile', () => {
     beforeEach(() => {
         cy.viewport('iphone-se2')
         cy.visit('/')
-        // cy.get('[data-cy="button-overlay-confirm"]').click()
+        cy.dismissWelcomeOverlay()
     })
     it('Search yields a result', () => {
         cy.get('[data-cy="comp-search-mobile"]').should('exist').should('be.visible')

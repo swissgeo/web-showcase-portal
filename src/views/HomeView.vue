@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStorage } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
 import {
     computed,
     provide,
@@ -21,8 +21,9 @@ import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
+
+const { isWelcomeOverlayVisible } = storeToRefs(uiStore)
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
-const showWelcomeOverlay = useStorage('showWelcomeOverlay', false)
 const mainElem = useTemplateRef('main')
 const windowWidth = ref(0)
 const windowHeight = ref(0)
@@ -50,10 +51,6 @@ const fontSettings = computed(() => {
 
     return { '--font-sans': font }
 })
-
-function closeOverlay() {
-    showWelcomeOverlay.value = false
-}
 
 // provide a way to programmatically enable/disable the mobile and desktop
 // versions of the search. Of course we could probably just have one component
@@ -95,6 +92,9 @@ onMounted(() => {
     console.log('HOME')
     addResizeListener()
     initializeWindowWidth()
+
+    // Initialize welcome overlay based on user preference
+    uiStore.initializeWelcomeOverlay()
 })
 onUnmounted(() => {
     removeResizeListener()
@@ -128,9 +128,8 @@ onUnmounted(() => {
             />
         </div>
         <WelcomeOverlay
-            v-if="showWelcomeOverlay"
+            v-if="isWelcomeOverlayVisible"
             class="z-100"
-            @close="closeOverlay"
-        ></WelcomeOverlay>
+        />
     </main>
 </template>

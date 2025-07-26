@@ -3,9 +3,17 @@
     "searchPlaceholder": "Tschertga qua...",
     "disclaimer": "Pagina da test – betg per diever operativ",
     "welcomeOverlay": {
-        "title": "Bainvegni sin...",
-        "intro": "Ti es sin... quai è in prototip",
-        "confirm": "Vuless guardar!"
+        "title": "Bainvegni en l'ambient da test da SWISSGEO",
+        "swissgeoOverview": "Cun il proxim clic arriveschas ti al prototip da la plattafurma geografica svizra.",
+        "additionalInfo": "Ti chattas là gia ussa bleras geodatas e chartas en in lieu central – e pos las explorar e provar directamain.",
+        "feedbackInfo": "Tia opiniun ans interessa. En il prototip chattas ti in link sur il qual ti pos dar a nus directamain feedback.",
+        "prototypeLink": "Prototip",
+        "projectInfoLink": "Infurmaziuns davart il project",
+        "moreInfos": "Dapli infos",
+        "startPrototype": "Cumenzar prototip",
+        "hereLabel": "Qua",
+        "confirm": "Cumenzar l'exploraziun",
+        "dontShowAgain": "Betg pli mussar"
     },
     "searchResult": {
         "mobileSearchTitle": "Tschertga",

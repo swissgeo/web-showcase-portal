@@ -12,6 +12,7 @@ import type { Layer } from '@/types/layer'
 
 import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
+import { useMapStore } from '@/store/map'
 import { useUiStore } from '@/store/ui'
 import { debounce } from '@/utils/debounce'
 const { t } = useI18n()
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
 // Define emits for the LayerItem component
 const emit = defineEmits(['delete-layer'])
 const mainStore = useMainStore()
+const mapStore = useMapStore()
 const uiStore = useUiStore()
 
 // State to toggle the visibility of the opacity slider
@@ -91,6 +93,14 @@ const deleteMenuClicked = () => {
     menuShown.value = false
 }
 
+const zoomToExtentMenuClicked = () => {
+    console.log('Zoom to extent clicked for layer:', props.layer.id)
+    // if (props.layer.extent) {
+    //     mapStore.zoomToExtent(props.layer.extent)
+    // }
+    menuShown.value = false
+}
+
 // Menu items for context menu
 const menuItems = [
     {
@@ -102,6 +112,12 @@ const menuItems = [
         label: t('layerCart.transparency'),
         icon: 'pi pi-clone',
         command: () => opacityMenuClicked(),
+    },
+    {
+        label: t('layerCart.zoomToExtent'),
+        icon: 'pi pi-search-plus',
+        // disabled: !props.layer.extent,
+        command: () => zoomToExtentMenuClicked(),
     },
 ]
 

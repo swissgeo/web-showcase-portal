@@ -28,6 +28,7 @@
         "showInfo": "Détails",
         "delete": "Supprimer",
         "transparency": "Transparence",
+        "zoomToExtent": "Zoomer vers",
         "noLayerSelected": "Aucune carte selectionée",
         "title": "Cartes affichées",
         "backgroundMap": "Carte de base",

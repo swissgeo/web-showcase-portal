@@ -10,11 +10,12 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/layer'
 
+import { useMapPreview } from '@/composables/useMapPreview'
 import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
-import { useMapStore } from '@/store/map'
 import { useUiStore } from '@/store/ui'
 import { debounce } from '@/utils/debounce'
+import { getServiceResource } from '@/utils/layerUtils'
 const { t } = useI18n()
 
 interface Props {
@@ -30,8 +31,8 @@ const props = withDefaults(defineProps<Props>(), {
 // Define emits for the LayerItem component
 const emit = defineEmits(['delete-layer'])
 const mainStore = useMainStore()
-const mapStore = useMapStore()
 const uiStore = useUiStore()
+const { extractLayerExtent } = useMapPreview()
 
 // State to toggle the visibility of the opacity slider
 const showOpacitySlider = ref(false)
@@ -93,11 +94,43 @@ const deleteMenuClicked = () => {
     menuShown.value = false
 }
 
-const zoomToExtentMenuClicked = () => {
+const zoomToExtentMenuClicked = async () => {
+    // eslint-disable-next-line no-console
     console.log('Zoom to extent clicked for layer:', props.layer.id)
-    // if (props.layer.extent) {
-    //     mapStore.zoomToExtent(props.layer.extent)
-    // }
+
+    // Get the layer extent using useMapPreview composable
+    try {
+        if (props.layer.geonetworkRecord) {
+            const wmsResource = getServiceResource('wms', props.layer.geonetworkRecord)
+            if (wmsResource && wmsResource.url && wmsResource.name) {
+                const wmsBaseUrl = wmsResource.url.href
+                const layerName = wmsResource.name
+
+                // eslint-disable-next-line no-console
+                console.log('Extracting extent for layer:', layerName, 'from URL:', wmsBaseUrl)
+                const extent = await extractLayerExtent(wmsBaseUrl, layerName)
+
+                if (extent) {
+                    // eslint-disable-next-line no-console
+                    console.log('Layer extent:', extent)
+                    // TODO: Use mapStore.zoomToExtent(extent) when implemented
+                } else {
+                    // eslint-disable-next-line no-console
+                    console.log('No extent found for layer:', layerName)
+                }
+            } else {
+                // eslint-disable-next-line no-console
+                console.log('No WMS resource found for layer:', props.layer.id)
+            }
+        } else {
+            // eslint-disable-next-line no-console
+            console.log('No geonetwork record found for layer:', props.layer.id)
+        }
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error getting layer extent:', error)
+    }
+
     menuShown.value = false
 }
 

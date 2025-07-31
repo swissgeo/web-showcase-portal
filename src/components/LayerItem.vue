@@ -11,8 +11,9 @@ import { useI18n } from 'vue-i18n'
 import type { Layer } from '@/types/layer'
 
 import { useMapPreview } from '@/composables/useMapPreview'
-import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
+import { TRANSPARENCY_DEBOUNCE_DELAY, zoomToExtent } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
+import { useMapStore } from '@/store/map'
 import { useUiStore } from '@/store/ui'
 import { debounce } from '@/utils/debounce'
 import { getServiceResource } from '@/utils/layerUtils'
@@ -31,8 +32,9 @@ const props = withDefaults(defineProps<Props>(), {
 // Define emits for the LayerItem component
 const emit = defineEmits(['delete-layer'])
 const mainStore = useMainStore()
+const mapStore = useMapStore()
 const uiStore = useUiStore()
-const { extractLayerExtent } = useMapPreview()
+const { extractLayerExtent, getExtentCoordinates } = useMapPreview()
 
 // State to toggle the visibility of the opacity slider
 const showOpacitySlider = ref(false)
@@ -108,23 +110,33 @@ const zoomToExtentMenuClicked = async () => {
 
                 // eslint-disable-next-line no-console
                 console.log('Extracting extent for layer:', layerName, 'from URL:', wmsBaseUrl)
-                const extent = await extractLayerExtent(wmsBaseUrl, layerName)
+                const rawExtent = await extractLayerExtent(wmsBaseUrl, layerName)
 
-                if (extent) {
-                    // eslint-disable-next-line no-console
-                    console.log('Layer extent:', extent)
-                    // TODO: Use mapStore.zoomToExtent(extent) when implemented
+                if (rawExtent) {
+                    // Use getExtentCoordinates to get cleaned extent coordinates
+                    const cleanedCoordinates = getExtentCoordinates(rawExtent)
+
+                    // Extract cleaned extent from the polygon coordinates
+                    // cleanedCoordinates format: [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY], [minX, minY]]
+                    const minX = cleanedCoordinates[0][0]
+                    const minY = cleanedCoordinates[0][1]
+                    const maxX = cleanedCoordinates[2][0]
+                    const maxY = cleanedCoordinates[2][1]
+                    const cleanedExtent: [number, number, number, number] = [minX, minY, maxX, maxY]
+
+                    // Use zoomToExtent to set zoom and center
+                    zoomToExtent(cleanedExtent, mapStore)
                 } else {
                     // eslint-disable-next-line no-console
-                    console.log('No extent found for layer:', layerName)
+                    console.error('No extent found for layer:', layerName)
                 }
             } else {
                 // eslint-disable-next-line no-console
-                console.log('No WMS resource found for layer:', props.layer.id)
+                console.error('No WMS resource found for layer:', props.layer.id)
             }
         } else {
             // eslint-disable-next-line no-console
-            console.log('No geonetwork record found for layer:', props.layer.id)
+            console.error('No geonetwork record found for layer:', props.layer.id)
         }
     } catch (error) {
         // eslint-disable-next-line no-console

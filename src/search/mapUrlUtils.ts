@@ -3,6 +3,7 @@ import type { Geometry } from 'geojson'
 import type { Layer } from '@/types/layer'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
+import { defaultCenter } from '@/config/map.config'
 import { isCrosshair, type Crosshair } from '@/types/crosshair'
 import { isLanguageSupported, type Language } from '@/types/language'
 import { transformRecordIntoGeoadminLayerParam } from '@/utils/layerUtils'
@@ -140,4 +141,86 @@ export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel: number)
             : Math.max(Math.ceil(currentZoomLevel - 1), 0)
     }
     return 1
+}
+
+/**
+ * Get zoom level from resolution
+ * @param resolution the resolution in meters per pixel
+ * @returns the zoom level corresponding to the resolution
+ */
+function getZoomLevelFromResolution(resolution: number): number {
+    // Resolutions for each LV95 zoom level, from 0 to 14 (from geoadmin web-mapviewer)
+    const LV95_RESOLUTIONS = [
+        650.0, 500.0, 250.0, 100.0, 50.0, 20.0, 10.0, 5.0, 2.5, 2.0, 1.0, 0.5, 0.25, 0.1,
+    ]
+
+    const matchingResolution = LV95_RESOLUTIONS.find(
+        (lv95Resolution) => lv95Resolution <= resolution
+    )
+    if (matchingResolution) {
+        return LV95_RESOLUTIONS.indexOf(matchingResolution)
+    }
+
+    // if no match was found, we have to decide if the resolution is too great,
+    // or too small to be matched and return the zoom accordingly
+    const smallestResolution = LV95_RESOLUTIONS.slice(-1)[0]
+    if (smallestResolution > resolution) {
+        // if the resolution was smaller than the smallest available, we return the zoom level corresponding
+        // to the smallest available resolution
+        return LV95_RESOLUTIONS.indexOf(smallestResolution)
+    }
+    // otherwise, we return the zoom level corresponding to the greatest resolution available
+    return 0
+}
+
+/**
+ * Calculate zoom level and center from an extent (bounding box) and update the map store
+ * @param extent The bounding box as [minX, minY, maxX, maxY] in EPSG:2056 coordinates
+ * @param mapStore The map store to update
+ */
+export function zoomToExtent(
+    extent: [number, number, number, number],
+    mapStore: { setMapUrlSearchParams: (params: Partial<MapUrlParameter>, dispatcher: string) => void }
+): void {
+    const [minX, minY, maxX, maxY] = extent
+
+    // Calculate the center point
+    const centerX = (minX + maxX) / 2
+    const centerY = (minY + maxY) / 2
+    const center: [number, number] = [centerX, centerY]
+
+    // Calculate the extent dimensions
+    const extentWidth = maxX - minX
+    const extentHeight = maxY - minY
+
+    // Get viewport dimensions (excluding any UI elements)
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+
+    // Calculate required resolution (meters per pixel) to fit extent in viewport
+    const resolutionX = extentWidth / viewportWidth
+    const resolutionY = extentHeight / viewportHeight
+
+    let targetResolution: number
+    if (extentHeight > extentWidth){
+        targetResolution = resolutionY
+    } else {
+        targetResolution = resolutionX
+    }
+
+    const zoomLevel = getZoomLevelFromResolution(targetResolution)
+
+    // Zoom levels are fixed value with LV95, the one calculated is the fixed zoom the closest to the floating
+    // zoom level required to show the full extent on the map (scale to fill).
+    // So the view will be too zoomed-in to have an overview of the extent.
+    // We then set the zoom level to the one calculated minus one (expect when the calculated zoom is 0...).
+    const finalZoom = Math.max(zoomLevel - 1, 0) // Ensure zoom level is at least 0
+
+    // Update the map store
+    mapStore.setMapUrlSearchParams({
+        // If the zoom level is 2, we use the default center, otherwise we use the calculated center
+        // This is to ensure that when zooming out to the full extent, we use the default center
+        center: finalZoom === 2 ? defaultCenter : center,
+        z: finalZoom,
+    }, 'zoomToExtent')
 }

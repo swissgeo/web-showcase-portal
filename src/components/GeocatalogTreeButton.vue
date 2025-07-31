@@ -2,7 +2,7 @@
 import Button from 'primevue/button'
 import { inject } from 'vue'
 
-import MapIcon from '@/assets/icons/map.svg?use'
+import LayerIcon from '@/assets/icons/layers.svg?use'
 import { SidebarType, useUiStore } from '@/store/ui'
 
 const isDesktop = inject<boolean>('isDesktop', true)
@@ -26,7 +26,7 @@ const toggleGeocatalogTree = () => {
             @click="toggleGeocatalogTree"
         >
             <template #icon>
-                <MapIcon class="h-6 w-6 stroke-current"></MapIcon>
+                <LayerIcon class="h-6 w-6 stroke-current"></LayerIcon>
             </template>
         </Button>
     </div>

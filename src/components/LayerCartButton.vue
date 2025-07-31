@@ -2,7 +2,7 @@
 import Button from 'primevue/button'
 import { computed, inject, ref, watch } from 'vue'
 
-import LayerIcon from '@/assets/icons/layers.svg?use'
+import MapIcon from '@/assets/icons/map.svg?use'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
 
@@ -39,7 +39,7 @@ watch(layerCount, (newValue, oldValue) => {
             @click="toggleLayerCart"
         >
             <template #icon>
-                <LayerIcon class="h-6 w-6 stroke-current"></LayerIcon>
+                <MapIcon class="h-6 w-6 stroke-current"></MapIcon>
             </template>
         </Button>
         <!-- Badge for layer count (not possible to use PrimeVue Badge with custom icon)-->

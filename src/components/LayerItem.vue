@@ -102,48 +102,51 @@ const zoomToExtentMenuClicked = async () => {
 
     // Get the layer extent using useMapPreview composable
     try {
-        if (props.layer.geonetworkRecord) {
-            const wmsResource = getServiceResource('wms', props.layer.geonetworkRecord)
-            if (wmsResource && wmsResource.url && wmsResource.name) {
-                const wmsBaseUrl = wmsResource.url.href
-                const layerName = wmsResource.name
-
-                // eslint-disable-next-line no-console
-                console.log('Extracting extent for layer:', layerName, 'from URL:', wmsBaseUrl)
-                const rawExtent = await extractLayerExtent(wmsBaseUrl, layerName)
-
-                if (rawExtent) {
-                    // Use getExtentCoordinates to get cleaned extent coordinates
-                    const cleanedCoordinates = getExtentCoordinates(rawExtent)
-
-                    // Extract cleaned extent from the polygon coordinates
-                    // cleanedCoordinates format: [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY], [minX, minY]]
-                    const minX = cleanedCoordinates[0][0]
-                    const minY = cleanedCoordinates[0][1]
-                    const maxX = cleanedCoordinates[2][0]
-                    const maxY = cleanedCoordinates[2][1]
-                    const cleanedExtent: [number, number, number, number] = [minX, minY, maxX, maxY]
-
-                    // Use zoomToExtent to set zoom and center
-                    zoomToExtent(cleanedExtent, mapStore)
-                } else {
-                    // eslint-disable-next-line no-console
-                    console.error('No extent found for layer:', layerName)
-                }
-            } else {
-                // eslint-disable-next-line no-console
-                console.error('No WMS resource found for layer:', props.layer.id)
-            }
-        } else {
+        if (!props.layer.geonetworkRecord) {
             // eslint-disable-next-line no-console
             console.error('No geonetwork record found for layer:', props.layer.id)
+            return
         }
+
+        const wmsResource = getServiceResource('wms', props.layer.geonetworkRecord)
+        if (!wmsResource || !wmsResource.url || !wmsResource.name) {
+            // eslint-disable-next-line no-console
+            console.error('No WMS resource found for layer:', props.layer.id)
+            return
+        }
+
+        const wmsBaseUrl = wmsResource.url.href
+        const layerName = wmsResource.name
+
+        // eslint-disable-next-line no-console
+        console.log('Extracting extent for layer:', layerName, 'from URL:', wmsBaseUrl)
+        const rawExtent = await extractLayerExtent(wmsBaseUrl, layerName)
+
+        if (!rawExtent) {
+            // eslint-disable-next-line no-console
+            console.error('No extent found for layer:', layerName)
+            return
+        }
+
+        // Use getExtentCoordinates to get cleaned extent coordinates
+        const cleanedCoordinates = getExtentCoordinates(rawExtent)
+
+        // Extract cleaned extent from the polygon coordinates
+        // cleanedCoordinates format: [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY], [minX, minY]]
+        const minX = cleanedCoordinates[0][0]
+        const minY = cleanedCoordinates[0][1]
+        const maxX = cleanedCoordinates[2][0]
+        const maxY = cleanedCoordinates[2][1]
+        const cleanedExtent: [number, number, number, number] = [minX, minY, maxX, maxY]
+
+        // Use zoomToExtent to set zoom and center
+        zoomToExtent(cleanedExtent, mapStore)
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Error getting layer extent:', error)
+    } finally {
+        menuShown.value = false
     }
-
-    menuShown.value = false
 }
 
 // Menu items for context menu

@@ -73,7 +73,6 @@ export const useUiStore = defineStore('ui', () => {
     }
 
     function setLayerWindowLastPosition(x: number, y: number) {
-        console.error('setLayerWindowLastPosition', x, y)
         layerWindowLastPosition.value = { x, y }
     }
 

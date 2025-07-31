@@ -115,12 +115,12 @@ const determinePanelSize = (tab: 'detail' | 'legend'): string => {
     }
 
     if (isEmpty[tab] && isDesktop?.value) {
-        return 'h-[10vh] w-[25vw] overflow-y-auto'
+        return 'h-[10vh] w-[25vw] cursor-default overflow-y-auto'
     }
 
     if (isDesktop?.value) {
         const constraints = panelSizeConstraints[tab]
-        return `${constraints.h} ${constraints.w} overflow-y-auto`
+        return `${constraints.h} ${constraints.w} cursor-default overflow-y-auto`
     } else {
         return 'h-dvh w-full overflow-y-auto'
     }
@@ -204,9 +204,8 @@ watch([x, y], () => {
             data-cy="comp-layer-window-tabs"
             class="overflow-hidden"
             :class="{
-                'rounded-xl border-2 border-[#1F576B]':
+                'cursor-move rounded-xl border-2 border-[#1F576B]':
                     isDesktop && !uiStore.isLayerWindowMaximized,
-                'cursor-move': isDesktop && !uiStore.isLayerWindowMaximized,
             }"
             :pt="{
                 content: 'md:px-2',

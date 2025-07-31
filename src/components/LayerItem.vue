@@ -161,7 +161,6 @@ const menuItems = [
     {
         label: t('layerCart.zoomToExtent'),
         icon: 'pi pi-search-plus',
-        // disabled: !props.layer.extent,
         command: () => zoomToExtentMenuClicked(),
     },
 ]

@@ -186,12 +186,12 @@ export const useMainStore = defineStore('main', () => {
         bgLayers.value = defaultBgLayers
         language.value = initialLanguage
         layerConfigs.value = {}
+        tempPreviewLayer.value = null
         i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
     }
 
     return {
         // state
-        tempPreviewLayer,
         layersOnMap,
         infoLayerId,
         infoLayerRecord,
@@ -199,13 +199,16 @@ export const useMainStore = defineStore('main', () => {
         bgLayers,
         language,
         layerConfigs,
+        tempPreviewLayer,
+
         // getters
         layersOnMapCount,
+        visibleLayers,
         getLayerById,
+        getLayerConfigsByLang,
         isLayerOnMap,
         showLayerInfo,
-        visibleLayers,
-        getLayerConfigsByLang,
+
         // actions
         addLayerToMap,
         setMapLayers,
@@ -220,8 +223,8 @@ export const useMainStore = defineStore('main', () => {
         replaceLayerOnMap,
         moveLayerToIndex,
         setLayerConfigs,
-        resetStore,
         setTempPreviewLayer,
         resetTempPreviewLayer,
+        resetStore,
     }
 })

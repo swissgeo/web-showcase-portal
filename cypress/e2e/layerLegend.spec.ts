@@ -7,20 +7,12 @@ describe('Layer Legend on desktop', () => {
         cy.dismissWelcomeOverlay()
     })
 
-    it('Can open and close the layer legend on Desktop', () => {
-        cy.get('[data-cy="div-layer-legend"]').should('not.exist')
-        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
-        cy.get('[data-cy="div-layer-legend"]').should('be.visible')
-        cy.get('[data-cy="comp-layer-window-close"]').should('be.visible').click()
-        cy.get('[data-cy="div-layer-legend"]').should('not.exist')
-    })
-
     it('Shows the legend of Radon', () => {
         cy.intercept(
             'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
         ).as('legendGraphicRequest')
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        // open accordion
+
         cy.get('[data-cy="comp-data-accordion"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
@@ -28,7 +20,13 @@ describe('Layer Legend on desktop', () => {
             .find(`[data-cy="add-result-${RADON_UID}"`)
             .click()
 
-        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
+        cy.get(`[data-cy="button-show-layer-details-${RADON_UID}"]`).should('be.visible').click()
+
+        cy.get('[data-cy="comp-layer-window-tabs"]')
+            .find('li')
+            .contains('Legend')
+            .click()
+
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
         cy.get(`[data-cy="accordion-layer-legend-${RADON_UID}"]`).click()
         cy.wait('@legendGraphicRequest')
@@ -42,13 +40,6 @@ describe('Layer Legend on mobile', () => {
         cy.dismissWelcomeOverlay()
     })
 
-    it('Can open and close the layer legend on Mobile', () => {
-        cy.get('[data-cy="div-layer-legend"]').should('not.exist')
-        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
-        cy.get('[data-cy="div-layer-legend"]').should('be.visible')
-        cy.get('[data-cy="comp-layer-window-close"]').should('be.visible').click()
-        cy.get('[data-cy="div-layer-legend"]').should('not.exist')
-    })
     it('Shows the legend of Radon', () => {
         cy.intercept(
             'https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&FORMAT=text%2Fxml'
@@ -62,9 +53,13 @@ describe('Layer Legend on mobile', () => {
             .find(`[data-cy="add-result-${RADON_UID}"`)
             .click()
 
-        cy.get('[data-cy="button-close-search"]').click()
+        cy.get(`[data-cy="button-show-layer-details-${RADON_UID}"]`).should('be.visible').click()
 
-        cy.get('[data-cy="comp-layer-window-button"]').should('be.visible').click()
+        cy.get('[data-cy="comp-layer-window-tabs"]')
+            .find('li')
+            .contains('Legend')
+            .click()
+
         cy.get('[data-cy="div-layer-legend"]').should('be.visible')
         cy.get(`[data-cy="accordion-layer-legend-${RADON_UID}"]`).click()
         cy.wait('@legendGraphicRequest')

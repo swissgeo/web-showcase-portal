@@ -19,6 +19,7 @@ export const useUiStore = defineStore('ui', () => {
     const currentSidebar = ref<SidebarType | null>(SidebarType.SEARCH)
     const isLayerWindowVisible = ref(false)
     const isLayerWindowMaximized = ref(false)
+    const layerWindowLastPosition = ref({ x: 0, y: 0 })
     const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
@@ -69,6 +70,11 @@ export const useUiStore = defineStore('ui', () => {
 
     function setLayerWindowVisible(visible: boolean) {
         isLayerWindowVisible.value = visible
+    }
+
+    function setLayerWindowLastPosition(x: number, y: number) {
+        console.error('setLayerWindowLastPosition', x, y)
+        layerWindowLastPosition.value = { x, y }
     }
 
     function setMaximizedLayerWindow(visible: boolean) {
@@ -129,6 +135,7 @@ export const useUiStore = defineStore('ui', () => {
         isFilterVisible,
         isLayerWindowVisible,
         isLayerWindowMaximized,
+        layerWindowLastPosition,
         openLayerWindowFromDetailButton,
         sidebarSecondColumnWidth,
         isWelcomeOverlayVisible,
@@ -146,6 +153,7 @@ export const useUiStore = defineStore('ui', () => {
         setLayerCartVisible,
         setSidebarSecondColumnWidth,
         setLayerWindowVisible,
+        setLayerWindowLastPosition,
         setMaximizedLayerWindow,
         setOpenLayerWindowFromDetailButton,
         toggleLayerWindow,

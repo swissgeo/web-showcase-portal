@@ -8,9 +8,12 @@ import { useI18n } from 'vue-i18n'
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import DetailLink from '@/components/details/DetailLink.vue'
+import { useMainStore } from '@/store/main'
 import { getResources, getLegalConstraint, getLicense } from '@/utils/layerUtils'
+import { sanitize } from '@/utils/sanitizer'
 
 const { t } = useI18n()
+const mainStore = useMainStore()
 
 const { info } = defineProps<{
     info: GeonetworkRecord
@@ -110,6 +113,13 @@ const logoUrl = computed((): string | null => {
             </div>
 
             <div class="mx-4 flex -translate-y-5 flex-col gap-4">
+                <Panel
+                    :header="t('details.info')"
+                    data-cy="panel-dataset-details-info"
+                >
+                    <div :innerHTML="sanitize(mainStore.infoLayerRecord?.abstract)"></div>
+                </Panel>
+
                 <Panel
                     v-if="contact"
                     :header="t('details.contact')"

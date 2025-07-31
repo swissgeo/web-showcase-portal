@@ -7,12 +7,9 @@ function testDetails() {
         .should('be.visible')
         .should('contain', 'Radon map')
 
-    cy.get('[data-cy="comp-layer-window-tabs"]')
-    .find('li')
-    .contains('Info')
-    .click()
-
-    cy.get('[data-cy="div-dataset-info-abstract"]').should('contain', 'The radon map indicates')
+    cy.get('[data-cy="panel-dataset-details-info"]')
+    .should('be.visible')
+    .should('contain', 'The radon map indicates')
 
 
    cy.get('[data-cy="comp-layer-window-tabs"]')

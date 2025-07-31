@@ -3,7 +3,6 @@ import type { Geometry } from 'geojson'
 import type { Layer } from '@/types/layer'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
-import { defaultCenter } from '@/config/map.config'
 import { isCrosshair, type Crosshair } from '@/types/crosshair'
 import { isLanguageSupported, type Language } from '@/types/language'
 import { transformRecordIntoGeoadminLayerParam } from '@/utils/layerUtils'
@@ -203,15 +202,9 @@ export function zoomToExtent(
     const resolutionX = extentWidth / viewportWidth
     const resolutionY = extentHeight / viewportHeight
 
-    let targetResolution: number
-    if (extentHeight > extentWidth) {
-        targetResolution = resolutionY
-    } else {
-        targetResolution = resolutionX
-    }
+    const targetResolution: number = extentHeight > extentWidth ? resolutionY : resolutionX
 
     const zoomLevel = getZoomLevelFromResolution(targetResolution)
-
     // Zoom levels are fixed value with LV95, the one calculated is the fixed zoom the closest to the floating
     // zoom level required to show the full extent on the map (scale to fill).
     // So the view will be too zoomed-in to have an overview of the extent.
@@ -221,9 +214,7 @@ export function zoomToExtent(
     // Update the map store
     mapStore.setMapUrlSearchParams(
         {
-            // If the zoom level is 2, we use the default center, otherwise we use the calculated center
-            // This is to ensure that when zooming out to the full extent, we use the default center
-            center: finalZoom === 2 ? defaultCenter : center,
+            center,
             z: finalZoom,
         },
         'zoomToExtent'

@@ -1,5 +1,6 @@
 import { catchError, Subscription } from 'rxjs'
 
+import { defaultLayerOpacity } from '@/config/map.config'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
@@ -209,7 +210,7 @@ export default function useGeocat() {
                     geonetworkRecord: record,
                     opacity:
                         layers.find((layer) => layer.geocatId === record.uniqueIdentifier)
-                            ?.opacity ?? 1,
+                            ?.opacity ?? defaultLayerOpacity,
                     visible: true,
                     type: LayerType.Geonetwork,
                 })

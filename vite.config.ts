@@ -13,12 +13,13 @@ if (!appVersion) {
     // NOTE: git-describe package add sometimes `+` signs (what the real git describe command don't)
     // and the `+` sign on the URL is actually a space, so it should be percent encoded,.
     // Therefore we change the + sign into '-' for simplification.
-    appVersion = 'v' + gitDescribe.gitDescribeSync().semverString?.replace('+', '-') || ''
+    appVersion =
+        'v' + gitDescribe.gitDescribeSync().semverString?.replace('+', '-') || ''
 }
 
 export default defineConfig(({ mode }) => {
     const config = {
-        base: process.env.BASE_PATH || './',
+        base: (process.env.BASE_PATH || './').toLowerCase(),
         build: {
             assetsDir: `${appVersion}/assets`,
         },

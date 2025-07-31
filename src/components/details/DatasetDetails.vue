@@ -30,7 +30,11 @@ const lastUpdated = computed(() => {
 })
 
 const contact = computed(() => {
-    return info?.contacts[0] ?? null
+    if (info.contactsForResource?.[0]) {
+        return info.contactsForResource[0]
+    } else {
+        return info.contacts?.[0]
+    }
 })
 
 const downloads = computed(() => {
@@ -125,15 +129,9 @@ const logoUrl = computed((): string | null => {
                     <address class="text-sm not-italic">
                         <div class="flex flex-col gap-1">
                             <div class="mb-2">
-                                <div class="font-bold">{{ contact.organization.name }}</div>
-                                <div
-                                    v-if="contact.lastName"
-                                    class="font-bold"
-                                >
-                                    {{ contact.lastName }}
-                                </div>
+                                <div class="font-bold">{{ contact?.organization?.name }}</div>
                             </div>
-                            <div v-if="contact.email">
+                            <div v-if="contact?.email">
                                 <a
                                     :href="`mailto:${contact.email}`"
                                     class="flex items-center gap-2"
@@ -148,7 +146,7 @@ const logoUrl = computed((): string | null => {
                                 >
                             </div>
                             <div class="flex items-center gap-2">
-                                <MapPin class="h-4 flex-shrink-0" />{{ contact.address }}
+                                <MapPin class="h-4 flex-shrink-0" />{{ contact?.address }}
                             </div>
                         </div>
                     </address>

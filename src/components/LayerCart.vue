@@ -26,7 +26,7 @@ const uiStore = useUiStore()
 
 const activeLayersList = ref(null)
 
-const layers = computed(() => mainStore.layersOnMap || [])
+const activeLayers = computed(() => mainStore.layersOnMap.slice().reverse() || [])
 const bgLayers = computed(() => mainStore.bgLayers || [])
 
 const handleDeleteLayer = (layer: Layer) => {
@@ -112,12 +112,12 @@ function destroySortable() {
         ></div>
         <div>
             <ul
-                v-if="layers.length > -1"
+                v-if="activeLayers.length > -1"
                 ref="activeLayersList"
                 class="space-y-2"
             >
                 <LayerItem
-                    v-for="layer in layers"
+                    v-for="layer in activeLayers"
                     :key="layer.id"
                     :layer="layer"
                     class="layer-item"

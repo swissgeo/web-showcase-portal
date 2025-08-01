@@ -146,12 +146,7 @@ export function useMapPreview() {
         }
     }
 
-    async function addLayerExtentToMap(
-        wmsBaseUrl: string,
-        selectedLayerName: string
-    ): Promise<[number, number, number, number] | undefined> {
-        const extent = await extractLayerExtent(wmsBaseUrl, selectedLayerName)
-
+    function addLayerExtentToMap(extent?: [number, number, number, number]): void {
         if (!previewMap.value || !extent) {
             return
         }
@@ -170,7 +165,6 @@ export function useMapPreview() {
             }),
         })
         previewMap.value.addLayer(vectorLayer)
-        return extent
     }
 
     function getExtentCoordinates(layerExtent: [number, number, number, number]): number[][] {
@@ -257,8 +251,8 @@ export function useMapPreview() {
     async function extractLayerExtent(
         wmsBaseUrl: string,
         selectedLayerName: string
-    ): Promise<[number, number, number, number] | null> {
-        let result = null
+    ): Promise<[number, number, number, number] | undefined> {
+        let result: [number, number, number, number] | undefined
         try {
             isPreviewLoading.value = true
             cancelOngoingRequest()

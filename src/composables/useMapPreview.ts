@@ -355,6 +355,7 @@ export function useMapPreview() {
         initializeMap,
         addLayerExtentToMap,
         extractLayerExtent,
+        getExtentCoordinates,
         getGeocatalogLayerInformation,
         addBackgroundLayer,
         createWMSLayer,

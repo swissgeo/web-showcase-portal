@@ -10,10 +10,13 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/layer'
 
-import { TRANSPARENCY_DEBOUNCE_DELAY } from '@/search/mapUrlUtils'
+import { useMapPreview } from '@/composables/useMapPreview'
+import { TRANSPARENCY_DEBOUNCE_DELAY, zoomToExtent } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
+import { useMapStore } from '@/store/map'
 import { useUiStore } from '@/store/ui'
 import { debounce } from '@/utils/debounce'
+import { getServiceResource } from '@/utils/layerUtils'
 const { t } = useI18n()
 
 interface Props {
@@ -29,7 +32,9 @@ const props = withDefaults(defineProps<Props>(), {
 // Define emits for the LayerItem component
 const emit = defineEmits(['delete-layer'])
 const mainStore = useMainStore()
+const mapStore = useMapStore()
 const uiStore = useUiStore()
+const { extractLayerExtent, getExtentCoordinates } = useMapPreview()
 
 // State to toggle the visibility of the opacity slider
 const showOpacitySlider = ref(false)
@@ -91,6 +96,59 @@ const deleteMenuClicked = () => {
     menuShown.value = false
 }
 
+const zoomToExtentMenuClicked = async () => {
+    // eslint-disable-next-line no-console
+    console.log('Zoom to extent clicked for layer:', props.layer.id)
+
+    // Get the layer extent using useMapPreview composable
+    try {
+        if (!props.layer.geonetworkRecord) {
+            // eslint-disable-next-line no-console
+            console.error('No geonetwork record found for layer:', props.layer.id)
+            return
+        }
+
+        const wmsResource = getServiceResource('wms', props.layer.geonetworkRecord)
+        if (!wmsResource || !wmsResource.url || !wmsResource.name) {
+            // eslint-disable-next-line no-console
+            console.error('No WMS resource found for layer:', props.layer.id)
+            return
+        }
+
+        const wmsBaseUrl = wmsResource.url.href
+        const layerName = wmsResource.name
+
+        // eslint-disable-next-line no-console
+        console.log('Extracting extent for layer:', layerName, 'from URL:', wmsBaseUrl)
+        const rawExtent = await extractLayerExtent(wmsBaseUrl, layerName)
+
+        if (!rawExtent) {
+            // eslint-disable-next-line no-console
+            console.error('No extent found for layer:', layerName)
+            return
+        }
+
+        // Use getExtentCoordinates to get cleaned extent coordinates
+        const cleanedCoordinates = getExtentCoordinates(rawExtent)
+
+        // Extract cleaned extent from the polygon coordinates
+        // cleanedCoordinates format: [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY], [minX, minY]]
+        const minX = cleanedCoordinates[0][0]
+        const minY = cleanedCoordinates[0][1]
+        const maxX = cleanedCoordinates[2][0]
+        const maxY = cleanedCoordinates[2][1]
+        const cleanedExtent: [number, number, number, number] = [minX, minY, maxX, maxY]
+
+        // Use zoomToExtent to set zoom and center
+        zoomToExtent(cleanedExtent, mapStore)
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error getting layer extent:', error)
+    } finally {
+        menuShown.value = false
+    }
+}
+
 // Menu items for context menu
 const menuItems = [
     {
@@ -102,6 +160,11 @@ const menuItems = [
         label: t('layerCart.transparency'),
         icon: 'pi pi-clone',
         command: () => opacityMenuClicked(),
+    },
+    {
+        label: t('layerCart.zoomToExtent'),
+        icon: 'pi pi-search-plus',
+        command: () => zoomToExtentMenuClicked(),
     },
 ]
 

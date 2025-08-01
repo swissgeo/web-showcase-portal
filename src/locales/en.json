@@ -28,6 +28,7 @@
         "showInfo": "Details",
         "delete": "Remove",
         "transparency": "Transparency",
+        "zoomToExtent": "Zoom to extent",
         "noLayerSelected": "No map selected",
         "title": "Displayed maps",
         "backgroundMap": "Background Map",

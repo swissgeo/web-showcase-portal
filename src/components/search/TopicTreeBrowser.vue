@@ -15,6 +15,7 @@ import type { GeocatLayerInformation } from '@/types/mapPreview'
 import { loadGeocatalogTopics } from '@/api/topics.api'
 import MapPreview from '@/components/search/MapPreview.vue'
 import { LONG_PRESS_TIMEOUT_MS, useMapPreview } from '@/composables/useMapPreview'
+import { defaultLayerOpacity } from '@/config/map.config'
 import { useGeocatalogStore } from '@/store/geocatalog'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
@@ -130,7 +131,7 @@ function onNodeSelect(node: TreeNode) {
         mainStore.addLayerToMap({
             id: node.data.layerBodId,
             name: node.data.label,
-            opacity: 1,
+            opacity: defaultLayerOpacity,
             visible: true,
             geonetworkRecord: null,
             type: LayerType.Geocatalog,

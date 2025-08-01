@@ -6,6 +6,7 @@ import { useI18n } from 'vue-i18n'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import { defaultLayerOpacity } from '@/config/map.config'
 import { useMainStore } from '@/store/main'
 import { LayerType } from '@/types/layer'
 import { getServiceResource } from '@/utils/layerUtils'
@@ -62,7 +63,7 @@ const addToMap = (record: GeonetworkRecord) => {
         id: record.uniqueIdentifier,
         name: record.title,
         geonetworkRecord: record,
-        opacity: 1,
+        opacity: defaultLayerOpacity,
         visible: true,
         type: LayerType.Geonetwork,
     })

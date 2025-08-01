@@ -50,14 +50,20 @@ async function initializePreview(): Promise<void> {
 
     resetErrorState()
     addBackgroundLayer(props.bgLayerName)
-
-    addLayer(createWMSLayer(props.wmsBaseUrl, props.selectedLayerName))
+    let extent: [number, number, number, number] | undefined
+    // Add the extent to the map
+    try {
+        extent = await addLayerExtentToMap(props.wmsBaseUrl, props.selectedLayerName)
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Error adding layer extent:', error)
+    }
     if (destroyed) {
         return
     }
 
-    // Add the extent to the map
-    await addLayerExtentToMap(props.wmsBaseUrl, props.selectedLayerName)
+    addLayer(createWMSLayer(props.wmsBaseUrl, props.selectedLayerName, extent))
+
     if (destroyed || !mapContainer.value) {
         hasPreviewError.value = true
         emit('alignOverlay')

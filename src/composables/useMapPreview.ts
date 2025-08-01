@@ -12,7 +12,7 @@ import VectorLayer from 'ol/layer/Vector'
 import Map from 'ol/Map'
 import { get as getProjection } from 'ol/proj'
 import { register as registerProj } from 'ol/proj/proj4'
-import ImageWMS from 'ol/source/ImageWMS'
+import Static from 'ol/source/ImageStatic'
 import VectorSource from 'ol/source/Vector'
 import WMTS, { type RequestEncoding } from 'ol/source/WMTS'
 import Stroke from 'ol/style/Stroke'
@@ -149,7 +149,7 @@ export function useMapPreview() {
     async function addLayerExtentToMap(
         wmsBaseUrl: string,
         selectedLayerName: string
-    ): Promise<void> {
+    ): Promise<[number, number, number, number] | undefined> {
         const extent = await extractLayerExtent(wmsBaseUrl, selectedLayerName)
 
         if (!previewMap.value || !extent) {
@@ -169,8 +169,8 @@ export function useMapPreview() {
                 features: [feature],
             }),
         })
-
         previewMap.value.addLayer(vectorLayer)
+        return extent
     }
 
     function getExtentCoordinates(layerExtent: [number, number, number, number]): number[][] {
@@ -203,14 +203,21 @@ export function useMapPreview() {
         ]
     }
 
-    function createWMSLayer(wmsBaseUrl: string, selectedLayerName: string): ImageLayer<ImageWMS> {
+    function createWMSLayer(
+        wmsBaseUrl: string,
+        selectedLayerName: string,
+        extent: [number, number, number, number] | undefined
+    ): ImageLayer<Static> {
+        const imageExtent = extent ?? SWISS_EXTENT
+        // Some layers might still not be visibile in the preview,
+        // this is due to the fact that the layers need a specific width and height at a certain zoom level
+        // to be displayed correctly but we are on a fixed zoom level.
+        // This problem is also present in the mapviewer.
         const layer = new ImageLayer({
-            source: new ImageWMS({
-                url: wmsBaseUrl,
-                params: { LAYERS: selectedLayerName },
-                ratio: 1,
-                projection: EPSG_2056,
-                serverType: 'geoserver',
+            source: new Static({
+                url: `${wmsBaseUrl}?SERVICE=WMS&REQUEST=GetMap&TRANSPARENT=true&LAYERS=${selectedLayerName}&FORMAT=image/png&VERSION=1.3.0&CRS=${EPSG_2056}&BBOX=${imageExtent.join(',')}&WIDTH=1153&HEIGHT=563`,
+                imageExtent: imageExtent,
+                projection: getProjection(EPSG_2056) ?? undefined,
             }),
         })
         // Listen for image load errors
@@ -247,9 +254,6 @@ export function useMapPreview() {
         })
     }
 
-    /**
-     * Async function with requestId cancellation.
-     */
     async function extractLayerExtent(
         wmsBaseUrl: string,
         selectedLayerName: string
@@ -259,20 +263,18 @@ export function useMapPreview() {
             isPreviewLoading.value = true
             cancelOngoingRequest()
 
-            const selectedLayer = await getSelectedLayer(wmsBaseUrl, selectedLayerName)
-
-            if (!selectedLayer) {
+            const layerResult = await getSelectedLayer(wmsBaseUrl, selectedLayerName)
+            if (!layerResult || !layerResult.layer) {
                 // eslint-disable-next-line no-console
-                console.error(`Layer with name "${selectedLayerName}" not found in capabilities`)
+                console.error(`Layer with name '${selectedLayerName}' not found in capabilities`)
                 return result
             }
-
-            const extent = getBoundingBoxExtent(selectedLayer)
-
+            const { layer: selectedLayer, parents } = layerResult
+            const extent = getBoundingBoxExtent(selectedLayer, parents)
             if (!extent) {
                 // eslint-disable-next-line no-console
                 console.error(
-                    `Bounding box with ${EPSG_2056} not found for layer "${selectedLayerName}"`
+                    `Bounding box with ${EPSG_2056} not found for layer '${selectedLayerName}'`
                 )
                 return result
             }
@@ -300,11 +302,10 @@ export function useMapPreview() {
     async function getSelectedLayer(
         wmsBaseUrl: string,
         selectedLayerName: string
-    ): Promise<CapabilitiesLayer | undefined> {
-        const cachedLayers = mapStore.getCachedPreviewLayers(wmsBaseUrl)
-
-        if (cachedLayers?.length) {
-            return cachedLayers.find((l) => l.Name === selectedLayerName)
+    ): Promise<{ layer?: CapabilitiesLayer; parents: CapabilitiesLayer[] } | undefined> {
+        const cachedRootLayer = mapStore.getCachedPreviewRootLayer(wmsBaseUrl)
+        if (cachedRootLayer) {
+            return findLayerAndParentLayers(selectedLayerName, [cachedRootLayer], [cachedRootLayer])
         }
 
         abortController = new AbortController()
@@ -315,17 +316,53 @@ export function useMapPreview() {
         const parser = new WMSCapabilities()
         const capabilities = parser.read(capabilitiesText)
 
-        const layers = capabilities.Capability.Layer.Layer
-        mapStore.cachePreviewLayers(wmsBaseUrl, layers)
+        mapStore.cachePreviewRootLayer(wmsBaseUrl, capabilities.Capability.Layer)
 
-        return layers.find((l: CapabilitiesLayer) => l.Name === selectedLayerName)
+        return findLayerAndParentLayers(
+            selectedLayerName,
+            [capabilities.Capability.Layer],
+            [capabilities.Capability.Layer]
+        )
     }
 
     function getBoundingBoxExtent(
-        layer: CapabilitiesLayer
+        layer: CapabilitiesLayer,
+        parents: CapabilitiesLayer[]
     ): [number, number, number, number] | null {
         const bbox = layer.BoundingBox?.find((b: BoundingBox) => b.crs === EPSG_2056)
-        return bbox?.extent || null
+        if (bbox?.extent) {
+            return bbox.extent
+        } else if (layer.EX_GeographicBoundingBox) {
+            const [minLon, minLat, maxLon, maxLat] = layer.EX_GeographicBoundingBox
+            const transformedMin = proj4('EPSG:4326', EPSG_2056, [minLon, minLat])
+            const transformedMax = proj4('EPSG:4326', EPSG_2056, [maxLon, maxLat])
+            return [transformedMin[0], transformedMin[1], transformedMax[0], transformedMax[1]]
+        }
+        if (parents.length > 0) {
+            return getBoundingBoxExtent(parents[0], parents.slice(1))
+        }
+        return null
+    }
+
+    function findLayerAndParentLayers(
+        layerId: string,
+        startFrom: CapabilitiesLayer[] | undefined,
+        parents: CapabilitiesLayer[]
+    ): { layer?: CapabilitiesLayer; parents: CapabilitiesLayer[] } {
+        let found: { layer?: CapabilitiesLayer; parents: CapabilitiesLayer[] } = { parents: [] }
+        const layers = startFrom
+        if (!layers || layers.length === 0) {
+            return found
+        }
+        for (let i = 0; i < layers?.length && !found.layer; i++) {
+            if (layers[i]?.Name === layerId || layers[i]?.Title === layerId) {
+                found.layer = layers[i]
+                found.parents = parents
+            } else if (layers[i]?.Layer?.length && layers[i].Layer!.length > 0) {
+                found = findLayerAndParentLayers(layerId, layers[i]?.Layer, [layers[i], ...parents])
+            }
+        }
+        return found
     }
 
     function resetErrorState(): void {

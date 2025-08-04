@@ -18,10 +18,10 @@ const title = computed(() => {
 </script>
 
 <template>
-    <li class="border-b border-neutral-100 text-sm">
+    <li class="border-b border-neutral-100 py-1 text-sm">
         <a
             :href="url.toString()"
-            class="flex h-14 items-center justify-between"
+            class="flex items-center justify-between"
             target="_blank"
         >
             <div>{{ title }}</div>

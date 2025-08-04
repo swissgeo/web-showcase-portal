@@ -88,7 +88,9 @@ export const useUiStore = defineStore('ui', () => {
     }
 
     function resetStore() {
-        currentSidebar.value = null
+        currentSidebar.value = SidebarType.SEARCH
+        isLayerWindowMaximized.value = false
+        isFilterVisible.value = false
         isLayerWindowVisible.value = false
         sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
         isWelcomeOverlayVisible.value = false

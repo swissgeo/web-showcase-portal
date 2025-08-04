@@ -13,6 +13,7 @@ import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
+import { useResetApp } from '@/composables/useResetAppComposable'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
@@ -20,6 +21,7 @@ const { t } = useI18n()
 
 const searchStore = useSearchStore()
 const uiStore = useUiStore()
+const { resetApp } = useResetApp()
 
 const isInputFocused = ref(false)
 
@@ -49,6 +51,7 @@ const clearSearch = () => {
         <LogoPic
             v-if="!isSearching"
             class="fixed top-4 left-4 rounded bg-white"
+            @logo-click="resetApp"
         ></LogoPic>
         <div
             v-if="!isSearching"

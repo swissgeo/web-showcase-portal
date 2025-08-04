@@ -88,22 +88,6 @@ const openSearch = () => {
                 class="bg-swissgeo-lightblue mb-4 rounded-lg p-4"
             />
 
-            <!-- Search Results Button (when not searching) -->
-            <Button
-                v-if="!isSearching"
-                class="mb-4 w-full"
-                :label="t('searchResult.buttonLabel')"
-                :badge="searchStore.searchResultTotal.toString()"
-                :pt="{
-                    root: 'border-gray-300 bg-white shadow-md hover:bg-gray-100 hover:shadow-lg text-black font-semibold justify-center',
-                    label: 'text-bold text-swissgeo-blue font-semibold mr-2',
-                    pcBadge: {
-                        root: 'text-black font-semibold bg-swissgeo-lightblue',
-                    },
-                }"
-                @click="openSearch"
-            />
-
             <!-- Search Results (when searching) -->
             <SearchResultsMobile
                 v-if="isSearching"

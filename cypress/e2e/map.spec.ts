@@ -5,12 +5,28 @@ const getIframeDocument = () => {
 
 describe('Test the map on desktop', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services/all/MapServer/layersConfig?lang=de').as('layersConfig')
+        cy.intercept(
+            'GET',
+            'https://api3.geo.admin.ch/rest/services/all/MapServer/layersConfig?lang=de'
+        ).as('layersConfig')
         cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services').as('services')
-        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services/ech/CatalogServer?lang=de').as('catalogServer')
+        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services/ech/CatalogServer?lang=de').as(
+            'catalogServer'
+        )
+
+        cy.intercept(
+            'GET',
+            'https://sys-api3.*.bgdi.ch/rest/services/all/MapServer/layersConfig?lang=de'
+        ).as('layersConfig')
+        cy.intercept('GET', 'https://sys-api3.*.ch/rest/services').as('services')
+        cy.intercept('GET', 'https://sys-api3.*.ch/rest/services/ech/CatalogServer?lang=de').as(
+            'catalogServer'
+        )
+
         cy.viewport('macbook-15')
         cy.visit('/')
         cy.wait(['@layersConfig', '@services', '@catalogServer'])
+
         cy.dismissWelcomeOverlay()
     })
     it('renders the map', () => {

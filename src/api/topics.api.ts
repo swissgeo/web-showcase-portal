@@ -3,8 +3,10 @@ import axios from 'axios'
 import type { GeocatalogTopic } from '@/types/geocatalog'
 import type { GeocatLayerData } from '@/types/mapPreview'
 
+import { getApiUrl } from '@/utils/environment.config'
+
 // For now, we use the dev API, but this should be configurable in the future
-export const API3_BASE_URL = 'https://sys-api3.dev.bgdi.ch'
+export const API3_BASE_URL = getApiUrl()
 
 export async function fetchTopicCatalogJson(topicId: string, lang: string): Promise<unknown> {
     const url = `${API3_BASE_URL}/rest/services/${topicId}/CatalogServer?lang=${lang}`
@@ -49,7 +51,7 @@ export async function fetchGeocatalogLayer(
     layerId: string,
     lang: string
 ): Promise<GeocatLayerData | null> {
-    const url = `https://api3.geo.admin.ch/rest/services/api/MapServer?searchText=${layerId}&lang=${lang}`
+    const url = `https://${API3_BASE_URL}/rest/services/api/MapServer?searchText=${layerId}&lang=${lang}`
     try {
         const response = await axios.get(url)
         return response.data

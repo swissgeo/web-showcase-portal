@@ -290,6 +290,9 @@ const tooltipContent = computed(() => {
                 :min="0"
                 :max="100"
                 class="w-full"
+                :class="{
+                    'bg-white': isLayerDetailsDisplayed,
+                }"
             />
             <InputNumber
                 v-model="opacityValue"

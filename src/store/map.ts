@@ -24,7 +24,7 @@ export const useMapStore = defineStore('map', () => {
             .join(';')
     )
     // Cache for WMS preview layers
-    const cachedPreviewLayers = ref<Map<string, CapabilitiesLayer[]>>(new Map())
+    const cachedPreviewRootLayers = ref<Map<string, CapabilitiesLayer>>(new Map())
 
     const mapUrlSearchParams = ref<Partial<MapUrlParameter>>({
         lang: defaultLang,
@@ -55,22 +55,22 @@ export const useMapStore = defineStore('map', () => {
         }
     }
 
-    function cachePreviewLayers(wmsBaseUrl: string, layers: CapabilitiesLayer[]) {
-        cachedPreviewLayers.value.set(wmsBaseUrl, layers)
+    function cachePreviewRootLayer(wmsBaseUrl: string, rootLayer: CapabilitiesLayer) {
+        cachedPreviewRootLayers.value.set(wmsBaseUrl, rootLayer)
     }
 
-    function getCachedPreviewLayers(wmsBaseUrl: string): CapabilitiesLayer[] | undefined {
-        return cachedPreviewLayers.value.get(wmsBaseUrl)
+    function getCachedPreviewRootLayer(wmsBaseUrl: string): CapabilitiesLayer | undefined {
+        return cachedPreviewRootLayers.value.get(wmsBaseUrl)
     }
 
     return {
         // State
         mapUrlSearchParams,
-        cachedPreviewLayers,
+        cachedPreviewRootLayers,
         // Actions
         setMapUrlSearchParams,
         resetStore,
-        cachePreviewLayers,
-        getCachedPreviewLayers,
+        cachePreviewRootLayer,
+        getCachedPreviewRootLayer,
     }
 })

@@ -17,7 +17,6 @@ interface Props {
     bgLayerName: string
     wmsBaseUrl: string
     selectedLayerName: string
-    extent?: [number, number, number, number] // Extent coordinates [minX, minY, maxX, maxY]
 }
 
 const { t } = useI18n()
@@ -30,6 +29,7 @@ const {
     addLayerExtentToMap,
     addBackgroundLayer,
     createWMSLayer,
+    extractLayerExtent,
     addLayer,
 } = useMapPreview()
 const geocat = useGeocat()
@@ -50,14 +50,22 @@ async function initializePreview(): Promise<void> {
 
     resetErrorState()
     addBackgroundLayer(props.bgLayerName)
+    let extent: [number, number, number, number] | undefined
 
-    addLayer(createWMSLayer(props.wmsBaseUrl, props.selectedLayerName))
+    try {
+        extent = await extractLayerExtent(props.wmsBaseUrl, props.selectedLayerName)
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Error adding layer extent:', error)
+    }
+
     if (destroyed) {
         return
     }
 
-    // Add the extent to the map
-    await addLayerExtentToMap(props.wmsBaseUrl, props.selectedLayerName)
+    addLayer(createWMSLayer(props.wmsBaseUrl, props.selectedLayerName, extent))
+    addLayerExtentToMap(extent)
+
     if (destroyed || !mapContainer.value) {
         hasPreviewError.value = true
         emit('alignOverlay')

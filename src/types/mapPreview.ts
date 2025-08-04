@@ -9,6 +9,7 @@ export interface CapabilitiesLayer {
     Title?: string
     BoundingBox?: BoundingBox[]
     EX_GeographicBoundingBox?: [number, number, number, number]
+    Layer?: CapabilitiesLayer[]
 }
 
 export interface GeocatLayerInformation {

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ListFilter } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
 import { computed, inject, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import IconButton from '@/components/general/IconButton.vue'
+import LucideIcon from '@/components/general/LucideIcon.vue'
 import useGeocat from '@/search/geocat'
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useMapStore } from '@/store/map'
@@ -84,7 +84,12 @@ function onEnter() {
 <template>
     <div class="flex items-center gap-2">
         <IconField class="grow">
-            <InputIcon class="pi pi-search"></InputIcon>
+            <InputIcon>
+                <LucideIcon
+                    class="w-6 -translate-y-1"
+                    name="Search"
+                />
+            </InputIcon>
             <InputText
                 id="search"
                 ref="inputRef"
@@ -98,25 +103,27 @@ function onEnter() {
             ></InputText>
             <InputIcon
                 v-if="isSearching"
-                class="pi pi-times cursor-pointer"
                 @click="clearSearch"
-            />
+            >
+                <LucideIcon
+                    name="X"
+                    class="w-6 -translate-y-1 cursor-pointer"
+                />
+            </InputIcon>
         </IconField>
         <div
             v-if="searchStore.searchTerm && isDesktop"
             class="mx-1 w-px self-center bg-gray-300"
             style="height: 12px"
         ></div>
-        <Button
+        <IconButton
             :severity="uiStore.isFilterVisible ? 'primary' : 'secondary'"
             :size="'small'"
             :class="{ 'text-swissgeo-blue border-white bg-white': !uiStore.isFilterVisible }"
             :label="isDesktop ? t('filter.title') : ''"
+            icon="ListFilter"
             @click="toggleFilter"
         >
-            <template #icon>
-                <ListFilter class="shrink-0 stroke-current" />
-            </template>
-        </Button>
+        </IconButton>
     </div>
 </template>

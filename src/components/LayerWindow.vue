@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useDraggable, useElementBounding, useWindowSize } from '@vueuse/core'
-import { PanelRightClose, PanelRightOpen, Info as InfoIcon, X, Shapes } from 'lucide-vue-next'
 import { storeToRefs } from 'pinia'
 import Accordion from 'primevue/accordion'
-import Button from 'primevue/button'
 import Tab from 'primevue/tab'
 import TabList from 'primevue/tablist'
 import TabPanel from 'primevue/tabpanel'
@@ -13,6 +11,8 @@ import { inject, ref, computed, onMounted, type Ref, watch, nextTick } from 'vue
 import { useI18n } from 'vue-i18n'
 
 import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
+import IconButton from '@/components/general/IconButton.vue'
+import LucideIcon from '@/components/general/LucideIcon.vue'
 import LayerLegendEntry from '@/components/LayerLegendEntry.vue'
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
@@ -213,7 +213,10 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                     value="legend"
                     class="flex items-center border-t-1 border-r-1 border-b-1 border-[#B8CED6]"
                 >
-                    <Shapes color="#1C6B85" />
+                    <LucideIcon
+                        name="Shapes"
+                        class="text-[#1C6B85]"
+                    />
                     <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
                         t('legend.header')
                     }}</span>
@@ -222,7 +225,10 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                     value="detail"
                     class="flex items-center border-t-1 border-r-1 border-b-1 border-[#B8CED6]"
                 >
-                    <InfoIcon color="#1C6B85" />
+                    <LucideIcon
+                        name="Info"
+                        class="text-[#1C6B85]"
+                    />
                     <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
                         t('details.header')
                     }}</span>
@@ -281,7 +287,7 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
             v-if="isDesktop"
             class="absolute top-2.5 right-2 z-10 flex flex-row items-center border-transparent bg-transparent"
         >
-            <Button
+            <IconButton
                 class="border-transparent bg-transparent"
                 data-cy="comp-layer-window-maximize"
                 :title="
@@ -289,48 +295,41 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                         ? t('layerWindow.detachFromRight')
                         : t('layerWindow.attachToRight')
                 "
+                :icon="uiStore.isLayerWindowMaximized ? 'PanelRightOpen' : 'PanelRightClose'"
+                icon-class="text-[#1C6B85]"
                 @click="toggleMaximizedWindow"
             >
-                <PanelRightClose
-                    v-if="!uiStore.isLayerWindowMaximized"
-                    color="#1C6B85"
-                />
-                <PanelRightOpen
-                    v-if="uiStore.isLayerWindowMaximized"
-                    color="#1C6B85"
-                />
-            </Button>
+            </IconButton>
             <!-- Separator-->
             <div class="h-6 w-px bg-[#1C6B85] opacity-50" />
-            <Button
+            <IconButton
                 :text="isDesktop"
                 class="bg-transparent"
                 :size="'small'"
                 :severity="'secondary'"
                 data-cy="comp-layer-window-close"
                 :title="t('layerWindow.close')"
+                icon="X"
+                icon-class="text-[#1C6B85]"
                 @click="closeLayerWindow"
             >
-                <X color="#1C6B85" />
-            </Button>
+            </IconButton>
         </div>
         <!-- Mobile close button -->
-        <Button
+        <IconButton
             v-if="!isDesktop"
             :text="isDesktop"
-            class="fixed bottom-4 left-4 z-50 flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-md"
+            class="fixed bottom-4 left-4 z-50 flex items-center rounded-full bg-white shadow-md"
             :size="'large'"
             :severity="'secondary'"
             data-cy="comp-layer-window-close"
             :title="t('layerWindow.close')"
+            icon="X"
+            icon-class="h-5 w-5 text-[#1C6B85]"
             @click="closeLayerWindow"
         >
-            <X
-                color="#1C6B85"
-                :class="'h-5 w-5'"
-            />
             <span class="text-sm font-medium"> {{ t('legend.closeThisWindow') }}</span>
-        </Button>
+        </IconButton>
     </div>
 </template>
 

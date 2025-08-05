@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { TreeNode } from 'primevue/treenode'
 
-import { ChevronLeft, PanelLeftClose } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import Popover from 'primevue/popover'
 import Select from 'primevue/select'
@@ -13,6 +11,7 @@ import { useI18n } from 'vue-i18n'
 import type { GeocatLayerInformation } from '@/types/mapPreview'
 
 import { loadGeocatalogTopics } from '@/api/topics.api'
+import IconButton from '@/components/general/IconButton.vue'
 import MapPreview from '@/components/search/MapPreview.vue'
 import { LONG_PRESS_TIMEOUT_MS, useMapPreview } from '@/composables/useMapPreview'
 import { defaultLayerOpacity } from '@/config/map.config'
@@ -238,28 +237,24 @@ const handleTouchEnd = () => {
         }"
     >
         <template #icons>
-            <Button
+            <IconButton
                 v-if="!props.isDesktopView"
                 severity="secondary"
                 outlined
                 class="order-1"
+                icon="ChevronLeft"
                 @click="uiStore.toggleSidebar(SidebarType.GEOCATALOG_TREE)"
             >
-                <template #icon>
-                    <ChevronLeft />
-                </template>
-            </Button>
-            <Button
+            </IconButton>
+            <IconButton
                 v-if="props.isDesktopView"
                 severity="secondary"
                 size="medium"
                 :text="true"
+                icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.GEOCATALOG_TREE)"
             >
-                <template #icon>
-                    <PanelLeftClose />
-                </template>
-            </Button>
+            </IconButton>
         </template>
         <div class="mb-4 flex flex-row items-center gap-2">
             <label

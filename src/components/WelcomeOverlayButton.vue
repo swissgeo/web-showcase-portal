@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import IconButton from '@/components/general/IconButton.vue'
 
 const { t } = useI18n()
 const isDesktop = inject<boolean>('isDesktop', true)
@@ -14,17 +15,15 @@ const showWelcomeOverlay = () => {
 </script>
 
 <template>
-    <Button
+    <IconButton
         severity="secondary"
         :outlined="!isDesktop"
         class="h-10"
         :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"
         data-cy="button-welcome-overlay"
         :title="t('welcomeOverlay.title')"
+        icon="CircleQuestionMark"
         @click="showWelcomeOverlay"
     >
-        <template #icon>
-            <i class="pi pi-question-circle text-xl"></i>
-        </template>
-    </Button>
+    </IconButton>
 </template>

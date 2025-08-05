@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ChevronLeft, PanelLeftClose } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import Sortable from 'sortablejs'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
@@ -8,6 +6,7 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/layer'
 
+import IconButton from '@/components/general/IconButton.vue'
 import LayerItem from '@/components/LayerItem.vue'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
@@ -80,28 +79,24 @@ function destroySortable() {
         }"
     >
         <template #icons>
-            <Button
+            <IconButton
                 v-if="!props.isDesktopView"
                 severity="secondary"
                 outlined
                 class="order-1"
+                icon="ChevronLeft"
                 @click="uiStore.toggleSidebar(SidebarType.LAYER_CART)"
             >
-                <template #icon>
-                    <ChevronLeft />
-                </template>
-            </Button>
-            <Button
+            </IconButton>
+            <IconButton
                 v-if="props.isDesktopView"
                 severity="secondary"
                 size="medium"
                 :text="true"
+                icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.LAYER_CART)"
             >
-                <template #icon>
-                    <PanelLeftClose />
-                </template>
-            </Button>
+            </IconButton>
         </template>
         <div
             class="flex flex-row items-center p-2"

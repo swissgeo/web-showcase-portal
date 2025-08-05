@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ArrowLeft } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
@@ -11,6 +9,7 @@ import { useI18n } from 'vue-i18n'
 
 import type { FilterGroup } from '@/types/search'
 
+import IconButton from '@/components/general/IconButton.vue'
 import { useOverlay } from '@/composables/useOverlay'
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useSearchStore } from '@/store/search'
@@ -92,16 +91,14 @@ function toggleOption(value: number | undefined) {
 <template>
     <div class="flex h-screen w-screen flex-col bg-white">
         <div class="relative flex h-[50px] items-center border-b border-gray-200 p-4">
-            <Button
+            <IconButton
                 class="absolute left-4 !rounded-full !p-2"
                 aria-label="Back"
                 text
+                icon="ArrowLeft"
                 @click="onBack"
             >
-                <template #icon>
-                    <ArrowLeft />
-                </template>
-            </Button>
+            </IconButton>
             <div class="flex-1 text-center text-base font-semibold text-black">
                 {{ placeholder }}
             </div>
@@ -118,22 +115,22 @@ function toggleOption(value: number | undefined) {
                     />
                 </IconField>
                 <div class="mb-4 flex gap-2 border-b border-gray-200">
-                    <Button
+                    <IconButton
                         class="text-swissgeo-blue flex-1 border-none bg-white"
                         @click="selectAll"
                     >
                         {{ t('organisation.selectAll') }}
-                    </Button>
+                    </IconButton>
                     <div
                         class="mx-2 w-px self-center bg-gray-300"
                         style="height: 12px"
                     ></div>
-                    <Button
+                    <IconButton
                         class="text-swissgeo-blue flex-1 border-none bg-white"
                         @click="clearSelection"
                     >
                         {{ t('organisation.reset') }}
-                    </Button>
+                    </IconButton>
                 </div>
             </div>
             <VirtualScroller
@@ -169,12 +166,12 @@ function toggleOption(value: number | undefined) {
             </VirtualScroller>
         </div>
         <div class="flex flex-1 gap-2 border-t border-gray-200 p-4">
-            <Button
+            <IconButton
                 class="bg-swissgeo-blue max-h-[50px] flex-1 rounded p-3 text-white"
+                :label="t('organisation.showResults')"
                 @click="applySelection"
             >
-                {{ t('organisation.showResults') }}
-            </Button>
+            </IconButton>
         </div>
     </div>
 </template>

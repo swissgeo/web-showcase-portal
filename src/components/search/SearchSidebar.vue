@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ChevronLeft, PanelLeftClose } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import Panel from 'primevue/panel'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type SearchKeywordContainerType from '@/components/search/SearchKeywordContainer.vue'
 
+import IconButton from '@/components/general/IconButton.vue'
 import SearchFilterDesktop from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
@@ -63,28 +62,24 @@ defineExpose({
         data-cy="div-search-sidebar"
     >
         <template #icons>
-            <Button
+            <IconButton
                 v-if="!props.isDesktopView"
                 severity="secondary"
                 outlined
                 class="order-1"
+                icon="ChevronLeft"
                 @click="uiStore.toggleSidebar(SidebarType.SEARCH)"
             >
-                <template #icon>
-                    <ChevronLeft />
-                </template>
-            </Button>
-            <Button
+            </IconButton>
+            <IconButton
                 v-if="props.isDesktopView"
                 severity="secondary"
                 size="medium"
                 :text="true"
+                icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.SEARCH)"
             >
-                <template #icon>
-                    <PanelLeftClose />
-                </template>
-            </Button>
+            </IconButton>
         </template>
 
         <div class="flex h-full flex-col p-4">

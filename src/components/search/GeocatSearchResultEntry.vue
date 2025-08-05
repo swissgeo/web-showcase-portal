@@ -4,7 +4,7 @@ import { computed, inject, ref, type ComputedRef } from 'vue'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
-import MapIcon from '@/assets/icons/map.svg?use'
+import LucideIcon from '@/components/general/LucideIcon.vue'
 import AddToMapButton from '@/components/search/AddToMapButton.vue'
 import MapPreview from '@/components/search/MapPreview.vue'
 import SearchResultEntry from '@/components/search/SearchResultEntry.vue'
@@ -105,13 +105,16 @@ const handleTouchEnd = () => {
 
 <template>
     <SearchResultEntry
-        class="flex justify-end gap-2"
+        class="flex items-center justify-end gap-2"
         @touchstart="handleTouchStart"
         @touchend="handleTouchEnd"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
     >
-        <MapIcon class="h-4 w-4 overflow-hidden stroke-current" />
+        <LucideIcon
+            name="Map"
+            class="h-4 w-4 stroke-current"
+        />
         <div
             class="mr-auto flex-1 truncate"
             :class="{

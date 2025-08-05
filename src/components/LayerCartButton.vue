@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import { computed, inject, ref, watch } from 'vue'
 
-import MapIcon from '@/assets/icons/map.svg?use'
+import IconButton from '@/components/general/IconButton.vue'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
 
@@ -30,18 +29,16 @@ watch(layerCount, (newValue, oldValue) => {
 
 <template>
     <div class="relative inline-block">
-        <Button
+        <IconButton
             :severity="uiStore.isLayerCartVisible ? 'primary' : 'secondary'"
             :outlined="!isDesktop"
             class="h-10"
             :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"
             data-cy="button-layer-cart"
+            icon="Map"
             @click="toggleLayerCart"
         >
-            <template #icon>
-                <MapIcon class="h-6 w-6 stroke-current"></MapIcon>
-            </template>
-        </Button>
+        </IconButton>
         <!-- Badge for layer count (not possible to use PrimeVue Badge with custom icon)-->
         <span
             v-if="layerCount"

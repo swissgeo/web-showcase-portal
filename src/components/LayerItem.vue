@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Eye, EyeOff, GripVertical, Trash2 } from 'lucide-vue-next'
-import Button from 'primevue/button'
+import { GripVertical } from 'lucide-vue-next'
 import Divider from 'primevue/divider'
 import InputNumber from 'primevue/inputnumber'
 import Menu from 'primevue/menu'
@@ -10,6 +9,8 @@ import { useI18n } from 'vue-i18n'
 
 import type { Layer } from '@/types/layer'
 
+import IconButton from '@/components/general/IconButton.vue'
+import LucideIcon from '@/components/general/LucideIcon.vue'
 import { useMapPreview } from '@/composables/useMapPreview'
 import { TRANSPARENCY_DEBOUNCE_DELAY, zoomToExtent } from '@/search/mapUrlUtils'
 import { useMainStore } from '@/store/main' // maybe not the best place to import this from
@@ -153,17 +154,17 @@ const zoomToExtentMenuClicked = async () => {
 const menuItems = [
     {
         label: t('layerCart.showInfo'),
-        icon: 'pi pi-info-circle',
+        icon: 'Info',
         command: () => metadataMenuClicked(),
     },
     {
         label: t('layerCart.transparency'),
-        icon: 'pi pi-clone',
+        icon: 'SquaresSubtract',
         command: () => opacityMenuClicked(),
     },
     {
         label: t('layerCart.zoomToExtent'),
-        icon: 'pi pi-search-plus',
+        icon: 'ZoomIn',
         command: () => zoomToExtentMenuClicked(),
     },
 ]
@@ -172,7 +173,7 @@ const menuItems = [
 const menuItemsBgLayer = [
     {
         label: t('layerCart.showInfo'),
-        icon: 'pi pi-info-circle',
+        icon: 'Info',
         disabled: true,
         command: () => metadataMenuClicked(),
     },
@@ -223,22 +224,15 @@ const tooltipContent = computed(() => {
             class="flex items-center space-x-2"
             :title="tooltipContent"
         >
-            <Button
+            <IconButton
                 variant="outlined"
                 rounded
                 size="small"
                 class="flex items-center justify-center border border-transparent"
+                :icon="layer.visible ? 'Eye' : 'EyeOff'"
                 @click="toggleVisibility"
             >
-                <Eye
-                    v-if="layer.visible"
-                    class="h-4 w-4"
-                />
-                <EyeOff
-                    v-else
-                    class="h-4 w-4"
-                />
-            </Button>
+            </IconButton>
 
             <span
                 :class="{ 'text-gray-400 line-through': !layer.visible }"
@@ -251,20 +245,22 @@ const tooltipContent = computed(() => {
                 alt="Background Layer Thumbnail"
                 class="h-10 w-10 rounded-full object-cover"
             />
-            <Button
+            <IconButton
                 v-if="!props.isBgLayer"
                 variant="outlined"
                 rounded
                 size="small"
                 class="flex items-center justify-center border border-transparent"
+                icon="Trash2"
+                icon-class="w-5 h-5"
                 @click="deleteMenuClicked"
             >
-                <Trash2 class="h-4 w-4" />
-            </Button>
+            </IconButton>
 
-            <Button
+            <IconButton
                 type="button"
-                icon="pi pi-ellipsis-v"
+                icon="EllipsisVertical"
+                icon-class="h-4"
                 aria-haspopup="true"
                 aria-controls="overlay_menu"
                 size="small"
@@ -278,7 +274,22 @@ const tooltipContent = computed(() => {
                 ref="menu"
                 :model="isBgLayer ? menuItemsBgLayer : menuItems"
                 :popup="true"
-            />
+            >
+                <template #item="{ item, props }">
+                    <a
+                        class="flex items-center"
+                        v-bind="props.action"
+                    >
+                        <LucideIcon :name="item.icon ?? ''" />
+                        <span>{{ item.label }}</span>
+                        <span
+                            v-if="item.shortcut"
+                            class="border-surface bg-emphasis text-muted-color ml-auto rounded border p-1 text-xs"
+                            >{{ item.shortcut }}</span
+                        >
+                    </a>
+                </template>
+            </Menu>
         </div>
         <Divider v-if="showOpacitySlider && !isBgLayer" />
         <div
@@ -302,11 +313,11 @@ const tooltipContent = computed(() => {
                 suffix="%"
                 style="width: 8rem"
             />
-            <Button
+            <IconButton
                 type="button"
                 size="small"
                 severity="secondary"
-                icon="pi pi-times"
+                icon="X"
                 @click="showOpacitySlider = false"
             />
         </div>

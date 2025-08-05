@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import { useI18n } from 'vue-i18n'
 
+import IconButton from '@/components/general/IconButton.vue'
 import { useUiStore } from '@/store/ui'
 import { PROJECT_INFO_URL } from '@/utils/constants'
 
@@ -68,17 +68,17 @@ function openExternalLink(url: string) {
                 >
                     <!-- Buttons -->
                     <div class="flex items-center space-x-3 sm:order-2">
-                        <Button
+                        <IconButton
                             :label="t('welcomeOverlay.moreInfos')"
                             class="p-button-outlined"
-                            icon="pi pi-external-link"
+                            icon="ExternalLink"
                             icon-pos="right"
                             @click="openExternalLink(PROJECT_INFO_URL)"
                         />
-                        <Button
+                        <IconButton
                             data-cy="button-overlay-confirm"
                             :label="t('welcomeOverlay.startPrototype')"
-                            icon="pi pi-arrow-right"
+                            icon="ArrowRight"
                             icon-pos="right"
                             @click="handleClose"
                         />

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Info as InfoIcon } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import IconButton from '@/components/general/IconButton.vue'
 import { PROJECT_INFO_URL } from '@/utils/constants'
 
 const { t } = useI18n()
@@ -15,16 +14,14 @@ function openProjectInfo() {
 </script>
 
 <template>
-    <Button
+    <IconButton
         severity="secondary"
         :outlined="!isDesktop"
         class="h-10"
         :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"
         :title="t('welcomeOverlay.projectInfoLink')"
+        icon="Search"
         @click="openProjectInfo"
     >
-        <template #icon>
-            <InfoIcon class="h-6 w-6 stroke-current" />
-        </template>
-    </Button>
+    </IconButton>
 </template>

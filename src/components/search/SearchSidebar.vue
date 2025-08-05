@@ -5,6 +5,8 @@ import Panel from 'primevue/panel'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type SearchKeywordContainerType from '@/components/search/SearchKeywordContainer.vue'
+
 import SearchFilterDesktop from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
@@ -13,6 +15,8 @@ import { useSearchStore } from '@/store/search'
 import { SidebarType, useUiStore } from '@/store/ui'
 
 const { t } = useI18n()
+
+const searchKeywordContainer = ref<InstanceType<typeof SearchKeywordContainerType> | null>(null)
 
 const props = defineProps({
     isDesktopView: {
@@ -34,6 +38,16 @@ const openSearch = () => {
     isInputFocused.value = true
     searchStore.setIsOpenSearch(true)
 }
+
+// Handle the SideBar container dragging logic here and pass it on to SearchKeywordContainer
+function containerStopDragging() {
+    if (searchKeywordContainer.value) {
+        searchKeywordContainer.value.containerStopDragging()
+    }
+}
+defineExpose({
+    containerStopDragging,
+})
 </script>
 
 <template>
@@ -80,7 +94,10 @@ const openSearch = () => {
                 @focus="openSearch"
             />
 
-            <SearchKeywordContainer class="mb-4" />
+            <SearchKeywordContainer
+                ref="searchKeywordContainer"
+                class="mb-4"
+            />
 
             <SearchFilterDesktop
                 v-show="uiStore.isFilterVisible"

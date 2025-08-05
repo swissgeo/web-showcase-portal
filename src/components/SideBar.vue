@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { UnfoldHorizontal } from 'lucide-vue-next'
-import { computed, onBeforeUnmount } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
+
+import type SearchSidebarType from '@/components/search/SearchSidebar.vue'
 
 import GeocatalogTreeButton from '@/components/GeocatalogTreeButton.vue'
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
@@ -16,6 +18,7 @@ import { useTopicTree } from '@/composables/useTopicTree'
 import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
 
 const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
+const searchSidebarRef = ref<InstanceType<typeof SearchSidebarType> | null>(null)
 
 const uiStore = useUiStore()
 const { resetApp } = useResetApp()
@@ -78,6 +81,9 @@ function stopDragging() {
     document.removeEventListener('mouseup', stopDragging)
     document.removeEventListener('mouseleave', stopDragging)
     window.removeEventListener('blur', stopDragging)
+    if (searchSidebarRef.value) {
+        searchSidebarRef.value.containerStopDragging()
+    }
 }
 
 updateGeocatalogLanguage()
@@ -131,6 +137,7 @@ onBeforeUnmount(() => {
                     />
                     <SearchSidebar
                         v-show="uiStore.isSearchVisible"
+                        ref="searchSidebarRef"
                         :style="{ width: sidebarSecondColumnWidth + 'px' }"
                         class="h-full overflow-y-auto bg-white"
                     />

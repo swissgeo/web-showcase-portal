@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRight } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import Tag from 'primevue/tag'
 import { computed, inject, nextTick, onMounted, ref, type ComputedRef, type Ref, watch } from 'vue'
@@ -14,11 +14,12 @@ import { useUiStore } from '@/store/ui'
 import { useLanguage } from '@/utils/language.composable'
 
 const keywordConfig = data as SearchKeywordUseCaseConfig
-const scrollContainer = ref<HTMLElement | null>(null)
+const scrollContainer = ref<HTMLDivElement | null>(null)
 const outerContainer = ref<HTMLElement | null>(null)
 const showRightGradient = ref(false)
 const showLeftGradient = ref(false)
-const showScrollArrow = ref(false)
+const showScrollArrowRight = ref(false)
+const showScrollArrowLeft = ref(false)
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
@@ -63,33 +64,32 @@ function handleWheel(event: WheelEvent): void {
     if (event.deltaY === 0) {
         return
     }
-
     const el = scrollContainer.value
-    if (!el) return
+    if (!el) {
+        return
+    }
 
     const isScrollable = el.scrollWidth > el.clientWidth
-
-    if (isScrollable) {
-        if (event.deltaY < 0) {
-            //if we scroll left, show the gradient and scroll arrow
-            setGradientAndArrowFlags(false, true, true)
-        }
-
-        if (event.deltaY > 0) {
-            // if we scrolled all the way to the right hide the gradient and scroll arrow
-            if (scrollContainer.value && scrollContainer.value?.scrollLeft > 0) {
-                setGradientAndArrowFlags(true, false, false)
-            } else {
-                setGradientAndArrowFlags(true, true, true)
-            }
-        }
+    if (!isScrollable) {
+        return
     }
+    const atStart = el.scrollLeft === 0
+    const atEnd = el.scrollLeft === el.scrollWidth - el.clientWidth
+
+    if (event.deltaY < 0) {
+        // Scrolling left
+        setGradientAndArrowFlags(!atStart, true, true, !atStart)
+    } else if (event.deltaY > 0) {
+        // Scrolling right
+        setGradientAndArrowFlags(true, !atEnd, !atEnd, true)
+    }
+
     event.preventDefault()
-    scrollContainer!.value!.scrollLeft += event.deltaY
+    el.scrollLeft += event.deltaY
 }
 
 /**
- * At startup, check if the gradient and arrow should be shown.
+ * At startup, check if the gradient and arrow should be shown
  */
 const evaluateScrollContentPresence = async () => {
     await nextTick()
@@ -98,29 +98,28 @@ const evaluateScrollContentPresence = async () => {
     const outerEl = outerContainer.value
     if (!outerEl || !innerEl) return
 
-    const innerRect = innerEl.getBoundingClientRect()
-    const outerRect = outerEl.getBoundingClientRect()
-
-    const isScrollable = innerRect.width >= outerRect.width
+    const isScrollable = innerEl.scrollWidth > innerEl.clientWidth
 
     if (isScrollable) {
         // If the inner content is wider than the outer container, show the right gradient and scroll arrow
-        setGradientAndArrowFlags(false, true, true)
+        setGradientAndArrowFlags(false, true, true, false)
     } else {
         // If not scrollable, hide all gradients and arrows
-        setGradientAndArrowFlags(false, false, false)
+        setGradientAndArrowFlags(false, false, false, false)
     }
 }
 
 const setGradientAndArrowFlags = (
     leftGradientFlag: boolean,
     rightGradientFlag: boolean,
-    scrollArrowFlag: boolean
+    scrollArrowFlagRight: boolean,
+    scrollArrowFlagLeft: boolean
 ) => {
     requestAnimationFrame(() => {
         showLeftGradient.value = leftGradientFlag
         showRightGradient.value = rightGradientFlag
-        showScrollArrow.value = scrollArrowFlag
+        showScrollArrowRight.value = scrollArrowFlagRight
+        showScrollArrowLeft.value = scrollArrowFlagLeft
     })
 }
 
@@ -136,15 +135,39 @@ const scrollUntilEndOfList = () => {
     // Delay the visibility update slightly to allow smooth scroll to finish
     // otherwise button visibility will not be updated correctly
     setTimeout(() => {
-        setGradientAndArrowFlags(true, false, false)
+        setGradientAndArrowFlags(true, false, false, true)
+    }, 100)
+}
+
+const scrollUntilBeginningOfList = () => {
+    const el = scrollContainer.value
+    if (!el) return
+
+    el.scrollBy({
+        left: -el.clientWidth,
+        behavior: 'smooth',
+    })
+
+    // Delay the visibility update slightly to allow smooth scroll to finish
+    // otherwise button visibility will not be updated correctly
+    setTimeout(() => {
+        evaluateScrollContentPresence()
     }, 100)
 }
 
 function onClickKeyword(useCase: SearchKeywordUseCase) {
-    setGradientAndArrowFlags(false, false, false)
+    setGradientAndArrowFlags(false, false, false, false)
     searchStore.setSearchTerm(useCase.keyword?.[localeString.value])
     geocatSearch.searchConfigGeocat(useCase.layers)
 }
+
+// Handle the SideBar container dragging logic here
+function containerStopDragging() {
+    evaluateScrollContentPresence()
+}
+defineExpose({
+    containerStopDragging,
+})
 </script>
 <template>
     <div class="flex items-center gap-2">
@@ -161,7 +184,7 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
         >
             <div
                 ref="scrollContainer"
-                class="no-scrollbar w-max overflow-x-auto bg-white py-2 whitespace-nowrap md:py-0"
+                class="no-scrollbar w-full overflow-x-auto bg-white py-2 whitespace-nowrap md:py-0"
                 :class="{
                     'min-h-12': !isDesktop && !uiStore.isFilterVisible,
                 }"
@@ -195,12 +218,21 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
 
             <!-- Scroll Arrow Button -->
             <Button
-                v-if="isDesktop && showRightGradient && showScrollArrow"
+                v-if="isDesktop && showRightGradient && showScrollArrowRight"
                 class="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
                 @click="scrollUntilEndOfList"
             >
                 <template #icon>
                     <ChevronRight class="h-5 w-5 text-[#1F576B]" />
+                </template>
+            </Button>
+            <Button
+                v-if="isDesktop && showLeftGradient && showScrollArrowLeft"
+                class="absolute top-1/2 left-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
+                @click="scrollUntilBeginningOfList"
+            >
+                <template #icon>
+                    <ChevronLeft class="h-5 w-5 text-[#1F576B]" />
                 </template>
             </Button>
         </div>

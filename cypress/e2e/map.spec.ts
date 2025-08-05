@@ -34,6 +34,25 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('match', /(?:\?|&)z=4/)
 
+        cy.get('[data-cy="zoom-out"]').click()
+        getIframeDocument()
+            .its('location.href')
+            .should('match', /(?:\?|&)z=3/)
+
+        // Zoom out to minimum level (1) and check that zoom out button is disabled
+        cy.get('[data-cy="zoom-out"]').click()
+        getIframeDocument()
+            .its('location.href')
+            .should('match', /(?:\?|&)z=2/)
+
+        cy.get('[data-cy="zoom-out"]').click()
+        getIframeDocument()
+            .its('location.href')
+            .should('match', /(?:\?|&)z=1/)
+
+        // At zoom level 1 (minimum), the zoom out button should be disabled
+        cy.get('[data-cy="zoom-out"]').should('be.disabled')
+
     })
 
     it('tests geolocation button functionality', () => {
@@ -80,25 +99,6 @@ describe('Test the map on desktop', () => {
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
-
-        cy.get('[data-cy="zoom-out"]').click()
-        getIframeDocument()
-            .its('location.href')
-            .should('match', /(?:\?|&)z=3/)
-
-        // Zoom out to minimum level (1) and check that zoom out button is disabled
-        cy.get('[data-cy="zoom-out"]').click()
-        getIframeDocument()
-            .its('location.href')
-            .should('match', /(?:\?|&)z=2/)
-
-        cy.get('[data-cy="zoom-out"]').click()
-        getIframeDocument()
-            .its('location.href')
-            .should('match', /(?:\?|&)z=1/)
-
-        // At zoom level 1 (minimum), the zoom out button should be disabled
-        cy.get('[data-cy="zoom-out"]').should('be.disabled')
     })
     it('loads a search result on the map', () => {
         cy.get('[data-cy="input-search"]').type('wald')

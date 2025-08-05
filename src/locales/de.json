@@ -2,6 +2,10 @@
     "welcome": "Willkommen",
     "searchPlaceholder": "Hier suchen...",
     "disclaimer": "Testseite nur für Demozwecke",
+    "geolocation": {
+        "enable": "Geolokalisierung aktivieren",
+        "disable": "Geolokalisierung deaktivieren"
+    },
     "welcomeOverlay": {
         "title": "Willkommen in der Testumgebung von SWISSGEO",
         "swissgeoOverview": "Mit dem nächsten Klick gelangst du zum Prototypen der Geoplattform Schweiz.",

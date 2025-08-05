@@ -34,6 +34,35 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('match', /(?:\?|&)z=4/)
 
+    })
+
+    it('tests geolocation button functionality', () => {
+        cy.log('Test if the geolocation button toggles geolocation parameter in URL')
+
+        // Check if geolocation button exists
+        cy.get('[data-cy="geolocation-button"]').should('exist')
+
+        // Initially, geolocation should not be in URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Click geolocation button to enable
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Check if geolocation parameter is added to URL
+        getIframeDocument()
+            .its('location.href')
+            .should('match', /(?:\?|&)geolocation=true/)
+
+        // Click again to disable
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Check if geolocation parameter is removed from URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+
         cy.get('[data-cy="zoom-out"]').click()
         getIframeDocument()
             .its('location.href')

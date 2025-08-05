@@ -2,6 +2,10 @@
     "welcome": "Bainvegni",
     "searchPlaceholder": "Tschertga qua...",
     "disclaimer": "Pagina da test – betg per diever operativ",
+    "geolocation": {
+        "enable": "Activar geolocalisaziun",
+        "disable": "Deactivar geolocalisaziun"
+    },
     "welcomeOverlay": {
         "title": "Bainvegni en l'ambient da test da SWISSGEO",
         "swissgeoOverview": "Cun il proxim clic arriveschas ti al prototip da la plattafurma geografica svizra.",

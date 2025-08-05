@@ -4,6 +4,7 @@ import Toast from 'primevue/toast'
 import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
 
 import IconButton from '@/components/general/IconButton.vue'
+import GeolocationButton from '@/components/GeolocationButton.vue'
 import {
     changeZoomLevel,
     generateMapUrlParameters,
@@ -71,6 +72,10 @@ function onEmbedChange(e: MessageEvent) {
     <Toast
         position="bottom-center"
         group="bc"
+    />
+    <GeolocationButton
+        v-if="isDesktop"
+        class="absolute right-2 bottom-60 lg:right-6 lg:bottom-32"
     />
     <ButtonGroup
         v-if="isDesktop"

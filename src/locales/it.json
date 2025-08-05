@@ -2,6 +2,10 @@
     "welcome": "Benvenuto",
     "searchPlaceholder": "Cerca qui...",
     "disclaimer": "Sito di prova non per uso operativo",
+    "geolocation": {
+        "enable": "Attiva geolocalizzazione",
+        "disable": "Disattiva geolocalizzazione"
+    },
     "welcomeOverlay": {
         "title": "Benvenuto nell'ambiente di test di SWISSGEO",
         "swissgeoOverview": "Con il prossimo clic accedi al prototipo della piattaforma geospaziale svizzera.",

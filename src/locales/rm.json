@@ -4,7 +4,14 @@
     "disclaimer": "Pagina da test – betg per diever operativ",
     "geolocation": {
         "enable": "Activar geolocalisaziun",
-        "disable": "Deactivar geolocalisaziun"
+        "disable": "Deactivar geolocalisaziun",
+        "gettingLocation": "Tschertgar la posiziun...",
+        "locationFound": "Posiziun chattada",
+        "locationFoundDetail": "Tia posiziun è vegnida chattada cun {accuracy}m precisiun",
+        "error": "Errur da geolocalisaziun",
+        "errorDetail": "Errur: {message}",
+        "outsideSwissTerritory": "Ordvart dal territori svizzer",
+        "outsideSwissTerritoryDetail": "Tia posiziun para dad esser ordvart da la Svizra"
     },
     "welcomeOverlay": {
         "title": "Bainvegni en l'ambient da test da SWISSGEO",

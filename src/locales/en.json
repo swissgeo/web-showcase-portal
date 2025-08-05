@@ -4,7 +4,14 @@
     "disclaimer": "Testsite not for operational use",
     "geolocation": {
         "enable": "Enable geolocation",
-        "disable": "Disable geolocation"
+        "disable": "Disable geolocation",
+        "gettingLocation": "Getting your location...",
+        "locationFound": "Location found",
+        "locationFoundDetail": "Your location was found with {accuracy}m accuracy",
+        "error": "Geolocation error",
+        "errorDetail": "Error: {message}",
+        "outsideSwissTerritory": "Outside Swiss territory",
+        "outsideSwissTerritoryDetail": "Your location appears to be outside Switzerland"
     },
     "welcomeOverlay": {
         "title": "Welcome to the SWISSGEO Test Environment",

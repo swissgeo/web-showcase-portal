@@ -129,6 +129,8 @@ export function getUrlParamsFromSource(
             paramsToPush[key] = value as string
         } else if (key === 'topic') {
             paramsToPush[key] = value as string
+        } else if (key === 'geolocation') {
+            paramsToPush[key] = value === 'true'
         }
     })
     return { ...currentStoreParams, ...paramsToPush }

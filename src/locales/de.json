@@ -4,7 +4,14 @@
     "disclaimer": "Testseite nur für Demozwecke",
     "geolocation": {
         "enable": "Geolokalisierung aktivieren",
-        "disable": "Geolokalisierung deaktivieren"
+        "disable": "Geolokalisierung deaktivieren",
+        "gettingLocation": "Standort wird ermittelt...",
+        "locationFound": "Standort gefunden",
+        "locationFoundDetail": "Ihr Standort wurde mit {accuracy}m Genauigkeit gefunden",
+        "error": "Geolokalisierungsfehler",
+        "errorDetail": "Fehler: {message}",
+        "outsideSwissTerritory": "Außerhalb der Schweiz",
+        "outsideSwissTerritoryDetail": "Ihr Standort scheint außerhalb der Schweiz zu liegen"
     },
     "welcomeOverlay": {
         "title": "Willkommen in der Testumgebung von SWISSGEO",

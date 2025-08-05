@@ -7,7 +7,6 @@ import { useI18n } from 'vue-i18n'
 
 import LayerCart from '@/components/LayerCart.vue'
 import LayerCartButton from '@/components/LayerCartButton.vue'
-import LegendButton from '@/components/LayerWindowButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
 import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
@@ -53,12 +52,6 @@ const clearSearch = () => {
             class="fixed top-4 left-4 rounded bg-white"
             @logo-click="resetApp"
         ></LogoPic>
-        <div
-            v-if="!isSearching"
-            class="fixed top-4 right-4"
-        >
-            <LegendButton></LegendButton>
-        </div>
 
         <div
             class="flex flex-row items-center justify-between px-2 py-4"

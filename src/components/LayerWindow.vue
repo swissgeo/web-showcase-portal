@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDraggable, useElementBounding, useWindowSize } from '@vueuse/core'
-import { Info, PanelRightClose, PanelRightOpen, List, X, Shapes } from 'lucide-vue-next'
+import { PanelRightClose, PanelRightOpen, Info as InfoIcon, X, Shapes } from 'lucide-vue-next'
 import { storeToRefs } from 'pinia'
 import Accordion from 'primevue/accordion'
 import Button from 'primevue/button'
@@ -10,7 +10,6 @@ import { inject, ref, computed, onMounted, type Ref, watch, nextTick } from 'vue
 import { useI18n } from 'vue-i18n'
 
 import DatasetDetailPanel from '@/components/details/DatasetDetailPanel.vue'
-import DatasetInfoSection from '@/components/details/DatasetInfoSection.vue'
 import LayerLegendEntry from '@/components/LayerLegendEntry.vue'
 import { useMainStore } from '@/store/main'
 import { useUiStore } from '@/store/ui'
@@ -30,6 +29,11 @@ const dragTarget = ref<HTMLElement | null>(null)
 const { width: panelWidth, height: panelHeight } = useElementBounding(dragTarget)
 const { width: windowWidth, height: windowHeight } = useWindowSize()
 
+//we divide by 2 and 5 to center the panel, such that it doesn't overlay
+//the sidebar.
+const centerX = computed(() => windowWidth.value / 2)
+const centerY = computed(() => windowHeight.value / 5)
+
 // at startup, we don't know the dimensions of the panel or the window,
 // so we set initial values to -1000 to ensure the panel is off-screen
 // and then we position it correctly after the next tick
@@ -42,14 +46,16 @@ const { x, y } = useDraggable(dragTarget, {
 })
 
 const centerPanel = () => {
-    if (!isDesktop?.value) {
+    if (
+        !isDesktop?.value &&
+        uiStore.layerWindowLastPosition.x !== 0 &&
+        uiStore.layerWindowLastPosition.y !== 0
+    ) {
         return
     }
-    //we divide by 4 such that the window coordinate start in the upper-left
-    //corner of the viewport. Dividing by 2 means the window starts
-    //in the middle and is therefore offset to the bottom-right corner
-    x.value = windowWidth.value / 4
-    y.value = windowHeight.value / 4
+
+    x.value = centerX.value
+    y.value = centerY.value
 }
 
 const movePanelToRight = () => {
@@ -80,29 +86,23 @@ const closeLayerWindow = () => {
 const activeTabs = {
     legend: 0,
     detail: 1,
-    info: 2,
 }
 
 // map of the three h and w combinations for various panel size constraints
 const panelSizeConstraints = {
     legend: {
-        h: 'h-[300px]',
-        w: 'w-[460px]',
+        h: 'h-[30vh]',
+        w: 'w-[25vw]',
     },
     detail: {
-        h: 'h-[600px]',
-        w: 'w-[600px]',
-    },
-    info: {
-        h: 'h-[350px]',
-        w: 'w-[600px]',
+        h: 'h-[60vh]',
+        w: 'w-[30vw]',
     },
 }
 
 // we dynamically set size constraints depending on the tab/content and viewport
-const determinePanelSize = (tab: 'info' | 'detail' | 'legend'): string => {
+const determinePanelSize = (tab: 'detail' | 'legend'): string => {
     const isEmpty = {
-        info: !mainStore.infoLayerRecord,
         detail: !showLayerInfo.value,
         legend: !mainStore.layersOnMap.length,
     }
@@ -115,12 +115,12 @@ const determinePanelSize = (tab: 'info' | 'detail' | 'legend'): string => {
     }
 
     if (isEmpty[tab] && isDesktop?.value) {
-        return 'h-[100px] w-[480px] overflow-y-auto'
+        return 'h-[10vh] w-[25vw] cursor-default overflow-y-auto'
     }
 
     if (isDesktop?.value) {
         const constraints = panelSizeConstraints[tab]
-        return `${constraints.h} ${constraints.w} overflow-y-auto`
+        return `${constraints.h} ${constraints.w} cursor-default overflow-y-auto`
     } else {
         return 'h-dvh w-full overflow-y-auto'
     }
@@ -128,8 +128,8 @@ const determinePanelSize = (tab: 'info' | 'detail' | 'legend'): string => {
 
 onMounted(async () => {
     await nextTick() //wait for DOM to be fully rendered
-    x.value = windowWidth.value - panelWidth.value - 20
-    y.value = windowHeight.value - panelHeight.value - 20
+    x.value = uiStore.layerWindowLastPosition.x || centerX.value
+    y.value = uiStore.layerWindowLastPosition.y || centerY.value
 })
 
 const dragStyle = computed(() => {
@@ -156,13 +156,35 @@ watch(openedFromLayerDetailButton, (newValue) => {
         activeTab.value = activeTabs.legend
     }
 })
+
+//clamp the panel to prevent it from going off-screen
+watch([x, y], () => {
+    let newX = x.value
+    let newY = y.value
+
+    const maxX = windowWidth.value - panelWidth.value
+    const maxY = windowHeight.value - panelHeight.value
+
+    if (x.value < 0) newX = 0
+    else if (x.value > maxX) newX = maxX
+
+    if (y.value < 0) newY = 0
+    else if (y.value > maxY) newY = maxY
+
+    if (newX !== x.value || newY !== y.value) {
+        x.value = newX
+        y.value = newY
+    }
+
+    uiStore.setLayerWindowLastPosition(x.value, y.value)
+})
 </script>
 
 <template>
     <div
         ref="dragTarget"
         :style="isDesktop && !uiStore.isLayerWindowMaximized ? dragStyle : undefined"
-        class="z-50 cursor-move touch-none"
+        class="z-50 touch-none"
         data-cy="comp-layer-window"
         :class="{
             // maximized desktop layout
@@ -182,7 +204,7 @@ watch(openedFromLayerDetailButton, (newValue) => {
             data-cy="comp-layer-window-tabs"
             class="overflow-hidden"
             :class="{
-                'rounded-xl border-2 border-[#1F576B]':
+                'cursor-move rounded-xl border-2 border-[#1F576B]':
                     isDesktop && !uiStore.isLayerWindowMaximized,
             }"
             :pt="{
@@ -229,7 +251,7 @@ watch(openedFromLayerDetailButton, (newValue) => {
                 :pt="{ header: 'border-1 border-[#B8CED6]' }"
             >
                 <template #header>
-                    <List color="#1C6B85" />
+                    <InfoIcon color="#1C6B85" />
                     <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
                         t('details.header')
                     }}</span>
@@ -250,35 +272,6 @@ watch(openedFromLayerDetailButton, (newValue) => {
                     </div>
                 </div>
             </TabPanel>
-
-            <TabPanel
-                value="info"
-                data-cy="comp-layer-window-info-tab"
-                :pt="{ header: 'border-1 border-[#B8CED6]' }"
-            >
-                <template #header>
-                    <Info color="#1C6B85" />
-                    <span class="truncate p-0.5 font-bold text-[#1C6B85]">{{
-                        t('details.info')
-                    }}</span>
-                </template>
-                <div
-                    data-cy="div-layer-info"
-                    :class="determinePanelSize('info')"
-                >
-                    <DatasetInfoSection
-                        v-if="mainStore.infoLayerRecord"
-                        :info="mainStore.infoLayerRecord"
-                    />
-                    <div
-                        v-else
-                        class="text-sm text-gray-600"
-                    >
-                        {{ t('layerCart.noLayerSelected') }}
-                    </div>
-                </div>
-            </TabPanel>
-
             <!-- dummy tab panel to add padding for close button -->
             <TabPanel
                 value="dummy"

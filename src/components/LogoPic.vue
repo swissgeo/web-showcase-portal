@@ -3,6 +3,8 @@ import { inject } from 'vue'
 
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 
+defineEmits(['logo-click'])
+
 const { condensed = false } = defineProps<{
     condensed?: boolean
 }>()
@@ -26,7 +28,10 @@ const isDesktop = inject<boolean>('isDesktop', true)
         v-else
         class="flex h-10 items-center gap-2 rounded-lg border border-neutral-200 bg-white md:h-14 md:gap-0 md:rounded-none md:border-none"
     >
-        <div class="ml-3.5 flex translate-x-[0.5px] items-center justify-center p-2">
+        <div
+            class="ml-3.5 flex translate-x-[0.5px] items-center justify-center p-2"
+            @click="$emit('logo-click')"
+        >
             <img
                 src="@/assets/images/swissgeo_rgb_sek.svg"
                 class="h-5"

@@ -11,18 +11,14 @@ import ProjectInfoButton from '@/components/ProjectInfoButton.vue'
 import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import SearchPanelButton from '@/components/SearchPanelButton.vue'
+import { useResetApp } from '@/composables/useResetAppComposable'
 import { useTopicTree } from '@/composables/useTopicTree'
-import { useMainStore } from '@/store/main'
-import { useMapStore } from '@/store/map'
-import { useSearchStore } from '@/store/search'
 import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
 
 const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 
 const uiStore = useUiStore()
-const mapStore = useMapStore()
-const mainStore = useMainStore()
-const searchStore = useSearchStore()
+const { resetApp } = useResetApp()
 
 const sidebarSecondColumnWidth = computed({
     get() {
@@ -82,13 +78,6 @@ function stopDragging() {
     document.removeEventListener('mouseup', stopDragging)
     document.removeEventListener('mouseleave', stopDragging)
     window.removeEventListener('blur', stopDragging)
-}
-
-function resetApp() {
-    uiStore.resetStore()
-    searchStore.resetStore()
-    mainStore.resetStore()
-    mapStore.resetStore()
 }
 
 updateGeocatalogLanguage()

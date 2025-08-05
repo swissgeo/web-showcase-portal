@@ -4,14 +4,12 @@ import type { GeocodingResult } from '@geospatial-sdk/geocoding/lib/model'
 import SearchResultEntry from '@/components/search/SearchResultEntry.vue'
 import { getFirstCoordinate } from '@/search/mapUrlUtils'
 import { useMapStore } from '@/store/map'
-import { useSearchStore } from '@/store/search'
 
 const { result } = defineProps<{
     result: GeocodingResult
 }>()
 
 const mapStore = useMapStore()
-const searchStore = useSearchStore()
 
 function selectAddress() {
     if (!result.geom) {
@@ -24,7 +22,6 @@ function selectAddress() {
         crossHairPosition: firstCoordinate,
         z: 10,
     })
-    searchStore.setIsOpenSearch(false)
 }
 </script>
 

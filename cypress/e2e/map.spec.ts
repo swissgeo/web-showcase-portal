@@ -5,26 +5,12 @@ const getIframeDocument = () => {
 
 describe('Test the map on desktop', () => {
     beforeEach(() => {
-        cy.intercept(
-            'GET',
-            'https://api3.geo.admin.ch/rest/services/all/MapServer/layersConfig?lang=de'
-        ).as('layersConfig')
-        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services').as('services')
-        cy.intercept('GET', 'https://api3.geo.admin.ch/rest/services/ech/CatalogServer?lang=de').as(
-            'catalogServer'
-        )
-
-        cy.intercept(
-            'GET',
-            'https://sys-api3.*.bgdi.ch/rest/services/all/MapServer/layersConfig?lang=de'
-        ).as('layersConfig')
-        cy.intercept('GET', 'https://sys-api3.*.ch/rest/services').as('services')
-        cy.intercept('GET', 'https://sys-api3.*.ch/rest/services/ech/CatalogServer?lang=de').as(
-            'catalogServer'
-        )
-
+        cy.intercept('GET', '**/layersConfig?*', { headers: { 'cache-control': 'no-cache' } }).as('layersConfig')
+        cy.intercept('GET', '**/services', { headers: { 'cache-control': 'no-cache' } }).as('services')
+        cy.intercept('GET', '**/CatalogServer?*', { headers: { 'cache-control': 'no-cache' } }).as('catalogServer')
         cy.viewport('macbook-15')
         cy.visit('/')
+        cy.get('[data-cy="iframe-mapviewer"]').should('exist')
         cy.wait(['@layersConfig', '@services', '@catalogServer'])
 
         cy.dismissWelcomeOverlay()
@@ -78,7 +64,7 @@ describe('Test the map on desktop', () => {
         getIframeDocument().its('location.href').should(
             'contain',
             // %7C == | encoded for URLs
-            'WMS%7Chttps://wms.geo.admin.ch/%7Cch.swisstopo.swisstlm3d-wald'
+            'WMS%7Chttps%3A%2F%2Fwms.geo.admin.ch%2F%7Cch.swisstopo.swisstlm3d-wald'
         )
     })
 })

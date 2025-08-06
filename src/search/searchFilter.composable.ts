@@ -138,6 +138,8 @@ function createSearchFilter() {
         set: (val) => searchStore.setSelectedCommunalIds(val || []),
     })
 
+    const isCantonFilterActive = computed(() => selectedCantonal.value.length > 0)
+
     function lastWord(label: string | undefined): string {
         if (!label) {
             return ''
@@ -169,6 +171,7 @@ function createSearchFilter() {
         selectedFederal,
         selectedCantonal,
         selectedCommunal,
+        isCantonFilterActive,
     }
 }
 // make a singleton instance of the search filter

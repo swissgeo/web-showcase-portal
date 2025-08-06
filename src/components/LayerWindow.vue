@@ -4,8 +4,11 @@ import { PanelRightClose, PanelRightOpen, Info as InfoIcon, X, Shapes } from 'lu
 import { storeToRefs } from 'pinia'
 import Accordion from 'primevue/accordion'
 import Button from 'primevue/button'
+import Tab from 'primevue/tab'
+import TabList from 'primevue/tablist'
 import TabPanel from 'primevue/tabpanel'
-import TabView from 'primevue/tabview'
+import TabPanels from 'primevue/tabpanels'
+import Tabs from 'primevue/tabs'
 import { inject, ref, computed, onMounted, type Ref, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -23,9 +26,10 @@ const openedFromLayerDetailButton = computed(() => uiStore.openLayerWindowFromDe
 
 const isDesktop = inject<Ref<boolean>>('isDesktop')
 
-const activeTab = ref(0)
+const activeTab = ref('legend')
 
 const dragTarget = ref<HTMLElement | null>(null)
+const dragHandle = ref<HTMLElement | null>(null)
 const { width: panelWidth, height: panelHeight } = useElementBounding(dragTarget)
 const { width: windowWidth, height: windowHeight } = useWindowSize()
 
@@ -43,20 +47,8 @@ const { x, y } = useDraggable(dragTarget, {
         x: -1000,
         y: -1000,
     },
+    handle: dragHandle,
 })
-
-const centerPanel = () => {
-    if (
-        !isDesktop?.value &&
-        uiStore.layerWindowLastPosition.x !== 0 &&
-        uiStore.layerWindowLastPosition.y !== 0
-    ) {
-        return
-    }
-
-    x.value = centerX.value
-    y.value = centerY.value
-}
 
 const movePanelToRight = () => {
     x.value = windowWidth.value - panelWidth.value
@@ -70,7 +62,9 @@ const toggleMaximizedWindow = () => {
 
     if (uiStore.isLayerWindowMaximized) {
         uiStore.setMaximizedLayerWindow(false)
-        centerPanel()
+        nextTick(() => {
+            setPanelPosition()
+        })
     } else {
         uiStore.setMaximizedLayerWindow(true)
         movePanelToRight()
@@ -84,8 +78,8 @@ const closeLayerWindow = () => {
 }
 
 const activeTabs = {
-    legend: 0,
-    detail: 1,
+    legend: 'legend',
+    detail: 'detail',
 }
 
 // map of the three h and w combinations for various panel size constraints
@@ -128,8 +122,7 @@ const determinePanelSize = (tab: 'detail' | 'legend'): string => {
 
 onMounted(async () => {
     await nextTick() //wait for DOM to be fully rendered
-    x.value = uiStore.layerWindowLastPosition.x || centerX.value
-    y.value = uiStore.layerWindowLastPosition.y || centerY.value
+    setPanelPosition()
 })
 
 const dragStyle = computed(() => {
@@ -144,24 +137,21 @@ const dragStyle = computed(() => {
     }
 })
 
+function setPanelPosition() {
+    x.value = uiStore.layerWindowLastPosition.x || centerX.value
+    y.value = uiStore.layerWindowLastPosition.y || centerY.value
+}
+
 watch(openedFromLayerDetailButton, (newValue) => {
     if (newValue) {
         activeTab.value = activeTabs.detail
-        nextTick(() => {
-            if (!uiStore.isLayerWindowMaximized) {
-                centerPanel()
-            }
-        })
     } else {
         activeTab.value = activeTabs.legend
     }
 })
 
 //clamp the panel to prevent it from going off-screen
-watch([x, y], () => {
-    let newX = x.value
-    let newY = y.value
-
+watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
     const maxX = windowWidth.value - panelWidth.value
     const maxY = windowHeight.value - panelHeight.value
 
@@ -175,8 +165,9 @@ watch([x, y], () => {
         x.value = newX
         y.value = newY
     }
-
-    uiStore.setLayerWindowLastPosition(x.value, y.value)
+    if (!uiStore.isLayerWindowMaximized) {
+        uiStore.setLayerWindowLastPosition(x.value, y.value)
+    }
 })
 </script>
 
@@ -199,130 +190,152 @@ watch([x, y], () => {
                 !isDesktop,
         }"
     >
-        <TabView
-            v-model:active-index="activeTab"
+        <Tabs
             data-cy="comp-layer-window-tabs"
+            :value="activeTab"
             class="overflow-hidden"
             :class="{
-                'cursor-move rounded-xl border-2 border-[#1F576B]':
+                'rounded-xl border-2 border-[#1F576B]':
                     isDesktop && !uiStore.isLayerWindowMaximized,
             }"
             :pt="{
                 content: 'md:px-2',
                 nav: 'bg-[#EBF1F3]',
-                navContent: 'align-items-center flex gap-2',
+                navContent: 'items-center flex gap-2',
             }"
         >
-            <TabPanel
-                value="legend"
-                data-cy="comp-layer-window-legend-tab"
-                :pt="{ header: 'border-1 border-[#B8CED6]' }"
+            <TabList
+                ref="dragHandle"
+                data-cy="comp-layer-window-tabslist"
+                class="cursor-move bg-[#EBF1F3]"
             >
-                <template #header>
+                <Tab
+                    value="legend"
+                    class="flex items-center border-t-1 border-r-1 border-b-1 border-[#B8CED6]"
+                >
                     <Shapes color="#1C6B85" />
                     <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
                         t('legend.header')
                     }}</span>
-                </template>
-                <div
-                    data-cy="div-layer-legend"
-                    :class="determinePanelSize('legend')"
+                </Tab>
+                <Tab
+                    value="detail"
+                    class="flex items-center border-t-1 border-r-1 border-b-1 border-[#B8CED6]"
                 >
-                    <Accordion v-if="mainStore.layersOnMap.length">
-                        <LayerLegendEntry
-                            v-for="layer in mainStore.visibleLayers"
-                            :key="layer.id"
-                            :layer="layer"
-                        />
-                    </Accordion>
-
-                    <div
-                        v-else
-                        class="text-sm text-gray-600"
-                    >
-                        {{ t('legend.noLayers') }}
-                    </div>
-                </div>
-            </TabPanel>
-
-            <TabPanel
-                value="details"
-                data-cy="comp-layer-window-details-tab"
-                :pt="{ header: 'border-1 border-[#B8CED6]' }"
-            >
-                <template #header>
                     <InfoIcon color="#1C6B85" />
                     <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
                         t('details.header')
                     }}</span>
-                </template>
-                <div
-                    data-cy="div-layer-detail"
-                    :class="determinePanelSize('detail')"
+                </Tab>
+            </TabList>
+            <TabPanels>
+                <TabPanel
+                    value="legend"
+                    data-cy="comp-layer-window-legend-tab"
+                    :pt="{ header: 'border-1 border-[#B8CED6]' }"
                 >
-                    <DatasetDetailPanel
-                        v-if="showLayerInfo"
-                        class="h-full w-full overflow-hidden"
-                    />
                     <div
-                        v-else
-                        class="text-sm text-gray-600"
+                        data-cy="div-layer-legend"
+                        :class="determinePanelSize('legend')"
                     >
-                        {{ t('layerCart.noLayerSelected') }}
-                    </div>
-                </div>
-            </TabPanel>
-            <!-- dummy tab panel to add padding for close button -->
-            <TabPanel
-                value="dummy"
-                class="p-0"
-                :disabled="true"
-            >
-                <div class="p-0" />
-            </TabPanel>
-        </TabView>
+                        <Accordion v-if="mainStore.layersOnMap.length">
+                            <LayerLegendEntry
+                                v-for="layer in mainStore.visibleLayers"
+                                :key="layer.id"
+                                :layer="layer"
+                            />
+                        </Accordion>
 
-        <Button
-            v-if="isDesktop"
-            class="p-link absolute top-2.5 z-10 mr-1 cursor-pointer border-transparent bg-transparent"
-            :class="[uiStore.isLayerWindowMaximized ? 'right-2' : 'right-10']"
-            data-cy="comp-layer-window-maximize"
-            @click="toggleMaximizedWindow"
-        >
-            <PanelRightClose
-                v-if="!uiStore.isLayerWindowMaximized"
-                color="#1C6B85"
-            />
-            <PanelRightOpen
-                v-if="uiStore.isLayerWindowMaximized"
-                color="#1C6B85"
-            />
-        </Button>
-        <!-- Separator (only shown on desktop when not maximized) -->
+                        <div
+                            v-else
+                            class="text-sm text-gray-600"
+                        >
+                            {{ t('legend.noLayers') }}
+                        </div>
+                    </div>
+                </TabPanel>
+                <TabPanel
+                    value="detail"
+                    data-cy="comp-layer-window-details-tab"
+                    :pt="{ header: 'border-1 border-[#B8CED6]' }"
+                >
+                    <div
+                        data-cy="div-layer-detail"
+                        :class="determinePanelSize('detail')"
+                    >
+                        <DatasetDetailPanel
+                            v-if="showLayerInfo"
+                            class="h-full w-full overflow-hidden"
+                        />
+                        <div
+                            v-else
+                            class="text-sm text-gray-600"
+                        >
+                            {{ t('layerCart.noLayerSelected') }}
+                        </div>
+                    </div>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
         <div
-            v-if="isDesktop && !uiStore.isLayerWindowMaximized"
-            class="absolute top-5 right-[3rem] z-10 h-6 w-px bg-[#1C6B85] opacity-50"
-        />
+            v-if="isDesktop"
+            class="absolute top-2.5 right-2 z-10 flex flex-row items-center border-transparent bg-transparent"
+        >
+            <Button
+                class="border-transparent bg-transparent"
+                data-cy="comp-layer-window-maximize"
+                :title="
+                    uiStore.isLayerWindowMaximized
+                        ? t('layerWindow.detachFromRight')
+                        : t('layerWindow.attachToRight')
+                "
+                @click="toggleMaximizedWindow"
+            >
+                <PanelRightClose
+                    v-if="!uiStore.isLayerWindowMaximized"
+                    color="#1C6B85"
+                />
+                <PanelRightOpen
+                    v-if="uiStore.isLayerWindowMaximized"
+                    color="#1C6B85"
+                />
+            </Button>
+            <!-- Separator-->
+            <div class="h-6 w-px bg-[#1C6B85] opacity-50" />
+            <Button
+                :text="isDesktop"
+                class="bg-transparent"
+                :size="'small'"
+                :severity="'secondary'"
+                data-cy="comp-layer-window-close"
+                :title="t('layerWindow.close')"
+                @click="closeLayerWindow"
+            >
+                <X color="#1C6B85" />
+            </Button>
+        </div>
+        <!-- Mobile close button -->
         <Button
-            v-if="!uiStore.isLayerWindowMaximized"
+            v-if="!isDesktop"
             :text="isDesktop"
-            :class="[
-                isDesktop
-                    ? 'absolute top-3 right-1 z-10 mr-1 cursor-pointer bg-transparent'
-                    : 'fixed bottom-4 left-4 z-50 flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-md',
-            ]"
-            :size="isDesktop ? 'small' : 'large'"
+            class="fixed bottom-4 left-4 z-50 flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-md"
+            :size="'large'"
             :severity="'secondary'"
             data-cy="comp-layer-window-close"
+            :title="t('layerWindow.close')"
             @click="closeLayerWindow"
         >
             <X
                 color="#1C6B85"
-                :class="isDesktop ? '' : 'h-5 w-5'"
+                :class="'h-5 w-5'"
             />
-            <template v-if="!isDesktop">
-                <span class="text-sm font-medium"> {{ t('legend.closeThisWindow') }}</span>
-            </template>
+            <span class="text-sm font-medium"> {{ t('legend.closeThisWindow') }}</span>
         </Button>
     </div>
 </template>
+
+<style scoped>
+:deep(.p-tablist-content .p-tablist-tab-list) {
+    background: none;
+}
+</style>

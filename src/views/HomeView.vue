@@ -10,6 +10,7 @@ import {
     type Ref,
     readonly,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import DisclaimerBanner from '@/components/DisclaimerBanner.vue'
 import LayerWindow from '@/components/LayerWindow.vue'
@@ -21,6 +22,7 @@ import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import { useUiStore } from '@/store/ui'
 
 const uiStore = useUiStore()
+const { t } = useI18n()
 
 const { isWelcomeOverlayVisible } = storeToRefs(uiStore)
 const resizeObserver: Ref<null | ResizeObserver> = ref(null)
@@ -125,6 +127,7 @@ onUnmounted(() => {
             <LayerWindowButton
                 v-if="isDesktop && !uiStore.isLayerWindowVisible"
                 class="pointer-events-auto absolute top-4 right-6"
+                :title="t('layerWindow.openLayerWindow')"
             />
         </div>
         <WelcomeOverlay

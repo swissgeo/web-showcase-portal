@@ -36,6 +36,12 @@
         "greyMap": "Karte SW",
         "aerialImagery": "Luftbilder"
     },
+    "layerWindow": {
+        "close": "Schliessen",
+        "attachToRight": "An die rechte Seite des Bildschirms anheften",
+        "detachFromRight": "Vom Rand lösen und als schwebendes Fenster öffnen",
+        "openLayerWindow": "Open layer and legend window"
+    },
     "legend": {
         "brokenImage": "Legende konnte nicht geladen werden",
         "header": "Legende",

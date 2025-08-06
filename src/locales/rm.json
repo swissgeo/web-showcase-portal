@@ -36,6 +36,12 @@
         "greyMap": "Charta en aiv e nair",
         "aerialImagery": "Fotografia ord l'aria"
     },
+    "layerWindow": {
+        "close": "Serra",
+        "attachToRight": "Anfitar a la dretga vart dal schirm",
+        "detachFromRight": "Stgats dal margen e avrir sco fenscha flutanta",
+        "openLayerWindow": "Avrir fenscha da la charta e legenda"
+    },
     "legend": {
         "brokenImage": "Naśti te ćhivel pes i legenda",
         "header": "Legenda",

@@ -43,6 +43,12 @@
         "noLegend": "Aucune légende disponible",
         "closeThisWindow": "Fermer cette fenêtre"
     },
+    "layerWindow": {
+        "close": "Fermer",
+        "attachToRight": "Attacher à la droite de l'écran",
+        "detachFromRight": "Détacher du côté et ouvrir en tant que fenêtre flottante",
+        "openLayerWindow": "Ouvrir la fenêtre de couche et de légende"
+    },
     "details": {
         "header": "Détails",
         "info": "Informations",

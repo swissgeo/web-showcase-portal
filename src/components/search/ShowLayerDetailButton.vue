@@ -19,6 +19,10 @@ const showLayerInfo = (layerId: string) => {
     // If the layer is already displayed, hide it by setting infoLayerId to null
     if (layerId === mainStore.infoLayerId) {
         mainStore.resetInfoLayerId()
+
+        // close the layer window if it is opened
+        uiStore.setOpenLayerWindowFromDetailButton(false)
+        uiStore.setLayerWindowVisible(false)
     } else {
         mainStore.setInfoLayerId(layerId)
 

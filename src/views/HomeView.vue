@@ -13,6 +13,7 @@ import {
 
 import DisclaimerBanner from '@/components/DisclaimerBanner.vue'
 import LayerWindow from '@/components/LayerWindow.vue'
+import LayerWindowButton from '@/components/LayerWindowButton.vue'
 import MapPart from '@/components/MapPart.vue'
 import SearchMobile from '@/components/search/SearchMobile.vue'
 import SideBar from '@/components/SideBar.vue'
@@ -121,6 +122,10 @@ onUnmounted(() => {
             ></SearchMobile>
             <LayerWindow v-if="uiStore.isLayerWindowVisible" />
             <MapPart class="grow-1"></MapPart>
+            <LayerWindowButton
+                v-if="isDesktop && !uiStore.isLayerWindowVisible"
+                class="pointer-events-auto absolute top-4 right-6"
+            />
         </div>
         <WelcomeOverlay
             v-if="isWelcomeOverlayVisible"

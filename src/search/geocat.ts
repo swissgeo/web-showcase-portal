@@ -56,7 +56,6 @@ export default function useGeocat() {
         // the promise is already underway to being resolved
 
         if (searchStore.searchTerm) {
-
             const sortedRecords = records.sort((a, b) => {
                 const isKGKRecordA = a.ownerOrganization.name === KGK_ORGANIZATION_NAME
                 const isKGKRecordB = b.ownerOrganization.name === KGK_ORGANIZATION_NAME

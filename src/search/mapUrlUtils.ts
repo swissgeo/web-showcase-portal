@@ -116,7 +116,10 @@ export function getUrlParamsFromSource(
         } else if (key === 'hideEmbedUI') {
             paramsToPush[key] = true
         } else if (key === 'geolocation') {
-            paramsToPush[key] = value === 'true'
+            // if the geolocation is set without a value, it means it is enabled
+            // if the value is 'false', it means it is disabled
+            const isGeolocationDisabled = value === 'false'
+            paramsToPush[key] = !isGeolocationDisabled
         } else if (key === 'lang') {
             if (isLanguageSupported(value as string)) {
                 paramsToPush[key] = value as Language
@@ -129,8 +132,6 @@ export function getUrlParamsFromSource(
             paramsToPush[key] = value as string
         } else if (key === 'topic') {
             paramsToPush[key] = value as string
-        } else if (key === 'geolocation') {
-            paramsToPush[key] = value === 'true'
         }
     })
     return { ...currentStoreParams, ...paramsToPush }

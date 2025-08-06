@@ -20,6 +20,7 @@ export default function useGeocat() {
     const searchStore = useSearchStore()
     const mainStore = useMainStore()
     const { localeString } = useLanguage()
+    const { isCantonFilterActive } = useSearchFilter()
 
     const cancelSearch = () => {
         if (subscription) {
@@ -55,12 +56,13 @@ export default function useGeocat() {
         // the promise is already underway to being resolved
 
         if (searchStore.searchTerm) {
-            const { isCantonFilterActive } = useSearchFilter()
 
             const sortedRecords = records.sort((a, b) => {
                 const isKGKRecordA = a.ownerOrganization.name === KGK_ORGANIZATION_NAME
                 const isKGKRecordB = b.ownerOrganization.name === KGK_ORGANIZATION_NAME
 
+                // In line with geodienste.che we add logic here for KGK results
+                // Each canton should have at least one KGK result and KGK results should be at the top
                 if (isCantonFilterActive.value) {
                     return Number(isKGKRecordB) - Number(isKGKRecordA)
                 }
@@ -92,7 +94,6 @@ export default function useGeocat() {
         if (groupIds && groupIds.length) {
             let filteredGroupIds = groupIds
 
-            const { isCantonFilterActive } = useSearchFilter()
             if (isCantonFilterActive.value) {
                 filteredGroupIds = includeKGKGroup(groupIds)
             } else {

@@ -1,6 +1,7 @@
 import { catchError, Subscription } from 'rxjs'
 
 import { defaultLayerOpacity } from '@/config/map.config'
+import { useSearchFilter } from '@/search/searchFilter.composable'
 import { useMainStore } from '@/store/main'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
@@ -8,7 +9,7 @@ import { LayerType, type Layer } from '@/types/layer'
 import { GEOCAT_SEARCH_URL, type SearchKeywordLayer } from '@/types/search'
 import { useLanguage } from '@/utils/language.composable'
 
-import { includeKGKGroup } from './geocatGroups'
+import { includeKGKGroup, getKGKGroup } from './geocatGroups'
 
 const KGK_ORGANIZATION_NAME = 'KGK-CGC'
 
@@ -19,6 +20,7 @@ export default function useGeocat() {
     const searchStore = useSearchStore()
     const mainStore = useMainStore()
     const { localeString } = useLanguage()
+    const { isCantonFilterActive } = useSearchFilter()
 
     const cancelSearch = () => {
         if (subscription) {
@@ -57,13 +59,19 @@ export default function useGeocat() {
             const sortedRecords = records.sort((a, b) => {
                 const isKGKRecordA = a.ownerOrganization.name === KGK_ORGANIZATION_NAME
                 const isKGKRecordB = b.ownerOrganization.name === KGK_ORGANIZATION_NAME
-                return Number(isKGKRecordB) - Number(isKGKRecordA)
+
+                // In line with geodienste.che we add logic here for KGK results
+                // Each canton should have at least one KGK result and KGK results should be at the top
+                if (isCantonFilterActive.value) {
+                    return Number(isKGKRecordB) - Number(isKGKRecordA)
+                }
+                return 0
             })
 
             searchStore.appendGeocatSearchResults(sortedRecords)
             searchStore.setSearchResultTotal(count)
+            searchStore.setIsSearchingGeocat(false)
         }
-        searchStore.setIsSearchingGeocat(false)
     }
 
     const recordCallback = (record: GeonetworkRecord) => {
@@ -83,8 +91,18 @@ export default function useGeocat() {
             linkProtocol: '/OGC:WMT?S.*/',
         }
         if (groupIds && groupIds.length) {
-            const uniqueGroupIds = includeKGKGroup(groupIds)
-            filters.groupOwner = `(${uniqueGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ')})`
+            let filteredGroupIds = groupIds
+
+            if (isCantonFilterActive.value) {
+                filteredGroupIds = includeKGKGroup(groupIds)
+            } else {
+                const kgkGroupId = getKGKGroup()?.id
+                if (kgkGroupId) {
+                    filteredGroupIds = groupIds.filter((id) => id !== kgkGroupId)
+                }
+            }
+
+            filters.groupOwner = `(${filteredGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ')})`
         }
 
         // logs...

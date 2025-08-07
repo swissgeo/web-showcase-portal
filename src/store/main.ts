@@ -4,6 +4,7 @@ import { ref, computed } from 'vue'
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
 import { convertToMapParameter } from '@/search/mapUrlUtils'
+import { useToast } from '@/search/toast.composable'
 import { useMapStore } from '@/store/map'
 import {
     i18n,
@@ -49,13 +50,17 @@ const defaultBgLayers: Layer[] = [
     },
 ]
 
+// Show a warning toast if more or equal of 5 layers are added to the map
+const SHOW_WARNING_LAYER_COUNT = 5
+
 export const useMainStore = defineStore('main', () => {
+    const toastService = useToast()
     // Language initialization
+    const { t } = i18n.global
     const storedLanguage = localStorage.getItem('selectedLanguage') as Language | null
     const browserLanguage = getBrowserLanguage()
     const initialLanguage: Language =
         storedLanguage && SUPPORTED_LANG.includes(storedLanguage) ? storedLanguage : browserLanguage
-
     i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
     const mapStore = useMapStore()
     // State
@@ -83,6 +88,13 @@ export const useMainStore = defineStore('main', () => {
     function addLayerToMap(layer: Layer) {
         layersOnMap.value.push(layer)
         updateMapUrlSearchParams()
+        if (layersOnMap.value.length >= SHOW_WARNING_LAYER_COUNT) {
+            toastService.showToast(
+                'warn',
+                t('tooManyLayersWarning.title'),
+                t('tooManyLayersWarning.message')
+            )
+        }
     }
 
     function setMapLayers(layers: Layer[]) {

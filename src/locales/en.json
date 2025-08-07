@@ -137,5 +137,9 @@
         "title": "Geocatalog",
         "filter": "Filter...",
         "selectTopic": "Topic"
+    },
+    "tooManyLayersWarning": {
+        "title": "Too many layers",
+        "message": "You have added multiple layers to the map. When there are too many layers, the application may experience performance issues. Please consider removing some layers."
     }
 }

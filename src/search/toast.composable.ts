@@ -6,13 +6,18 @@ const TOAST_LIFE_MILLISECONDS = 3000
 export function useToast() {
     const toast = usePrimeToast()
 
-    function showToast(severity: ToastSeverity, summary: string, detail: string) {
+    function showToast(
+        severity: ToastSeverity,
+        summary: string,
+        detail: string,
+        life: number = TOAST_LIFE_MILLISECONDS
+    ) {
         toast.add({
             severity: severity,
             summary: summary,
             detail: detail,
             group: 'bc',
-            life: TOAST_LIFE_MILLISECONDS,
+            life: life,
         })
     }
 

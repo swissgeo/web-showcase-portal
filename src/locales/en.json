@@ -36,6 +36,12 @@
         "greyMap": "Grey Map",
         "aerialImagery": "Aerial Imagery"
     },
+    "layerWindow": {
+        "close": "Close",
+        "attachToRight": "Attach to the right side of the screen",
+        "detachFromRight": "Detach from the side and make it a floating window",
+        "openLayerWindow": "Open layer and legend window"
+    },
     "legend": {
         "brokenImage": "Failed to load legend",
         "header": "Legend",

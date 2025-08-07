@@ -22,8 +22,7 @@ describe('Layer Legend on desktop', () => {
 
         cy.get(`[data-cy="button-show-layer-details-${RADON_UID}"]`).should('be.visible').click()
 
-        cy.get('[data-cy="comp-layer-window-tabs"]')
-            .find('li')
+        cy.get('[data-cy="comp-layer-window-tabslist"]')
             .contains('Legend')
             .click()
 
@@ -55,8 +54,7 @@ describe('Layer Legend on mobile', () => {
 
         cy.get(`[data-cy="button-show-layer-details-${RADON_UID}"]`).should('be.visible').click()
 
-        cy.get('[data-cy="comp-layer-window-tabs"]')
-            .find('li')
+        cy.get('[data-cy="comp-layer-window-tabslist"]')
             .contains('Legend')
             .click()
 

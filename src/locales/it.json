@@ -36,6 +36,12 @@
         "greyMap": "Carta B/N",
         "aerialImagery": "Veduta aerea"
     },
+    "layerWindow": {
+        "close": "Chiudi",
+        "attachToRight": "Attacca al lato destro dello schermo",
+        "detachFromRight": "Stacca dal lato e apri come finestra galleggiante",
+        "openLayerWindow": "Apri finestra di layer e legenda"
+    },
     "legend": {
         "brokenImage": "Impossibile caricare la legenda",
         "header": "Legenda",

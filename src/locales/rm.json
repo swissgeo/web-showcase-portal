@@ -137,5 +137,9 @@
         "title": "Catalog da geodatas",
         "filter": "Filter...",
         "selectTopic": "Tema"
+    },
+    "tooManyLayersWarning": {
+        "title": "Zu bleras cartas",
+        "message": "Els han agiuntà plirs nivels a la charta. Sch'i dat memia blers nivels, poi dar problems da prestaziun da l'applicaziun. Resguardai per plaschair d'allontanar intgins nivels."
     }
 }

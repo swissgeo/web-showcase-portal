@@ -137,5 +137,9 @@
         "title": "Geocatalogo",
         "filter": "Filtro...",
         "selectTopic": "Temi"
+    },
+    "tooManyLayersWarning": {
+        "title": "Troppe mappe",
+        "message": "Hai aggiunto più livelli alla mappa. Quando i livelli sono troppi, l'applicazione potrebbe avere problemi di prestazioni. Ti consigliamo di rimuovere alcuni livelli."
     }
 }

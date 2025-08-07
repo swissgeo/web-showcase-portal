@@ -137,5 +137,9 @@
         "title": "Geokatalog",
         "filter": "Abfrage...",
         "selectTopic": "Thema"
+    },
+    "tooManyLayersWarning": {
+        "title": "Zu viele Karten",
+        "message": "Sie haben der Karte mehrere Ebenen hinzugefügt. Wenn zu viele Ebenen vorhanden sind, kann es zu Leistungsproblemen der Anwendung kommen. Bitte erwägen Sie, einige Ebenen zu entfernen."
     }
 }

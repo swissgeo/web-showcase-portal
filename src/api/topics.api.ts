@@ -51,7 +51,7 @@ export async function fetchGeocatalogLayer(
     layerId: string,
     lang: string
 ): Promise<GeocatLayerData | null> {
-    const url = `https://${API3_BASE_URL}/rest/services/api/MapServer?searchText=${layerId}&lang=${lang}`
+    const url = `${API3_BASE_URL}/rest/services/api/MapServer?searchText=${layerId}&lang=${lang}`
     try {
         const response = await axios.get(url)
         return response.data

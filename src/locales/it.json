@@ -141,5 +141,11 @@
     "tooManyLayersWarning": {
         "title": "Troppe mappe",
         "message": "Hai aggiunto più livelli alla mappa. Quando i livelli sono troppi, l'applicazione potrebbe avere problemi di prestazioni. Ti consigliamo di rimuovere alcuni livelli."
+    },
+    "menu": {
+        "search": "Ricerca",
+        "layerCart": "Mappe visualizzate",
+        "geocatalog": "Geocatalogo",
+        "projectInfo": "Informazioni sul progetto"
     }
 }

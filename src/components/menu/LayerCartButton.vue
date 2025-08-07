@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, inject, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import IconButton from '@/components/general/IconButton.vue'
+import SidebarButton from '@/components/menu/SidebarButton.vue'
 import { useMainStore } from '@/store/main'
 import { SidebarType, useUiStore } from '@/store/ui'
 
-const isDesktop = inject<boolean>('isDesktop', true)
+const { t } = useI18n()
+
 // Trigger animation when the layer count changes
 const badgeKey = ref(0)
 // Access the store
@@ -29,16 +31,14 @@ watch(layerCount, (newValue, oldValue) => {
 
 <template>
     <div class="relative inline-block">
-        <IconButton
-            :severity="uiStore.isLayerCartVisible ? 'primary' : 'secondary'"
-            :outlined="!isDesktop"
-            class="h-10"
-            :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"
+        <SidebarButton
+            :is-active="uiStore.isLayerCartVisible"
+            :title="t('menu.layerCart')"
             data-cy="button-layer-cart"
             icon="Map"
             @click="toggleLayerCart"
         >
-        </IconButton>
+        </SidebarButton>
         <!-- Badge for layer count (not possible to use PrimeVue Badge with custom icon)-->
         <span
             v-if="layerCount"

@@ -142,5 +142,11 @@
     "tooManyLayersWarning": {
         "title": "Trop de couches",
         "message": "Vous avez ajouté plusieurs couches à la carte. Lorsque le nombre de couches est trop important, la performance de l'application risque d'être impactée. Veuillez envisager de supprimer certaines couches."
+    },
+    "menu": {
+        "search": "Recherche",
+        "layerCart": "Cartes affichées",
+        "geocatalog": "Géocatalogue",
+        "projectInfo": "Informations sur le project"
     }
 }

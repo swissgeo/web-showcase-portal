@@ -11,7 +11,6 @@ import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector'
 import Map from 'ol/Map'
 import { get as getProjection } from 'ol/proj'
-import { register as registerProj } from 'ol/proj/proj4'
 import Static from 'ol/source/ImageStatic'
 import VectorSource from 'ol/source/Vector'
 import WMTS, { type RequestEncoding } from 'ol/source/WMTS'
@@ -19,20 +18,22 @@ import Stroke from 'ol/style/Stroke'
 import Style from 'ol/style/Style'
 import WMTSTileGrid from 'ol/tilegrid/WMTS'
 import View from 'ol/View'
-import proj4 from 'proj4'
 import { ref, type Ref } from 'vue'
 
 import type { BoundingBox, CapabilitiesLayer, GeocatLayerInformation } from '@/types/mapPreview'
 
 import { fetchGeocatalogLayer } from '@/api/topics.api'
+import {
+    EPSG_2056,
+    EPSG_4326,
+    getConfiguredProj4,
+    registerProjections,
+} from '@/config/projection.config'
 import { useMapStore } from '@/store/map'
 
 const SWISS_EXTENT = [2420000, 1050000, 2850000, 1350000]
 const MIN_EXTENT_SIZE = 30000
 const SWISS_TILE_RESOLUTIONS = [4000, 3750, 3500, 3250, 3000, 2750, 2500, 2250, 2000, 1750]
-const EPSG_2056_PROJ_STRING =
-    '+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs'
-const EPSG_2056 = 'EPSG:2056'
 
 export const LONG_PRESS_TIMEOUT_MS = 500
 
@@ -47,8 +48,7 @@ export function useMapPreview() {
     const isPreviewLoading: Ref<boolean> = ref(false)
 
     function registerProjection() {
-        proj4.defs(EPSG_2056, EPSG_2056_PROJ_STRING)
-        registerProj(proj4)
+        registerProjections()
         if (!getProjection(EPSG_2056)) {
             // eslint-disable-next-line no-console
             console.error(`${EPSG_2056} projection not registered!`)
@@ -328,8 +328,9 @@ export function useMapPreview() {
             return bbox.extent
         } else if (layer.EX_GeographicBoundingBox) {
             const [minLon, minLat, maxLon, maxLat] = layer.EX_GeographicBoundingBox
-            const transformedMin = proj4('EPSG:4326', EPSG_2056, [minLon, minLat])
-            const transformedMax = proj4('EPSG:4326', EPSG_2056, [maxLon, maxLat])
+            const proj4 = getConfiguredProj4()
+            const transformedMin = proj4(EPSG_4326, EPSG_2056, [minLon, minLat])
+            const transformedMax = proj4(EPSG_4326, EPSG_2056, [maxLon, maxLat])
             return [transformedMin[0], transformedMin[1], transformedMax[0], transformedMax[1]]
         }
         if (parents.length > 0) {

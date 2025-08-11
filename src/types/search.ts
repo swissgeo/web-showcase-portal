@@ -18,5 +18,5 @@ export interface SearchKeywordLayer {
 
 export interface FilterGroup {
     label: string
-    value?: number | string
+    value?: number
 }

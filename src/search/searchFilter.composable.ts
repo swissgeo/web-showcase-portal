@@ -122,7 +122,7 @@ function createSearchFilter() {
             const match = labelMap.get(commune.Gemeindename)
             return {
                 label: match?.label || commune.Gemeindename,
-                value: match?.id || `${commune.E}.${commune.N}`,
+                value: match?.id,
             }
         }
     }

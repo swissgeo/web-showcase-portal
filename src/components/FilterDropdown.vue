@@ -55,6 +55,7 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
             :options="options"
             option-label="label"
             option-value="value"
+            :option-disabled="(option: any) => !option.value"
             show-clear
             class="mr-2 min-w-96 flex-1"
             :pt="{

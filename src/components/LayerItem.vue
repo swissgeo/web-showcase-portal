@@ -227,6 +227,7 @@ const tooltipContent = computed(() => {
             <IconButton
                 variant="outlined"
                 rounded
+                :title="layer.visible ? t('layerCart.hideLayer') : t('layerCart.showLayer')"
                 size="small"
                 class="flex items-center justify-center border border-transparent"
                 :icon="layer.visible ? 'Eye' : 'EyeOff'"

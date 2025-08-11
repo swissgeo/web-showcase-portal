@@ -44,7 +44,7 @@ const layerTooltipContent = computed(() => {
         name = wmtsResource.name
     }
 
-    const info = t('searchResult.addToMap')
+    const info = isLayerOnMap.value ? t('searchResult.removeFromMap') : t('searchResult.addToMap')
 
     return `${info}\n\nUrl: ${url}\nName: ${name}`
 })

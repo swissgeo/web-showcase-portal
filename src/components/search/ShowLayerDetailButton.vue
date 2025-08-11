@@ -49,7 +49,7 @@ const severity = computed(() => {
         :data-cy="`button-show-layer-details-${layerId}`"
         :severity="severity"
         class="mr-auto cursor-pointer"
-        :title="t('searchResult.showInfo')"
+        :title="currentlyDisplayed ? t('searchResult.hideInfo') : t('searchResult.showInfo')"
         :outlined="!currentlyDisplayed"
         icon="Info"
         icon-class="h-4 w-4"

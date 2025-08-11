@@ -37,16 +37,12 @@ const { width: windowWidth, height: windowHeight } = useWindowSize()
 //the sidebar.
 const centerX = computed(() => windowWidth.value / 2)
 const centerY = computed(() => windowHeight.value / 5)
-
 // at startup, we don't know the dimensions of the panel or the window,
 // so we set initial values to -1000 to ensure the panel is off-screen
 // and then we position it correctly after the next tick
 // this is necessary to avoid flickering when the panel is first displayed
-const { x, y } = useDraggable(dragTarget, {
-    initialValue: {
-        x: -1000,
-        y: -1000,
-    },
+const { x, y, isDragging } = useDraggable(dragTarget, {
+    initialValue: uiStore.layerWindowLastPosition,
     handle: dragHandle,
 })
 
@@ -109,19 +105,18 @@ const determinePanelSize = (tab: 'detail' | 'legend'): string => {
     }
 
     if (isEmpty[tab] && isDesktop?.value) {
-        return 'h-[10vh] w-[25vw] cursor-default overflow-y-auto'
+        return 'h-[10vh] w-[25vw] overflow-y-auto'
     }
 
     if (isDesktop?.value) {
         const constraints = panelSizeConstraints[tab]
-        return `${constraints.h} ${constraints.w} cursor-default overflow-y-auto`
+        return `${constraints.h} ${constraints.w} overflow-y-auto`
     } else {
         return 'h-dvh w-full overflow-y-auto'
     }
 }
 
-onMounted(async () => {
-    await nextTick() //wait for DOM to be fully rendered
+onMounted(() => {
     setPanelPosition()
 })
 
@@ -138,8 +133,10 @@ const dragStyle = computed(() => {
 })
 
 function setPanelPosition() {
-    x.value = uiStore.layerWindowLastPosition.x || centerX.value
-    y.value = uiStore.layerWindowLastPosition.y || centerY.value
+    x.value =
+        uiStore.layerWindowLastPosition.x < 0 ? centerX.value : uiStore.layerWindowLastPosition.x
+    y.value =
+        uiStore.layerWindowLastPosition.y < 0 ? centerY.value : uiStore.layerWindowLastPosition.y
 }
 
 watch(openedFromLayerDetailButton, (newValue) => {
@@ -175,16 +172,16 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
     <div
         ref="dragTarget"
         :style="isDesktop && !uiStore.isLayerWindowMaximized ? dragStyle : undefined"
-        class="z-50 touch-none"
+        class="z-50 touch-none overflow-hidden"
         data-cy="comp-layer-window"
         :class="{
             // maximized desktop layout
             'absolute top-0 right-0 bottom-0 w-[480px] bg-white shadow-xl':
                 isDesktop && uiStore.isLayerWindowMaximized,
-
+            // rounded and border
+            'rounded-xl border-2 border-[#1F576B]': isDesktop && !uiStore.isLayerWindowMaximized,
             // floating desktop layout
             absolute: isDesktop && !uiStore.isLayerWindowMaximized,
-
             // mobile layout
             'fixed right-0 bottom-0 left-0 flex h-dvh w-full flex-col place-content-between':
                 !isDesktop,
@@ -193,11 +190,6 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
         <Tabs
             data-cy="comp-layer-window-tabs"
             :value="activeTab"
-            class="overflow-hidden"
-            :class="{
-                'rounded-xl border-2 border-[#1F576B]':
-                    isDesktop && !uiStore.isLayerWindowMaximized,
-            }"
             :pt="{
                 content: 'md:px-2',
                 nav: 'bg-[#EBF1F3]',
@@ -207,7 +199,11 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
             <TabList
                 ref="dragHandle"
                 data-cy="comp-layer-window-tabslist"
-                class="cursor-move bg-[#EBF1F3]"
+                class="bg-[#EBF1F3]"
+                :class="{
+                    'cursor-move': isDesktop && !uiStore.isLayerWindowMaximized,
+                    'select-none': isDragging, // Prevent text selection during dragging
+                }"
             >
                 <Tab
                     value="legend"

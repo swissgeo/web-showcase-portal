@@ -13,13 +13,14 @@ export const SIDEBAR_MIN_WIDTH = 400
 // Half the window width minus some padding from side bar
 export const SIDEBAR_MAX_WIDTH = window.innerWidth / 2 - 80
 export const SIDEBAR_DEFAULT_WIDTH = 500
+const LAYER_WINDOW_START_POSITION = { x: -1000, y: -1000 }
+const layerWindowLastPosition = ref(LAYER_WINDOW_START_POSITION)
 
 export const useUiStore = defineStore('ui', () => {
     // State
     const currentSidebar = ref<SidebarType | null>(SidebarType.SEARCH)
     const isLayerWindowVisible = ref(false)
     const isLayerWindowMaximized = ref(false)
-    const layerWindowLastPosition = ref({ x: 0, y: 0 })
     const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
@@ -100,6 +101,7 @@ export const useUiStore = defineStore('ui', () => {
         sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
         isWelcomeOverlayVisible.value = false
         dontShowAgainCheckbox.value = false
+        layerWindowLastPosition.value = LAYER_WINDOW_START_POSITION
     }
 
     // Welcome overlay actions

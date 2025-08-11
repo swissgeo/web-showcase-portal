@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Locate, LocateFixed } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { useToast } from 'primevue/usetoast'
 import { inject, ref } from 'vue'
@@ -92,10 +93,14 @@ const toggleGeolocation = async () => {
         @click="toggleGeolocation"
     >
         <template #icon>
-            <i
-                v-if="!isGettingLocation"
-                class="pi pi-map-marker h-6 w-6"
-            ></i>
+            <LocateFixed
+                v-if="!isGettingLocation && mainStore.geolocationEnabled"
+                class="h-6 w-6"
+            />
+            <Locate
+                v-else-if="!isGettingLocation"
+                class="h-6 w-6"
+            />
         </template>
     </Button>
 </template>

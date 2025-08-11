@@ -73,28 +73,26 @@ function onEmbedChange(e: MessageEvent) {
         position="bottom-center"
         group="bc"
     />
-    <GeolocationButton
+    <div
         v-if="isDesktop"
-        class="absolute right-2 bottom-60 lg:right-6 lg:bottom-32"
-    />
-    <ButtonGroup
-        v-if="isDesktop"
-        class="absolute right-2 bottom-38 lg:right-6 lg:bottom-8"
-        data-cy="zoom-button-group"
+        class="absolute right-2 bottom-8 flex flex-col items-end gap-3 lg:right-6"
     >
-        <IconButton
-            :disabled="currentZoomLevel === 1"
-            data-cy="zoom-out"
-            icon="Minus"
-            severity="secondary"
-            @click="debounceChangeZoom(false)"
-        />
-        <IconButton
-            :disabled="currentZoomLevel === 15"
-            data-cy="zoom-in"
-            icon="Plus"
-            severity="secondary"
-            @click="debounceChangeZoom(true)"
-        />
-    </ButtonGroup>
+        <GeolocationButton />
+        <ButtonGroup data-cy="zoom-button-group">
+            <IconButton
+                :disabled="currentZoomLevel === 1"
+                data-cy="zoom-out"
+                icon="Minus"
+                severity="secondary"
+                @click="debounceChangeZoom(false)"
+            />
+            <IconButton
+                :disabled="currentZoomLevel === 15"
+                data-cy="zoom-in"
+                icon="Plus"
+                severity="secondary"
+                @click="debounceChangeZoom(true)"
+            />
+        </ButtonGroup>
+    </div>
 </template>

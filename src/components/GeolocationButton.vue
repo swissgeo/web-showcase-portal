@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { Locate as LocateIcon, LocateFixed as LocateFixedIcon, LocateOff as LocateOffIcon } from 'lucide-vue-next'
+import {
+    Locate as LocateIcon,
+    LocateFixed as LocateFixedIcon,
+    LocateOff as LocateOffIcon,
+} from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { useToast } from 'primevue/usetoast'
 import { inject, ref } from 'vue'

@@ -70,8 +70,11 @@ function onEmbedChange(e: MessageEvent) {
         allow="geolocation"
     ></iframe>
     <Toast
-        position="bottom-center"
+        position="top-center"
         group="bc"
+        :pt="{
+            root: 'w-[90vw] max-w-sm md:w-auto md:max-w-none',
+        }"
     />
     <div
         v-if="isDesktop"

@@ -106,7 +106,9 @@
     },
     "filter": {
         "title": "Filtre",
-        "filterByProvider": "Filtrer par fournisseur"
+        "filterByProvider": "Filtrer par fournisseur",
+        "apply": "Appliquer le filtre",
+        "reset": "Réinitialiser"
     },
     "keywords": {
         "title": "Recherches populaires",

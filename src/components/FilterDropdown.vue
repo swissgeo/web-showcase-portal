@@ -1,11 +1,46 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
+
+import type { FilterGroup } from '@/types/search'
 
 import MultiSelect from '@/components/general/MultiSelect.vue'
 
-const { label, options } = defineProps<{ label: string; options: [] }>()
+const { modelValue, label, options, itemLabel } = defineProps<{
+    label: string
+    modelValue: number[] | null
+    options: FilterGroup[]
+    itemLabel: string
+}>()
 
-const selected = ref(null)
+const emit = defineEmits(['update:modelValue'])
+
+const selected = computed({
+    get() {
+        return modelValue
+    },
+    set(value: number[]) {
+        emit('update:modelValue', value)
+    },
+})
+
+const selectedItemLabel = computed(() => {
+    if (!modelValue) {
+        return
+    }
+
+    const label = multiSelectLabel(modelValue, options)
+    return `${itemLabel}: ${label}`
+})
+
+function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): string {
+    if (selectedValues) {
+        return selectedValues
+            .map((id) => groups.find((g) => g.value === id)?.label)
+            .filter(Boolean)
+            .join(', ')
+    }
+    return ''
+}
 </script>
 
 <template>
@@ -28,13 +63,8 @@ const selected = ref(null)
                     class: 'block truncate max-w-[21ch]',
                 },
             }"
+            :selected-items-label="selectedItemLabel"
         >
         </MultiSelect>
-        <!-- @focus="emit('focus')" @blur="emit('blur')" -->
-        <!-- :selected-items-label="
-            t('organisation.category.federal_office') +
-            ': ' +
-            multiSelectLabel(selectedFederal, federalGroups)
-        " -->
     </div>
 </template>

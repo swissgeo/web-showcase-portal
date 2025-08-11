@@ -1,6 +1,6 @@
 import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 // Sidebar types enum
 export enum SidebarType {
     LAYER_CART = 'layerCart',
@@ -24,6 +24,7 @@ export const useUiStore = defineStore('ui', () => {
     const openLayerWindowFromDetailButton = ref(false)
     const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
+    const filterReferenceElement: Ref<HTMLElement | null> = ref(null)
 
     // Welcome overlay state
     const isWelcomeOverlayVisible = ref(false)
@@ -53,6 +54,10 @@ export const useUiStore = defineStore('ui', () => {
 
     function toggleFilterVisible() {
         isFilterVisible.value = !isFilterVisible.value
+    }
+
+    function setFilterReferenceElement(elem: HTMLElement) {
+        filterReferenceElement.value = elem
     }
 
     function setLayerCartVisible(visible: boolean) {
@@ -93,17 +98,6 @@ export const useUiStore = defineStore('ui', () => {
         currentSidebar.value = null
     }
 
-    function resetStore() {
-        currentSidebar.value = SidebarType.SEARCH
-        isLayerWindowMaximized.value = false
-        isFilterVisible.value = false
-        isLayerWindowVisible.value = false
-        sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
-        isWelcomeOverlayVisible.value = false
-        dontShowAgainCheckbox.value = false
-        layerWindowLastPosition.value = LAYER_WINDOW_START_POSITION
-    }
-
     // Welcome overlay actions
     function showWelcomeOverlay() {
         isWelcomeOverlayVisible.value = true
@@ -130,10 +124,22 @@ export const useUiStore = defineStore('ui', () => {
         }
     }
 
+    function resetStore() {
+        currentSidebar.value = SidebarType.SEARCH
+        isLayerWindowMaximized.value = false
+        isFilterVisible.value = false
+        isLayerWindowVisible.value = false
+        sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
+        isWelcomeOverlayVisible.value = false
+        dontShowAgainCheckbox.value = false
+        layerWindowLastPosition.value = LAYER_WINDOW_START_POSITION
+    }
+
     return {
         // State
         currentSidebar,
         isFilterVisible,
+        filterReferenceElement,
         isLayerWindowVisible,
         isLayerWindowMaximized,
         layerWindowLastPosition,
@@ -151,6 +157,7 @@ export const useUiStore = defineStore('ui', () => {
         setSidebar,
         toggleSidebar,
         toggleFilterVisible,
+        setFilterReferenceElement,
         setLayerCartVisible,
         setSidebarSecondColumnWidth,
         setLayerWindowVisible,

@@ -105,7 +105,9 @@
     },
     "filter": {
         "title": "Filter",
-        "filterByProvider": "Filter nach Anbieter"
+        "filterByProvider": "Filter nach Anbieter",
+        "apply": "Filter anwenden",
+        "reset": "Zurücksetzen"
     },
     "keywords": {
         "title": "Beliebte Suchen",

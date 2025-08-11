@@ -105,7 +105,9 @@
     },
     "filter": {
         "title": "Filter",
-        "filterByProvider": "Filter by provider"
+        "filterByProvider": "Filter by provider",
+        "apply": "Apply filter",
+        "reset": "Reset"
     },
     "keywords": {
         "title": "Popular Searches",

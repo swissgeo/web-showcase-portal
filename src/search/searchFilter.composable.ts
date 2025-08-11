@@ -15,6 +15,8 @@ import { getKGKGroup } from './geocatGroups'
 
 let instance: ReturnType<typeof createSearchFilter> | null = null
 
+type communeType = (typeof communes)[0]
+
 function createSearchFilter() {
     const { localeString } = useLanguage()
 
@@ -115,12 +117,12 @@ function createSearchFilter() {
     }
     function mapCommuneToFilterGroup(
         labelMap: Map<string, { id: number; label: string }>
-    ): (canton: { Gemeindename: string }) => FilterGroup {
+    ): (commune: communeType) => FilterGroup {
         return (commune) => {
             const match = labelMap.get(commune.Gemeindename)
             return {
                 label: match?.label || commune.Gemeindename,
-                value: match?.id,
+                value: match?.id || `${commune.E}.${commune.N}`,
             }
         }
     }

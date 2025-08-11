@@ -7,7 +7,7 @@ import type { FilterGroup } from '@/types/search'
 import MobileMultiSelectOverlay from '@/components/search/MobileMultiSelectOverlay.vue'
 import { useOverlay } from '@/composables/useOverlay'
 
-type MultiSelectValue = number[]
+type MultiSelectValue = (number | string)[]
 
 const {
     modelValue,

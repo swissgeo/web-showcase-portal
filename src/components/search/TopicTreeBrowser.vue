@@ -13,6 +13,7 @@ import type { GeocatLayerInformation } from '@/types/mapPreview'
 import { loadGeocatalogTopics } from '@/api/topics.api'
 import IconButton from '@/components/general/IconButton.vue'
 import MapPreview from '@/components/search/MapPreview.vue'
+import ShowLayerDetailButton from '@/components/search/ShowLayerDetailButton.vue'
 import { LONG_PRESS_TIMEOUT_MS, useMapPreview } from '@/composables/useMapPreview'
 import { defaultLayerOpacity } from '@/config/map.config'
 import { useGeocatalogStore } from '@/store/geocatalog'
@@ -45,6 +46,10 @@ const props = defineProps({
 })
 
 const treeNodes = ref<TreeNode[]>([])
+
+const isOnMap = (id: string) => mainStore.isLayerOnMap(id)
+const layerToggleTitle = (on: boolean) =>
+    on ? t('geocatalog.removeFromMap') : t('geocatalog.addToMap')
 
 const selectedKeys = computed(() => {
     const layerIdsOnMap = mainStore.layersOnMap.map((l) => l.id)
@@ -99,7 +104,7 @@ function toPrimeTreeNodes(node: TopicTreeNode): TreeNode {
         data: node,
         leaf: isLayer,
         children: node.children?.map(toPrimeTreeNodes),
-        icon: isLayer ? 'pi pi-file' : 'pi pi-folder',
+        icon: isLayer ? 'pi pi-map' : 'pi pi-folder',
     }
 }
 
@@ -127,6 +132,10 @@ watch(
 
 function onNodeSelect(node: TreeNode) {
     if (node.data.category === 'layer') {
+        if (isOnMap(node.data.layerBodId)) {
+            mainStore.deleteLayerById(node.data.layerBodId)
+            return
+        }
         mainStore.addLayerToMap({
             id: node.data.layerBodId,
             name: node.data.label,
@@ -135,12 +144,6 @@ function onNodeSelect(node: TreeNode) {
             geonetworkRecord: null,
             type: LayerType.Geocatalog,
         })
-    }
-}
-
-function onNodeUnselect(node: TreeNode) {
-    if (node.data.category === 'layer') {
-        mainStore.deleteLayerById(node.data.layerBodId)
     }
 }
 
@@ -281,28 +284,62 @@ const handleTouchEnd = () => {
                 :filter="true"
                 :filter-placeholder="t('geocatalog.filter')"
                 :expand-all="false"
-                selection-mode="checkbox"
                 :pt="{
-                    pcNodeCheckbox: (options) => {
-                        return options.context.node.data?.category !== 'layer'
-                            ? { root: 'hidden' }
-                            : {}
-                    },
+                    node: { class: '!my-0' },
+                    nodeContent: { class: '!py-1' },
                 }"
-                @node-select="onNodeSelect"
-                @node-unselect="onNodeUnselect"
+                data-cy="geocatalog-tree"
                 @node-expand="onExpand"
                 @node-collapse="onCollapse"
             >
                 <template #default="{ node }">
                     <div
-                        class="w-full flex-1"
-                        @mouseover="onNodeHover(node, $event)"
-                        @mouseleave="onNodeLeave(node)"
-                        @touchstart="handleTouchStart(node, $event)"
-                        @touchend="handleTouchEnd"
+                        :class="{
+                            'border-t border-gray-200': node.data.category === 'layer',
+                        }"
                     >
-                        {{ node.label }}
+                        <!--  spacer div for top border -->
+                        <div
+                            v-if="node.data.category == 'layer'"
+                            class="flex items-center gap-2 px-2 py-1"
+                        ></div>
+                        <div
+                            class="flex"
+                            :class="{
+                                'w-70 justify-between px-2': node.data.category === 'layer',
+                            }"
+                            @mouseover="onNodeHover(node, $event)"
+                            @mouseleave="onNodeLeave(node)"
+                            @touchstart="handleTouchStart(node, $event)"
+                            @touchend="handleTouchEnd"
+                        >
+                            <div
+                                class="flex min-w-0 flex-1 items-center gap-2 overflow-hidden py-1"
+                            >
+                                <div class="truncate text-sm">
+                                    {{ node.label }}
+                                </div>
+                                <!-- spacer div -->
+                                <div class="flex-1"></div>
+                                <ShowLayerDetailButton
+                                    v-if="node.data.category === 'layer'"
+                                    class="flex-shrink-0 align-middle"
+                                    :layer-id="node.data.layerBodId"
+                                />
+                                <IconButton
+                                    v-if="node.data.category === 'layer'"
+                                    class="flex-shrink-0 cursor-pointer align-middle"
+                                    :severity="
+                                        isOnMap(node.data.layerBodId) ? 'success' : 'secondary'
+                                    "
+                                    :outlined="!isOnMap(node.data.layerBodId)"
+                                    :icon="isOnMap(node.data.layerBodId) ? 'Check' : 'Plus'"
+                                    :title="layerToggleTitle(isOnMap(node.data.layerBodId))"
+                                    :data-cy="`add-topic-${node.data.layerBodId}`"
+                                    @click="onNodeSelect(node)"
+                                />
+                            </div>
+                        </div>
                     </div>
                     <Popover
                         ref="popoverComponent"

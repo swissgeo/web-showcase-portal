@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Tag from 'primevue/tag'
-
+import RemovableTag from '@/components/general/RemovableTag.vue'
 import { useSearchFilter } from '@/search/searchFilter.composable'
 
 const {
@@ -12,6 +11,18 @@ const {
     selectedCantonal,
     selectedCommunal,
 } = useSearchFilter()
+
+const removeFederalTag = (index: number) => {
+    selectedFederal.value = selectedFederal.value.filter((_, idx) => idx !== index)
+}
+
+const removeCantonalTag = (index: number) => {
+    selectedCantonal.value = selectedCantonal.value.filter((_, idx) => idx !== index)
+}
+
+const removeCommunalTag = (index: number) => {
+    selectedCommunal.value = selectedCommunal.value.filter((_, idx) => idx !== index)
+}
 </script>
 
 <template>
@@ -19,32 +30,29 @@ const {
         v-if="selectedFederal.length || selectedCantonal.length || selectedCommunal.length"
         class="flex flex-wrap gap-2 pt-2"
     >
-        <Tag
-            v-for="id in selectedFederal"
+        <RemovableTag
+            v-for="(id, idx) in selectedFederal"
             :key="'federal-' + id"
-            severity="danger"
+            severity="secondary"
             :value="findGroupLabel(federalGroups, id)"
             class="font-bold"
-            removable
-            @remove="selectedFederal = []"
+            @remove="removeFederalTag(idx)"
         />
-        <Tag
-            v-for="id in selectedCantonal"
+        <RemovableTag
+            v-for="(id, idx) in selectedCantonal"
             :key="'cantonal-' + id"
-            severity="info"
+            severity="secondary"
             :value="findGroupLabel(cantonGroups, id)"
             class="font-bold"
-            removable
-            @remove="selectedCantonal = []"
+            @remove="removeCantonalTag(idx)"
         />
-        <Tag
-            v-for="id in selectedCommunal"
+        <RemovableTag
+            v-for="(id, idx) in selectedCommunal"
             :key="'communal-' + id"
-            severity="success"
+            severity="secondary"
             :value="findGroupLabel(communalGroups, id)"
             class="font-bold"
-            removable
-            @remove="selectedCommunal = []"
+            @remove="removeCommunalTag(idx)"
         />
     </div>
 </template>

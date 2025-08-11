@@ -100,6 +100,146 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
     })
+
+    it('handles geolocation outside Switzerland', () => {
+        cy.log('Test geolocation functionality when user is outside Switzerland')
+
+        // Mock geolocation to return a location outside Switzerland (e.g., Paris, France)
+        cy.window().then((win) => {
+            cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success) => {
+                const position = {
+                    coords: {
+                        latitude: 48.8566,  // Paris latitude
+                        longitude: 2.3522,  // Paris longitude
+                        accuracy: 10
+                    }
+                }
+                success(position)
+            })
+        })
+
+        // Click geolocation button
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Wait for the geolocation process to complete
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-loading')
+
+        // The application might show an error message or handle it gracefully
+        // Check if URL still updates or if there's an error message
+        cy.get('body').then(($body) => {
+            // Check if there's an error message displayed
+            if ($body.find('[data-cy="error-message"]').length > 0) {
+                cy.get('[data-cy="error-message"]').should('be.visible')
+            } else {
+                // Or check if geolocation is still added to URL despite being outside Switzerland
+                getIframeDocument()
+                    .its('location.href')
+                    .should('match', /(?:\?|&)geolocation=true/)
+            }
+        })
+    })
+
+    it('handles geolocation permission denied', () => {
+        cy.log('Test geolocation functionality when permission is denied')
+
+        // Mock geolocation to simulate permission denied
+        cy.window().then((win) => {
+            cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success, error) => {
+                const permissionError = {
+                    code: 1, // PERMISSION_DENIED
+                    message: 'User denied the request for Geolocation.'
+                }
+                error(permissionError)
+            })
+        })
+
+        // Click geolocation button
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Wait for the geolocation process to complete
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-loading')
+
+        // Check that geolocation parameter is NOT added to URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check if an error message is displayed
+        cy.get('body').then(($body) => {
+            if ($body.find('[data-cy="error-message"]').length > 0) {
+                cy.get('[data-cy="error-message"]').should('be.visible')
+                cy.get('[data-cy="error-message"]').should('contain.text', 'permission')
+            }
+        })
+    })
+
+    it('handles geolocation timeout error', () => {
+        cy.log('Test geolocation functionality when timeout occurs')
+
+        // Mock geolocation to simulate timeout
+        cy.window().then((win) => {
+            cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success, error) => {
+                const timeoutError = {
+                    code: 3, // TIMEOUT
+                    message: 'The request to get user location timed out.'
+                }
+                error(timeoutError)
+            })
+        })
+
+        // Click geolocation button
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Wait for the geolocation process to complete
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-loading')
+
+        // Check that geolocation parameter is NOT added to URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check if an error message is displayed
+        cy.get('body').then(($body) => {
+            if ($body.find('[data-cy="error-message"]').length > 0) {
+                cy.get('[data-cy="error-message"]').should('be.visible')
+                cy.get('[data-cy="error-message"]').should('contain.text', 'timeout')
+            }
+        })
+    })
+
+    it('handles geolocation position unavailable error', () => {
+        cy.log('Test geolocation functionality when position is unavailable')
+
+        // Mock geolocation to simulate position unavailable
+        cy.window().then((win) => {
+            cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success, error) => {
+                const unavailableError = {
+                    code: 2, // POSITION_UNAVAILABLE
+                    message: 'The network is down or the positioning satellites cannot be contacted.'
+                }
+                error(unavailableError)
+            })
+        })
+
+        // Click geolocation button
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Wait for the geolocation process to complete
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-loading')
+
+        // Check that geolocation parameter is NOT added to URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check if an error message is displayed
+        cy.get('body').then(($body) => {
+            if ($body.find('[data-cy="error-message"]').length > 0) {
+                cy.get('[data-cy="error-message"]').should('be.visible')
+            }
+        })
+    })
+
     it('loads a search result on the map', () => {
         cy.get('[data-cy="input-search"]').type('wald')
         cy.log(
@@ -128,7 +268,7 @@ describe('Test the map on mobile', () => {
         cy.get('[data-cy="iframe-mapviewer"]').should('exist')
         cy.get('[data-cy="zoom-button-group"]').should('not.exist')
     })
-    it.only('tests geolocation button functionality', () => {
+    it('tests geolocation button functionality', () => {
         cy.log('Test if the geolocation button toggles geolocation parameter in URL')
 
         // Check if geolocation button exists
@@ -169,6 +309,32 @@ describe('Test the map on mobile', () => {
         cy.get('[data-cy="geolocation-button"]').click()
 
         // Check if geolocation parameter is removed from URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+    })
+
+    it('handles geolocation permission denied on mobile', () => {
+        cy.log('Test geolocation permission denied on mobile device')
+
+        // Mock geolocation to simulate permission denied
+        cy.window().then((win) => {
+            cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success, error) => {
+                const permissionError = {
+                    code: 1, // PERMISSION_DENIED
+                    message: 'User denied the request for Geolocation.'
+                }
+                error(permissionError)
+            })
+        })
+
+        // Click geolocation button
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Wait for the geolocation process to complete
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-loading')
+
+        // Check that geolocation parameter is NOT added to URL
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)

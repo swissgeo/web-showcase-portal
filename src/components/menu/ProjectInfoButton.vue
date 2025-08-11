@@ -4,10 +4,14 @@ import { useI18n } from 'vue-i18n'
 import SidebarButton from '@/components/menu/SidebarButton.vue'
 
 const { t } = useI18n()
-import { PROJECT_INFO_URL } from '@/utils/constants'
+import { getProjectInfoUrl } from '@/utils/constants'
+import { useLanguage } from '@/utils/language.composable'
+
+const { localeString } = useLanguage()
 
 function openProjectInfo() {
-    window.open(PROJECT_INFO_URL, '_blank', 'noopener,noreferrer')
+    const projecInfoUrl = getProjectInfoUrl(localeString.value)
+    window.open(projecInfoUrl, '_blank', 'noopener,noreferrer')
 }
 </script>
 

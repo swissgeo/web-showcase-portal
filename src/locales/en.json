@@ -4,7 +4,7 @@
     "disclaimer": "Testsite not for operational use",
     "welcomeOverlay": {
         "title": "Welcome to the SWISSGEO Test Environment",
-        "swissgeoOverview": "With the next click you will get to the prototype of Switzerland's Geo Platform.",
+        "swissgeoOverview": "With the next click you will get to the prototype of the Swiss geospatial platform.",
         "additionalInfo": "You will already find many geodata and maps in one central location – and you can directly explore and try them out.",
         "feedbackInfo": "Your opinion matters to us. In the prototype, you will find a link through which you can give us direct feedback.",
         "prototypeLink": "Prototype",

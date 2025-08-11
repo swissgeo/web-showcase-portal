@@ -4,10 +4,12 @@ import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
 import { useUiStore } from '@/store/ui'
-import { PROJECT_INFO_URL } from '@/utils/constants'
+import { getProjectInfoUrl } from '@/utils/constants'
+import { useLanguage } from '@/utils/language.composable'
 
 const { t } = useI18n()
 const uiStore = useUiStore()
+const { localeString } = useLanguage()
 
 function handleClose() {
     // Handle the close action using the store
@@ -73,7 +75,7 @@ function openExternalLink(url: string) {
                             class="p-button-outlined"
                             icon="ExternalLink"
                             icon-pos="right"
-                            @click="openExternalLink(PROJECT_INFO_URL)"
+                            @click="openExternalLink(getProjectInfoUrl(localeString))"
                         />
                         <IconButton
                             data-cy="button-overlay-confirm"

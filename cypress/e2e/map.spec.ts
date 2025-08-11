@@ -128,4 +128,49 @@ describe('Test the map on mobile', () => {
         cy.get('[data-cy="iframe-mapviewer"]').should('exist')
         cy.get('[data-cy="zoom-button-group"]').should('not.exist')
     })
+    it.only('tests geolocation button functionality', () => {
+        cy.log('Test if the geolocation button toggles geolocation parameter in URL')
+
+        // Check if geolocation button exists
+        cy.get('[data-cy="geolocation-button"]').should('exist')
+
+        // Initially, geolocation should not be in URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Mock geolocation to avoid browser permission prompts
+        cy.window().then((win) => {
+            cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success) => {
+                // Simulate a location in Switzerland (Bern)
+                const position = {
+                    coords: {
+                        latitude: 46.9481,
+                        longitude: 7.4474,
+                        accuracy: 10
+                    }
+                }
+                success(position)
+            })
+        })
+
+        // Click geolocation button to enable
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Wait for the geolocation process to complete
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-loading')
+
+        // Check if geolocation parameter is added to URL
+        getIframeDocument()
+            .its('location.href')
+            .should('match', /(?:\?|&)geolocation=true/)
+
+        // Click again to disable
+        cy.get('[data-cy="geolocation-button"]').click()
+
+        // Check if geolocation parameter is removed from URL
+        getIframeDocument()
+            .its('location.href')
+            .should('not.match', /(?:\?|&)geolocation=true/)
+    })
 })

@@ -5,11 +5,11 @@ import Panel from 'primevue/panel'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { GeonetworkRecord } from '@/types/gnRecord'
+import type { GeonetworkRecord, OnlineResource } from '@/types/gnRecord'
 
 import DetailLink from '@/components/details/DetailLink.vue'
 import { useMainStore } from '@/store/main'
-import { getResources, getLegalConstraint, getLicense } from '@/utils/layerUtils'
+import { getResources } from '@/utils/layerUtils'
 import { sanitize } from '@/utils/sanitizer'
 
 const { t } = useI18n()
@@ -49,27 +49,7 @@ const downloads = computed(() => {
 
 const links = computed(() => {
     if (info) {
-        const links = getResources('link', info)
-
-        const legalConstraint = getLegalConstraint(info)
-        if (legalConstraint) {
-            links.push({
-                url: legalConstraint,
-                description: t('details.legalConstraints'),
-                name: t('details.legalConstraints'),
-                type: 'link',
-            })
-        }
-
-        const license = getLicense(info)
-        if (license) {
-            links.push({
-                url: license,
-                description: t('details.license'),
-                name: t('details.license'),
-                type: 'link',
-            })
-        }
+        const links: OnlineResource[] = []
 
         links.push({
             url: new URL(`https://www.geocat.ch/datahub/dataset/${info.uniqueIdentifier}`),

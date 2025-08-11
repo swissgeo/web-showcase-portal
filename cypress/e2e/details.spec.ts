@@ -28,7 +28,7 @@ function testDetails() {
     cy.get('[data-cy="panel-dataset-details-links"]')
         .should('be.visible')
         .find('li')
-        .should('have.length', 6)
+        .should('have.length', 1)
 }
 
 describe('Test the layer details on desktop', () => {

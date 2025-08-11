@@ -11,7 +11,15 @@
         "error": "Geolocation error",
         "errorDetail": "Error: {message}",
         "outsideSwissTerritory": "Outside Swiss territory",
-        "outsideSwissTerritoryDetail": "Your location appears to be outside Switzerland"
+        "outsideSwissTerritoryDetail": "Your location appears to be outside Switzerland",
+        "errorMessages": {
+            "unknown": "Unknown geolocation error",
+            "permissionDenied": "Geolocation permission denied",
+            "positionUnavailable": "Geolocation position unavailable",
+            "timeout": "Geolocation request timed out",
+            "notSupported": "Geolocation is not supported by this browser",
+            "coordinateConversion": "Failed to convert coordinates"
+        }
     },
     "welcomeOverlay": {
         "title": "Welcome to the SWISSGEO Test Environment",

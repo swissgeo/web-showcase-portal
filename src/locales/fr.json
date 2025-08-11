@@ -11,7 +11,15 @@
         "error": "Erreur de géolocalisation",
         "errorDetail": "Erreur: {message}",
         "outsideSwissTerritory": "En dehors du territoire suisse",
-        "outsideSwissTerritoryDetail": "Votre position semble être en dehors de la Suisse"
+        "outsideSwissTerritoryDetail": "Votre position semble être en dehors de la Suisse",
+        "errorMessages": {
+            "unknown": "Erreur de géolocalisation inconnue",
+            "permissionDenied": "Permission de géolocalisation refusée",
+            "positionUnavailable": "Position de géolocalisation indisponible",
+            "timeout": "Délai de géolocalisation dépassé",
+            "notSupported": "La géolocalisation n'est pas supportée par ce navigateur",
+            "coordinateConversion": "Échec de la conversion des coordonnées"
+        }
     },
     "welcomeOverlay": {
         "title": "Bienvenue dans l'environnement de test de SWISSGEO",

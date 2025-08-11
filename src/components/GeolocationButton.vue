@@ -43,6 +43,8 @@ const toggleGeolocation = async () => {
                 life: 5000,
                 group: 'bc',
             })
+            // No need to set the map center and zoom
+            return
         }
         // Set the map center and zoom to the user's location
         mainStore.setGeolocationEnabled(true)

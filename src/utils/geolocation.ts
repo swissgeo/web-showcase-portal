@@ -1,4 +1,5 @@
 import { EPSG_2056, EPSG_4326, getConfiguredProj4 } from '@/config/projection.config'
+import { i18n } from '@/types/language'
 
 export interface GeolocationPosition {
     coordinates: [number, number] // [x, y] in EPSG:2056
@@ -19,7 +20,7 @@ export function getCurrentPosition(): Promise<GeolocationPosition> {
         if (!navigator.geolocation) {
             reject({
                 code: 0,
-                message: 'Geolocation is not supported by this browser',
+                message: i18n.global.t('geolocation.errorMessages.notSupported'),
             })
             return
         }
@@ -45,26 +46,26 @@ export function getCurrentPosition(): Promise<GeolocationPosition> {
                 } catch {
                     reject({
                         code: 1,
-                        message: 'Failed to convert coordinates',
+                        message: i18n.global.t('geolocation.errorMessages.coordinateConversion'),
                     })
                 }
             },
             (error) => {
-                let message = 'Unknown geolocation error'
+                let messageKey = 'geolocation.errorMessages.unknown'
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
-                        message = 'Geolocation permission denied'
+                        messageKey = 'geolocation.errorMessages.permissionDenied'
                         break
                     case error.POSITION_UNAVAILABLE:
-                        message = 'Geolocation position unavailable'
+                        messageKey = 'geolocation.errorMessages.positionUnavailable'
                         break
                     case error.TIMEOUT:
-                        message = 'Geolocation request timed out'
+                        messageKey = 'geolocation.errorMessages.timeout'
                         break
                 }
                 reject({
                     code: error.code,
-                    message,
+                    message: i18n.global.t(messageKey),
                 })
             },
             options

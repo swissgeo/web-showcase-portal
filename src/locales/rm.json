@@ -11,7 +11,15 @@
         "error": "Errur da geolocalisaziun",
         "errorDetail": "Errur: {message}",
         "outsideSwissTerritory": "Ordvart dal territori svizzer",
-        "outsideSwissTerritoryDetail": "Tia posiziun para dad esser ordvart da la Svizra"
+        "outsideSwissTerritoryDetail": "Tia posiziun para dad esser ordvart da la Svizra",
+        "errorMessages": {
+            "unknown": "Errur da geolocalisaziun nunenconuschent",
+            "permissionDenied": "Permissiun da geolocalisaziun refusada",
+            "positionUnavailable": "Posiziun da geolocalisaziun betg disponibla",
+            "timeout": "Dumonda da geolocalisaziun scadida",
+            "notSupported": "Geolocalisaziun n'è betg sustegnida da quest navigatur",
+            "coordinateConversion": "Conversiun da las coordinatas betg reussida"
+        }
     },
     "welcomeOverlay": {
         "title": "Bainvegni en l'ambient da test da SWISSGEO",

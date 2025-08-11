@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
 import { useUiStore } from '@/store/ui'
-import { PROJECT_INFO_URL, PROJECT_INFO_URL_EN, PROJECT_INFO_URL_IT } from '@/utils/constants'
+import { getProjectInfoUrl } from '@/utils/constants'
 import { useLanguage } from '@/utils/language.composable'
 
 const { t } = useI18n()
@@ -22,19 +22,6 @@ function handleClose() {
 
 function openExternalLink(url: string) {
     window.open(url, '_blank', 'noopener,noreferrer')
-}
-
-function getProjectInfoUrl(): string {
-    const currentLang = localeString.value
-
-    switch (currentLang) {
-        case 'en':
-            return PROJECT_INFO_URL_EN
-        case 'it':
-            return PROJECT_INFO_URL_IT
-        default:
-            return PROJECT_INFO_URL
-    }
 }
 </script>
 
@@ -88,7 +75,7 @@ function getProjectInfoUrl(): string {
                             class="p-button-outlined"
                             icon="ExternalLink"
                             icon-pos="right"
-                            @click="openExternalLink(getProjectInfoUrl())"
+                            @click="openExternalLink(getProjectInfoUrl(localeString))"
                         />
                         <IconButton
                             data-cy="button-overlay-confirm"

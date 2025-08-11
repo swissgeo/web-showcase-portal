@@ -82,11 +82,10 @@ const toggleGeolocation = async () => {
 <template>
     <Button
         :severity="mainStore.geolocationEnabled ? 'primary' : 'secondary'"
-        :outlined="!isDesktop"
         :loading="isGettingLocation"
         :disabled="isGettingLocation"
         class="h-10"
-        :class="{ 'h-14 w-14 rounded-xl bg-white': !isDesktop }"
+        :class="{ 'h-14 w-14 rounded-xl': !isDesktop }"
         :title="
             isGettingLocation
                 ? t('geolocation.gettingLocation')

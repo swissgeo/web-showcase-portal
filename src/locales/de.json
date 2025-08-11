@@ -18,15 +18,19 @@
     "searchResult": {
         "mobileSearchTitle": "Suche",
         "showInfo": "Details anzeigen",
+        "hideInfo": "Details ausblenden",
         "dataTitle": "Daten",
         "placesTitle": "Orte",
         "addToMap": "Zur Karte hinzufügen",
+        "removeFromMap": "Von der Karte entfernen",
         "buttonLabel": "Suchergebnisse",
         "noPreviewAvailable": "Keine Vorschau verfügbar"
     },
     "layerCart": {
         "showInfo": "Details",
         "delete": "Entfernen",
+        "showLayer": "Karte anzeigen",
+        "hideLayer": "Layer ausblenden",
         "transparency": "Transparenz",
         "zoomToExtent": "Auf Ausschnitt zoomen",
         "noLayerSelected": "Keine Karte ausgewählt",

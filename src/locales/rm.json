@@ -18,15 +18,19 @@
     "searchResult": {
         "mobileSearchTitle": "Tschertga",
         "showInfo": "Mussar detagls",
+        "hideInfo": "Maschar detagls",
         "dataTitle": "Datas",
         "placesTitle": "Posts",
         "addToMap": "Agiuntar a la charta",
+        "removeFromMap": "Allontanar da la charta",
         "buttonLabel": "Resultats da las retschertgas",
         "noPreviewAvailable": "Naginas previsualisaziuns disponiblas"
     },
     "layerCart": {
         "showInfo": "Detagls",
         "delete": "Allontanar",
+        "showLayer": "Mussar la charta",
+        "hideLayer": "Maschar la charta",
         "transparency": "Transparenza",
         "zoomToExtent": "Zoom vers l'extract",
         "noLayerSelected": "Naginas cartas selecziunadas",

@@ -18,15 +18,19 @@
     "searchResult": {
         "mobileSearchTitle": "Recherche",
         "showInfo": "Afficher les détails",
+        "hideInfo": "Masquer les détails",
         "dataTitle": "Données",
         "placesTitle": "Lieux",
         "addToMap": "Ajouter à la carte",
+        "removeFromMap": "Retirer de la carte",
         "buttonLabel": "Résultats de recherche",
         "noPreviewAvailable": "Aucune prévisualisation disponible"
     },
     "layerCart": {
         "showInfo": "Détails",
         "delete": "Supprimer",
+        "showLayer": "Afficher la couche",
+        "hideLayer": "Masquer la couche",
         "transparency": "Transparence",
         "zoomToExtent": "Zoomer sur l'étendue",
         "noLayerSelected": "Aucune carte selectionée",

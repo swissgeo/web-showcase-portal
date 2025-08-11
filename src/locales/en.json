@@ -18,15 +18,19 @@
     "searchResult": {
         "mobileSearchTitle": "Search",
         "showInfo": "Show details",
+        "hideInfo": "Hide details",
         "dataTitle": "Data",
         "placesTitle": "Places",
         "addToMap": "Add to map",
+        "removeFromMap": "Remove from map",
         "buttonLabel": "Search Results",
         "noPreviewAvailable": "No preview available"
     },
     "layerCart": {
         "showInfo": "Details",
         "delete": "Remove",
+        "showLayer": "Show layer",
+        "hideLayer": "Hide layer",
         "transparency": "Transparency",
         "zoomToExtent": "Zoom to extent",
         "noLayerSelected": "No map selected",

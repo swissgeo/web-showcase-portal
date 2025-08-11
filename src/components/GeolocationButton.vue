@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Locate, LocateFixed } from 'lucide-vue-next'
+import { Locate, LocateFixed, LocateOff } from 'lucide-vue-next'
 import Button from 'primevue/button'
 import { useToast } from 'primevue/usetoast'
 import { inject, ref } from 'vue'
@@ -16,16 +16,19 @@ const { t } = useI18n()
 const toast = useToast()
 
 const isGettingLocation = ref(false)
+const hasGeolocationError = ref(false)
 
 const toggleGeolocation = async () => {
     if (mainStore.geolocationEnabled) {
         // Disable geolocation
         mainStore.setGeolocationEnabled(false)
+        hasGeolocationError.value = false
         return
     }
 
     // Enable geolocation and get current position
     isGettingLocation.value = true
+    hasGeolocationError.value = false
 
     try {
         const position = await getCurrentPosition()
@@ -49,7 +52,6 @@ const toggleGeolocation = async () => {
         })
 
         // Enable geolocation in store
-
         toast.add({
             severity: 'success',
             summary: t('geolocation.locationFound'),
@@ -61,6 +63,7 @@ const toggleGeolocation = async () => {
         })
     } catch (error) {
         const geoError = error as GeolocationError
+        hasGeolocationError.value = true
         toast.add({
             severity: 'error',
             summary: t('geolocation.error'),
@@ -96,10 +99,17 @@ const toggleGeolocation = async () => {
             <LocateFixed
                 v-if="!isGettingLocation && mainStore.geolocationEnabled"
                 class="h-6 w-6"
+                data-cy="locate-fixed-icon"
+            />
+            <LocateOff
+                v-else-if="!isGettingLocation && hasGeolocationError"
+                class="h-6 w-6"
+                data-cy="locate-off-icon"
             />
             <Locate
                 v-else-if="!isGettingLocation"
                 class="h-6 w-6"
+                data-cy="locate-icon"
             />
         </template>
     </Button>

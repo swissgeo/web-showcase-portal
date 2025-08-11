@@ -61,10 +61,14 @@ describe('Test the map on desktop', () => {
         // Check if geolocation button exists
         cy.get('[data-cy="geolocation-button"]').should('exist')
 
-        // Initially, geolocation should not be in URL
+        // Initially, geolocation should not be in URL and button should be in secondary state
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check initial button state (should be secondary/disabled state)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
 
         // Mock geolocation to avoid browser permission prompts
         cy.window().then((win) => {
@@ -92,6 +96,13 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('match', /(?:\?|&)geolocation=true/)
 
+        // Check button state after enabling (should be primary/enabled state)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-primary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-secondary')
+
+        // Check enabled icon (should be LocateFixed icon)
+        cy.get('[data-cy="locate-fixed-icon"]').should('exist')
+
         // Click again to disable
         cy.get('[data-cy="geolocation-button"]').click()
 
@@ -99,6 +110,13 @@ describe('Test the map on desktop', () => {
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check button state after disabling (should be back to secondary state)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
+
+        // Check disabled icon (should be back to Locate icon)
+        cy.get('[data-cy="locate-icon"]').should('exist')
     })
 
     it('handles geolocation outside Switzerland', () => {
@@ -142,6 +160,9 @@ describe('Test the map on desktop', () => {
     it('handles geolocation permission denied', () => {
         cy.log('Test geolocation functionality when permission is denied')
 
+        // Check initial button state
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+
         // Mock geolocation to simulate permission denied
         cy.window().then((win) => {
             cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((success, error) => {
@@ -164,6 +185,13 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
 
+        // Check button state after error (should remain secondary, not primary)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
+
+        // Check error icon (should be LocateOff icon)
+        cy.get('[data-cy="locate-off-icon"]').should('exist')
+
         // Check if an error message is displayed
         cy.get('body').then(($body) => {
             if ($body.find('[data-cy="error-message"]').length > 0) {
@@ -175,6 +203,9 @@ describe('Test the map on desktop', () => {
 
     it('handles geolocation timeout error', () => {
         cy.log('Test geolocation functionality when timeout occurs')
+
+        // Check initial button state
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
 
         // Mock geolocation to simulate timeout
         cy.window().then((win) => {
@@ -198,6 +229,13 @@ describe('Test the map on desktop', () => {
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
 
+        // Check button state after error (should remain secondary, not primary)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
+
+        // Check error icon (should be LocateOff icon)
+        cy.get('[data-cy="locate-off-icon"]').should('exist')
+
         // Check if an error message is displayed
         cy.get('body').then(($body) => {
             if ($body.find('[data-cy="error-message"]').length > 0) {
@@ -209,6 +247,9 @@ describe('Test the map on desktop', () => {
 
     it('handles geolocation position unavailable error', () => {
         cy.log('Test geolocation functionality when position is unavailable')
+
+        // Check initial button state
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
 
         // Mock geolocation to simulate position unavailable
         cy.window().then((win) => {
@@ -231,6 +272,13 @@ describe('Test the map on desktop', () => {
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check button state after error (should remain secondary, not primary)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
+
+        // Check error icon (should be LocateOff icon)
+        cy.get('[data-cy="locate-off-icon"]').should('exist')
 
         // Check if an error message is displayed
         cy.get('body').then(($body) => {
@@ -274,10 +322,14 @@ describe('Test the map on mobile', () => {
         // Check if geolocation button exists
         cy.get('[data-cy="geolocation-button"]').should('exist')
 
-        // Initially, geolocation should not be in URL
+        // Initially, geolocation should not be in URL and button should be in secondary state
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check initial button state (should be secondary/disabled state)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
 
         // Mock geolocation to avoid browser permission prompts
         cy.window().then((win) => {
@@ -305,6 +357,13 @@ describe('Test the map on mobile', () => {
             .its('location.href')
             .should('match', /(?:\?|&)geolocation=true/)
 
+        // Check button state after enabling (should be primary/enabled state)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-primary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-secondary')
+
+        // Check enabled icon (should be LocateFixed icon)
+        cy.get('[data-cy="locate-fixed-icon"]').should('exist')
+
         // Click again to disable
         cy.get('[data-cy="geolocation-button"]').click()
 
@@ -312,10 +371,20 @@ describe('Test the map on mobile', () => {
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check button state after disabling (should be back to secondary state)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
+
+        // Check disabled icon (should be back to Locate icon)
+        cy.get('[data-cy="locate-icon"]').should('exist')
     })
 
     it('handles geolocation permission denied on mobile', () => {
         cy.log('Test geolocation permission denied on mobile device')
+
+        // Check initial button state
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
 
         // Mock geolocation to simulate permission denied
         cy.window().then((win) => {
@@ -338,5 +407,12 @@ describe('Test the map on mobile', () => {
         getIframeDocument()
             .its('location.href')
             .should('not.match', /(?:\?|&)geolocation=true/)
+
+        // Check button state after error (should remain secondary, not primary)
+        cy.get('[data-cy="geolocation-button"]').should('have.class', 'p-button-secondary')
+        cy.get('[data-cy="geolocation-button"]').should('not.have.class', 'p-button-primary')
+
+        // Check error icon (should be LocateOff icon)
+        cy.get('[data-cy="locate-off-icon"]').should('exist')
     })
 })

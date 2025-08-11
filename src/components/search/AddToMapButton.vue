@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Plus as PlusIcon, Check as CheckIcon } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type { GeonetworkRecord } from '@/types/gnRecord'
 
+import IconButton from '@/components/general/IconButton.vue'
 import { defaultLayerOpacity } from '@/config/map.config'
 import { useMainStore } from '@/store/main'
 import { LayerType } from '@/types/layer'
@@ -75,23 +74,14 @@ const removeFromMap = (record: GeonetworkRecord) => {
 </script>
 
 <template>
-    <Button
+    <IconButton
         :severity="severity"
         :title="layerTooltipContent"
         class="cursor-pointer"
         :outlined="!isLayerOnMap"
         :data-cy="`add-result-${result.uniqueIdentifier}`"
+        :icon="isLayerOnMap ? 'Check' : 'Plus'"
         @click="onClick(result)"
     >
-        <template #icon>
-            <PlusIcon
-                v-if="!isLayerOnMap"
-                class="h-4 w-4"
-            />
-            <CheckIcon
-                v-else
-                class="h-4 w-4"
-            />
-        </template>
-    </Button>
+    </IconButton>
 </template>

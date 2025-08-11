@@ -141,5 +141,11 @@
     "tooManyLayersWarning": {
         "title": "Zu bleras cartas",
         "message": "Els han agiuntà plirs nivels a la charta. Sch'i dat memia blers nivels, poi dar problems da prestaziun da l'applicaziun. Resguardai per plaschair d'allontanar intgins nivels."
+    },
+    "menu": {
+        "search": "Tschertga",
+        "layerCart": "Chartas visualisadas",
+        "projectInfo": "Infurmaziuns davart il project",
+        "geocatalog": "Catalog da geodatas"
     }
 }

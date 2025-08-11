@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { GeocodingResult } from '@geospatial-sdk/geocoding/lib/model'
 
+import LucideIcon from '@/components/general/LucideIcon.vue'
 import SearchResultEntry from '@/components/search/SearchResultEntry.vue'
 import { getFirstCoordinate } from '@/search/mapUrlUtils'
 import { useMapStore } from '@/store/map'
@@ -31,7 +32,10 @@ function selectAddress() {
             class="flex w-full items-center justify-start gap-2"
             :title="result?.label"
         >
-            <i class="pi pi-map-marker"></i>
+            <LucideIcon
+                name="MapPin"
+                class="h-5 w-5"
+            />
             <div class="truncate">
                 {{ result?.label }}
             </div>

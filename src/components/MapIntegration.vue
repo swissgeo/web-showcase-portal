@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import ButtonGroup from 'primevue/buttongroup'
 import Toast from 'primevue/toast'
 import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
 
+import IconButton from '@/components/general/IconButton.vue'
 import {
     changeZoomLevel,
     generateMapUrlParameters,
@@ -77,17 +77,17 @@ function onEmbedChange(e: MessageEvent) {
         class="absolute right-2 bottom-38 lg:right-6 lg:bottom-8"
         data-cy="zoom-button-group"
     >
-        <Button
+        <IconButton
             :disabled="currentZoomLevel === 1"
             data-cy="zoom-out"
-            icon="pi pi-minus"
+            icon="Minus"
             severity="secondary"
             @click="debounceChangeZoom(false)"
         />
-        <Button
+        <IconButton
             :disabled="currentZoomLevel === 15"
             data-cy="zoom-in"
-            icon="pi pi-plus"
+            icon="Plus"
             severity="secondary"
             @click="debounceChangeZoom(true)"
         />

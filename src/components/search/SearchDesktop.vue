@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { onClickOutside } from '@vueuse/core'
-import Button from 'primevue/button'
 import Card from 'primevue/card'
 import { computed, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import LegendButton from '@/components/LayerWindowButton.vue'
+import IconButton from '@/components/general/IconButton.vue'
+import LegendButton from '@/components/LayerWindowIconButton.vue'
 import SearchFilter from '@/components/search/SearchFilterDesktop.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
@@ -87,7 +87,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                 v-if="isSearching"
                 class="my-2 h-[620px] w-[680px] gap-4 border border-t-0 border-neutral-300 px-4 pt-4 pb-4 shadow"
             ></SearchResultsDesktop>
-            <Button
+            <IconButton
                 v-if="!isSearching"
                 class="background-white relative left-1/2 my-2 inline-block w-auto -translate-x-1/2 text-sm"
                 :label="t('searchResult.buttonLabel')"
@@ -101,8 +101,8 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                 }"
                 @click="openSearch"
             >
-            </Button>
-            <Button
+            </IconButton>
+            <IconButton
                 v-else
                 class="background-white relative left-1/2 inline-block w-auto -translate-x-1/2 -translate-y-2/3 p-2 text-sm"
                 icon="pi pi-angle-up"
@@ -113,7 +113,7 @@ onClickOutside(searchContainer, handleClickOutsideSearch)
                 }"
                 @click="closeSearch"
             >
-            </Button>
+            </IconButton>
         </div>
         <div class="pointer-events-auto absolute top-4 right-6">
             <LegendButton />

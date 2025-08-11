@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import Tag from 'primevue/tag'
 import { computed, inject, nextTick, onMounted, ref, type ComputedRef, type Ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -8,6 +6,7 @@ import { useI18n } from 'vue-i18n'
 import type { SearchKeywordUseCase, SearchKeywordUseCaseConfig } from '@/types/search'
 
 import data from '@/assets/searchKeywordUseCases.json' with { type: 'json' }
+import IconButton from '@/components/general/IconButton.vue'
 import useGeocat from '@/search/geocat'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
@@ -217,24 +216,22 @@ defineExpose({
             ></div>
 
             <!-- Scroll Arrow Button -->
-            <Button
+            <IconButton
                 v-if="isDesktop && showRightGradient && showScrollArrowRight"
                 class="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
+                icon="ChevronRight"
+                icon-class="h-5 w-5 text-[#1F576B]"
                 @click="scrollUntilEndOfList"
             >
-                <template #icon>
-                    <ChevronRight class="h-5 w-5 text-[#1F576B]" />
-                </template>
-            </Button>
-            <Button
+            </IconButton>
+            <IconButton
                 v-if="isDesktop && showLeftGradient && showScrollArrowLeft"
                 class="absolute top-1/2 left-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
+                icon="ChevronLeft"
+                icon-class="text-[#1F576B] h-5 w-5"
                 @click="scrollUntilBeginningOfList"
             >
-                <template #icon>
-                    <ChevronLeft class="h-5 w-5 text-[#1F576B]" />
-                </template>
-            </Button>
+            </IconButton>
         </div>
     </div>
 </template>

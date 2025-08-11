@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import MultiSelect from 'primevue/multiselect'
 import Tag from 'primevue/tag'
 import { useI18n } from 'vue-i18n'
 
 import type { FilterGroup } from '@/types/search'
 
+import MultiSelect from '@/components/general/MultiSelect.vue'
 import { useSearchFilter } from '@/search/searchFilter.composable'
 
 const { t } = useI18n()
@@ -40,7 +40,6 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 v-model="selectedFederal"
                 :max-selected-labels="0"
                 :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-                :checkbox-icon="'pi pi-check'"
                 :filter="true"
                 :filter-placeholder="t('organisation.selectFederal')"
                 :virtual-scroller-options="{ itemSize: 40 }"
@@ -69,11 +68,10 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 v-model="selectedCantonal"
                 :max-selected-labels="0"
                 :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-                :checkbox-icon="'pi pi-check'"
                 :filter="true"
                 :filter-placeholder="t('organisation.selectCanton')"
                 :options="cantonGroups"
-                :option-disabled="(option) => !option.value"
+                :option-disabled="(option: any) => !option.value"
                 :virtual-scroller-options="{ itemSize: 40 }"
                 option-label="label"
                 option-value="value"
@@ -96,11 +94,10 @@ function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): stri
                 v-model="selectedCommunal"
                 :max-selected-labels="0"
                 :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-                :checkbox-icon="'pi pi-check'"
                 :filter="true"
                 :filter-placeholder="t('organisation.selectCommune')"
                 :options="communalGroups"
-                :option-disabled="(option) => !option.value"
+                :option-disabled="(option: any) => !option.value"
                 :virtual-scroller-options="{ itemSize: 40 }"
                 option-label="label"
                 option-value="value"

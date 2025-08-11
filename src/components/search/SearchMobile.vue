@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { ArrowLeft } from 'lucide-vue-next'
-import Button from 'primevue/button'
 import Card from 'primevue/card'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import IconButton from '@/components/general/IconButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
-import LayerCartButton from '@/components/LayerCartButton.vue'
 import LegendButton from '@/components/LayerWindowButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import LayerCartButton from '@/components/menu/LayerCartButton.vue'
 import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
@@ -64,17 +63,15 @@ const clearSearch = () => {
             class="flex flex-row items-center justify-between px-2 py-4"
             :class="{ 'bg-white': isSearching }"
         >
-            <Button
+            <IconButton
                 v-if="isSearching"
                 aria-label="Back"
                 text
                 data-cy="button-close-search"
+                icon="ArrowLeft"
                 @click="clearSearch"
             >
-                <template #icon>
-                    <ArrowLeft />
-                </template>
-            </Button>
+            </IconButton>
             <div v-else></div>
             <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
             <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>

@@ -26,7 +26,7 @@ interface Props {
 }
 
 // Define props for the LayerItem component
-const props = withDefaults(defineProps<Props>(), {
+const layerProps = withDefaults(defineProps<Props>(), {
     isBgLayer: false,
 })
 
@@ -44,22 +44,22 @@ const menu = ref()
 const menuShown = ref(false)
 
 const isLayerDetailsDisplayed = computed(() => {
-    return mainStore.infoLayerId === props.layer.id
+    return mainStore.infoLayerId === layerProps.layer.id
 })
 
 // Method to toggle layer visibility
 const toggleVisibility = () => {
-    if (props.isBgLayer) {
-        mainStore.setBgLayerVisibility(props.layer.id, !props.layer.visible)
+    if (layerProps.isBgLayer) {
+        mainStore.setBgLayerVisibility(layerProps.layer.id, !layerProps.layer.visible)
     } else {
-        mainStore.setLayerVisibility(props.layer.id, !props.layer.visible)
+        mainStore.setLayerVisibility(layerProps.layer.id, !layerProps.layer.visible)
     }
 }
 
 // Computed property for opacity value with getter and setter
 const opacityValue = computed({
     get() {
-        return Math.abs(100 - (props.layer.opacity ?? 1) * 100)
+        return Math.abs(100 - (layerProps.layer.opacity ?? 1) * 100)
     },
     set(val: number | number[]) {
         let value = Array.isArray(val) ? val[0] : val
@@ -68,7 +68,7 @@ const opacityValue = computed({
             value = 0
         }
         value = Math.max(0, Math.min(100, value))
-        debouncedChangeOpacity(props.layer.id, value)
+        debouncedChangeOpacity(layerProps.layer.id, value)
     },
 })
 
@@ -79,7 +79,7 @@ const debouncedChangeOpacity = debounce((layerId: string, value: number) => {
 
 const metadataMenuClicked = () => {
     menuShown.value = false
-    mainStore.setInfoLayerId(props.layer.id)
+    mainStore.setInfoLayerId(layerProps.layer.id)
     uiStore.setOpenLayerWindowFromDetailButton(false)
     nextTick(() => {
         uiStore.setOpenLayerWindowFromDetailButton(true)
@@ -93,26 +93,26 @@ const opacityMenuClicked = () => {
     menuShown.value = false
 }
 const deleteMenuClicked = () => {
-    emit('delete-layer', props.layer)
+    emit('delete-layer', layerProps.layer)
     menuShown.value = false
 }
 
 const zoomToExtentMenuClicked = async () => {
     // eslint-disable-next-line no-console
-    console.log('Zoom to extent clicked for layer:', props.layer.id)
+    console.log('Zoom to extent clicked for layer:', layerProps.layer.id)
 
     // Get the layer extent using useMapPreview composable
     try {
-        if (!props.layer.geonetworkRecord) {
+        if (!layerProps.layer.geonetworkRecord) {
             // eslint-disable-next-line no-console
-            console.error('No geonetwork record found for layer:', props.layer.id)
+            console.error('No geonetwork record found for layer:', layerProps.layer.id)
             return
         }
 
-        const wmsResource = getServiceResource('wms', props.layer.geonetworkRecord)
+        const wmsResource = getServiceResource('wms', layerProps.layer.geonetworkRecord)
         if (!wmsResource || !wmsResource.url || !wmsResource.name) {
             // eslint-disable-next-line no-console
-            console.error('No WMS resource found for layer:', props.layer.id)
+            console.error('No WMS resource found for layer:', layerProps.layer.id)
             return
         }
 
@@ -186,12 +186,12 @@ const toggleLayerMenu = (event: any) => {
 }
 
 const bgLayerThumbnail = computed(() => {
-    if (props.isBgLayer && props.layer.id) {
+    if (layerProps.isBgLayer && layerProps.layer.id) {
         try {
-            return new URL(`../assets/images/${props.layer.id}.png`, import.meta.url).href
+            return new URL(`../assets/images/${layerProps.layer.id}.png`, import.meta.url).href
         } catch (e) {
             // eslint-disable-next-line no-console
-            console.error(`Image not found for layer ID: ${props.layer.id}: ${e}`)
+            console.error(`Image not found for layer ID: ${layerProps.layer.id}: ${e}`)
             return ''
         }
     }
@@ -199,12 +199,14 @@ const bgLayerThumbnail = computed(() => {
 })
 
 const tooltipContent = computed(() => {
-    if (props.isBgLayer) {
-        return t(props.layer.name)
+    if (layerProps.isBgLayer) {
+        return t(layerProps.layer.name)
     }
-    const fullTitle = props.layer.geonetworkRecord?.title || props.layer.name || ''
+    const fullTitle = layerProps.layer.geonetworkRecord?.title || layerProps.layer.name || ''
     const owner =
-        props.layer.geonetworkRecord?.ownerOrganization?.name || props.layer.attribution || ''
+        layerProps.layer.geonetworkRecord?.ownerOrganization?.name ||
+        layerProps.layer.attribution ||
+        ''
     return owner ? `${fullTitle}\n\n${owner}` : fullTitle
 })
 </script>
@@ -215,7 +217,7 @@ const tooltipContent = computed(() => {
         :class="{ 'bg-slate-200': isLayerDetailsDisplayed, 'bg-white': !isLayerDetailsDisplayed }"
     >
         <div
-            v-if="!props.isBgLayer"
+            v-if="!layerProps.isBgLayer"
             class="layer-item-drag-handle absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-[#DFE4E9] shadow group-hover:flex"
         >
             <GripVertical />
@@ -247,7 +249,7 @@ const tooltipContent = computed(() => {
                 class="h-10 w-10 rounded-full object-cover"
             />
             <IconButton
-                v-if="!props.isBgLayer"
+                v-if="!layerProps.isBgLayer"
                 variant="outlined"
                 rounded
                 size="small"

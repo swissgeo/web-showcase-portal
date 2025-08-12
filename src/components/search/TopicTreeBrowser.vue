@@ -77,7 +77,22 @@ const selectedTopic = computed<GeocatalogTopic | undefined>({
         geocatalogStore.setCurrentTopic(topic)
     },
 })
-const geocatalogTopics = computed(() => geocatalogStore.topics)
+
+const geocatalogTopics = computed(() => {
+    const src = geocatalogStore.topics ?? []
+
+    // cloning to avoid mutating the original array
+    const sorted = [...src].sort((a, b) => getTopicLabel(a.id).localeCompare(getTopicLabel(b.id)))
+
+    // Move the Geocatalog topic to the top
+    const isGeoTopic = sorted.find((t) => t.id === 'ech')
+    if (isGeoTopic) {
+        sorted.splice(sorted.indexOf(isGeoTopic), 1)
+        sorted.unshift(isGeoTopic)
+    }
+
+    return sorted
+})
 
 function collectSelectedKeys(
     nodes: TreeNode[],

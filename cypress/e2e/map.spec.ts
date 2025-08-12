@@ -149,10 +149,10 @@ describe('Test the map on desktop', () => {
             if ($body.find('[data-cy="error-message"]').length > 0) {
                 cy.get('[data-cy="error-message"]').should('be.visible')
             } else {
-                // Or check if geolocation is still added to URL despite being outside Switzerland
+                // Or check if geolocation is NOT added to URL when outside Switzerland
                 getIframeDocument()
                     .its('location.href')
-                    .should('match', /(?:\?|&)geolocation=true/)
+                    .should('not.match', /(?:\?|&)geolocation=true/)
             }
         })
     })

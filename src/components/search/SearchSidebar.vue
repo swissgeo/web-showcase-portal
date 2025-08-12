@@ -7,6 +7,7 @@ import type SearchKeywordContainerType from '@/components/search/SearchKeywordCo
 
 import IconButton from '@/components/general/IconButton.vue'
 import SearchFilterDesktop from '@/components/search/SearchFilterDesktop.vue'
+import SearchFilterTaglist from '@/components/search/SearchFilterTaglist.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
@@ -95,10 +96,11 @@ defineExpose({
             />
 
             <SearchFilterDesktop
-                v-show="uiStore.isFilterVisible"
+                v-if="uiStore.isFilterVisible"
                 data-cy="search-filter"
-                class="bg-swissgeo-lightblue mb-4 rounded-lg p-4"
             />
+
+            <SearchFilterTaglist />
 
             <!-- Search Results (when searching) -->
             <SearchResultsMobile

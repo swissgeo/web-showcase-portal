@@ -105,7 +105,9 @@
     },
     "filter": {
         "title": "Filter",
-        "filterByProvider": "Filter tras purschider"
+        "filterByProvider": "Filter tras purschider",
+        "apply": "Applicar il filter",
+        "reset": "Reimpostar"
     },
     "keywords": {
         "title": "Tschertgas popularas",

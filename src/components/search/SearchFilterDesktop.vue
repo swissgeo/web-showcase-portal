@@ -1,156 +1,149 @@
 <script setup lang="ts">
-import Tag from 'primevue/tag'
+import { useFloating, offset } from '@floating-ui/vue'
+import Button from 'primevue/button'
+import Divider from 'primevue/divider'
+import Panel from 'primevue/panel'
+import { useTemplateRef, computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { FilterGroup } from '@/types/search'
-
-import MultiSelect from '@/components/general/MultiSelect.vue'
+import FilterDropdown from '@/components/FilterDropdown.vue'
 import { useSearchFilter } from '@/search/searchFilter.composable'
+import { useUiStore } from '@/store/ui'
+
+const uiStore = useUiStore()
 
 const { t } = useI18n()
-const {
-    findGroupLabel,
-    federalGroups,
-    cantonGroups,
-    communalGroups,
-    selectedFederal,
-    selectedCantonal,
-    selectedCommunal,
-} = useSearchFilter()
 
-const emit = defineEmits(['focus', 'blur'])
+// don't destructure, so we have a bit of namespacing
+const searchFilter = useSearchFilter()
 
-const { isShowTags = true } = defineProps<{
-    isShowTags?: boolean
-}>()
+const filterElement = useTemplateRef('filterElement')
+const filterReference = computed(() => uiStore.filterReferenceElement)
 
-function multiSelectLabel(selectedValues: number[], groups: FilterGroup[]): string {
-    return selectedValues
-        .map((id) => groups.find((g) => g.value === id)?.label)
-        .filter(Boolean)
-        .join(', ')
+// the dialog isn't immediately applied, so we save the values temporarily
+// here
+const tempSelectedFederal = ref(searchFilter.selectedFederal.value)
+const tempSelectedCantonal = ref(searchFilter.selectedCantonal.value)
+const tempSelectedCommunal = ref(searchFilter.selectedCommunal.value)
+
+const { floatingStyles } = useFloating(filterReference, filterElement!, {
+    placement: 'bottom-start',
+    middleware: [offset(5)],
+})
+
+const selectedFederal = computed({
+    get() {
+        return tempSelectedFederal.value
+    },
+    set(value: number[]) {
+        // filters are exclusive
+        tempSelectedFederal.value = value ?? []
+        tempSelectedCantonal.value = []
+        tempSelectedCommunal.value = []
+    },
+})
+
+const selectedCantonal = computed({
+    get() {
+        return tempSelectedCantonal.value
+    },
+    set(value: number[]) {
+        // filters are exclusive
+        tempSelectedFederal.value = []
+        tempSelectedCantonal.value = value ?? []
+        tempSelectedCommunal.value = []
+    },
+})
+
+const selectedCommunal = computed({
+    get() {
+        return tempSelectedCommunal.value
+    },
+    set(value: number[]) {
+        // filters are exclusive
+        tempSelectedFederal.value = []
+        tempSelectedCantonal.value = []
+        tempSelectedCommunal.value = value ?? []
+    },
+})
+
+function reset() {
+    searchFilter.selectedFederal.value = []
+    searchFilter.selectedCantonal.value = []
+    searchFilter.selectedCommunal.value = []
+    uiStore.toggleFilterVisible()
+}
+
+function apply() {
+    if (tempSelectedFederal.value.length) {
+        searchFilter.selectedFederal.value = tempSelectedFederal.value
+        return uiStore.toggleFilterVisible()
+    }
+
+    if (tempSelectedCantonal.value.length) {
+        searchFilter.selectedCantonal.value = tempSelectedCantonal.value
+        return uiStore.toggleFilterVisible()
+    }
+
+    if (tempSelectedCommunal.value.length) {
+        searchFilter.selectedCommunal.value = tempSelectedCommunal.value
+        return uiStore.toggleFilterVisible()
+    }
+
+    // all must be null, which means the user applied the dialog with no filter
+    // selected, meaning that they want to clear the filter
+    return reset()
 }
 </script>
 
 <template>
-    <div class="bg-swissgeo-lightblue p-3">
-        <span class="text-sm">{{ t('filter.filterByProvider') }}</span>
-        <div class="flex w-full items-center">
-            <MultiSelect
-                v-model="selectedFederal"
-                :max-selected-labels="0"
-                :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-                :filter="true"
-                :filter-placeholder="t('organisation.selectFederal')"
-                :virtual-scroller-options="{ itemSize: 40 }"
-                :options="federalGroups"
-                option-label="label"
-                option-value="value"
-                :placeholder="t('organisation.selectFederal')"
-                show-clear
-                class="mr-2 min-w-[100px] flex-1 text-xs"
+    <div>
+        <!-- type checker prefers it when I do the floating on a div instead of
+         the Panel directly
+         -->
+        <div ref="filterElement">
+            <Panel
+                class="z-100 border-1 border-[#1F576B] bg-white shadow"
+                :style="floatingStyles"
+                :header="t('filter.filterByProvider')"
                 :pt="{
-                    overlay: { 'data-cy': 'multiselect-filter-list' },
-                    label: {
-                        class: 'block truncate max-w-[21ch]',
-                    },
+                    header: 'bg-neutral-100 rounded-t-lg',
+                    content: 'p-0',
                 }"
-                :selected-items-label="
-                    t('organisation.category.federal_office') +
-                    ': ' +
-                    multiSelectLabel(selectedFederal, federalGroups)
-                "
-                @focus="emit('focus')"
-                @blur="emit('blur')"
             >
-            </MultiSelect>
-            <MultiSelect
-                v-model="selectedCantonal"
-                :max-selected-labels="0"
-                :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-                :filter="true"
-                :filter-placeholder="t('organisation.selectCanton')"
-                :options="cantonGroups"
-                :option-disabled="(option: any) => !option.value"
-                :virtual-scroller-options="{ itemSize: 40 }"
-                option-label="label"
-                option-value="value"
-                :placeholder="t('organisation.selectCanton')"
-                show-clear
-                class="mr-2 min-w-[100px] flex-1 text-xs"
-                :pt="{
-                    overlay: { 'data-cy': 'multiselect-filter-list' },
-                }"
-                :selected-items-label="
-                    t('organisation.category.canton') +
-                    ': ' +
-                    multiSelectLabel(selectedCantonal, cantonGroups)
-                "
-                @focus="emit('focus')"
-                @blur="emit('blur')"
-            >
-            </MultiSelect>
-            <MultiSelect
-                v-model="selectedCommunal"
-                :max-selected-labels="0"
-                :checkbox-style-class="'!border-gray-300 !bg-white !text-gray-900'"
-                :filter="true"
-                :filter-placeholder="t('organisation.selectCommune')"
-                :options="communalGroups"
-                :option-disabled="(option: any) => !option.value"
-                :virtual-scroller-options="{ itemSize: 40 }"
-                option-label="label"
-                option-value="value"
-                :placeholder="t('organisation.selectCommune')"
-                show-clear
-                class="min-w-[100px] flex-1 text-xs"
-                :pt="{
-                    overlay: { 'data-cy': 'multiselect-filter-list' },
-                }"
-                :selected-items-label="
-                    t('organisation.category.commune') +
-                    ': ' +
-                    multiSelectLabel(selectedCommunal, communalGroups)
-                "
-                @focus="emit('focus')"
-                @blur="emit('blur')"
-            >
-            </MultiSelect>
-        </div>
-        <div
-            v-if="
-                isShowTags &&
-                (selectedFederal.length || selectedCantonal.length || selectedCommunal.length)
-            "
-            class="flex flex-wrap gap-2 pt-2"
-        >
-            <Tag
-                v-for="id in selectedFederal"
-                :key="'federal-' + id"
-                severity="danger"
-                :value="findGroupLabel(federalGroups, id)"
-                class="font-bold"
-                removable
-                @remove="selectedFederal = []"
-            />
-            <Tag
-                v-for="id in selectedCantonal"
-                :key="'cantonal-' + id"
-                severity="info"
-                :value="findGroupLabel(cantonGroups, id)"
-                class="font-bold"
-                removable
-                @remove="selectedCantonal = []"
-            />
-            <Tag
-                v-for="id in selectedCommunal"
-                :key="'communal-' + id"
-                severity="success"
-                :value="findGroupLabel(communalGroups, id)"
-                class="font-bold"
-                removable
-                @remove="selectedCommunal = []"
-            />
+                <div class="flex flex-col gap-6 p-4">
+                    <FilterDropdown
+                        v-model="selectedFederal"
+                        :options="searchFilter.federalGroups.value"
+                        :label="t('organisation.selectFederal')"
+                        :item-label="t('organisation.category.federal_office')"
+                    />
+                    <FilterDropdown
+                        v-model="selectedCantonal"
+                        :options="searchFilter.cantonGroups.value"
+                        :label="t('organisation.selectCanton')"
+                        :item-label="t('organisation.category.canton')"
+                    />
+                    <FilterDropdown
+                        v-model="selectedCommunal"
+                        :options="searchFilter.communalGroups.value"
+                        :label="t('organisation.selectCommune')"
+                        :item-label="t('organisation.category.commune')"
+                    />
+                </div>
+                <Divider></Divider>
+                <div class="flex justify-end gap-2 px-4 py-2">
+                    <Button
+                        :label="t('filter.reset')"
+                        severity="secondary"
+                        @click="reset"
+                    ></Button>
+                    <Button
+                        :label="t('filter.apply')"
+                        @click="apply"
+                    ></Button>
+                </div>
+            </Panel>
         </div>
     </div>
 </template>

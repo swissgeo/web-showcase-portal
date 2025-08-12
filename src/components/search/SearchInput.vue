@@ -2,7 +2,7 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, inject, onMounted, ref } from 'vue'
+import { computed, inject, onMounted, ref, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
@@ -19,6 +19,7 @@ const emits = defineEmits(['focus', 'blur'])
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const inputRef = ref<any | null>(null)
 const searchArea = ref<HTMLElement | null>(null)
+const filterButtonReference = useTemplateRef('filterButtonReference')
 defineExpose({ searchArea })
 
 const { t } = useI18n()
@@ -70,7 +71,10 @@ const clearSearch = () => {
     searchStore.setForceScrollComponentUpdate(true)
 }
 
-function toggleFilter() {
+async function toggleFilter() {
+    if (filterButtonReference.value) {
+        await uiStore.setFilterReferenceElement(filterButtonReference.value)
+    }
     uiStore.toggleFilterVisible()
 }
 function onEnter() {
@@ -116,14 +120,16 @@ function onEnter() {
             class="mx-1 w-px self-center bg-gray-300"
             style="height: 12px"
         ></div>
-        <IconButton
-            :severity="uiStore.isFilterVisible ? 'primary' : 'secondary'"
-            :size="'small'"
-            :class="{ 'text-swissgeo-blue border-white bg-white': !uiStore.isFilterVisible }"
-            :label="isDesktop ? t('filter.title') : ''"
-            icon="ListFilter"
-            @click="toggleFilter"
-        >
-        </IconButton>
+        <div ref="filterButtonReference">
+            <IconButton
+                :severity="uiStore.isFilterVisible ? 'primary' : 'secondary'"
+                :size="'small'"
+                :class="{ 'text-swissgeo-blue border-white bg-white': !uiStore.isFilterVisible }"
+                :label="isDesktop ? t('filter.title') : ''"
+                icon="ListFilter"
+                @click="toggleFilter"
+            >
+            </IconButton>
+        </div>
     </div>
 </template>

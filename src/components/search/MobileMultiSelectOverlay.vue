@@ -14,7 +14,7 @@ import { useOverlay } from '@/composables/useOverlay'
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useSearchStore } from '@/store/search'
 
-type MultiSelectValue = number[]
+type MultiSelectValue = (number | string)[]
 
 const {
     modelValue,

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Divider from 'primevue/divider'
 import MultiSelect from 'primevue/multiselect'
 
 import LucideIcon from '@/components/general/LucideIcon.vue'
@@ -9,11 +10,19 @@ import LucideIcon from '@/components/general/LucideIcon.vue'
         <template #clearicon="{ clearCallback }">
             <LucideIcon
                 name="X"
-                @click="clearCallback"
+                class="h-6 self-center text-[#1C6B85]"
+                @click.stop="clearCallback"
+            />
+            <Divider
+                layout="vertical"
+                class="mx-2 my-2"
             />
         </template>
         <template #dropdownicon>
-            <LucideIcon name="ChevronDown" />
+            <LucideIcon
+                name="ChevronDown"
+                class="text-[#1C6B85]"
+            />
         </template>
         <template #itemcheckboxicon="{ checked }">
             <LucideIcon

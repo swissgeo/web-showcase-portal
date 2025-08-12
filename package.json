@@ -27,6 +27,7 @@
         "lf": "pnpm run lint && pnpm run format"
     },
     "dependencies": {
+        "@floating-ui/vue": "^1.1.8",
         "@fontsource/dm-sans": "^5.2.5",
         "@fontsource/geologica": "^5.2.5",
         "@fontsource/inter": "^5.2.5",

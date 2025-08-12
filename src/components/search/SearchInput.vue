@@ -2,7 +2,7 @@
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, inject, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, inject, nextTick, onMounted, ref, useTemplateRef, type ComputedRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
@@ -13,14 +13,13 @@ import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
-const isDesktop = inject<boolean>('isDesktop', true)
+const isDesktop = inject<ComputedRef<boolean>>('isDesktop')
 const emits = defineEmits(['focus', 'blur'])
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const inputRef = ref<any | null>(null)
 const searchArea = ref<HTMLElement | null>(null)
 const filterButtonReference = useTemplateRef('filterButtonReference')
-defineExpose({ searchArea })
 
 const { t } = useI18n()
 const { triggerSearch } = useTriggerSearch()
@@ -29,7 +28,7 @@ const uiStore = useUiStore()
 const geocatSearch = useGeocat()
 const mapStore = useMapStore()
 const isSearching = computed(() => !!searchStore.searchTerm)
-
+const isInputFocused = ref(false)
 const searchTerm = computed({
     get() {
         return searchStore.searchTerm
@@ -52,15 +51,18 @@ const searchTerm = computed({
 })
 
 const onFocus = () => {
+    isInputFocused.value = true
     emits('focus')
 }
 
 const onBlur = () => {
+    isInputFocused.value = false
     emits('blur')
 }
 
 onMounted(() => {
     geocatSearch.initializeGNUI()
+    focusInput()
 })
 
 const clearSearch = () => {
@@ -83,14 +85,30 @@ function onEnter() {
         inputRef.value?.$el.blur()
     }
 }
+
+const focusInput = () => {
+    nextTick(() => {
+        if (inputRef.value && inputRef.value.$el && isDesktop?.value) {
+            inputRef.value.$el.focus()
+        }
+    })
+}
+
+defineExpose({ searchArea, focusInput })
 </script>
 
 <template>
-    <div class="flex items-center gap-2">
+    <div
+        class="flex items-center gap-2 rounded-lg md:h-12 md:border-1 md:border-solid"
+        :class="{
+            'border-1 border-[#1C6B85] outline-1 outline-[#1C6B85]': isInputFocused && isDesktop,
+            'border-gray-300': !isInputFocused && isDesktop,
+        }"
+    >
         <IconField class="grow">
             <InputIcon>
                 <LucideIcon
-                    class="w-6 -translate-y-1"
+                    class="color-[#1C6B85] w-4 -translate-y-1"
                     name="Search"
                 />
             </InputIcon>
@@ -99,7 +117,7 @@ function onEnter() {
                 ref="inputRef"
                 v-model="searchTerm"
                 data-cy="input-search"
-                class="w-full border-none shadow-none"
+                class="w-full rounded-lg border-none shadow-none"
                 :placeholder="t('searchPlaceholder')"
                 @focus="onFocus"
                 @blur="onBlur"
@@ -124,6 +142,8 @@ function onEnter() {
             <IconButton
                 :severity="uiStore.isFilterVisible ? 'primary' : 'secondary'"
                 :size="'small'"
+                class="md:mr-1"
+                icon-class="md:h-5"
                 :class="{ 'text-swissgeo-blue border-white bg-white': !uiStore.isFilterVisible }"
                 :label="isDesktop ? t('filter.title') : ''"
                 icon="ListFilter"

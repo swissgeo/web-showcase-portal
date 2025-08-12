@@ -117,9 +117,9 @@ function toggleOption(value: number | undefined) {
                 <div class="mb-4 flex gap-2 border-b border-gray-200">
                     <IconButton
                         class="text-swissgeo-blue flex-1 border-none bg-white"
+                        :label="t('organisation.selectAll')"
                         @click="selectAll"
                     >
-                        {{ t('organisation.selectAll') }}
                     </IconButton>
                     <div
                         class="mx-2 w-px self-center bg-gray-300"
@@ -127,9 +127,9 @@ function toggleOption(value: number | undefined) {
                     ></div>
                     <IconButton
                         class="text-swissgeo-blue flex-1 border-none bg-white"
+                        :label="t('organisation.reset')"
                         @click="clearSelection"
                     >
-                        {{ t('organisation.reset') }}
                     </IconButton>
                 </div>
             </div>

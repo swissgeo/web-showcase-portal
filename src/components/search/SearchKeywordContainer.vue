@@ -158,6 +158,10 @@ function onClickKeyword(useCase: SearchKeywordUseCase) {
     setGradientAndArrowFlags(false, false, false, false)
     searchStore.setSearchTerm(useCase.keyword?.[localeString.value])
     geocatSearch.searchConfigGeocat(useCase.layers)
+    searchStore.resetFilters()
+    if (uiStore.isFilterVisible) {
+        uiStore.toggleFilterVisible()
+    }
 }
 
 // Handle the SideBar container dragging logic here

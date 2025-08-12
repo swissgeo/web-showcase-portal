@@ -252,6 +252,7 @@ const handleTouchEnd = () => {
             header: 'md:justify-between justify-center',
             title: 'order-2 md:order-1 ',
             headerActions: 'absolute left-4 md:static md:order-2',
+            content: 'px-2 py-4',
         }"
     >
         <template #icons>

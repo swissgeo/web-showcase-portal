@@ -2,6 +2,25 @@
     "welcome": "Bienvenue",
     "searchPlaceholder": "Rechercher ici...",
     "disclaimer": "Site de test, pour démonstration",
+    "geolocation": {
+        "enable": "Activer la géolocalisation",
+        "disable": "Désactiver la géolocalisation",
+        "gettingLocation": "Obtention de votre position...",
+        "locationFound": "Position trouvée",
+        "locationFoundDetail": "Votre position a été trouvée avec une précision de {accuracy}m",
+        "error": "Erreur de géolocalisation",
+        "errorDetail": "Erreur: {message}",
+        "outsideSwissTerritory": "En dehors du territoire suisse",
+        "outsideSwissTerritoryDetail": "Votre position semble être en dehors de la Suisse",
+        "errorMessages": {
+            "unknown": "Erreur de géolocalisation inconnue",
+            "permissionDenied": "Permission de géolocalisation refusée",
+            "positionUnavailable": "Position de géolocalisation indisponible",
+            "timeout": "Délai de géolocalisation dépassé",
+            "notSupported": "La géolocalisation n'est pas supportée par ce navigateur",
+            "coordinateConversion": "Échec de la conversion des coordonnées"
+        }
+    },
     "welcomeOverlay": {
         "title": "Bienvenue dans l'environnement de test de SWISSGEO",
         "swissgeoOverview": "Avec le prochain clic, vous accédez au prototype de la géoplateforme suisse.",

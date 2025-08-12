@@ -57,6 +57,10 @@ export function generateMapUrlParameters(params: Partial<MapUrlParameter>) {
         searchParams.append('center', params.center.join(','))
     }
 
+    if (params.geolocation) {
+        searchParams.append('geolocation', 'true')
+    }
+
     searchParams.append('hideEmbedUI', 'true')
 
     return searchParams
@@ -111,6 +115,11 @@ export function getUrlParamsFromSource(
             paramsToPush[key] = [parseFloat(coordinates[0]), parseFloat(coordinates[1])]
         } else if (key === 'hideEmbedUI') {
             paramsToPush[key] = true
+        } else if (key === 'geolocation') {
+            // if the geolocation is set without a value, it means it is enabled
+            // if the value is 'false', it means it is disabled
+            const isGeolocationDisabled = value === 'false'
+            paramsToPush[key] = !isGeolocationDisabled
         } else if (key === 'lang') {
             if (isLanguageSupported(value as string)) {
                 paramsToPush[key] = value as Language

@@ -4,6 +4,7 @@ import Toast from 'primevue/toast'
 import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
 
 import IconButton from '@/components/general/IconButton.vue'
+import GeolocationButton from '@/components/GeolocationButton.vue'
 import {
     changeZoomLevel,
     generateMapUrlParameters,
@@ -69,27 +70,32 @@ function onEmbedChange(e: MessageEvent) {
         allow="geolocation"
     ></iframe>
     <Toast
-        position="bottom-center"
+        position="top-center"
         group="bc"
+        :pt="{
+            root: 'w-[90vw] max-w-sm md:w-auto md:max-w-none',
+        }"
     />
-    <ButtonGroup
+    <div
         v-if="isDesktop"
-        class="absolute right-2 bottom-38 lg:right-6 lg:bottom-8"
-        data-cy="zoom-button-group"
+        class="absolute right-2 bottom-8 flex flex-col items-end gap-3 lg:right-6"
     >
-        <IconButton
-            :disabled="currentZoomLevel === 1"
-            data-cy="zoom-out"
-            icon="Minus"
-            severity="secondary"
-            @click="debounceChangeZoom(false)"
-        />
-        <IconButton
-            :disabled="currentZoomLevel === 15"
-            data-cy="zoom-in"
-            icon="Plus"
-            severity="secondary"
-            @click="debounceChangeZoom(true)"
-        />
-    </ButtonGroup>
+        <GeolocationButton />
+        <ButtonGroup data-cy="zoom-button-group">
+            <IconButton
+                :disabled="currentZoomLevel === 1"
+                data-cy="zoom-out"
+                icon="Minus"
+                severity="secondary"
+                @click="debounceChangeZoom(false)"
+            />
+            <IconButton
+                :disabled="currentZoomLevel === 15"
+                data-cy="zoom-in"
+                icon="Plus"
+                severity="secondary"
+                @click="debounceChangeZoom(true)"
+            />
+        </ButtonGroup>
+    </div>
 </template>

@@ -11,6 +11,7 @@ export interface MapUrlParameter {
     crossHairPosition: SingleCoordinate
     hideEmbedUI: boolean
     topic: string
+    geolocation: boolean
 }
 
 export type SingleCoordinate = [number, number]

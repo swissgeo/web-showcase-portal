@@ -72,6 +72,7 @@ export const useMainStore = defineStore('main', () => {
     const bgLayers = ref<Layer[]>(defaultBgLayers)
     const language = ref<Language>(initialLanguage)
     const layerConfigs = ref<Record<string, Record<string, LayerConfig | null>>>({})
+    const geolocationEnabled = ref<boolean>(false)
 
     // Getters
     const layersOnMapCount = computed(() => layersOnMap.value.length)
@@ -175,6 +176,10 @@ export const useMainStore = defineStore('main', () => {
     function setLayerConfigs(lang: string, configs: Record<string, LayerConfig | null>) {
         layerConfigs.value[lang] = configs
     }
+    function setGeolocationEnabled(enabled: boolean) {
+        geolocationEnabled.value = enabled
+        updateMapUrlSearchParams()
+    }
 
     // Helper functions
     function updateMapUrlSearchParams() {
@@ -187,6 +192,7 @@ export const useMainStore = defineStore('main', () => {
                 .join(';'),
             bgLayer: bgLayerId.value ?? 'void',
             center: undefined,
+            geolocation: geolocationEnabled.value,
         })
     }
 
@@ -199,6 +205,7 @@ export const useMainStore = defineStore('main', () => {
         language.value = initialLanguage
         layerConfigs.value = {}
         tempPreviewLayer.value = null
+        geolocationEnabled.value = false
         i18n.global.locale.value = langToLocal(initialLanguage) as typeof i18n.global.locale.value
     }
 
@@ -213,6 +220,7 @@ export const useMainStore = defineStore('main', () => {
         layerConfigs,
         tempPreviewLayer,
 
+        geolocationEnabled,
         // getters
         layersOnMapCount,
         visibleLayers,
@@ -235,6 +243,7 @@ export const useMainStore = defineStore('main', () => {
         replaceLayerOnMap,
         moveLayerToIndex,
         setLayerConfigs,
+        setGeolocationEnabled,
         setTempPreviewLayer,
         resetTempPreviewLayer,
         resetStore,

@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
+import GeolocationButton from '@/components/GeolocationButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LegendButton from '@/components/LayerWindowButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
@@ -74,7 +75,11 @@ const clearSearch = () => {
             </IconButton>
             <div v-else></div>
             <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
-            <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
+            <!-- the p-2 is used to make the button works in Pixel 7 or Iphone 14 Pro Max -->
+            <div class="flex flex-col gap-2 p-2">
+                <GeolocationButton v-if="!uiStore.isLayerCartVisible"></GeolocationButton>
+                <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
+            </div>
             <LayerCart
                 v-if="uiStore.isLayerCartVisible"
                 :is-desktop-view="false"

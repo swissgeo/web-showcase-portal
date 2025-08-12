@@ -191,8 +191,9 @@ export const useMainStore = defineStore('main', () => {
                 .map((layer) => convertToMapParameter(layer))
                 .join(';'),
             bgLayer: bgLayerId.value ?? 'void',
-            center: undefined,
+            center: mapStore.mapUrlSearchParams.center,
             geolocation: geolocationEnabled.value,
+            z: mapStore.mapUrlSearchParams.z,
         })
     }
 

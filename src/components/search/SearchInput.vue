@@ -101,14 +101,14 @@ defineExpose({ searchArea, focusInput })
     <div
         class="flex items-center gap-2 rounded-lg md:h-12 md:border-1 md:border-solid"
         :class="{
-            'border-1 border-[#1C6B85] outline-1 outline-[#1C6B85]': isInputFocused && isDesktop,
+            'border-1 border-[#1E485B] outline-1 outline-[#1E485B]': isInputFocused && isDesktop,
             'border-gray-300': !isInputFocused && isDesktop,
         }"
     >
         <IconField class="grow">
             <InputIcon>
                 <LucideIcon
-                    class="color-[#1C6B85] w-4 -translate-y-1"
+                    class="color-[#1E485B] w-4 -translate-y-1"
                     name="Search"
                 />
             </InputIcon>

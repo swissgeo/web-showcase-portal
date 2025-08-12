@@ -90,12 +90,13 @@ function toggleOption(value: number | undefined) {
 
 <template>
     <div class="flex h-screen w-screen flex-col bg-white">
-        <div class="relative flex h-[50px] items-center border-b border-gray-200 p-4">
+        <div class="flex h-[60px] items-center border-b border-gray-200 px-2 py-2">
             <IconButton
-                class="absolute left-4 !rounded-full !p-2"
+                class="rounded-md border-1 border-gray-300 text-black"
                 aria-label="Back"
                 text
-                icon="ArrowLeft"
+                data-cy="button-close-search"
+                icon="ChevronLeft"
                 @click="onBack"
             >
             </IconButton>
@@ -133,10 +134,11 @@ function toggleOption(value: number | undefined) {
                     </IconButton>
                 </div>
             </div>
+            <!-- 90px for the footer (50px + p-4 + gap-2), 131px for the search input and buttons (115px + p-4), 60px for the header and 10px for the bottom padding -->
             <VirtualScroller
                 :items="filteredOptions"
                 :item-size="40"
-                :scroll-height="'calc(100vh - (90px + 131px + 50px + 10px))'"
+                :scroll-height="'calc(100vh - (90px + 131px + 60px + 10px))'"
             >
                 <template #item="{ item }">
                     <div

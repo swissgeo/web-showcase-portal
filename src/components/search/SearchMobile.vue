@@ -66,26 +66,39 @@ updateGeocatalogLanguage()
         </div>
 
         <div
-            class="flex flex-row items-center justify-between px-2 py-4"
+            class="flex flex-row items-center justify-between border-b-1 border-gray-300 px-2 py-2"
             :class="{ 'bg-white': isSearching }"
         >
-            <IconButton
-                v-if="isSearching"
-                aria-label="Back"
-                text
-                data-cy="button-close-search"
-                icon="ArrowLeft"
-                @click="clearSearch"
-            >
-            </IconButton>
-            <div v-else></div>
-            <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
+            <div class="flex-column flex w-full items-center justify-between">
+                <IconButton
+                    v-if="isSearching"
+                    class="ml-3 rounded-md border-1 border-gray-300 text-black"
+                    aria-label="Back"
+                    text
+                    data-cy="button-close-search"
+                    icon="ChevronLeft"
+                    @click="clearSearch"
+                >
+                </IconButton>
+                <div v-else></div>
+                <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
+                <LayerCartButton
+                    v-if="!uiStore.isLayerCartVisible && isSearching"
+                    class=""
+                ></LayerCartButton>
+            </div>
+
             <!-- the p-2 is used to make the button works in Pixel 7 or Iphone 14 Pro Max -->
-            <div class="flex flex-col gap-2 p-2">
+            <div
+                v-if="!uiStore.isLayerCartVisible && !isSearching"
+                class="flex flex-col gap-2 p-2"
+            >
                 <GeolocationButton
                     v-if="!uiStore.isLayerCartVisible && !isSearching"
                 ></GeolocationButton>
-                <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
+                <LayerCartButton
+                    v-if="!uiStore.isLayerCartVisible && !isSearching"
+                ></LayerCartButton>
                 <GeocatalogTreeButton
                     v-if="!uiStore.isLayerCartVisible && !isSearching"
                 ></GeocatalogTreeButton>

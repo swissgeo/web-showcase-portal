@@ -74,7 +74,7 @@ function destroySortable() {
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',
             header: 'md:justify-between justify-center md:bg-[#F3F8F8]',
-            title: 'order-2 md:order-1 ',
+            title: 'order-2 md:order-1',
             headerActions: 'absolute left-4 md:static md:order-2',
         }"
     >
@@ -92,7 +92,7 @@ function destroySortable() {
                 v-if="props.isDesktopView"
                 severity="secondary"
                 size="medium"
-                icon-class="h-5 text-[#1C6B85]"
+                icon-class="h-5 text-[#1E485B]"
                 :text="true"
                 icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.LAYER_CART)"

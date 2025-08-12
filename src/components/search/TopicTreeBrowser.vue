@@ -292,7 +292,7 @@ const handleTouchEnd = () => {
                 }"
             />
         </div>
-        <div class="flex-1 overflow-hidden overflow-y-auto">
+        <div class="flex-1 overflow-auto">
             <Tree
                 :selection-keys="selectedKeys"
                 :expanded-keys="expandedKeysObj"
@@ -303,6 +303,7 @@ const handleTouchEnd = () => {
                 :pt="{
                     node: { class: 'my-0' },
                     nodeContent: { class: 'py-0.5' },
+                    root: { class: 'w-full min-w-0' },
                 }"
                 data-cy="geocatalog-tree"
                 @node-expand="onExpand"

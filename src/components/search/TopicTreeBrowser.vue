@@ -301,8 +301,8 @@ const handleTouchEnd = () => {
                 :filter-placeholder="t('geocatalog.filter')"
                 :expand-all="false"
                 :pt="{
-                    node: { class: '!my-0' },
-                    nodeContent: { class: '!py-1' },
+                    node: { class: 'my-0' },
+                    nodeContent: { class: 'py-0.5' },
                 }"
                 data-cy="geocatalog-tree"
                 @node-expand="onExpand"
@@ -317,7 +317,7 @@ const handleTouchEnd = () => {
                         <!--  spacer div for top border -->
                         <div
                             v-if="node.data.category == 'layer'"
-                            class="flex items-center gap-2 px-2 py-1"
+                            class="flex items-center gap-2 px-2 py-0.5"
                         ></div>
                         <div
                             class="flex"
@@ -330,7 +330,7 @@ const handleTouchEnd = () => {
                             @touchend="handleTouchEnd"
                         >
                             <div
-                                class="flex min-w-0 flex-1 items-center gap-2 overflow-hidden py-1"
+                                class="flex min-w-0 flex-1 items-center gap-2 overflow-hidden py-0.5"
                             >
                                 <div class="truncate text-sm">
                                     {{ node.label }}

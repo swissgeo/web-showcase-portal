@@ -300,10 +300,9 @@ const handleTouchEnd = () => {
                 :filter-placeholder="t('geocatalog.filter')"
                 :expand-all="false"
                 :pt="{
-                    node: { class: 'my-0' },
                     nodeContent: { class: 'py-0.5' },
-                    root: { class: 'w-full min-w-0 px-0' },
-                    nodeLabel: { class: 'w-full min-w-0 overflow-hidden text-ellipsis' },
+                    root: { class: 'min-w-0 px-0' },
+                    nodeLabel: { class: 'min-w-0 w-full overflow-hidden text-ellipsis' },
                 }"
                 data-cy="geocatalog-tree"
                 @node-expand="onExpand"
@@ -326,12 +325,12 @@ const handleTouchEnd = () => {
                         </span>
                         <ShowLayerDetailButton
                             v-if="node.data.category === 'layer'"
-                            class="h-8 w-8 flex-shrink-0 align-middle"
+                            class="h-8 w-8 flex-shrink-0"
                             :layer-id="node.data.layerBodId"
                         />
                         <IconButton
                             v-if="node.data.category === 'layer'"
-                            class="h-8 w-8 flex-shrink-0 cursor-pointer align-middle"
+                            class="h-8 w-8 flex-shrink-0 cursor-pointer"
                             :severity="isOnMap(node.data.layerBodId) ? 'success' : 'secondary'"
                             :outlined="!isOnMap(node.data.layerBodId)"
                             :icon="isOnMap(node.data.layerBodId) ? 'Check' : 'Plus'"

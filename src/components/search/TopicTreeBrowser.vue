@@ -245,7 +245,7 @@ const handleTouchEnd = () => {
 
 <template>
     <Panel
-        class="flex h-full flex-col"
+        class="h-full overflow-y-auto"
         :header="t('geocatalog.title')"
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',
@@ -274,7 +274,7 @@ const handleTouchEnd = () => {
             >
             </IconButton>
         </template>
-        <div class="mb-4 flex flex-row items-center gap-2">
+        <div class="flex flex-row items-center gap-2">
             <label
                 for="topic-select"
                 class="mb-1 block font-medium"
@@ -291,7 +291,7 @@ const handleTouchEnd = () => {
                 }"
             />
         </div>
-        <div class="flex-1 overflow-hidden overflow-y-auto">
+        <div class="flex-1 overflow-auto">
             <Tree
                 :selection-keys="selectedKeys"
                 :expanded-keys="expandedKeysObj"
@@ -300,8 +300,9 @@ const handleTouchEnd = () => {
                 :filter-placeholder="t('geocatalog.filter')"
                 :expand-all="false"
                 :pt="{
-                    node: { class: '!my-0' },
-                    nodeContent: { class: '!py-1' },
+                    nodeContent: { class: 'py-0.5' },
+                    root: { class: 'min-w-0 px-0' },
+                    nodeLabel: { class: 'min-w-0 w-full overflow-hidden text-ellipsis' },
                 }"
                 data-cy="geocatalog-tree"
                 @node-expand="onExpand"
@@ -309,52 +310,34 @@ const handleTouchEnd = () => {
             >
                 <template #default="{ node }">
                     <div
+                        class="flex min-w-0 items-center gap-2 overflow-hidden"
                         :class="{
-                            'border-t border-gray-200': node.data.category === 'layer',
+                            'justify-between border-t border-gray-200 px-2 pt-2':
+                                node.data.category === 'layer',
                         }"
+                        @mouseover="onNodeHover(node, $event)"
+                        @mouseleave="onNodeLeave(node)"
+                        @touchstart="handleTouchStart(node, $event)"
+                        @touchend="handleTouchEnd"
                     >
-                        <!--  spacer div for top border -->
-                        <div
-                            v-if="node.data.category == 'layer'"
-                            class="flex items-center gap-2 px-2 py-1"
-                        ></div>
-                        <div
-                            class="flex"
-                            :class="{
-                                'w-70 justify-between px-2': node.data.category === 'layer',
-                            }"
-                            @mouseover="onNodeHover(node, $event)"
-                            @mouseleave="onNodeLeave(node)"
-                            @touchstart="handleTouchStart(node, $event)"
-                            @touchend="handleTouchEnd"
-                        >
-                            <div
-                                class="flex min-w-0 flex-1 items-center gap-2 overflow-hidden py-1"
-                            >
-                                <div class="truncate text-sm">
-                                    {{ node.label }}
-                                </div>
-                                <!-- spacer div -->
-                                <div class="flex-1"></div>
-                                <ShowLayerDetailButton
-                                    v-if="node.data.category === 'layer'"
-                                    class="flex-shrink-0 align-middle"
-                                    :layer-id="node.data.layerBodId"
-                                />
-                                <IconButton
-                                    v-if="node.data.category === 'layer'"
-                                    class="flex-shrink-0 cursor-pointer align-middle"
-                                    :severity="
-                                        isOnMap(node.data.layerBodId) ? 'success' : 'secondary'
-                                    "
-                                    :outlined="!isOnMap(node.data.layerBodId)"
-                                    :icon="isOnMap(node.data.layerBodId) ? 'Check' : 'Plus'"
-                                    :title="layerToggleTitle(isOnMap(node.data.layerBodId))"
-                                    :data-cy="`add-topic-${node.data.layerBodId}`"
-                                    @click="onNodeSelect(node)"
-                                />
-                            </div>
-                        </div>
+                        <span class="flex-1 truncate text-sm">
+                            {{ node.label }}
+                        </span>
+                        <ShowLayerDetailButton
+                            v-if="node.data.category === 'layer'"
+                            class="h-8 w-8 flex-shrink-0"
+                            :layer-id="node.data.layerBodId"
+                        />
+                        <IconButton
+                            v-if="node.data.category === 'layer'"
+                            class="h-8 w-8 flex-shrink-0 cursor-pointer"
+                            :severity="isOnMap(node.data.layerBodId) ? 'success' : 'secondary'"
+                            :outlined="!isOnMap(node.data.layerBodId)"
+                            :icon="isOnMap(node.data.layerBodId) ? 'Check' : 'Plus'"
+                            :title="layerToggleTitle(isOnMap(node.data.layerBodId))"
+                            :data-cy="`add-topic-${node.data.layerBodId}`"
+                            @click="onNodeSelect(node)"
+                        />
                     </div>
                     <Popover
                         ref="popoverComponent"

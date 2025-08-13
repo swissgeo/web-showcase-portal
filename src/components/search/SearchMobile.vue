@@ -8,12 +8,15 @@ import GeolocationButton from '@/components/GeolocationButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LegendButton from '@/components/LayerWindowButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import GeocatalogTreeButton from '@/components/menu/GeocatalogTreeButton.vue'
 import LayerCartButton from '@/components/menu/LayerCartButton.vue'
 import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
 import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
+import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useResetApp } from '@/composables/useResetAppComposable'
+import { useTopicTree } from '@/composables/useTopicTree'
 import { useSearchStore } from '@/store/search'
 import { useUiStore } from '@/store/ui'
 
@@ -23,6 +26,7 @@ const searchStore = useSearchStore()
 const uiStore = useUiStore()
 const { resetApp } = useResetApp()
 
+const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 const isInputFocused = ref(false)
 
 const isSearching = computed(() => {
@@ -38,6 +42,7 @@ const clearSearch = () => {
     isInputFocused.value = false
     searchStore.resetSearch()
 }
+updateGeocatalogLanguage()
 </script>
 
 <template>
@@ -77,14 +82,25 @@ const clearSearch = () => {
             <div v-if="isSearching">{{ t('searchResult.mobileSearchTitle') }}</div>
             <!-- the p-2 is used to make the button works in Pixel 7 or Iphone 14 Pro Max -->
             <div class="flex flex-col gap-2 p-2">
-                <GeolocationButton v-if="!uiStore.isLayerCartVisible"></GeolocationButton>
+                <GeolocationButton
+                    v-if="!uiStore.isLayerCartVisible && !isSearching"
+                ></GeolocationButton>
                 <LayerCartButton v-if="!uiStore.isLayerCartVisible"></LayerCartButton>
+                <GeocatalogTreeButton
+                    v-if="!uiStore.isLayerCartVisible && !isSearching"
+                ></GeocatalogTreeButton>
             </div>
             <LayerCart
                 v-if="uiStore.isLayerCartVisible"
                 :is-desktop-view="false"
                 class="fixed inset-0 z-50"
             ></LayerCart>
+            <TopicTreeBrowser
+                v-if="uiStore.isGeocatalogTreeVisible"
+                :root="topicTreeRoot"
+                :is-desktop-view="false"
+                class="fixed inset-0 z-50"
+            ></TopicTreeBrowser>
         </div>
         <SearchResultsMobile
             v-if="isSearching"

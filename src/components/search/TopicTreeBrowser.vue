@@ -245,7 +245,7 @@ const handleTouchEnd = () => {
 
 <template>
     <Panel
-        class="flex h-full flex-col"
+        class="h-full overflow-y-auto"
         :header="t('geocatalog.title')"
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',

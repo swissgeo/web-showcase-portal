@@ -95,16 +95,12 @@ updateGeocatalogLanguage()
                 :is-desktop-view="false"
                 class="fixed inset-0 z-50"
             ></LayerCart>
-            <div
+            <TopicTreeBrowser
                 v-if="uiStore.isGeocatalogTreeVisible"
-                class="fixed inset-0 z-50 bg-white"
-            >
-                <TopicTreeBrowser
-                    :root="topicTreeRoot"
-                    :is-desktop-view="false"
-                    class="h-full overflow-y-auto"
-                ></TopicTreeBrowser>
-            </div>
+                :root="topicTreeRoot"
+                :is-desktop-view="false"
+                class="fixed inset-0 z-50"
+            ></TopicTreeBrowser>
         </div>
         <SearchResultsMobile
             v-if="isSearching"

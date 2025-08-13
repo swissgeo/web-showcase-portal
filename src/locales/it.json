@@ -44,7 +44,8 @@
         "addToMap": "Aggiungi alla mappa",
         "removeFromMap": "Rimuovi dalla mappa",
         "buttonLabel": "Risultati della ricerca",
-        "noPreviewAvailable": "Nessuna anteprima disponibile"
+        "noPreviewAvailable": "Nessuna anteprima disponibile",
+        "noResults": "Nessun risultato trovato"
     },
     "layerCart": {
         "showInfo": "Dettagli",

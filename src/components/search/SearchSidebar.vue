@@ -11,7 +11,7 @@ import SearchFilterDesktop from '@/components/search/SearchFilterDesktop.vue'
 import SearchFilterTaglist from '@/components/search/SearchFilterTaglist.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
-import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
+import SearchResults from '@/components/search/SearchResults.vue'
 import { useSearchStore } from '@/store/search'
 import { SidebarType, useUiStore } from '@/store/ui'
 
@@ -116,9 +116,9 @@ defineExpose({
             <SearchFilterTaglist />
 
             <!-- Search Results (when searching) -->
-            <SearchResultsMobile
+            <SearchResults
                 v-if="isSearching"
-                class="min-h-0 flex-1 overflow-y-auto bg-white px-2 pt-4"
+                class="max-h-dvh min-h-0 flex-1 overflow-y-auto bg-white px-2 pt-4"
                 data-cy="comp-search-results-sidebar"
             />
         </div>

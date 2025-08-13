@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useInfiniteScroll } from '@vueuse/core'
-import { onMounted, useTemplateRef } from 'vue'
+import { computed, inject, onMounted, useTemplateRef } from 'vue'
 
 import SearchResultEntry from '@/components/search/GeocatSearchResultEntry.vue'
 import { useMapPreview } from '@/composables/useMapPreview'
@@ -13,6 +13,16 @@ const { searchGeocat } = useGeocat()
 const searchStore = useSearchStore()
 const mainStore = useMainStore()
 const { initializeMap } = useMapPreview()
+
+const isDesktop = inject<boolean>('isDesktop', true)
+
+const hasGeocatResults = computed(() => searchStore.geocatSearchResults.length > 0)
+const hasMoreGeocatResults = computed(
+    () =>
+        searchStore.geocatSearchResults.length > 0 &&
+        searchStore.geocatSearchResults.length < searchStore.searchResultTotal
+)
+
 useInfiniteScroll(
     el,
     () => {
@@ -29,12 +39,7 @@ useInfiniteScroll(
     },
     {
         distance: 10,
-        canLoadMore: () => {
-            return !!(
-                searchStore.geocatSearchResults.length &&
-                searchStore.geocatSearchResults.length < searchStore.searchResultTotal
-            )
-        },
+        canLoadMore: () => hasMoreGeocatResults.value,
     }
 )
 
@@ -53,16 +58,12 @@ onMounted(() => {
     Or we could use tabs instead of an accordion. -->
     <div
         ref="resultList"
-        class="mt-5 overflow-y-scroll"
         data-cy="div-geocat-search-results"
-        :class="{
-            'max-h-[60vh]':
-                searchStore.geocatSearchResults.length &&
-                searchStore.geocatSearchResults.length < searchStore.searchResultTotal,
-        }"
+        class="mt-5 overflow-y-scroll p-4"
+        :class="{ 'max-h-[65vh]': isDesktop, 'max-h-[calc(80vh-12rem)]': !isDesktop }"
     >
         <ul
-            v-if="searchStore.geocatSearchResults.length"
+            v-if="hasGeocatResults"
             data-cy="ul-geocat-search-results"
         >
             <SearchResultEntry
@@ -70,7 +71,7 @@ onMounted(() => {
                 :key="result.uniqueIdentifier"
                 :result="result"
                 :bg-layer-name="mainStore.bgLayerId!"
-            ></SearchResultEntry>
+            />
         </ul>
     </div>
 </template>

@@ -13,8 +13,8 @@ describe('Test the search on desktop', () => {
         // Type search term in the sidebar search input
         cy.get('[data-cy="input-search"]').type('bern')
 
-        // open geocat accordion
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        // open geocat search results
+        cy.get('[data-cy="comp-data-panel"]').click()
 
         // At first we only get 20 results
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
@@ -26,11 +26,8 @@ describe('Test the search on desktop', () => {
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
         cy.get('@geocatSearchResults').should('have.length', 40)
 
-        // Scroll to the bottom to find the address results accordion
-        cy.get('[data-cy="div-search-sidebar"]').scrollTo('bottom', { duration: 500 })
-
-        // open address accordion and test if it works
-        cy.get('[data-cy="comp-address-accordion"]').click()
+        // open address search results and test if it works
+        cy.get('[data-cy="search-tab-address"]').click()
         cy.get('[data-cy="ul-address-search-results"]').find('li').as('addressSearchResults')
         cy.get("@addressSearchResults").should('have.length', 20)
     })
@@ -47,8 +44,8 @@ describe('Test the search on mobile', () => {
         cy.get('[data-cy="div-search-desktop"]').should('not.exist')
 
         cy.get('[data-cy="input-search"]').type('bern')
-        // open accordion
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        // open search results
+        cy.get('[data-cy="comp-data-panel"]').click()
 
         cy.get('[data-cy="ul-geocat-search-results"]').find('li').as('geocatSearchResults')
 
@@ -74,14 +71,15 @@ describe('Test the search on mobile', () => {
         cy.get('[data-cy="div-geocat-search-results"]').scrollTo('bottom', { duration: 500 })
         // cy.get('[data-cy="comp-search-results-mobile"]').scrollTo('bottom', { duration: 500 })
 
-        //open address accordion and test if it works
-        cy.get('[data-cy="comp-address-accordion"]').click()
+        //open address search results and test if it works
+        cy.get('[data-cy="search-tab-address"]').click()
 
 
         cy.get('[data-cy="ul-address-search-results"]').find('li').as('addressSearchResults').should('have.length', 20)
 
-        //now re-open data accordion to fully load the data
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        //now re-open data search results to fully load the data
+        cy.get('[data-cy="search-tab-data"]').click()
+        cy.get('[data-cy="comp-data-panel"]').click()
         cy.get('@geocatSearchResults').should('have.length', 40)
     })
 })

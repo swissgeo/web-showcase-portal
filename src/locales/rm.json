@@ -44,7 +44,8 @@
         "addToMap": "Agiuntar a la charta",
         "removeFromMap": "Allontanar da la charta",
         "buttonLabel": "Resultats da las retschertgas",
-        "noPreviewAvailable": "Naginas previsualisaziuns disponiblas"
+        "noPreviewAvailable": "Naginas previsualisaziuns disponiblas",
+        "noResults": "Nagins resultats chattads"
     },
     "layerCart": {
         "showInfo": "Detagls",

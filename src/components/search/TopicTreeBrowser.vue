@@ -252,7 +252,6 @@ const handleTouchEnd = () => {
             header: 'md:justify-between justify-center',
             title: 'order-2 md:order-1 ',
             headerActions: 'absolute left-4 md:static md:order-2',
-            content: 'px-2 py-4',
         }"
     >
         <template #icons>
@@ -275,7 +274,7 @@ const handleTouchEnd = () => {
             >
             </IconButton>
         </template>
-        <div class="mb-4 flex flex-row items-center gap-2">
+        <div class="flex flex-row items-center gap-2">
             <label
                 for="topic-select"
                 class="mb-1 block font-medium"
@@ -303,7 +302,7 @@ const handleTouchEnd = () => {
                 :pt="{
                     node: { class: 'my-0' },
                     nodeContent: { class: 'py-0.5' },
-                    root: { class: 'w-full min-w-0' },
+                    root: { class: 'w-full min-w-0 px-0' },
                 }"
                 data-cy="geocatalog-tree"
                 @node-expand="onExpand"

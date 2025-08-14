@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Divider from 'primevue/divider'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
@@ -101,14 +102,14 @@ defineExpose({ searchArea, focusInput })
     <div
         class="flex items-center gap-2 rounded-lg md:h-12 md:border-1 md:border-solid"
         :class="{
-            'border-1 border-[#1E485B] outline-1 outline-[#1E485B]': isInputFocused && isDesktop,
+            'border-1 border-cyan-900 outline-1 outline-cyan-900': isInputFocused && isDesktop,
             'border-gray-300': !isInputFocused && isDesktop,
         }"
     >
         <IconField class="grow">
             <InputIcon>
                 <LucideIcon
-                    class="color-[#1E485B] w-4 -translate-y-1"
+                    class="color-cyan-900 w-4 -translate-y-1"
                     name="Search"
                 />
             </InputIcon>
@@ -125,19 +126,19 @@ defineExpose({ searchArea, focusInput })
             ></InputText>
             <InputIcon
                 v-if="isSearching"
+                class="end-2"
                 @click="clearSearch"
             >
                 <LucideIcon
                     name="X"
-                    class="w-6 -translate-y-1 cursor-pointer"
+                    class="w-6 -translate-y-1 cursor-pointer text-cyan-800"
                 />
             </InputIcon>
         </IconField>
-        <div
-            v-if="searchStore.searchTerm && isDesktop"
-            class="mx-1 w-px self-center bg-gray-300"
-            style="height: 12px"
-        ></div>
+        <Divider
+            layout="vertical"
+            class="mx-2"
+        />
         <div ref="filterButtonReference">
             <IconButton
                 :severity="uiStore.isFilterVisible ? 'primary' : 'secondary'"

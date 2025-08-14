@@ -143,8 +143,7 @@ const handleTouchEnd = () => {
             ref="popoverComponent"
             class="p-0"
             :pt="{
-                content:
-                    'p-0 border-1 border-solid border-swissgeo-blue rounded-xl overflow-hidden',
+                content: 'p-0 border-1 border-solid border-cyan-800 rounded-xl overflow-hidden',
                 root: 'rounded-xl before:content-none after:content-none',
             }"
         >

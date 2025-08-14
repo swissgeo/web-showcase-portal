@@ -55,7 +55,7 @@ const currentLanguage = computed({
         class="p-0 text-sm text-black md:p-3 md:text-base"
     >
         <template #dropdownicon>
-            <ChevronsUpDown color="#6a7282" />
+            <ChevronsUpDown class="text-neutral-primary-300" />
         </template>
     </Select>
 </template>

@@ -184,7 +184,7 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
             'absolute top-0 right-0 bottom-0 w-[480px] shadow-xl':
                 isDesktop && uiStore.isLayerWindowMaximized,
             // rounded and border
-            'rounded-xl border-2 border-[#1F576B]': isDesktop && !uiStore.isLayerWindowMaximized,
+            'rounded-xl border-2 border-cyan-800': isDesktop && !uiStore.isLayerWindowMaximized,
             // floating desktop layout
             absolute: isDesktop && !uiStore.isLayerWindowMaximized,
             // mobile layout - using fixed position with inset to cover full viewport
@@ -196,14 +196,13 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
             :value="activeTab"
             :pt="{
                 content: 'md:px-2',
-                nav: 'bg-[#EBF1F3]',
                 navContent: 'items-center flex gap-2',
             }"
         >
             <TabList
                 ref="dragHandle"
                 data-cy="comp-layer-window-tabslist"
-                class="bg-[#EBF1F3]"
+                class="bg-green-pastel-50"
                 :class="{
                     'cursor-move': isDesktop && !uiStore.isLayerWindowMaximized,
                     'select-none': isDragging, // Prevent text selection during dragging
@@ -211,25 +210,25 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
             >
                 <Tab
                     value="legend"
-                    class="flex items-center border-t-1 border-r-1 border-b-1 border-[#B8CED6]"
+                    class="border-green-pastel-300 flex items-center border-t-1 border-r-1 border-b-1"
                 >
                     <LucideIcon
                         name="Shapes"
-                        class="text-[#1C6B85]"
+                        class="text-primary"
                     />
-                    <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
+                    <span class="text-primary p-0.5 font-bold whitespace-nowrap">{{
                         t('legend.header')
                     }}</span>
                 </Tab>
                 <Tab
                     value="detail"
-                    class="flex items-center border-t-1 border-r-1 border-b-1 border-[#B8CED6]"
+                    class="border-green-pastel-300 flex items-center border-t-1 border-r-1 border-b-1"
                 >
                     <LucideIcon
                         name="Info"
-                        class="text-[#1C6B85]"
+                        class="text-primary"
                     />
-                    <span class="p-0.5 font-bold whitespace-nowrap text-[#1C6B85]">{{
+                    <span class="text-primary p-0.5 font-bold whitespace-nowrap">{{
                         t('details.header')
                     }}</span>
                 </Tab>
@@ -238,7 +237,7 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                 <TabPanel
                     value="legend"
                     data-cy="comp-layer-window-legend-tab"
-                    :pt="{ header: 'border-1 border-[#B8CED6]' }"
+                    :pt="{ header: 'border-1 border-cyan-500' }"
                 >
                     <div
                         data-cy="div-layer-legend"
@@ -263,7 +262,7 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                 <TabPanel
                     value="detail"
                     data-cy="comp-layer-window-details-tab"
-                    :pt="{ header: 'border-1 border-[#B8CED6]' }"
+                    :pt="{ header: 'border-1 border-cyan-500' }"
                 >
                     <div
                         data-cy="div-layer-detail"
@@ -296,12 +295,12 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                         : t('layerWindow.attachToRight')
                 "
                 :icon="uiStore.isLayerWindowMaximized ? 'PanelRightOpen' : 'PanelRightClose'"
-                icon-class="text-[#1C6B85]"
+                icon-class="text-primary"
                 @click="toggleMaximizedWindow"
             >
             </IconButton>
             <!-- Separator-->
-            <div class="h-6 w-px bg-[#1C6B85] opacity-50" />
+            <div class="bg-primary h-6 w-px opacity-50" />
             <IconButton
                 :text="isDesktop"
                 class="bg-transparent"
@@ -310,7 +309,7 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
                 data-cy="comp-layer-window-close"
                 :title="t('layerWindow.close')"
                 icon="X"
-                icon-class="text-[#1C6B85]"
+                icon-class="text-primary"
                 @click="closeLayerWindow"
             >
             </IconButton>
@@ -325,7 +324,7 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
             data-cy="comp-layer-window-close"
             :title="t('layerWindow.close')"
             icon="X"
-            icon-class="h-5 w-5 text-[#1C6B85]"
+            icon-class="h-5 w-5 text-primary"
             @click="closeLayerWindow"
         >
             <span class="text-sm font-medium"> {{ t('legend.closeThisWindow') }}</span>

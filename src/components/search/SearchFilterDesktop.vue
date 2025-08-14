@@ -103,11 +103,11 @@ function apply() {
          -->
         <div ref="filterElement">
             <Panel
-                class="z-100 border-1 border-[#1F576B] bg-white shadow"
+                class="z-100 border-1 border-cyan-800 bg-white shadow"
                 :style="floatingStyles"
                 :header="t('filter.filterByProvider')"
                 :pt="{
-                    header: 'bg-neutral-100 rounded-t-lg',
+                    header: 'bg-neutral-50 rounded-t-lg',
                     content: 'p-0',
                 }"
             >

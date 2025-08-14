@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="absolute top-0 left-0 z-10 flex h-screen w-auto bg-neutral-100 shadow-lg">
+    <div class="absolute top-0 left-0 z-10 flex h-screen w-auto shadow-lg">
         <div class="flex flex-col">
             <div
                 class="flex-shrink-0 cursor-pointer bg-white"
@@ -106,11 +106,9 @@ onBeforeUnmount(() => {
                     :condensed="!uiStore.isSidebarOpen"
                 />
             </div>
-            <div class="flex min-h-0 w-full flex-1 flex-row p-0">
+            <div class="flex min-h-0 w-full flex-1 flex-row border-t border-neutral-100 p-0">
                 <!-- First column -->
-                <div
-                    class="flex h-full min-w-16 flex-col items-center justify-between bg-neutral-100 pt-4"
-                >
+                <div class="flex h-full min-w-16 flex-col items-center justify-between pt-4">
                     <div class="flex flex-col items-center gap-2">
                         <SearchPanelButton />
                         <LayerCartButton />

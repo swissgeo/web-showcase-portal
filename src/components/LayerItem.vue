@@ -214,11 +214,14 @@ const tooltipContent = computed(() => {
 <template>
     <li
         class="group relative flex flex-col rounded-md p-2 shadow"
-        :class="{ 'bg-slate-200': isLayerDetailsDisplayed, 'bg-white': !isLayerDetailsDisplayed }"
+        :class="{
+            'bg-greenPastel-100': isLayerDetailsDisplayed,
+            'bg-white': !isLayerDetailsDisplayed,
+        }"
     >
         <div
             v-if="!layerProps.isBgLayer"
-            class="layer-item-drag-handle absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-[#DFE4E9] shadow group-hover:flex"
+            class="layer-item-drag-handle absolute top-3 -left-4 hidden h-auto w-auto cursor-grab rounded-md border border-neutral-200 shadow group-hover:flex"
         >
             <GripVertical />
         </div>

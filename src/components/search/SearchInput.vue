@@ -144,7 +144,10 @@ defineExpose({ searchArea, focusInput })
                 :size="'small'"
                 class="md:mr-1"
                 icon-class="md:h-5"
-                :class="{ 'text-swissgeo-blue border-white bg-white': !uiStore.isFilterVisible }"
+                :class="{
+                    'text-swissgeo-blue border-white bg-white text-cyan-800':
+                        !uiStore.isFilterVisible,
+                }"
                 :label="isDesktop ? t('filter.title') : ''"
                 icon="ListFilter"
                 @click="toggleFilter"

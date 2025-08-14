@@ -11,6 +11,7 @@ import '@fontsource/dm-sans'
 import '@geonetwork-ui/gn-standalone-search.js'
 
 import router from '@/router'
+// @ts-expect-error If this is TS then I have a problem with the plugin
 import { SwissGeo } from '@/stylePreset'
 import { i18n } from '@/types/language'
 
@@ -29,7 +30,6 @@ app.use(PrimeVue, {
             // explicitly setting the dark mode toggle class
             // so that the browser preference isn't taken into account
             darkModeSelector: '.dark-mode',
-            prefix: 'p',
             cssLayer: {
                 name: 'primevue',
                 order: 'theme, base, primevue, custom',

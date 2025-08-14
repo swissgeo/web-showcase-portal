@@ -6,6 +6,8 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, Plugin } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+import primevueColorVars from './vite-plugin-primevue-tailwind.js'
+
 // We take the version from APP_VERSION but if not set, then take
 // it from git describe command
 let appVersion = process.env.APP_VERSION
@@ -13,17 +15,24 @@ if (!appVersion) {
     // NOTE: git-describe package add sometimes `+` signs (what the real git describe command don't)
     // and the `+` sign on the URL is actually a space, so it should be percent encoded,.
     // Therefore we change the + sign into '-' for simplification.
-    appVersion =
-        'v' + gitDescribe.gitDescribeSync().semverString?.replace('+', '-') || ''
+    appVersion = 'v' + gitDescribe.gitDescribeSync().semverString?.replace('+', '-') || ''
 }
 
+// @ts-expect-error The mode argument isn't expected, but it works
 export default defineConfig(({ mode }) => {
     const config = {
         base: (process.env.BASE_PATH || './').toLowerCase(),
         build: {
             assetsDir: `${appVersion}/assets`,
         },
-        plugins: [vue(), tailwindcss(), VitePluginSvgSpritemap('./src/assets/icons/*.svg', {})],
+        plugins: [
+            vue(),
+            primevueColorVars({
+                presetPath: './src/stylePreset.js',
+            }),
+            tailwindcss(),
+            VitePluginSvgSpritemap('./src/assets/icons/*.svg', {}),
+        ],
         resolve: {
             alias: {
                 '@': fileURLToPath(new URL('./src', import.meta.url)),

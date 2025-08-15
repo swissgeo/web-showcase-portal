@@ -9,6 +9,7 @@ import { useI18n } from 'vue-i18n'
 
 import AddressResultList from '@/components/search/AddressResultList.vue'
 import GeocatResultList from '@/components/search/GeocatResultList.vue'
+import ParcelResultList from '@/components/search/ParcelResultList.vue'
 import SearchSpinner from '@/components/search/SearchSpinner.vue'
 import useSearchResults from '@/components/search/useSearchResults'
 
@@ -16,11 +17,13 @@ import useSearchResults from '@/components/search/useSearchResults'
 const openAccordionPanel: Ref<string | null> = ref(null)
 
 const {
-    showGeocatSpinner,
     showAddressSpinner,
+    showParcelSpinner,
+    isSearching,
+    showGeocatSpinner,
     addressSearchResultCount,
     geocatSearchResultCount,
-    isSearching,
+    parcelSearchResultCount,
 } = useSearchResults()
 
 const { t } = useI18n()
@@ -83,5 +86,24 @@ function onUpdateAccordion(value: string | string[] | null | undefined) {
             </AccordionHeader>
             <AccordionContent class=""> <AddressResultList /> </AccordionContent
         ></AccordionPanel>
+        <AccordionPanel
+            v-if="parcelSearchResultCount || showParcelSpinner"
+            data-cy="comp-parcel-accordion"
+            class="overflow-hidden"
+            value="parcel"
+            :class="{ 'h-fit': openAccordionPanel === 'parcel' }"
+        >
+            <AccordionHeader class="!relative">
+                <SearchSpinner
+                    v-if="showParcelSpinner"
+                    :size="'40px'"
+                />
+                <div class="flex items-center justify-start gap-2">
+                    {{ t('searchResult.parcelsTitle') }}
+                    <Badge :value="showParcelSpinner ? 0 : parcelSearchResultCount"></Badge>
+                </div>
+            </AccordionHeader>
+            <AccordionContent class=""> <ParcelResultList /> </AccordionContent>
+        </AccordionPanel>
     </Accordion>
 </template>

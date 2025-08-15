@@ -9,12 +9,20 @@ export default function useSearchResults() {
         return searchStore.isSearchingAddresses
     })
 
+    const showParcelSpinner = computed(() => {
+        return searchStore.isSearchingParcels
+    })
+
     const showGeocatSpinner = computed(() => {
         return searchStore.isSearchingGeocat
     })
 
     const addressSearchResultCount = computed(() => {
         return searchStore.searchLocationResults.length
+    })
+
+    const parcelSearchResultCount = computed(() => {
+        return searchStore.searchParcelResults.length
     })
 
     const geocatSearchResultCount = computed(() => {
@@ -27,9 +35,11 @@ export default function useSearchResults() {
 
     return {
         showAddressSpinner,
+        showParcelSpinner,
         isSearching,
         showGeocatSpinner,
         addressSearchResultCount,
         geocatSearchResultCount,
+        parcelSearchResultCount,
     }
 }

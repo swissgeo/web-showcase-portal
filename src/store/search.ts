@@ -15,6 +15,7 @@ export interface SearchStoreState {
     searchTerm: string | null
     geocatSearchResults: GeonetworkRecord[]
     searchLocationResults: GeocodingResult[]
+    searchParcelResults: GeocodingResult[]
     searchResultTotal: number
     geocatPage: number
     dataSearchPanelWidth: number
@@ -31,12 +32,14 @@ export const useSearchStore = defineStore('search', () => {
 
     // state
     const isSearchingAddresses = ref(false)
+    const isSearchingParcels = ref(false)
     const isSearchingGeocat = ref(false)
     const isOpenSearch = ref(false)
     const forceScrollComponentUpdate = ref(false)
     const searchTerm = ref<string | null>(null)
     const geocatSearchResults = ref<GeonetworkRecord[]>([])
     const searchLocationResults = ref<GeocodingResult[]>([])
+    const searchParcelResults = ref<GeocodingResult[]>([])
     const searchResultTotal = ref(0)
     const geocatPage = ref(0)
     const dataSearchPanelWidth = ref(SEARCH_RESULTS_DESKTOP_COLUMN_DEFAULT_WIDTH)
@@ -51,6 +54,9 @@ export const useSearchStore = defineStore('search', () => {
     }
     function setSearchLocationResults(results: GeocodingResult[]) {
         searchLocationResults.value = results
+    }
+    function setSearchParcelResults(results: GeocodingResult[]) {
+        searchParcelResults.value = results
     }
     function setSearchResultTotal(total: number) {
         searchResultTotal.value = total
@@ -67,6 +73,9 @@ export const useSearchStore = defineStore('search', () => {
     function setIsSearchingAddresses(value: boolean) {
         isSearchingAddresses.value = value
     }
+    function setIsSearchingParcels(value: boolean) {
+        isSearchingAddresses.value = value
+    }
     function setIsSearchingGeocat(value: boolean) {
         isSearchingGeocat.value = value
     }
@@ -79,9 +88,11 @@ export const useSearchStore = defineStore('search', () => {
     function resetSearch() {
         geocatSearchResults.value = []
         searchLocationResults.value = []
+        searchParcelResults.value = []
         searchTerm.value = null
         isSearchingAddresses.value = false
         isSearchingGeocat.value = false
+        isSearchingParcels.value = false
         geocatPage.value = 0
         searchResultTotal.value = 0
     }
@@ -131,12 +142,14 @@ export const useSearchStore = defineStore('search', () => {
     return {
         // state
         isSearchingAddresses,
+        isSearchingParcels,
         isSearchingGeocat,
         isOpenSearch,
         forceScrollComponentUpdate,
         searchTerm,
         geocatSearchResults,
         searchLocationResults,
+        searchParcelResults,
         searchResultTotal,
         geocatPage,
         dataSearchPanelWidth,
@@ -147,11 +160,13 @@ export const useSearchStore = defineStore('search', () => {
         // actions
         appendGeocatSearchResults,
         setSearchLocationResults,
+        setSearchParcelResults,
         setSearchResultTotal,
         setDataSearchPanelWidth,
         setSearchTerm,
         setForceScrollComponentUpdate,
         setIsSearchingAddresses,
+        setIsSearchingParcels,
         setIsSearchingGeocat,
         setIsOpenSearch,
         incGeocatPage,

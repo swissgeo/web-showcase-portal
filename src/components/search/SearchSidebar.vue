@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import Panel from 'primevue/panel'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type SearchInputType from '@/components/search/SearchInput.vue'
 import type SearchKeywordContainerType from '@/components/search/SearchKeywordContainer.vue'
 
 import IconButton from '@/components/general/IconButton.vue'
@@ -17,6 +18,7 @@ import { SidebarType, useUiStore } from '@/store/ui'
 const { t } = useI18n()
 
 const searchKeywordContainer = ref<InstanceType<typeof SearchKeywordContainerType> | null>(null)
+const searchInputRef = ref<InstanceType<typeof SearchInputType> | null>(null)
 
 const props = defineProps({
     isDesktopView: {
@@ -45,6 +47,15 @@ function containerStopDragging() {
         searchKeywordContainer.value.containerStopDragging()
     }
 }
+
+watch(
+    () => uiStore.isSearchVisible,
+    (isVisible) => {
+        if (isVisible) {
+            searchInputRef.value?.focusInput()
+        }
+    }
+)
 defineExpose({
     containerStopDragging,
 })
@@ -56,7 +67,7 @@ defineExpose({
         :header="t('searchResult.mobileSearchTitle')"
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',
-            header: 'md:justify-between justify-center',
+            header: 'md:justify-between justify-center bg-[#F3F8F8]',
             title: 'order-2 md:order-1',
             headerActions: 'absolute left-4 md:static md:order-2',
         }"
@@ -77,15 +88,17 @@ defineExpose({
                 severity="secondary"
                 size="medium"
                 :text="true"
+                icon-class="h-5 text-[#1C6B85]"
                 icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.SEARCH)"
             >
             </IconButton>
         </template>
 
-        <div class="flex h-full flex-col p-4">
+        <div class="flex h-full flex-col">
             <!-- Search Input Section -->
             <SearchInput
+                ref="searchInputRef"
                 class="mb-4 w-full"
                 @focus="openSearch"
             />

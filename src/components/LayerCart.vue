@@ -92,7 +92,7 @@ function destroySortable() {
                 v-if="props.isDesktopView"
                 severity="secondary"
                 size="medium"
-                icon-class="h-5 text-[#1E485B]"
+                icon-class="h-5 text-[#1F576B]"
                 :text="true"
                 icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.LAYER_CART)"

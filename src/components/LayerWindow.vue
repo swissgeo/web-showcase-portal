@@ -149,6 +149,11 @@ watch(openedFromLayerDetailButton, (newValue) => {
 
 //clamp the panel to prevent it from going off-screen
 watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
+    // Skip position clamping on mobile to prevent recursive updates
+    if (!isDesktop?.value) {
+        return
+    }
+
     const maxX = windowWidth.value - panelWidth.value
     const maxY = windowHeight.value - panelHeight.value
 
@@ -172,19 +177,18 @@ watch([x, y, panelWidth, panelHeight], ([newX, newY]) => {
     <div
         ref="dragTarget"
         :style="isDesktop && !uiStore.isLayerWindowMaximized ? dragStyle : undefined"
-        class="z-50 touch-none overflow-hidden"
+        class="z-50 touch-none overflow-hidden bg-white"
         data-cy="comp-layer-window"
         :class="{
             // maximized desktop layout
-            'absolute top-0 right-0 bottom-0 w-[480px] bg-white shadow-xl':
+            'absolute top-0 right-0 bottom-0 w-[480px] shadow-xl':
                 isDesktop && uiStore.isLayerWindowMaximized,
             // rounded and border
             'rounded-xl border-2 border-[#1F576B]': isDesktop && !uiStore.isLayerWindowMaximized,
             // floating desktop layout
             absolute: isDesktop && !uiStore.isLayerWindowMaximized,
-            // mobile layout
-            'fixed right-0 bottom-0 left-0 flex h-dvh w-full flex-col place-content-between':
-                !isDesktop,
+            // mobile layout - using fixed position with inset to cover full viewport
+            'fixed inset-0 flex flex-col place-content-between': !isDesktop,
         }"
     >
         <Tabs

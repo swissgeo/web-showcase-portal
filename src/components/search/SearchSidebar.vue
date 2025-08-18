@@ -88,7 +88,7 @@ defineExpose({
                 severity="secondary"
                 size="medium"
                 :text="true"
-                icon-class="h-5 text-[#1C6B85]"
+                icon-class="h-5 text-[#1F576B]"
                 icon="PanelLeftClose"
                 @click="uiStore.toggleSidebar(SidebarType.SEARCH)"
             >

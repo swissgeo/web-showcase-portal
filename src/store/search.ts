@@ -126,6 +126,10 @@ export const useSearchStore = defineStore('search', () => {
         dataSearchPanelWidth.value = SEARCH_RESULTS_DESKTOP_COLUMN_DEFAULT_WIDTH
         isOpenSearch.value = false
         forceScrollComponentUpdate.value = false
+        resetFilters()
+    }
+
+    function resetFilters() {
         selectedFederalIds.value = []
         selectedCantonalIds.value = []
         selectedCommunalIds.value = []
@@ -177,5 +181,6 @@ export const useSearchStore = defineStore('search', () => {
         setSelectedCommunalIds,
         resetStore,
         getActiveFilters,
+        resetFilters,
     }
 })

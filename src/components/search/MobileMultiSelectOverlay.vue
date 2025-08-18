@@ -117,7 +117,7 @@ function toggleOption(value: number | undefined) {
                 </IconField>
                 <div class="mb-4 flex gap-2 border-b border-gray-200">
                     <IconButton
-                        class="text-swissgeo-blue flex-1 border-none bg-white"
+                        class="text-swissgeo-blue flex-1 border-none bg-white text-cyan-800"
                         :label="t('organisation.selectAll')"
                         @click="selectAll"
                     >
@@ -127,7 +127,7 @@ function toggleOption(value: number | undefined) {
                         style="height: 12px"
                     ></div>
                     <IconButton
-                        class="text-swissgeo-blue flex-1 border-none bg-white"
+                        class="text-swissgeo-blue flex-1 border-none bg-white text-cyan-800"
                         :label="t('organisation.reset')"
                         @click="clearSelection"
                     >

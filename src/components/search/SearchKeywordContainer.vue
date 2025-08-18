@@ -224,7 +224,7 @@ defineExpose({
                 v-if="isDesktop && showRightGradient && showScrollArrowRight"
                 class="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
                 icon="ChevronRight"
-                icon-class="h-5 w-5 text-[#1F576B]"
+                icon-class="h-5 w-5 text-cyan-800"
                 @click="scrollUntilEndOfList"
             >
             </IconButton>
@@ -232,7 +232,7 @@ defineExpose({
                 v-if="isDesktop && showLeftGradient && showScrollArrowLeft"
                 class="absolute top-1/2 left-2 z-20 -translate-y-1/2 rounded border border-transparent bg-transparent px-2 py-1 hover:bg-gray-100"
                 icon="ChevronLeft"
-                icon-class="text-[#1F576B] h-5 w-5"
+                icon-class="text-cyan-800 h-5 w-5"
                 @click="scrollUntilBeginningOfList"
             >
             </IconButton>

@@ -27,6 +27,7 @@ body {
         --p-button-text-secondary-color: var(--color-black);
         --p-panel-header-color: var(--color-black);
         --p-button-outlined-secondary-color: var(--color-black);
+        --p-button-text-secondary-color: var(--color-cyan-800);
     }
 
     .p-panel {
@@ -41,11 +42,6 @@ body {
     .p-panel-content {
         @apply px-6 py-4;
     }
-}
-
-@theme {
-    --color-swissgeo-blue: oklch(0.4936 0.0836 224.92);
-    --color-swissgeo-lightblue: oklch(0.8981 0.015 218.06);
 }
 
 a:not(.p-menu-item-link) {

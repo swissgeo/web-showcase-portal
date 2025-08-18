@@ -20,10 +20,10 @@ function toggleLayerWindow() {
     <IconButton
         data-cy="comp-layer-window-button"
         :severity="severity"
-        outlined
-        class="h-14 w-14 rounded-xl bg-white shadow hover:bg-neutral-100"
+        text
+        class="h-14 w-14 rounded-xl bg-white shadow hover:bg-neutral-50"
         icon="Shapes"
-        icon-class="h-5 w-5 text-black"
+        icon-class="h-5 w-5"
         @click="toggleLayerWindow"
     >
     </IconButton>

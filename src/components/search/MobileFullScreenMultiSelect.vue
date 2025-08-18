@@ -76,7 +76,7 @@ function openFilterOverlay() {
             </template>
             <XIcon
                 v-if="modelValue.length"
-                class="text-swissgeo-blue w-4 shrink-0"
+                class="w-4 shrink-0 text-cyan-800"
                 @click.stop="clearSelection"
             />
             <div
@@ -84,7 +84,7 @@ function openFilterOverlay() {
                 class="mx-1 w-px self-center bg-gray-300"
                 style="height: 12px"
             ></div>
-            <ChevronDown class="text-swissgeo-blue w-4 shrink-0" />
+            <ChevronDown class="w-4 shrink-0 text-cyan-800" />
         </div>
     </div>
 </template>

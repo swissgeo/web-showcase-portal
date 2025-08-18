@@ -26,7 +26,7 @@ const title = computed(() => {
         >
             <div>{{ title }}</div>
             <div
-                class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-neutral-100 text-black"
+                class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-neutral-50 text-black"
             >
                 <ArrowUpRight class="h-5 w-5" /></div
         ></a>

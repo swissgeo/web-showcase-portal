@@ -10,7 +10,7 @@ import LucideIcon from '@/components/general/LucideIcon.vue'
         <template #clearicon="{ clearCallback }">
             <LucideIcon
                 name="X"
-                class="h-6 self-center text-[#1C6B85]"
+                class="text-primary h-6 self-center"
                 @click.stop="clearCallback"
             />
             <Divider
@@ -21,7 +21,7 @@ import LucideIcon from '@/components/general/LucideIcon.vue'
         <template #dropdownicon>
             <LucideIcon
                 name="ChevronDown"
-                class="text-[#1C6B85]"
+                class="text-primary"
             />
         </template>
         <template #itemcheckboxicon="{ checked }">

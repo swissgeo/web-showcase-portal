@@ -73,7 +73,7 @@ function destroySortable() {
         :header="t('layerCart.title')"
         :pt="{
             root: 'md:rounded-t-none md:shadow-none',
-            header: 'md:justify-between justify-center md:bg-[#F3F8F8]',
+            header: 'md:justify-between justify-center md:bg-green-pastel-50',
             title: 'order-2 md:order-1',
             headerActions: 'absolute left-4 md:static md:order-2',
         }"

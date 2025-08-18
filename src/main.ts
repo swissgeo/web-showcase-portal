@@ -11,6 +11,7 @@ import '@fontsource/dm-sans'
 import '@geonetwork-ui/gn-standalone-search.js'
 
 import router from '@/router'
+// @ts-expect-error If this is TS then I have a problem with the plugin
 import { SwissGeo } from '@/stylePreset'
 import { i18n } from '@/types/language'
 

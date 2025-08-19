@@ -160,7 +160,7 @@ watchEffect(() => {
         </div>
     </div>
     <div
-        v-else
+        v-else-if="isSearching"
         class="flex h-full items-center justify-center"
         data-cy="comp-search-no-results"
     >

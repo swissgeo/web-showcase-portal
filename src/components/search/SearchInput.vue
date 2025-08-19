@@ -3,7 +3,16 @@ import Divider from 'primevue/divider'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, inject, nextTick, onMounted, ref, watch, useTemplateRef, type ComputedRef } from 'vue'
+import {
+    computed,
+    inject,
+    nextTick,
+    onMounted,
+    ref,
+    watch,
+    useTemplateRef,
+    type ComputedRef,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
@@ -111,7 +120,6 @@ const focusInput = () => {
 }
 
 defineExpose({ searchArea, focusInput })
-
 </script>
 
 <template>

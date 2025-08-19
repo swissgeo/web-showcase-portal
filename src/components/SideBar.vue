@@ -42,11 +42,6 @@ function startDragging(event: MouseEvent) {
     document.body.style.cursor = 'col-resize'
     window.addEventListener('mousemove', handleDragging)
     window.addEventListener('mouseup', stopDragging)
-    // Add document event listeners as backup
-    document.addEventListener('mouseup', stopDragging)
-    document.addEventListener('mouseleave', stopDragging)
-    // Also listen for blur events in case user switches tabs/windows
-    window.addEventListener('blur', stopDragging)
 }
 
 function handleDragging(event: MouseEvent) {
@@ -79,9 +74,6 @@ function stopDragging() {
     // Remove all event listeners
     window.removeEventListener('mousemove', handleDragging)
     window.removeEventListener('mouseup', stopDragging)
-    document.removeEventListener('mouseup', stopDragging)
-    document.removeEventListener('mouseleave', stopDragging)
-    window.removeEventListener('blur', stopDragging)
     if (searchSidebarRef.value) {
         searchSidebarRef.value.containerStopDragging()
     }

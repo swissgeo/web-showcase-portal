@@ -293,8 +293,8 @@ describe('Test the map on desktop', () => {
         cy.log(
             'adding the layer "swissTLM3D Wald" to the map and checking that a tile is request (that it was correctly loaded)'
         )
-        // open accordion
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        // open search results
+        cy.get('[data-cy="comp-data-panel"]').click()
         cy.get('[data-cy="add-result-cdb289d5-db16-4440-8529-5807a262f6a2"]').click()
         getIframeDocument().its('location.href').should(
             'contain',

@@ -40,8 +40,8 @@ describe('Test the layer details on desktop', () => {
 
     it('Shows the layer details from the search', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        // open accordion
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        // open search results
+        cy.get('[data-cy="comp-data-panel"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -53,8 +53,8 @@ describe('Test the layer details on desktop', () => {
 
     it('Search panel remains open when clicking detail button', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        // open accordion
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        // open search results
+        cy.get('[data-cy="comp-data-panel"]').click()
 
         // Verify search panel is visible
         cy.get('[data-cy="div-search-sidebar"]').should('be.visible')
@@ -87,8 +87,8 @@ describe('Test the layer details on desktop', () => {
 
     it('Shows the layer details from the layer cart', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        // open accordion
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        // open search results
+        cy.get('[data-cy="comp-data-panel"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -112,7 +112,7 @@ describe('Test the layer details on mobile', () => {
 
     it('Shows the layer details from the search', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        cy.get('[data-cy="comp-data-panel"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -124,7 +124,7 @@ describe('Test the layer details on mobile', () => {
 
     it('Shows the layer details from the layer cart', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        cy.get('[data-cy="comp-data-panel"]').click()
         cy.get('[data-cy="ul-geocat-search-results"]')
             .find('li')
             .first()
@@ -140,7 +140,7 @@ describe('Test the layer details on mobile', () => {
 
     it('Search panel remains accessible when clicking detail button on mobile', () => {
         cy.get('[data-cy="input-search"]').type(RADON_UID)
-        cy.get('[data-cy="comp-data-accordion"]').click()
+        cy.get('[data-cy="comp-data-panel"]').click()
 
         // Verify search results are visible
         cy.get('[data-cy="comp-search-results-mobile"]').should('be.visible')

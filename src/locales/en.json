@@ -44,7 +44,8 @@
         "addToMap": "Add to map",
         "removeFromMap": "Remove from map",
         "buttonLabel": "Search Results",
-        "noPreviewAvailable": "No preview available"
+        "noPreviewAvailable": "No preview available",
+        "noResults": "No results found"
     },
     "layerCart": {
         "showInfo": "Details",

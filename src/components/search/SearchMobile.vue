@@ -13,7 +13,7 @@ import LayerCartButton from '@/components/menu/LayerCartButton.vue'
 import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
 import SearchInput from '@/components/search/SearchInput.vue'
 import SearchKeywordContainer from '@/components/search/SearchKeywordContainer.vue'
-import SearchResultsMobile from '@/components/search/SearchResultsMobile.vue'
+import SearchResults from '@/components/search/SearchResults.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useResetApp } from '@/composables/useResetAppComposable'
 import { useTopicTree } from '@/composables/useTopicTree'
@@ -115,12 +115,12 @@ updateGeocatalogLanguage()
                 class="fixed inset-0 z-50"
             ></TopicTreeBrowser>
         </div>
-        <SearchResultsMobile
+        <SearchResults
             v-if="isSearching"
-            class="min-h-0 flex-1 grow-1 overflow-y-scroll bg-white px-2 pt-4 md:overflow-visible"
+            class="min-w-0 flex-1 grow overflow-y-auto bg-white px-2 pt-4"
             data-cy="comp-search-results-mobile"
         >
-        </SearchResultsMobile>
+        </SearchResults>
         <Card
             class="border border-neutral-300"
             :pt="{

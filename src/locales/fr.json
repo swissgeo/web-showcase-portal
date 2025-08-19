@@ -44,7 +44,8 @@
         "addToMap": "Ajouter à la carte",
         "removeFromMap": "Retirer de la carte",
         "buttonLabel": "Résultats de recherche",
-        "noPreviewAvailable": "Aucune prévisualisation disponible"
+        "noPreviewAvailable": "Aucune prévisualisation disponible",
+        "noResults": "Aucun résultat trouvé"
     },
     "layerCart": {
         "showInfo": "Détails",

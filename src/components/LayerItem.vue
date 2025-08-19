@@ -141,7 +141,7 @@ const zoomToExtentMenuClicked = async () => {
         const cleanedExtent: [number, number, number, number] = [minX, minY, maxX, maxY]
 
         // Use zoomToExtent to set zoom and center
-        zoomToExtent(cleanedExtent, mapStore)
+        zoomToExtent(cleanedExtent, mapStore.setMapUrlSearchParams)
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Error getting layer extent:', error)

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ButtonGroup from 'primevue/buttongroup'
 import Toast from 'primevue/toast'
-import { computed, onBeforeMount, inject, watch, type Ref } from 'vue'
+import { computed, onBeforeMount, inject, watch, type Ref, ref } from 'vue'
 
 import IconButton from '@/components/general/IconButton.vue'
 import GeolocationButton from '@/components/GeolocationButton.vue'
@@ -21,12 +21,23 @@ const isDesktop = inject<Ref<boolean>>('isDesktop')
 const groupsStore = useGroupsStore()
 const mapStore = useMapStore()
 const mapUrlSearchParams = computed(() => mapStore.mapUrlSearchParams)
-const urlString = computed(() => {
-    const baseUrl = getEmbedViewerUrl()
-    const searchParams = generateMapUrlParameters(mapUrlSearchParams.value)
-    return `${baseUrl}?${searchParams.toString()}`
-})
+const isUpdatedUrlParameters = computed(() => mapStore.isUpdatedUrlParameters)
+
 const currentZoomLevel = computed(() => mapStore.mapUrlSearchParams.z)
+const urlString = ref('')
+watch(
+    isUpdatedUrlParameters,
+    (value) => {
+        if (!value) {
+            return
+        }
+        mapStore.setIsUpdatedUrlParameters(false)
+        const baseUrl = getEmbedViewerUrl()
+        const searchParams = generateMapUrlParameters(mapUrlSearchParams.value)
+        urlString.value = `${baseUrl}?${searchParams.toString()}`
+    },
+    { immediate: true }
+)
 
 watch(urlString, (value) => {
     // eslint-disable-next-line no-console
@@ -53,10 +64,10 @@ function onEmbedChange(e: MessageEvent) {
         // only update if values actually change
         const hasChanged = JSON.stringify(newParams) !== JSON.stringify(oldParams)
         // we don't care about changes to the center parameter, as it is set by the map viewer
-        if (!hasChanged || (newParams.center && !oldParams.center)) {
+        if (!hasChanged) {
             return
         }
-        mapStore.setMapUrlSearchParams(newParams)
+        mapStore.setMapUrlSearchParams(newParams, false) // don't update the map, as this is done by the embed map viewer and it will cause an infinite loop
     }
 }
 </script>

@@ -71,6 +71,7 @@ const clearSearch = () => {
     mapStore.setMapUrlSearchParams({
         crossHairPosition: undefined,
     })
+
     searchStore.setForceScrollComponentUpdate(true)
 }
 

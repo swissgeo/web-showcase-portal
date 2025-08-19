@@ -188,9 +188,7 @@ function getZoomLevelFromResolution(resolution: number): number {
  */
 export function zoomToExtent(
     extent: [number, number, number, number],
-    mapStore: {
-        setMapUrlSearchParams: (params: Partial<MapUrlParameter>, dispatcher: string) => void
-    }
+    setMapUrlSearchParams: (params: Partial<MapUrlParameter>, updateMap?: boolean) => void
 ): void {
     const [minX, minY, maxX, maxY] = extent
 
@@ -221,11 +219,8 @@ export function zoomToExtent(
     const finalZoom = Math.max(zoomLevel - 1, 0) // Ensure zoom level is at least 0
 
     // Update the map store
-    mapStore.setMapUrlSearchParams(
-        {
-            center,
-            z: finalZoom,
-        },
-        'zoomToExtent'
-    )
+    setMapUrlSearchParams({
+        center,
+        z: finalZoom,
+    })
 }

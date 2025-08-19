@@ -114,24 +114,22 @@ onBeforeUnmount(() => {
                 <!-- Second column -->
                 <div
                     v-show="uiStore.isSidebarOpen"
-                    class="relative flex"
+                    :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                    class="relative flex h-full overflow-y-auto bg-white"
                 >
                     <LayerCart
                         v-show="uiStore.isLayerCartVisible"
-                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                        class="h-full overflow-y-auto bg-white"
+                        class="w-full"
                     />
                     <TopicTreeBrowser
                         v-show="uiStore.isGeocatalogTreeVisible"
                         :root="topicTreeRoot"
-                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                        class="h-full overflow-y-auto bg-white"
+                        class="w-full"
                     />
                     <SearchSidebar
                         v-show="uiStore.isSearchVisible"
                         ref="searchSidebarRef"
-                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                        class="h-full overflow-y-auto bg-white"
+                        class="w-full"
                     />
                 </div>
             </div>
@@ -142,7 +140,7 @@ onBeforeUnmount(() => {
             class="z-1 flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
             @mousedown="startDragging"
         >
-            <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0" />
+            <UnfoldHorizontal class="pointer-events-none w-6 flex-shrink-0" />
         </div>
     </div>
 </template>

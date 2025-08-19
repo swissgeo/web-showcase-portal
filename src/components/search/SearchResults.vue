@@ -96,14 +96,11 @@ watchEffect(() => {
     }
 })
 
-const isExtentFilterActive = computed({
-    get() {
-        return searchFilter.isExtentFilterActive.value
-    },
-    set(value: boolean) {
-        searchFilter.isExtentFilterActive.value = value
-    },
-})
+const isExtentFilterActive = computed(() => searchFilter.isExtentFilterActive.value)
+
+function setExtentFilterActive(value: boolean) {
+    searchFilter.isExtentFilterActive.value = value
+}
 </script>
 
 <template>
@@ -157,8 +154,9 @@ const isExtentFilterActive = computed({
                 <div class="ml-auto flex items-center justify-end gap-2">
                     <span class="text-xs">{{ t('filter.filterByMapExtent') }}</span>
                     <ToggleSwitch
-                        v-model="isExtentFilterActive"
+                        :model-value="isExtentFilterActive"
                         class="mr-2"
+                        @update:model-value="setExtentFilterActive"
                     />
                 </div>
                 <GeocatResultList />

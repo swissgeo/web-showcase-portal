@@ -8,14 +8,12 @@ import { defaultBgLayer, defaultCenter, defaultLang, defaultZoomLevel } from '@/
 import { convertToMapParameter, getVisibleExtent } from '@/search/mapUrlUtils'
 
 import { useGeocatalogStore } from './geocatalog'
-import { useIframeStore } from './iframe'
 import { useMainStore } from './main'
 
 export const useMapStore = defineStore('map', () => {
     // State
     const mainStore = useMainStore()
     const geocatalogStore = useGeocatalogStore()
-    const iframeStore = useIframeStore()
     const isUpdatedUrlParameters = ref<boolean>(true)
     const layers = computed(() =>
         [
@@ -38,12 +36,15 @@ export const useMapStore = defineStore('map', () => {
         topic: geocatalogStore.currentTopic?.id,
     })
 
+    const dimensions = ref({ width: 1200, height: 800 })
+    const paddingLeft = ref(0)
+
     // Getters
     const visibleExtent = computed(() => {
         const params = mapUrlSearchParams.value
-        const center = params.center ?? [2660000, 1190000]
+        const center = params.center ?? defaultCenter
         const zoom = params.z ?? 1
-        const { width, height } = iframeStore.dimensions
+        const { width, height } = dimensions.value
 
         return getVisibleExtent(center, zoom, width, height)
     })
@@ -89,15 +90,27 @@ export const useMapStore = defineStore('map', () => {
         isUpdatedUrlParameters.value = value
     }
 
+    function updateDimensions(width: number, height: number) {
+        dimensions.value = { width, height }
+    }
+
+    function setPaddingLeft(padding: number) {
+        paddingLeft.value = padding
+    }
+
     return {
         // State
         isUpdatedUrlParameters,
         mapUrlSearchParams,
         cachedPreviewRootLayers,
+        dimensions,
+        paddingLeft,
         // Actions
         setMapUrlSearchParams,
         setIsUpdatedUrlParameters,
         resetStore,
+        updateDimensions,
+        setPaddingLeft,
         // Getters
         visibleExtent,
         cachePreviewRootLayer,

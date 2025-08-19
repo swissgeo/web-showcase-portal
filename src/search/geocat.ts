@@ -121,7 +121,7 @@ export default function useGeocat() {
 
         const extent = mapStore.visibleExtent
         let filterGeometry: { type: string; coordinates: [number, number][][] } | null = null
-        if (searchStore.isExtentFilterActive && extent && extent.length === 2) {
+        if (searchStore.isExtentFilterActive) {
             filterGeometry = createExtentFilterGeometry(extent)
         }
 
@@ -268,6 +268,7 @@ export default function useGeocat() {
     function createExtentFilterGeometry(
         extent: [[number, number], [number, number]]
     ): { type: string; coordinates: [number, number][][] } | null {
+        // extent should be an array of two points: [ [minX, minY], [maxX, maxY] ]
         if (!extent || extent.length !== 2) return null
         const [[minX, minY], [maxX, maxY]] = extent
         const polygonLV95: [number, number][] = [

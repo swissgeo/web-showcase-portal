@@ -40,8 +40,8 @@ function startDragging(event: MouseEvent) {
     isDragging = true
     document.body.style.userSelect = 'none'
     document.body.style.cursor = 'col-resize'
-    window.addEventListener('mousemove', handleDragging)
-    window.addEventListener('mouseup', stopDragging)
+    document.addEventListener('mousemove', handleDragging)
+    document.addEventListener('mouseup', stopDragging)
 }
 
 function handleDragging(event: MouseEvent) {
@@ -115,7 +115,8 @@ onBeforeUnmount(() => {
                 <div
                     v-show="uiStore.isSidebarOpen"
                     :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                    class="relative flex h-full overflow-y-auto bg-white"
+                    class="relative flex h-full overflow-y-auto bg-white transition-[width] duration-75 ease-out"
+                    :class="{ 'transition-none': isDragging }"
                 >
                     <LayerCart
                         v-show="uiStore.isLayerCartVisible"

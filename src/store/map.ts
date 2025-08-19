@@ -14,7 +14,7 @@ export const useMapStore = defineStore('map', () => {
     // State
     const mainStore = useMainStore()
     const geocatalogStore = useGeocatalogStore()
-
+    const isUpdatedUrlParameters = ref<boolean>(true)
     const layers = computed(() =>
         [
             ...(mainStore.layersOnMap ?? []),
@@ -36,10 +36,18 @@ export const useMapStore = defineStore('map', () => {
         topic: geocatalogStore.currentTopic?.id,
     })
     // Actions
-    function setMapUrlSearchParams(parameters: Partial<MapUrlParameter>) {
+    // Be careful with the `updateMap` parameter, it should be set to false when the map is not supposed to be updated (e.g., when the embed map viewer is handling the updates)
+    function setMapUrlSearchParams(
+        parameters: Partial<MapUrlParameter>,
+        updateMap: boolean = true
+    ) {
         mapUrlSearchParams.value = {
             ...mapUrlSearchParams.value,
             ...parameters,
+        }
+
+        if (updateMap) {
+            setIsUpdatedUrlParameters(true) // Enable updated URL parameters in store
         }
     }
 
@@ -53,6 +61,7 @@ export const useMapStore = defineStore('map', () => {
             hideEmbedUI: true,
             topic: geocatalogStore.currentTopic?.id,
         }
+        setIsUpdatedUrlParameters(true)
     }
 
     function cachePreviewRootLayer(wmsBaseUrl: string, rootLayer: CapabilitiesLayer) {
@@ -63,12 +72,18 @@ export const useMapStore = defineStore('map', () => {
         return cachedPreviewRootLayers.value.get(wmsBaseUrl)
     }
 
+    function setIsUpdatedUrlParameters(value: boolean) {
+        isUpdatedUrlParameters.value = value
+    }
+
     return {
         // State
+        isUpdatedUrlParameters,
         mapUrlSearchParams,
         cachedPreviewRootLayers,
         // Actions
         setMapUrlSearchParams,
+        setIsUpdatedUrlParameters,
         resetStore,
         cachePreviewRootLayer,
         getCachedPreviewRootLayer,

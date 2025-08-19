@@ -47,6 +47,7 @@ export const useSearchStore = defineStore('search', () => {
     const selectedFederalIds = ref<number[]>([])
     const selectedCantonalIds = ref<number[]>([])
     const selectedCommunalIds = ref<number[]>([])
+    const isExtentFilterActive = ref(true)
 
     // actions
     function appendGeocatSearchResults(results: GeonetworkRecord[]) {
@@ -161,6 +162,7 @@ export const useSearchStore = defineStore('search', () => {
         selectedFederalIds,
         selectedCantonalIds,
         selectedCommunalIds,
+        isExtentFilterActive,
         // actions
         appendGeocatSearchResults,
         setSearchLocationResults,

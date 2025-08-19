@@ -1,10 +1,11 @@
-import { computed, type ComputedRef } from 'vue'
+import { computed, ref, type ComputedRef } from 'vue'
 
 import type { FilterGroup } from '@/types/search'
 
 import cantons from '@/assets/cantons.json'
 import municipalities from '@/assets/municipalities.json'
 import { useGroupsStore } from '@/store/groups'
+import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { langToLabelKey } from '@/types/language'
 import { useLanguage } from '@/utils/language.composable'
@@ -22,6 +23,7 @@ function createSearchFilter() {
 
     const groupsStore = useGroupsStore()
     const searchStore = useSearchStore()
+    const mapStore = useMapStore()
 
     const filterLanguageLabelKey = computed(() => langToLabelKey(localeString.value))
 
@@ -142,6 +144,13 @@ function createSearchFilter() {
         set: (val) => searchStore.setSelectedCommunalIds(val || []),
     })
 
+    const isExtentFilterActive = computed({
+        get: () => searchStore.isExtentFilterActive,
+        set: (val: boolean) => {
+            searchStore.isExtentFilterActive = val
+        },
+    })
+
     const isCantonFilterActive = computed(() => selectedCantonal.value.length > 0)
 
     function lastWord(label: string | undefined): string {
@@ -175,6 +184,8 @@ function createSearchFilter() {
         selectedFederal,
         selectedCantonal,
         selectedCommunal,
+        visibleExtent: mapStore.visibleExtent,
+        isExtentFilterActive,
         isCantonFilterActive,
     }
 }
@@ -185,3 +196,5 @@ export function useSearchFilter() {
     }
     return instance
 }
+
+export const isExtentFilterActive = ref(true)

@@ -5,15 +5,17 @@ import type { CapabilitiesLayer } from '@/types/mapPreview'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
 import { defaultBgLayer, defaultCenter, defaultLang, defaultZoomLevel } from '@/config/map.config'
-import { convertToMapParameter } from '@/search/mapUrlUtils'
+import { convertToMapParameter, getVisibleExtent } from '@/search/mapUrlUtils'
 
 import { useGeocatalogStore } from './geocatalog'
+import { useIframeStore } from './iframe'
 import { useMainStore } from './main'
 
 export const useMapStore = defineStore('map', () => {
     // State
     const mainStore = useMainStore()
     const geocatalogStore = useGeocatalogStore()
+    const iframeStore = useIframeStore()
     const isUpdatedUrlParameters = ref<boolean>(true)
     const layers = computed(() =>
         [
@@ -35,6 +37,17 @@ export const useMapStore = defineStore('map', () => {
         hideEmbedUI: true,
         topic: geocatalogStore.currentTopic?.id,
     })
+
+    // Getters
+    const visibleExtent = computed(() => {
+        const params = mapUrlSearchParams.value
+        const center = params.center ?? [2660000, 1190000]
+        const zoom = params.z ?? 1
+        const { width, height } = iframeStore.dimensions
+
+        return getVisibleExtent(center, zoom, width, height)
+    })
+
     // Actions
     // Be careful with the `updateMap` parameter, it should be set to false when the map is not supposed to be updated (e.g., when the embed map viewer is handling the updates)
     function setMapUrlSearchParams(
@@ -85,6 +98,8 @@ export const useMapStore = defineStore('map', () => {
         setMapUrlSearchParams,
         setIsUpdatedUrlParameters,
         resetStore,
+        // Getters
+        visibleExtent,
         cachePreviewRootLayer,
         getCachedPreviewRootLayer,
     }

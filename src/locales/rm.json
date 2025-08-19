@@ -108,6 +108,7 @@
     "filter": {
         "title": "Filter",
         "filterByProvider": "Filter tras purschider",
+        "filterByMapExtent": "Sin la charta",
         "apply": "Applicar il filter",
         "reset": "Reimpostar"
     },

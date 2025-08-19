@@ -28,6 +28,10 @@ export const LOCATION_SEARCH_ORIGINS: OriginType[] = [
     'gazetteer',
     'address',
 ]
+// Resolutions for each LV95 zoom level, from 0 to 14 (from geoadmin web-mapviewer)
+export const LV95_RESOLUTIONS = [
+    650.0, 500.0, 250.0, 100.0, 50.0, 20.0, 10.0, 5.0, 2.5, 2.0, 1.0, 0.5, 0.25, 0.1,
+] as const
 export const PARCEL_SEARCH_ORIGINS: OriginType[] = ['parcel']
 
 export const TRANSPARENCY_DEBOUNCE_DELAY = 500
@@ -157,11 +161,6 @@ export function changeZoomLevel(shouldZoomIn: boolean, currentZoomLevel: number)
  * @returns the zoom level corresponding to the resolution
  */
 function getZoomLevelFromResolution(resolution: number): number {
-    // Resolutions for each LV95 zoom level, from 0 to 14 (from geoadmin web-mapviewer)
-    const LV95_RESOLUTIONS = [
-        650.0, 500.0, 250.0, 100.0, 50.0, 20.0, 10.0, 5.0, 2.5, 2.0, 1.0, 0.5, 0.25, 0.1,
-    ]
-
     const matchingResolution = LV95_RESOLUTIONS.find(
         (lv95Resolution) => lv95Resolution <= resolution
     )
@@ -191,25 +190,14 @@ export function zoomToExtent(
     setMapUrlSearchParams: (params: Partial<MapUrlParameter>, updateMap?: boolean) => void
 ): void {
     const [minX, minY, maxX, maxY] = extent
-
-    // Calculate the center point
-    const centerX = (minX + maxX) / 2
-    const centerY = (minY + maxY) / 2
-    const center: [number, number] = [centerX, centerY]
-
-    // Calculate the extent dimensions
+    const center: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2]
     const extentWidth = maxX - minX
     const extentHeight = maxY - minY
 
-    // Get viewport dimensions (excluding any UI elements)
-    const viewportWidth = window.innerWidth
-    const viewportHeight = window.innerHeight
-
-    // Calculate required resolution (meters per pixel) to fit extent in viewport
-    const resolutionX = extentWidth / viewportWidth
-    const resolutionY = extentHeight / viewportHeight
-
-    const targetResolution: number = extentHeight > extentWidth ? resolutionY : resolutionX
+    // Use window.innerWidth/Height directly for consistency
+    const resolutionX = extentWidth / window.innerWidth
+    const resolutionY = extentHeight / window.innerHeight
+    const targetResolution = Math.max(resolutionX, resolutionY)
 
     const zoomLevel = getZoomLevelFromResolution(targetResolution)
     // Zoom levels are fixed value with LV95, the one calculated is the fixed zoom the closest to the floating
@@ -223,4 +211,30 @@ export function zoomToExtent(
         center,
         z: finalZoom,
     })
+}
+
+export function getResolutionForZoom(zoom: number): number {
+    const index = Math.max(0, Math.min(Math.floor(zoom), LV95_RESOLUTIONS.length - 1))
+    return LV95_RESOLUTIONS[index]
+}
+
+export function getVisibleExtent(
+    center: [number, number],
+    zoom: number,
+    viewportWidth: number,
+    viewportHeight: number
+): [[number, number], [number, number]] {
+    const resolution = getResolutionForZoom(zoom)
+    const widthInMeters = viewportWidth * resolution
+    const heightInMeters = viewportHeight * resolution
+
+    const minX = center[0] - widthInMeters / 2
+    const maxX = center[0] + widthInMeters / 2
+    const minY = center[1] - heightInMeters / 2
+    const maxY = center[1] + heightInMeters / 2
+
+    return [
+        [minX, minY],
+        [maxX, maxY],
+    ]
 }

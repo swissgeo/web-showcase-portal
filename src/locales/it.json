@@ -108,6 +108,7 @@
     "filter": {
         "title": "Filtro",
         "filterByProvider": "Filtrare per fornitore",
+        "filterByMapExtent": "Su mappa",
         "apply": "Applica filtro",
         "reset": "Reimposta"
     },

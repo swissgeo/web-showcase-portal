@@ -62,10 +62,7 @@ export default function useGeocat() {
 
                 // In line with geodienste.che we add logic here for KGK results
                 // Each canton should have at least one KGK result and KGK results should be at the top
-                if (isCantonFilterActive.value) {
-                    return Number(isKGKRecordB) - Number(isKGKRecordA)
-                }
-                return 0
+                return Number(isKGKRecordB) - Number(isKGKRecordA)
             })
 
             searchStore.appendGeocatSearchResults(sortedRecords)

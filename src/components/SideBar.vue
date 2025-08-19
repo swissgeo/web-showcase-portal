@@ -60,9 +60,13 @@ function handleDragging(event: MouseEvent) {
     let newWidth = sidebarSecondColumnWidth.value + deltaX
     newWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, newWidth))
     sidebarSecondColumnWidth.value = newWidth
+
+    console.log('Dragging:', event.movementX, 'New Width:', newWidth, 'clientX:', event.clientX)
+    event.preventDefault()
 }
 
 function stopDragging() {
+    console.log('stopDragging:', isDragging)
     if (!isDragging) {
         return
     }
@@ -72,8 +76,8 @@ function stopDragging() {
     document.body.style.cursor = ''
 
     // Remove all event listeners
-    window.removeEventListener('mousemove', handleDragging)
-    window.removeEventListener('mouseup', stopDragging)
+    document.removeEventListener('mousemove', handleDragging)
+    document.removeEventListener('mouseup', stopDragging)
     if (searchSidebarRef.value) {
         searchSidebarRef.value.containerStopDragging()
     }
@@ -108,6 +112,7 @@ onBeforeUnmount(() => {
                         <GeocatalogTreeButton />
                         <FeedbackButton />
                         <ProjectInfoButton />
+                        <div>{{ sidebarSecondColumnWidth }}</div>
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />
                 </div>

@@ -173,6 +173,8 @@
         "search": "Search",
         "layerCart": "Displayed maps",
         "projectInfo": "Project Information",
-        "geocatalog": "Geocatalog"
+        "geocatalog": "Geocatalog",
+        "feedback": "Feedback",
+        "feedbackLink": "https://www.geoinformation.ch/de/swissgeo-feedback-de"
     }
 }

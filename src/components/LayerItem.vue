@@ -169,16 +169,6 @@ const menuItems = [
     },
 ]
 
-// Menu items for context menu for background layers
-const menuItemsBgLayer = [
-    {
-        label: t('layerCart.showInfo'),
-        icon: 'Info',
-        disabled: true,
-        command: () => metadataMenuClicked(),
-    },
-]
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toggleLayerMenu = (event: any) => {
     menu.value.toggle(event)
@@ -264,6 +254,7 @@ const tooltipContent = computed(() => {
             </IconButton>
 
             <IconButton
+                v-if="!isBgLayer"
                 type="button"
                 icon="EllipsisVertical"
                 icon-class="h-4"
@@ -278,7 +269,7 @@ const tooltipContent = computed(() => {
             <Menu
                 id="overlay_menu"
                 ref="menu"
-                :model="isBgLayer ? menuItemsBgLayer : menuItems"
+                :model="menuItems"
                 :popup="true"
             >
                 <template #item="{ item, props }">

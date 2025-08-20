@@ -7,6 +7,7 @@ import type SearchSidebarType from '@/components/search/SearchSidebar.vue'
 import LanguageSwitchButton from '@/components/LanguageSwitchButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import FeedbackButton from '@/components/menu/FeedbackButton.vue'
 import GeocatalogTreeButton from '@/components/menu/GeocatalogTreeButton.vue'
 import LayerCartButton from '@/components/menu/LayerCartButton.vue'
 import ProjectInfoButton from '@/components/menu/ProjectInfoButton.vue'
@@ -113,6 +114,7 @@ onBeforeUnmount(() => {
                         <SearchPanelButton />
                         <LayerCartButton />
                         <GeocatalogTreeButton />
+                        <FeedbackButton />
                         <ProjectInfoButton />
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />

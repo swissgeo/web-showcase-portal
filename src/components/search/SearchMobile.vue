@@ -8,6 +8,7 @@ import GeolocationButton from '@/components/GeolocationButton.vue'
 import LayerCart from '@/components/LayerCart.vue'
 import LegendButton from '@/components/LayerWindowButton.vue'
 import LogoPic from '@/components/LogoPic.vue'
+import FeedbackButton from '@/components/menu/FeedbackButton.vue'
 import GeocatalogTreeButton from '@/components/menu/GeocatalogTreeButton.vue'
 import LayerCartButton from '@/components/menu/LayerCartButton.vue'
 import SearchFilterMobile from '@/components/search/SearchFilterMobile.vue'
@@ -102,6 +103,7 @@ updateGeocatalogLanguage()
                 <GeocatalogTreeButton
                     v-if="!uiStore.isLayerCartVisible && !isSearching"
                 ></GeocatalogTreeButton>
+                <FeedbackButton v-if="!uiStore.isLayerCartVisible && !isSearching"></FeedbackButton>
             </div>
             <LayerCart
                 v-if="uiStore.isLayerCartVisible"

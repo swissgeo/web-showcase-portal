@@ -173,6 +173,8 @@
         "search": "Tschertga",
         "layerCart": "Chartas visualisadas",
         "projectInfo": "Infurmaziuns davart il project",
-        "geocatalog": "Catalog da geodatas"
+        "geocatalog": "Catalog da geodatas",
+        "feedback": "Feedback",
+        "feedbackLink": "https://www.geoinformation.ch/de/swissgeo-feedback-de"
     }
 }

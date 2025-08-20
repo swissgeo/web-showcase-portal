@@ -66,6 +66,8 @@ async function initializePreview(): Promise<void> {
     addLayer(createWMSLayer(props.wmsBaseUrl, props.selectedLayerName, extent))
     addLayerExtentToMap(extent)
 
+    await nextTick()
+
     if (destroyed || !mapContainer.value) {
         hasPreviewError.value = true
         emit('alignOverlay')

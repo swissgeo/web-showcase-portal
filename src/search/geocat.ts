@@ -77,7 +77,6 @@ export default function useGeocat() {
                     ...sortedRecords,
                 ]
             }
-            searchStore.appendGeocatSearchResults(sortedRecords)
             searchStore.setSearchResultTotal(count)
             searchStore.setIsSearchingGeocat(false)
         }

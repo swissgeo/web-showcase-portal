@@ -26,7 +26,11 @@ const popoverComponent = ref()
 const recordGetCapabilitiesUrl = ref()
 const { resetMap } = useMapPreview()
 const longPressTimeout = ref<NodeJS.Timeout | null>(null) // Timeout reference for long press
+const hoverTimeout = ref<NodeJS.Timeout | null>(null) // Timeout reference for hover
 const targetRef = ref<EventTarget | null>(null)
+
+const HOVER_TIMEOUT_MS = 100
+
 // provide some debug info
 // this is for debugging purposes only and will go away after some time
 const tooltipContent = computed(() => {
@@ -61,20 +65,26 @@ const addTempPreviewLayerToMap = (record: GeonetworkRecord) => {
     })
 }
 
-const handleMouseEnter = (event: MouseEvent) => {
+const handleMouseEnter = async (event: MouseEvent) => {
     if (!isAddableToMap(result) || !isDesktop?.value) {
         return
     }
-    initializeGetCapabilitiesUrl()
-    popoverComponent.value.show(event) // Show the popover on hover
-    addTempPreviewLayerToMap(result) // Add the temporary preview layer to the map
+
+    targetRef.value = event.currentTarget
+    hoverTimeout.value = setTimeout(async () => {
+        initializeGetCapabilitiesUrl()
+        popoverComponent.value.show(event, targetRef.value)
+        addTempPreviewLayerToMap(result)
+    }, HOVER_TIMEOUT_MS)
 }
 
-const handleMouseLeave = () => {
-    if (popoverComponent.value) {
-        popoverComponent.value.hide() // Hide the popover on hover out
+const handleMouseLeave = async () => {
+    if (hoverTimeout.value) {
+        clearTimeout(hoverTimeout.value)
+        hoverTimeout.value = null
+        popoverComponent.value.hide()
         resetMap()
-        mainStore.resetTempPreviewLayer() // Reset the temporary preview layer
+        mainStore.resetTempPreviewLayer()
     }
 }
 

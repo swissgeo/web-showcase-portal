@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { UnfoldHorizontal } from 'lucide-vue-next'
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 
 import type SearchSidebarType from '@/components/search/SearchSidebar.vue'
 
@@ -16,7 +16,7 @@ import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useResetApp } from '@/composables/useResetAppComposable'
 import { useTopicTree } from '@/composables/useTopicTree'
-import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
+import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH, SIDEBAR_DEFAULT_WIDTH } from '@/store/ui'
 
 const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 const searchSidebarRef = ref<InstanceType<typeof SearchSidebarType> | null>(null)
@@ -24,14 +24,7 @@ const searchSidebarRef = ref<InstanceType<typeof SearchSidebarType> | null>(null
 const uiStore = useUiStore()
 const { resetApp } = useResetApp()
 
-const sidebarSecondColumnWidth = computed({
-    get() {
-        return uiStore.sidebarSecondColumnWidth
-    },
-    set(value: number) {
-        uiStore.setSidebarSecondColumnWidth(value)
-    },
-})
+const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
 
 let isDragging = false
 
@@ -40,8 +33,8 @@ function startDragging(event: MouseEvent) {
     isDragging = true
     document.body.style.userSelect = 'none'
     document.body.style.cursor = 'col-resize'
-    document.addEventListener('mousemove', handleDragging)
-    document.addEventListener('mouseup', stopDragging)
+    document.addEventListener('mousemove', handleDragging, { passive: true })
+    document.addEventListener('mouseup', stopDragging, { passive: true })
 }
 
 function handleDragging(event: MouseEvent) {
@@ -55,14 +48,12 @@ function handleDragging(event: MouseEvent) {
         return
     }
 
-    event.preventDefault()
     const deltaX = event.movementX || 0
     let newWidth = sidebarSecondColumnWidth.value + deltaX
     newWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, newWidth))
     sidebarSecondColumnWidth.value = newWidth
 
     console.log('Dragging:', event.movementX, 'New Width:', newWidth, 'clientX:', event.clientX)
-    event.preventDefault()
 }
 
 function stopDragging() {

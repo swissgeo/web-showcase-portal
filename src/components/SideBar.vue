@@ -100,7 +100,6 @@ onBeforeUnmount(() => {
                         <GeocatalogTreeButton />
                         <FeedbackButton />
                         <ProjectInfoButton />
-                        <div>{{ sidebarSecondColumnWidth }}</div>
                     </div>
                     <LanguageSwitchButton class="w-19 py-5" />
                 </div>

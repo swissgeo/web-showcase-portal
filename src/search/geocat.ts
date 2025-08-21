@@ -1,5 +1,5 @@
 import { catchError, Subscription } from 'rxjs'
-import { watch } from 'vue'
+import { nextTick, watch } from 'vue'
 
 import { defaultLayerOpacity } from '@/config/map.config'
 import { convertLv95ToWgs84 } from '@/config/projection.config'
@@ -90,7 +90,7 @@ export default function useGeocat() {
         }
     }
 
-    const searchGeocat = (value: string, groupIds?: number[] | null, resetResults = false) => {
+    const searchGeocat = async (value: string, groupIds?: number[] | null, resetResults = false) => {
         if (searchStore.isSearchingGeocat) {
             return
         }
@@ -127,12 +127,11 @@ export default function useGeocat() {
         if (resetResults || searchStore.geocatPage === 0) {
             searchStore.geocatSearchResults = []
             searchStore.geocatPage = 0
-            setTimeout(() => {
-                const resultList = document.querySelector('[data-cy="div-geocat-search-results"]')
-                if (resultList) {
-                    resultList.scrollTop = 0
-                }
-            }, 0)
+            await nextTick()
+            const resultList = document.querySelector('[data-cy="div-geocat-search-results"]')
+            if (resultList) {
+                resultList.scrollTop = 0
+            }
         }
         subscription = GNUI.recordsRepository
             .search({
@@ -268,7 +267,9 @@ export default function useGeocat() {
         extent: [[number, number], [number, number]]
     ): { type: string; coordinates: [number, number][][] } | null {
         // extent should be an array of two points: [ [minX, minY], [maxX, maxY] ]
-        if (!extent || extent.length !== 2) return null
+        if (!extent || extent.length !== 2) {
+            return null
+        }
         const [[minX, minY], [maxX, maxY]] = extent
         const polygonLV95: [number, number][] = [
             [minX, minY],

@@ -15,16 +15,16 @@ import SearchPanelButton from '@/components/menu/SearchPanelButton.vue'
 import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useResetApp } from '@/composables/useResetAppComposable'
+import { useSidebarWidth } from '@/composables/useSidebarWidth'
 import { useTopicTree } from '@/composables/useTopicTree'
-import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH, SIDEBAR_DEFAULT_WIDTH } from '@/store/ui'
+import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
 
 const { topicTreeRoot, updateGeocatalogLanguage } = useTopicTree()
 const searchSidebarRef = ref<InstanceType<typeof SearchSidebarType> | null>(null)
 
 const uiStore = useUiStore()
 const { resetApp } = useResetApp()
-
-const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
+const { sidebarWidth: sidebarSecondColumnWidth } = useSidebarWidth()
 
 let isDragging = false
 

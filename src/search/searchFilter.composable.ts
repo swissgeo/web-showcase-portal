@@ -3,7 +3,7 @@ import { computed, type ComputedRef } from 'vue'
 import type { FilterGroup } from '@/types/search'
 
 import cantons from '@/assets/cantons.json'
-import communes from '@/assets/communes.json'
+import municipalities from '@/assets/municipalities.json'
 import { useGroupsStore } from '@/store/groups'
 import { useSearchStore } from '@/store/search'
 import { langToLabelKey } from '@/types/language'
@@ -15,7 +15,7 @@ import { getKGKGroup } from './geocatGroups'
 
 let instance: ReturnType<typeof createSearchFilter> | null = null
 
-type communeType = (typeof communes)[0]
+type municipalitiesType = (typeof municipalities)[0]
 
 function createSearchFilter() {
     const { localeString } = useLanguage()
@@ -96,8 +96,8 @@ function createSearchFilter() {
                 }
             }
         }
-        return communes
-            .map(mapCommuneToFilterGroup(labelToGroup))
+        return municipalities
+            .map(mapMunicipalitiesToFilterGroup(labelToGroup, langKey))
             .sort((a, b) => a.label.localeCompare(b.label))
     })
 
@@ -115,13 +115,15 @@ function createSearchFilter() {
             }
         }
     }
-    function mapCommuneToFilterGroup(
-        labelMap: Map<string, { id: number; label: string }>
-    ): (commune: communeType) => FilterGroup {
+    function mapMunicipalitiesToFilterGroup(
+        labelMap: Map<string, { id: number; label: string }>,
+        langKey: string
+    ): (commune: municipalitiesType) => FilterGroup {
         return (commune) => {
-            const match = labelMap.get(commune.Gemeindename)
+            const match = labelMap.get(commune[langKey as keyof typeof commune])
+
             return {
-                label: match?.label || commune.Gemeindename,
+                label: commune[langKey as keyof typeof commune] || commune.ger,
                 value: match?.id,
             }
         }

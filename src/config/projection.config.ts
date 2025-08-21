@@ -42,3 +42,13 @@ export function getConfiguredProj4() {
     registerProjections()
     return proj4
 }
+
+/**
+ * Convert coordinates from Swiss LV95 (EPSG:2056) to WGS84 (EPSG:4326)
+ * @param coord - coordinates in Swiss LV95
+ * @returns coordinates in WGS84
+ */
+export function convertLv95ToWgs84(coord: [number, number]): [number, number] {
+    const proj4 = getConfiguredProj4()
+    return proj4(EPSG_2056, EPSG_4326, coord)
+}

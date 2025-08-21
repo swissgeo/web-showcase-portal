@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Badge from 'primevue/badge'
 import SelectButton from 'primevue/selectbutton'
+import ToggleSwitch from 'primevue/toggleswitch'
 import { ref, computed, watchEffect, inject } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -8,6 +9,7 @@ import AddressResultList from '@/components/search/AddressResultList.vue'
 import GeocatResultList from '@/components/search/GeocatResultList.vue'
 import ParcelResultList from '@/components/search/ParcelResultList.vue'
 import useSearchResults from '@/components/search/useSearchResults'
+import { useSearchFilter } from '@/search/searchFilter.composable'
 
 const { t } = useI18n()
 
@@ -22,6 +24,8 @@ const {
     parcelSearchResultCount,
     isSearching,
 } = useSearchResults()
+
+const searchFilter = useSearchFilter()
 
 const hasGeocatResults = computed(
     () => !!geocatSearchResultCount.value || !!showGeocatSpinner.value
@@ -91,6 +95,12 @@ watchEffect(() => {
         active.value = values[0]
     }
 })
+
+const isExtentFilterActive = computed(() => searchFilter.isExtentFilterActive.value)
+
+function setExtentFilterActive(value: boolean) {
+    searchFilter.isExtentFilterActive.value = value
+}
 </script>
 
 <template>
@@ -141,6 +151,14 @@ watchEffect(() => {
                 v-show="active === 'data'"
                 data-cy="comp-data-panel"
             >
+                <div class="ml-auto flex items-center justify-end gap-2">
+                    <span class="text-xs">{{ t('filter.filterByMapExtent') }}</span>
+                    <ToggleSwitch
+                        :model-value="isExtentFilterActive"
+                        class="mr-2"
+                        @update:model-value="setExtentFilterActive"
+                    />
+                </div>
                 <GeocatResultList />
             </div>
 

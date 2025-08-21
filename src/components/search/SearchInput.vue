@@ -3,12 +3,22 @@ import Divider from 'primevue/divider'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { computed, inject, nextTick, onMounted, ref, useTemplateRef, type ComputedRef } from 'vue'
+import {
+    computed,
+    inject,
+    nextTick,
+    onMounted,
+    ref,
+    watch,
+    useTemplateRef,
+    type ComputedRef,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/general/IconButton.vue'
 import LucideIcon from '@/components/general/LucideIcon.vue'
 import useGeocat from '@/search/geocat'
+import { useSearchFilter } from '@/search/searchFilter.composable'
 import { useTriggerSearch } from '@/search/triggerSearch.composable'
 import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
@@ -81,12 +91,25 @@ async function toggleFilter() {
     }
     uiStore.toggleFilterVisible()
 }
+
 function onEnter() {
     // When the user presses enter, we want to blur the input field (close the keyboard on mobile)
     if (isDesktop) {
         inputRef.value?.$el.blur()
     }
 }
+
+const { isExtentFilterActive } = useSearchFilter()
+
+watch(isExtentFilterActive, () => {
+    geocatSearch.searchGeocat(
+        searchStore.searchTerm ?? '',
+        searchStore.selectedFederalIds.concat(
+            searchStore.selectedCantonalIds,
+            searchStore.selectedCommunalIds
+        )
+    )
+})
 
 const focusInput = () => {
     nextTick(() => {

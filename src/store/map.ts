@@ -5,7 +5,7 @@ import type { CapabilitiesLayer } from '@/types/mapPreview'
 import type { MapUrlParameter } from '@/types/mapUrlParameters'
 
 import { defaultBgLayer, defaultCenter, defaultLang, defaultZoomLevel } from '@/config/map.config'
-import { convertToMapParameter } from '@/search/mapUrlUtils'
+import { convertToMapParameter, getVisibleExtent } from '@/search/mapUrlUtils'
 
 import { useGeocatalogStore } from './geocatalog'
 import { useMainStore } from './main'
@@ -35,6 +35,20 @@ export const useMapStore = defineStore('map', () => {
         hideEmbedUI: true,
         topic: geocatalogStore.currentTopic?.id,
     })
+
+    const dimensions = ref({ width: 1200, height: 800 })
+    const paddingLeft = ref(0)
+
+    // Getters
+    const visibleExtent = computed(() => {
+        const params = mapUrlSearchParams.value
+        const center = params.center ?? defaultCenter
+        const zoom = params.z ?? 1
+        const { width, height } = dimensions.value
+
+        return getVisibleExtent(center, zoom, width, height)
+    })
+
     // Actions
     // Be careful with the `updateMap` parameter, it should be set to false when the map is not supposed to be updated (e.g., when the embed map viewer is handling the updates)
     function setMapUrlSearchParams(
@@ -76,15 +90,29 @@ export const useMapStore = defineStore('map', () => {
         isUpdatedUrlParameters.value = value
     }
 
+    function updateDimensions(width: number, height: number) {
+        dimensions.value = { width, height }
+    }
+
+    function setPaddingLeft(padding: number) {
+        paddingLeft.value = padding
+    }
+
     return {
         // State
         isUpdatedUrlParameters,
         mapUrlSearchParams,
         cachedPreviewRootLayers,
+        dimensions,
+        paddingLeft,
         // Actions
         setMapUrlSearchParams,
         setIsUpdatedUrlParameters,
         resetStore,
+        updateDimensions,
+        setPaddingLeft,
+        // Getters
+        visibleExtent,
         cachePreviewRootLayer,
         getCachedPreviewRootLayer,
     }

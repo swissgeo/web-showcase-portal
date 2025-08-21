@@ -1,8 +1,11 @@
 import { catchError, Subscription } from 'rxjs'
+import { nextTick, watch } from 'vue'
 
 import { defaultLayerOpacity } from '@/config/map.config'
+import { convertLv95ToWgs84 } from '@/config/projection.config'
 import { useSearchFilter } from '@/search/searchFilter.composable'
 import { useMainStore } from '@/store/main'
+import { useMapStore } from '@/store/map'
 import { useSearchStore } from '@/store/search'
 import { type GeonetworkRecord } from '@/types/gnRecord.d'
 import { LayerType, type Layer } from '@/types/layer'
@@ -19,6 +22,7 @@ export default function useGeocat() {
 
     const searchStore = useSearchStore()
     const mainStore = useMainStore()
+    const mapStore = useMapStore()
     const { localeString } = useLanguage()
     const { isCantonFilterActive } = useSearchFilter()
 
@@ -65,7 +69,14 @@ export default function useGeocat() {
                 return Number(isKGKRecordB) - Number(isKGKRecordA)
             })
 
-            searchStore.appendGeocatSearchResults(sortedRecords)
+            if (searchStore.geocatPage === 0) {
+                searchStore.geocatSearchResults = sortedRecords
+            } else {
+                searchStore.geocatSearchResults = [
+                    ...searchStore.geocatSearchResults,
+                    ...sortedRecords,
+                ]
+            }
             searchStore.setSearchResultTotal(count)
             searchStore.setIsSearchingGeocat(false)
         }
@@ -79,7 +90,15 @@ export default function useGeocat() {
         }
     }
 
-    const searchGeocat = (value: string, groupIds?: number[] | null) => {
+    const searchGeocat = async (
+        value: string,
+        groupIds?: number[] | null,
+        resetResults = false
+    ) => {
+        if (searchStore.isSearchingGeocat) {
+            return
+        }
+
         cancelSearch()
         searchStore.setIsSearchingGeocat(true)
 
@@ -87,6 +106,7 @@ export default function useGeocat() {
             any: value,
             linkProtocol: '/OGC:WMT?S.*/',
         }
+
         if (groupIds && groupIds.length) {
             let filteredGroupIds = groupIds
 
@@ -102,8 +122,21 @@ export default function useGeocat() {
             filters.groupOwner = `(${filteredGroupIds.map((id) => `groupOwner:"${id}"`).join(' OR ')})`
         }
 
-        // logs...
+        const extent = mapStore.visibleExtent
+        let filterGeometry: { type: string; coordinates: [number, number][][] } | null = null
+        if (searchStore.isExtentFilterActive) {
+            filterGeometry = createExtentFilterGeometry(extent)
+        }
 
+        if (resetResults || searchStore.geocatPage === 0) {
+            searchStore.geocatSearchResults = []
+            searchStore.geocatPage = 0
+            await nextTick()
+            const resultList = document.querySelector('[data-cy="div-geocat-search-results"]')
+            if (resultList) {
+                resultList.scrollTop = 0
+            }
+        }
         subscription = GNUI.recordsRepository
             .search({
                 filters,
@@ -114,6 +147,7 @@ export default function useGeocat() {
                 // the field names were deduced from looking at this code
                 // https://github.com/geonetwork/geonetwork-ui/blob/c5432f39ff5649e8df1647bfd9eefc9a7c264061/libs/api/metadata-converter/src/lib/gn4/gn4.field.mapper.ts#L70
                 fields: ['resourceTitleObject', 'link', 'contact', 'uuid'],
+                ...(filterGeometry ? { filterGeometry } : {}),
             })
             .pipe(
                 catchError((error) => {
@@ -232,6 +266,42 @@ export default function useGeocat() {
             }
         })
     }
+
+    function createExtentFilterGeometry(
+        extent: [[number, number], [number, number]]
+    ): { type: string; coordinates: [number, number][][] } | null {
+        // extent should be an array of two points: [ [minX, minY], [maxX, maxY] ]
+        if (!extent || extent.length !== 2) {
+            return null
+        }
+        const [[minX, minY], [maxX, maxY]] = extent
+        const polygonLV95: [number, number][] = [
+            [minX, minY],
+            [maxX, minY],
+            [maxX, maxY],
+            [minX, maxY],
+            [minX, minY],
+        ]
+        const polygonWGS84 = polygonLV95.map(convertLv95ToWgs84)
+        return {
+            type: 'Polygon',
+            coordinates: [polygonWGS84],
+        }
+    }
+
+    watch(
+        () => mapStore.visibleExtent,
+        (newExtent, oldExtent) => {
+            if (
+                searchStore.isExtentFilterActive &&
+                JSON.stringify(newExtent) !== JSON.stringify(oldExtent)
+            ) {
+                searchGeocat(searchStore.searchTerm || '', undefined, true)
+            }
+        },
+        { deep: true }
+    )
+
     return {
         setGNUILanguage,
         initializeGNUI,

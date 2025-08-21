@@ -108,6 +108,7 @@
     "filter": {
         "title": "Filter",
         "filterByProvider": "Filter by provider",
+        "filterByMapExtent": "On Map",
         "apply": "Apply filter",
         "reset": "Reset"
     },

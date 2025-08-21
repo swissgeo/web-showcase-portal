@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { UnfoldHorizontal } from 'lucide-vue-next'
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 
 import type SearchSidebarType from '@/components/search/SearchSidebar.vue'
 
@@ -15,6 +15,7 @@ import SearchPanelButton from '@/components/menu/SearchPanelButton.vue'
 import SearchSidebar from '@/components/search/SearchSidebar.vue'
 import TopicTreeBrowser from '@/components/search/TopicTreeBrowser.vue'
 import { useResetApp } from '@/composables/useResetAppComposable'
+import { useSidebarWidth } from '@/composables/useSidebarWidth'
 import { useTopicTree } from '@/composables/useTopicTree'
 import { useUiStore, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from '@/store/ui'
 
@@ -23,15 +24,7 @@ const searchSidebarRef = ref<InstanceType<typeof SearchSidebarType> | null>(null
 
 const uiStore = useUiStore()
 const { resetApp } = useResetApp()
-
-const sidebarSecondColumnWidth = computed({
-    get() {
-        return uiStore.sidebarSecondColumnWidth
-    },
-    set(value: number) {
-        uiStore.setSidebarSecondColumnWidth(value)
-    },
-})
+const { sidebarWidth: sidebarSecondColumnWidth } = useSidebarWidth()
 
 let isDragging = false
 
@@ -40,13 +33,8 @@ function startDragging(event: MouseEvent) {
     isDragging = true
     document.body.style.userSelect = 'none'
     document.body.style.cursor = 'col-resize'
-    window.addEventListener('mousemove', handleDragging)
-    window.addEventListener('mouseup', stopDragging)
-    // Add document event listeners as backup
-    document.addEventListener('mouseup', stopDragging)
-    document.addEventListener('mouseleave', stopDragging)
-    // Also listen for blur events in case user switches tabs/windows
-    window.addEventListener('blur', stopDragging)
+    document.addEventListener('mousemove', handleDragging, { passive: true })
+    document.addEventListener('mouseup', stopDragging, { passive: true })
 }
 
 function handleDragging(event: MouseEvent) {
@@ -60,7 +48,6 @@ function handleDragging(event: MouseEvent) {
         return
     }
 
-    event.preventDefault()
     const deltaX = event.movementX || 0
     let newWidth = sidebarSecondColumnWidth.value + deltaX
     newWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, newWidth))
@@ -77,11 +64,8 @@ function stopDragging() {
     document.body.style.cursor = ''
 
     // Remove all event listeners
-    window.removeEventListener('mousemove', handleDragging)
-    window.removeEventListener('mouseup', stopDragging)
+    document.removeEventListener('mousemove', handleDragging)
     document.removeEventListener('mouseup', stopDragging)
-    document.removeEventListener('mouseleave', stopDragging)
-    window.removeEventListener('blur', stopDragging)
     if (searchSidebarRef.value) {
         searchSidebarRef.value.containerStopDragging()
     }
@@ -122,35 +106,44 @@ onBeforeUnmount(() => {
                 <!-- Second column -->
                 <div
                     v-show="uiStore.isSidebarOpen"
-                    class="relative flex"
+                    :style="{ width: sidebarSecondColumnWidth + 'px' }"
+                    class="relative flex h-full overflow-y-auto bg-white transition-[width] duration-75 ease-out"
+                    :class="{ 'transition-none': isDragging }"
                 >
                     <LayerCart
                         v-show="uiStore.isLayerCartVisible"
-                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                        class="h-full overflow-y-auto bg-white"
+                        class="w-full"
                     />
                     <TopicTreeBrowser
                         v-show="uiStore.isGeocatalogTreeVisible"
                         :root="topicTreeRoot"
-                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                        class="h-full overflow-y-auto bg-white"
+                        class="w-full"
                     />
                     <SearchSidebar
                         v-show="uiStore.isSearchVisible"
                         ref="searchSidebarRef"
-                        :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                        class="h-full overflow-y-auto bg-white"
+                        class="w-full"
                     />
                 </div>
             </div>
         </div>
-        <!-- Draggable resize handle -->
+        <!-- Draggable resize handle with proximity detection -->
         <div
             v-if="uiStore.isSidebarOpen"
-            class="z-1 flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
+            class="relative flex w-[3px] max-w-[3px] min-w-[3px] items-center justify-center bg-neutral-300/10 select-none"
             @mousedown="startDragging"
         >
-            <UnfoldHorizontal class="pointer-events-none w-4 flex-shrink-0" />
+            <!-- Large invisible hover detection area -->
+            <div class="group absolute -right-6 -left-6 h-full cursor-col-resize">
+                <!-- Handle that responds to proximity -->
+                <div
+                    class="absolute left-1/2 h-full w-[3px] -translate-x-1/2 transition-colors duration-150 group-hover:bg-neutral-600/80"
+                >
+                    <UnfoldHorizontal
+                        class="pointer-events-none absolute top-1/2 left-1/2 w-5 -translate-x-1/2 -translate-y-1/2 text-neutral-600 transition-all duration-150 group-hover:scale-110 group-hover:text-neutral-700"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </template>

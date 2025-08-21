@@ -22,7 +22,6 @@ export const useUiStore = defineStore('ui', () => {
     const isLayerWindowVisible = ref(false)
     const isLayerWindowMaximized = ref(false)
     const openLayerWindowFromDetailButton = ref(false)
-    const sidebarSecondColumnWidth = ref(SIDEBAR_DEFAULT_WIDTH)
     const isFilterVisible = ref(false)
     const filterReferenceElement: Ref<HTMLElement | null> = ref(null)
 
@@ -62,16 +61,6 @@ export const useUiStore = defineStore('ui', () => {
 
     function setLayerCartVisible(visible: boolean) {
         currentSidebar.value = visible ? SidebarType.LAYER_CART : null
-    }
-
-    function setSidebarSecondColumnWidth(width: number) {
-        if (width < SIDEBAR_MIN_WIDTH) {
-            sidebarSecondColumnWidth.value = SIDEBAR_MIN_WIDTH
-        } else if (width > SIDEBAR_MAX_WIDTH) {
-            sidebarSecondColumnWidth.value = SIDEBAR_MAX_WIDTH
-        } else {
-            sidebarSecondColumnWidth.value = width
-        }
     }
 
     function setLayerWindowVisible(visible: boolean) {
@@ -129,7 +118,6 @@ export const useUiStore = defineStore('ui', () => {
         isLayerWindowMaximized.value = false
         isFilterVisible.value = false
         isLayerWindowVisible.value = false
-        sidebarSecondColumnWidth.value = SIDEBAR_DEFAULT_WIDTH
         isWelcomeOverlayVisible.value = false
         dontShowAgainCheckbox.value = false
         layerWindowLastPosition.value = LAYER_WINDOW_START_POSITION
@@ -144,7 +132,6 @@ export const useUiStore = defineStore('ui', () => {
         isLayerWindowMaximized,
         layerWindowLastPosition,
         openLayerWindowFromDetailButton,
-        sidebarSecondColumnWidth,
         isWelcomeOverlayVisible,
         dontShowAgainCheckbox,
         dontShowWelcomeOverlayAgain,
@@ -159,7 +146,6 @@ export const useUiStore = defineStore('ui', () => {
         toggleFilterVisible,
         setFilterReferenceElement,
         setLayerCartVisible,
-        setSidebarSecondColumnWidth,
         setLayerWindowVisible,
         setLayerWindowLastPosition,
         setMaximizedLayerWindow,

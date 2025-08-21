@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { SIDEBAR_DEFAULT_WIDTH } from '@/store/ui'
+import { SIDEBAR_DEFAULT_WIDTH, SIDEBAR_MAX_WIDTH, SIDEBAR_MIN_WIDTH } from '@/store/ui'
 
 const sidebarWidth = ref(SIDEBAR_DEFAULT_WIDTH)
 
@@ -10,7 +10,8 @@ export function useSidebarWidth() {
     }
 
     const setWidth = (width: number) => {
-        sidebarWidth.value = width
+        const clampedWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(width, SIDEBAR_MAX_WIDTH));
+        sidebarWidth.value = clampedWidth
     }
 
     return {

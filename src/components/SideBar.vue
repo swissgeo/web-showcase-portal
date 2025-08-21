@@ -134,7 +134,7 @@ onBeforeUnmount(() => {
             @mousedown="startDragging"
         >
             <!-- Large invisible hover detection area -->
-            <div class="group absolute -right-4 -left-4 h-full cursor-col-resize">
+            <div class="group absolute -right-6 -left-6 h-full cursor-col-resize">
                 <!-- Handle that responds to proximity -->
                 <div
                     class="absolute left-1/2 h-full w-[3px] -translate-x-1/2 transition-colors duration-150 group-hover:bg-neutral-600/80"

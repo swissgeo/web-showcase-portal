@@ -107,7 +107,7 @@ onBeforeUnmount(() => {
                 <div
                     v-show="uiStore.isSidebarOpen"
                     :style="{ width: sidebarSecondColumnWidth + 'px' }"
-                    class="relative flex h-full overflow-y-auto bg-white transition-[width] duration-75 ease-out"
+                    class="relative flex h-full bg-white transition-[width] duration-75 ease-out"
                     :class="{ 'transition-none': isDragging }"
                 >
                     <LayerCart

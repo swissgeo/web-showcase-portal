@@ -90,7 +90,11 @@ export default function useGeocat() {
         }
     }
 
-    const searchGeocat = async (value: string, groupIds?: number[] | null, resetResults = false) => {
+    const searchGeocat = async (
+        value: string,
+        groupIds?: number[] | null,
+        resetResults = false
+    ) => {
         if (searchStore.isSearchingGeocat) {
             return
         }

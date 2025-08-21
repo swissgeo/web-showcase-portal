@@ -10,7 +10,7 @@ export function useSidebarWidth() {
     }
 
     const setWidth = (width: number) => {
-        const clampedWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(width, SIDEBAR_MAX_WIDTH));
+        const clampedWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(width, SIDEBAR_MAX_WIDTH))
         sidebarWidth.value = clampedWidth
     }
 

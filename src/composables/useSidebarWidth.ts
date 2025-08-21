@@ -16,6 +16,6 @@ export function useSidebarWidth() {
     return {
         sidebarWidth,
         resetWidth,
-        setWidth
+        setWidth,
     }
 }

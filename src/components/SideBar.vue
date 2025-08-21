@@ -52,12 +52,9 @@ function handleDragging(event: MouseEvent) {
     let newWidth = sidebarSecondColumnWidth.value + deltaX
     newWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, newWidth))
     sidebarSecondColumnWidth.value = newWidth
-
-    console.log('Dragging:', event.movementX, 'New Width:', newWidth, 'clientX:', event.clientX)
 }
 
 function stopDragging() {
-    console.log('stopDragging:', isDragging)
     if (!isDragging) {
         return
     }
@@ -131,13 +128,23 @@ onBeforeUnmount(() => {
                 </div>
             </div>
         </div>
-        <!-- Draggable resize handle -->
+        <!-- Draggable resize handle with proximity detection -->
         <div
             v-if="uiStore.isSidebarOpen"
-            class="z-1 flex w-2 max-w-[2px] min-w-[2px] cursor-col-resize items-center justify-center bg-white select-none hover:bg-gray-400"
+            class="relative flex w-[3px] max-w-[3px] min-w-[3px] items-center justify-center bg-neutral-300/10 select-none"
             @mousedown="startDragging"
         >
-            <UnfoldHorizontal class="pointer-events-none w-6 flex-shrink-0" />
+            <!-- Large invisible hover detection area -->
+            <div class="group absolute -right-4 -left-4 h-full cursor-col-resize">
+                <!-- Handle that responds to proximity -->
+                <div
+                    class="absolute left-1/2 h-full w-[3px] -translate-x-1/2 transition-colors duration-150 group-hover:bg-neutral-600/80"
+                >
+                    <UnfoldHorizontal
+                        class="pointer-events-none absolute top-1/2 left-1/2 w-5 -translate-x-1/2 -translate-y-1/2 text-neutral-600 transition-all duration-150 group-hover:scale-110 group-hover:text-neutral-700"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </template>

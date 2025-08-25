@@ -10,4 +10,4 @@ on:
 
 jobs:
   pr-edit:
-    uses: geoadmin/.github/.github/workflows/pr-auto-semver.yml@master
+    uses: swissgeo/.github/.github/workflows/pr-auto-semver.yml@main

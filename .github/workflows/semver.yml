@@ -8,4 +8,4 @@ on:
 
 jobs:
   release:
-    uses: geoadmin/.github/.github/workflows/semver-release.yml@master
+    uses: swissgeo/.github/.github/workflows/semver-release.yml@main

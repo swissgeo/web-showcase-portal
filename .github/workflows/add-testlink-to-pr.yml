@@ -18,7 +18,7 @@ jobs:
                   head-branch-regex: '.+'
                   body-template: |
 
-                      [Test link](https://test.dev.sgdi.ch/preview/%headbranch%/)
+                      [Test link](https://test.dev.sgdi.tech/preview/%headbranch%/)
                   body-update-action: 'suffix'
                   body-uppercase-head-match: false
 
@@ -30,6 +30,6 @@ jobs:
             #     head-branch-regex: '.+'
             #     body-template: |
 
-            #       [Test link](https://test.int.sgdi.ch/preview/%headbranch%/index.html)
+            #       [Test link](https://test.int.sgdi.tech/preview/%headbranch%/index.html)
             #     body-update-action: 'suffix'
             #     body-uppercase-head-match: false
